@@ -1,49 +1,66 @@
 # Cell Society API Lab Discussion
-### NAMES
-### TEAM
+### NAMES: Kevin Deng (kd254@duke.edu), Spencer Katz (sek49@duke.edu), Doga Ozmen (odo4@duke.edu), Alisha Zhang (xz352@duke.edu)
+### TEAM 4
 
 
-## Current Simulation API
+## Current Model API
 
 ### External
 
- * Identified Classes/Methods
+* Identified Public Classes/Methods
+  * Step
+  * Board
+  * CellModel
+  * CellState
 
- * Goals
- 
- * Abstractions
- 
- * Services and their Contract
 
 
 ### Internal
 
- * Identified Classes/Methods
-
- * Goals
- 
- * Abstractions
- 
- * Services and their Contract
+* Identified Classes/Methods
+  * FractionSameEthnic
+  * Eat
+  * ResetCloneTime
 
 
 
-## Wish Simulation API
+
+## Wish Model API
 
 ### External
 
- * Goals
- 
- * Abstractions
- 
- * Services and their Contract
+* Goals: View/Controller should be able to call the step in the model and also get the cell states from the model to populate the view. 
+The View should be able to call update from the Model.
+
+* Abstractions and their Methods: Abstract based on simulation: update, neighbor handling
+
+* Services and their Contract
 
 
 ### Internal
 
- * Goals
- 
- * Abstractions
- 
- * Services and their Contract
+* Goals: To extend current code and create a new simulation that works with the pre-existing logic
 
+* Abstractions and their Methods: Grid Edge type: shape of neighborhood, neighbor values
+
+* Services and their Contract
+
+
+
+## API Task Description
+
+### External
+
+* English: 
+
+* Java
+
+
+
+### Internal
+
+* English
+
+* Java
+ 
+ 
