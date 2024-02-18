@@ -89,7 +89,9 @@ Note: additional XML file for IDE (initial) config that includes background colo
     * ShapeAnimation- later
   * CodeEditor
   * SceneManager
+    * gets the node/pane from different scenes
   * StageManager
+    * creates the stage
   * Graphics: housed in a pane and returned to class that is handling the UI (scene switching)
   * Start Screen
 
