@@ -15,3 +15,5 @@
 * File loaded to Slogo
 
 * User clicks to step through animation one at a time
+
+* User clicks run while the animation is still playing
