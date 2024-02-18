@@ -150,10 +150,10 @@ Note: additional XML file for IDE (initial) config that includes background colo
 
 ## Team Responsibilities
 
- * Kevin: Model (Command)
+ * Kevin: Model (Command parser + Commands)
 
  * Spencer: View (Controller)
 
- * Alisha: Model (XML + Command)
+ * Alisha: Model (XML + Commands)
 
  * Doga: View (Graphics/UI)
