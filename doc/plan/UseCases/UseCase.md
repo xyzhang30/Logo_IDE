@@ -16,7 +16,18 @@
 
 * User clicks to step through animation one at a time
 
-* User clicks run while the animation is still playing
+* User clicks run while the animation is still playing (will show error message)
+```java
+public void toggleRun() {
+  if (animationRunning) { //button is click when animation is running (the button should be pause at this moment)
+    runPauseButon.setText("Run"); //button changed to run and animation is paused
+    animation.pause();
+  } else { //vice versa
+    runPauseButon.setText("Pause");
+    animation.start();
+  }
+}
+```
 
 * Turtle Moves Out of Bounds:
   * Description: When the user commands the turtle to move, the system should prevent the turtle from moving beyond the defined bounds of the canvas. 
@@ -130,7 +141,31 @@ public class Controller {
 
 * Error 2: invalid syntax (line spacing incorrect)
 
-* Error 3: invalid number of parameters
+* Error 3: invalid number of parameters (single-line command)
+```java
+//inside the specific command class
+public class CommandName extends singleLineCommand {
+  private int numParamsExpected = 2; //2 just for example
+  public double execute(){ //inherited from the commandLineInternal 
+    try {
+      //command logic here
+    } catch (IndexOutOfBoundsException e) {
+      String errorMessage = "Command" + commandName + "only takes in" + numParamsExpected + "parameter(s)";
+      throw new InvalidParameterNumberException(errorMessage, e);
+    }
+  }
+}
+
+//in views (probably controller, when calling the model to execute the command)
+private void readCommand(String commandInput){ //parameter might be changed after we go over reflection in class
+  try {
+    //call the model with the command input
+  } catch (InvalidParameterNumberException e){
+    showMessage(AlertType.ERROR, e.getMessage());
+  }
+}
+```
+
 
 * Error 4: Invalid Syntax (Mismatched Parentheses):
   * Description: If the user enters a command with mismatched parentheses, the system should detect this syntax error and provide feedback to the user.
