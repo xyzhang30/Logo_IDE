@@ -1,23 +1,35 @@
 # SLogo API Design Lab Discussion
-### NAMES
-### TEAM
+### NAMES: Kevin Deng (kd254@duke.edu), Spencer Katz (sek49@duke.edu), Doga Ozmen (odo4@duke.edu), Alisha Zhang (xz352@duke.edu)
+### TEAM 4
 
 
 ## Planning Questions
 
  * What behaviors (methods) should the Turtle have and what service should it provide?
+   * Drawing lines according to an input
+   * change colors
+   * change width of the line
+   * change direction
 
  * When does parsing need to take place and what does it need to start properly?
+   * when config receives a line of code
 
  * What is the result of parsing (not the details of the algorithm) and who receives it?
+   * passing the instruction to turtle so that it can perform an action based on the code
 
  * When are errors detected and how are they reported?
+   * user enters a command that doesn't exist; warning message (UI)
 
  * What do different commands need to know, when do they know it, and how do they get it?
+   * parameters: direction, speed, color, line width, how much to move
+   * after parsing
+   * parser returns it to controller/view
 
- * What behaviors does the result of a command need to have to be used by the View? 
+ * What behaviors does the result of a command need to have to be used by the View?
+   * descriptions of the parameters that do not give an error
 
  * How is the View updated after a command has completed execution?
+   * 
 
  * What value would Controller(s) have in mediating between the Model and View?
  
