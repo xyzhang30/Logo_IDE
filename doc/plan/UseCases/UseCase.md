@@ -7,10 +7,75 @@
 * Program Starts Running
 
 * A for loop is run
+  * The command is given to the command parser
+  * The commandParser recognizes that this is a multiple line command and creates a forLoop object of
+  the MultipleLineAbstractClass which implements the Command Interface
+  * This class will then execute the lines within the for loop until it is finished
+```java
+public class ForLoop extends MultipleLine {
+  private List<String> lines;
+  int start;
+  int end;
+  int increment;
+  
+  public ForLoop (List<String> lines, int start, int end, int increment) {
+    this.lines = lines;
+    this.start = start;
+    this.end = end;
+    this.increment = increment;
+  }
+  
+  @Override
+  public void execute() {
+    for (int i = start; i<=end; i = i + increment) {
+      for (int j = 0; j<lines.size(); j++) {
+        // create singleLine Command
+        // other option would be for this class to simply have a pointer at the end of the for
+        // loop and the end and then move point back to the start if the condition is still true
+    }
+  }
+  
+}
 
+```
 * The simulation speed is increased 
+    * The Controller will understand the simulation speed increase button has been pressed
+    * It will then change the updateSpeed
+    * This will change how often the controller calls view.update();
+```java
+public void handleSpeedUpSimulationButtonPress() {
+    try {
+      simulationSpeed = simulationSpeed + SPEED_ADJUSTMENT;
+    } catch (Exception e) {
+      View.showError(e.getMessage());
+    }
+  }
+public void update(double elapsedTime) {
+  lastUpdateTime += elapsedTime;
+  if (!isPaused) {
+    if (lastUpdateTime >= 1.0 / simulationSpeed) {
+      view.update();
+      lastUpdateTime = 0;
+    }
+  }
+}
+```
+* User accessed command history view
+  * View History Button is clicked
+  * Controller understands a button has been clicked
+  * Tells view to switch scene
+  * Controller gives the view a list of all previous commands
 
-* User accessed comman history view
+```java
+public void handleHistoryView() {
+  try {
+  view.setHistoryScene(HistoryRecord);
+  } catch (Exception e) {
+    View.showError(e.getMessage());
+  }
+}
+```
+
 
 * File loaded to Slogo
 
@@ -140,7 +205,21 @@ public class Controller {
 * Error 1: invalid "keyword"
 
 * Error 2: invalid syntax (line spacing incorrect)
+  * Within CommandParser
+```java
+public void readCommand() {
+  try {
+  // call model to generate command
+  }
+  catch(InvalidLineSpacingException e) {
+    showError(e.getMessage());
+    throw new InvalidLineSpacingException(e, e.getMessage());
+  }
 
+}
+
+
+```
 * Error 3: invalid number of parameters (single-line command)
 ```java
 //inside the specific command class
