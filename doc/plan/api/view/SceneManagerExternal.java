@@ -5,16 +5,18 @@ public interface ViewInternal {
    * Returns the scene.
    * @return Group  the internally stored scene
    */
-  Group getScene();
+  public Group getScene();
 
-  setTheme();
+  public void setTheme();
 
-  setLanguage(String language);
+  public void setLanguage(String language);
 
-  setColor(String color);
+  public void setColor(String color);
 
-  makeButton(int x, int y);
+  public void makeButton(int x, int y);
 
-  switchScene();
+  public void switchScene();
+
+  public void runTurtle();
 
 }
