@@ -1,10 +1,50 @@
 # Use Cases
 
 * User Types three lines of code and clicks run
+  * Each line is passed to the commandParser
+  * commandParser interprets each line and adds it to history structure
+```java
+class commandParser extends Parser {
+  private List<commandLine> commands;
+  public void interpretText(String s){
+    for (String i : s.split("\n")){
+      try{
+        //interpret command into commandLine
+      }
+      except{
+        //handle exception
+      }
+      commands.addCommand(i);
+    }
+  }
+  public void addCommand(){
+    commands.push_back(i);
+  }
+}
+```
 
 * User clicks on the help screen
+  * Help button is bound to event handler for helpscreen.
+  * Alternatively, bind the dialogue to a mouseOver event popup dialogue.
+```java
+public void createHelpButton(EventHandler<ActionEvent> e){
+  helpButton.setOnActionEvent(e);
+}
+```
 
 * Program Starts Running
+  * When run is clicked, controller begins the run sequence
+  * commandParser is ordered to execute commands from top
+```java
+class commandParser extends Parser {
+  private List<commandLine> commands;
+  private commandLine currentCommand;
+  public void executeStep(){
+    currentCommand.execute();
+    currentCommand = nextCommand();
+  }
+}
+```
 
 * A for loop is run
   * The command is given to the command parser
@@ -203,6 +243,19 @@ public class Controller {
  ```
 
 * Error 1: invalid "keyword"
+  * An a command that doesn't correspond to a valid keyword throws an exception in CommandParser
+```java
+public void readCommand() {
+  try {
+    // call model to grab command
+    command = commandsList.get(token);
+  }
+  catch(InvalidKeywordException e){
+    showError(e.getMessage());
+    throw new InvalidKeywordException(e,e.getMessage());
+  }
+}
+```
 
 * Error 2: invalid syntax (line spacing incorrect)
   * Within CommandParser
