@@ -20,7 +20,11 @@ taken from [Brilliant Examples of Sketched UI Wireframes and Mock-Ups](https://o
 
 
 ## Introduction
-
+The goal is to design an IDE capable of interpreting SLogo code and displaying the result on an
+embedded interface. The focus should be on extensibility of the SLogo language interpreter and its
+control over the graphical interface. We will have a command parser that interprets code and stores
+it as a sequence. The controller can then coordinate the commands between the editor and the
+graphics on screen.
 
 ## Configuration File Format
 <commands>
