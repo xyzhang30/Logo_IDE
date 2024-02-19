@@ -1,6 +1,6 @@
 # Use Cases
 
-* User Types three lines of code and clicks run
+### User Types three lines of code and clicks run
   * Each line is passed to the commandParser
   * commandParser interprets each line and adds it to history structure
 ```java
@@ -23,7 +23,7 @@ class commandParser extends Parser {
 }
 ```
 
-* User clicks on the help screen
+### User clicks on the help screen
   * Help button is bound to event handler for helpscreen.
   * Alternatively, bind the dialogue to a mouseOver event popup dialogue.
 ```java
@@ -32,7 +32,7 @@ public void createHelpButton(EventHandler<ActionEvent> e){
 }
 ```
 
-* Program Starts Running
+### Program Starts Running
   * When run is clicked, controller begins the run sequence
   * commandParser is ordered to execute commands from top
 ```java
@@ -46,7 +46,7 @@ class commandParser extends Parser {
 }
 ```
 
-* A for loop is run
+### A for loop is run
   * The command is given to the command parser
   * The commandParser recognizes that this is a multiple line command and creates a forLoop object of
   the MultipleLineAbstractClass which implements the Command Interface
@@ -78,10 +78,10 @@ public class ForLoop extends MultipleLine {
 }
 
 ```
-* The simulation speed is increased 
-    * The Controller will understand the simulation speed increase button has been pressed
-    * It will then change the updateSpeed
-    * This will change how often the controller calls view.update();
+### The simulation speed is increased 
+* The Controller will understand the simulation speed increase button has been pressed
+* It will then change the updateSpeed 
+* This will change how often the controller calls view.update();
 ```java
 public void handleSpeedUpSimulationButtonPress() {
     try {
@@ -100,7 +100,7 @@ public void update(double elapsedTime) {
   }
 }
 ```
-* User accessed command history view
+### User accessed command history view
   * View History Button is clicked
   * Controller understands a button has been clicked
   * Tells view to switch scene
@@ -116,12 +116,46 @@ public void handleHistoryView() {
 }
 ```
 
+### File loaded to Slogo
+```java
+//Controller
+private void onLoadNewFileClicked(){
+  try {
+    animationRunning = false;
+    File dataFile = chooseFile();
+    if (dataFile == null) {
+      return;
+    }
+    String codeText = readFile(dataFile);
+    commandParser.parseInput(codeText);
+    setSimulation();
+  } catch (InvalidFileFormatException e) {
+    showMessage(AlertType.ERROR, e.getMessage());
+  }
+}
+```
 
-* File loaded to Slogo
+### User clicks to step through animation one at a time
+```java
+public class Controller {
+  private CommandParser commandParser;
+  private SceneManager sceneManager;
+  
+  private void onStepClicked(){
+    step();
+  }
+  
+  private void step() {
+    commandParser.executeCurrentLine(); 
+    commandParser.setCurrentLine(commandParser.getCurrentLine()+1);
+    sceneManager.runTurtle();
+    sceneManager.pauseAnimation();
+  }
+}
 
-* User clicks to step through animation one at a time
+```
 
-* User clicks run while the animation is still playing (will show error message)
+### User clicks run while the animation is still playing (will show error message)
 ```java
 public void toggleRun() {
   if (animationRunning) { //button is click when animation is running (the button should be pause at this moment)
@@ -134,7 +168,7 @@ public void toggleRun() {
 }
 ```
 
-* Turtle Moves Out of Bounds:
+### Turtle Moves Out of Bounds:
   * Description: When the user commands the turtle to move, the system should prevent the turtle from moving beyond the defined bounds of the canvas. 
   * Steps:
     1. User issues a command to move the turtle. 
@@ -172,14 +206,13 @@ public class TurtleModel {
 }
  ```
 
-* User Changes from Light Mode to Dark Mode:
+### User Changes from Light Mode to Dark Mode:
   * Description: The user has the option to switch between light and dark modes for the Integrated Development Environment (IDE). 
     * Steps:
     1. User interacts with a UI control (button or menu) to change the mode. 
     2. The system updates the appearance of the IDE according to the selected mode. 
     3. Example: User clicks on a "Dark Mode" button in the settings menu. 
     4. Expected Outcome: The IDE interface switches its color scheme to dark mode, updating the background, text, and other elements accordingly.
-  * Java:
 ```java
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -216,9 +249,9 @@ public class SceneManager extends Application {
     launch(args);
   }
 }
- ```
+```
 
-* User Runs When There Is No Code:
+### User Runs When There Is No Code:
   * Description: If the user attempts to run the program without providing any code, the system should handle this scenario gracefully. 
     * Steps:
     1. User clicks on the "Run" button or issues a command to execute the code. 
@@ -242,7 +275,7 @@ public class Controller {
 
  ```
 
-* Error 1: invalid "keyword"
+### Error 1: invalid "keyword"
   * An a command that doesn't correspond to a valid keyword throws an exception in CommandParser
 ```java
 public void readCommand() {
@@ -257,7 +290,7 @@ public void readCommand() {
 }
 ```
 
-* Error 2: invalid syntax (line spacing incorrect)
+### Error 2: invalid syntax (line spacing incorrect)
   * Within CommandParser
 ```java
 public void readCommand() {
@@ -273,7 +306,7 @@ public void readCommand() {
 
 
 ```
-* Error 3: invalid number of parameters (single-line command)
+### Error 3: invalid number of parameters (single-line command)
 ```java
 //inside the specific command class
 public class CommandName extends singleLineCommand {
@@ -299,7 +332,7 @@ private void readCommand(String commandInput){ //parameter might be changed afte
 ```
 
 
-* Error 4: Invalid Syntax (Mismatched Parentheses):
+### Error 4: Invalid Syntax (Mismatched Parentheses):
   * Description: If the user enters a command with mismatched parentheses, the system should detect this syntax error and provide feedback to the user.
   * Steps:
     1. User enters a command containing parentheses.
@@ -326,7 +359,7 @@ public class XMLParser {
 }
  ```
 
-Kevin: err 1, 1st 3
-Spencer: err 2, 2nd 3
-Alisha: err 3, 3rd 3
-Doga: error 4, last 3
+[//]: # (Kevin: err 1, 1st 3)
+[//]: # (Spencer: err 2, 2nd 3)
+[//]: # (Alisha: err 3, 3rd 3)
+[//]: # (Doga: error 4, last 3)
