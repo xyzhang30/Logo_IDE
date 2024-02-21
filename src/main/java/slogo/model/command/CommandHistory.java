@@ -12,8 +12,8 @@ public class CommandHistory implements History{
   public CommandHistory(){
     clearHistory();
   }
-  public void executeCurrentCommand(){
-    commands.get(currentIndex).execute();
+  public double executeCurrentCommand(){
+    return commands.get(currentIndex).execute();
   }
   public void incrementCommandIndex() {
     if (currentIndex>commands.size()){
