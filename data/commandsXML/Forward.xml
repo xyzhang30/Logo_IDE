@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>forward</canonical_name>
+  <category>Movement</category>
+  <description>Move the turtle forward by a specified distance, takes in a constance distance value in number of pixels</description>
+  <example>forward 50</example>
+  <parameters>
+    <distance>(constant) The distance to move forward</distance>
+  </parameters>
+  <return_value>Double</return_value>
+  <number_of_expected_parameters>1</number_of_expected_parameters>
+  <implementing_class_or_method_name>commands.Forward()</implementing_class_or_method_name>
+</command>
