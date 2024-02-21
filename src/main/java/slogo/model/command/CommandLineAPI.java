@@ -1,6 +1,6 @@
 package slogo.model.command;
 
-public interface CommandLine {
+public interface CommandLineAPI {
 
   /**
    * Executes the code stored on this commandLine object

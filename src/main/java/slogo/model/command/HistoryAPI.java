@@ -3,8 +3,8 @@ package slogo.model.command;
 /**
  * External Interface for History tracker object
  */
-public interface History {
+public interface HistoryAPI {
   double executeCurrentCommand();
-  void addCommand(CommandLine c);
+  void addCommand(CommandLineAPI c);
   void incrementCommandIndex();
 }

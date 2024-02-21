@@ -6,8 +6,8 @@ import java.util.ArrayList;
 /**
  * A list of commandLines. Manages the history of entered commands.
  */
-public class CommandHistory implements History{
-  private List<CommandLine> commands;
+public class CommandHistory implements HistoryAPI {
+  private List<CommandLineAPI> commands;
   private int currentIndex;
   public CommandHistory(){
     clearHistory();
@@ -22,7 +22,7 @@ public class CommandHistory implements History{
     }
     currentIndex++;
   }
-  public void addCommand(CommandLine com){
+  public void addCommand(CommandLineAPI com){
     commands.add(com);
   }
   public void jumpToCommand(int index){
@@ -31,7 +31,7 @@ public class CommandHistory implements History{
     }
     currentIndex = index;
   }
-  public CommandLine getCurrentCommand(){
+  public CommandLineAPI getCurrentCommand(){
     return commands.get(currentIndex);
   }
   public int getCurrentIndex(){
