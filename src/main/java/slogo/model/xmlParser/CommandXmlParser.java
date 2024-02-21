@@ -29,7 +29,7 @@ public class CommandXmlParser {
   }
 
   public void readXml(String commandName) throws FileNotFoundException {
-    String dataFolderPath = "C:/Users/alish/cs308/slogo_team04/data/commandsXML/";
+    String dataFolderPath = "data/commandsXML/";
     String path = dataFolderPath + commandName + ".xml";
 
     File file = new File(path);
