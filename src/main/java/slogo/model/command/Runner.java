@@ -9,7 +9,7 @@ public class Runner {
     turt.setDirection(135);
     Forward forward = new Forward(50, turt);
     forward.execute();
-    System.out.println("new x : "+ turt.getPosX());
+    System.out.println("new x : " + turt.getPosX());
     System.out.println("new y: " + turt.getPoxY());
   }
 

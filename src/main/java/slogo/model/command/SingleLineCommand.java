@@ -6,11 +6,11 @@ public abstract class SingleLineCommand implements CommandLine {
 
   private TurtleModel turtle;
 
-  public SingleLineCommand(TurtleModel turtle){
+  public SingleLineCommand(TurtleModel turtle) {
     this.turtle = turtle;
   }
 
-  public TurtleModel getTurtle(){
+  public TurtleModel getTurtle() {
     return turtle;
   }
 }

@@ -7,42 +7,42 @@ public class TurtleModel {
   private int speed;
   private double direction; //0 = right; 90 = top; 180 = left; 270 = bottom;
 
-  public TurtleModel(){
+  public TurtleModel() {
     this.posX = 0;
     this.posY = 0;
     this.speed = 1; //default values (might change later)
     this.direction = 0;
   }
 
-  public double getPosX(){
+  public double getPosX() {
     return posX;
   }
 
-  public void setPosX(double newPosX){
+  public void setPosX(double newPosX) {
     this.posX = newPosX;
   }
 
-  public double getPoxY(){
+  public double getPoxY() {
     return posY;
   }
 
-  public void setPosY(double newPosY){
+  public void setPosY(double newPosY) {
     this.posY = newPosY;
   }
 
-  public int getSpeed(){
+  public int getSpeed() {
     return speed;
   }
 
-  public void setSpeed(int newSpeed){
+  public void setSpeed(int newSpeed) {
     this.speed = newSpeed;
   }
 
-  public double getDirection(){
+  public double getDirection() {
     return direction;
   }
 
-  public void setDirection(int newDirection){
+  public void setDirection(int newDirection) {
     double angleDegrees = newDirection;
     this.direction = Math.toRadians(angleDegrees);
   }
