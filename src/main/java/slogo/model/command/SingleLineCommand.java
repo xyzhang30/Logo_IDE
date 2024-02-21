@@ -2,7 +2,7 @@ package slogo.model.command;
 
 import slogo.model.turtle.TurtleModel;
 
-public abstract class SingleLineCommand implements CommandLine {
+public abstract class SingleLineCommand implements CommandLineAPI {
 
   private TurtleModel turtle;
 

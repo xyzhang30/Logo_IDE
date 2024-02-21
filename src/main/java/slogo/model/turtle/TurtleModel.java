@@ -6,12 +6,16 @@ public class TurtleModel {
   private double posY;
   private int speed;
   private double direction; //0 = right; 90 = top; 180 = left; 270 = bottom;
+  private boolean penDown;
+  private boolean visible;
 
   public TurtleModel() {
     this.posX = 0;
     this.posY = 0;
     this.speed = 1; //default values (might change later)
     this.direction = 0;
+    this.penDown = false; //default to false, might change
+    this.visible = true; //default to visible
   }
 
   public double getPosX() {
@@ -47,4 +51,19 @@ public class TurtleModel {
     this.direction = Math.toRadians(angleDegrees);
   }
 
+  public boolean isPenDown() {
+    return penDown;
+  }
+
+  public void setPenDown(boolean penDown) {
+    this.penDown = penDown;
+  }
+
+  public boolean isVisible() {
+    return visible;
+  }
+
+  public void setVisible(boolean visible) {
+    this.visible = visible;
+  }
 }
