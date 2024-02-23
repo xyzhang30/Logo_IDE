@@ -1,12 +1,12 @@
 package slogo.model.command;
 
 /**
- * Token class for a literal. Literals are constants.
+ * Executable class for a literal. Literals are constants.
  */
-public class LiteralToken implements Token{
+public class LiteralExecutable implements Executable {
   private static double myValue;
 
-  public LiteralToken(double d){
+  public LiteralExecutable(double d){
     myValue = d;
   }
 
