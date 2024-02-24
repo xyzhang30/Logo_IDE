@@ -1,5 +1,7 @@
 package slogo.model.command;
 
+import slogo.model.api.Executable;
+
 /**
  * Executable class for a constant.
  */
