@@ -25,6 +25,7 @@ public class ControlPane extends CreatePane {
     // myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + cssClassName);
     this.controller = controller;
     root = new HBox();
+    create();
 
   }
 

@@ -6,8 +6,8 @@ import javafx.scene.layout.Pane;
 public abstract class CreatePane {
 
 
-  private final int height;
-  private final int width;
+  protected final int height;
+  protected final int width;
 
   protected Pane root;
 
