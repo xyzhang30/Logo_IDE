@@ -1,10 +1,10 @@
-package slogo.model.command;
+package slogo.model.api;
 
 /**
  * External Interface for History tracker object
  */
-public interface HistoryAPI {
+public interface HistoryApi {
   double executeCurrentCommand();
-  void addCommand(CommandLineAPI c);
+  void addCommand(Executable c);
   void incrementCommandIndex();
 }
