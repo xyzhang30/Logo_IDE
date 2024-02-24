@@ -2,12 +2,14 @@ package slogo.model.command;
 
 import java.util.List;
 import java.util.ArrayList;
+import slogo.model.api.Executable;
+import slogo.model.api.HistoryApi;
 
 /**
  * A list of commandLines. Manages the history of entered commands.
  */
-public class CommandHistory implements HistoryAPI {
-  private List<CommandLineAPI> commands;
+public class CommandHistory implements HistoryApi {
+  private List<Executable> commands;
   private int currentIndex;
   public CommandHistory(){
     clearHistory();
@@ -22,7 +24,7 @@ public class CommandHistory implements HistoryAPI {
     }
     currentIndex++;
   }
-  public void addCommand(CommandLineAPI com){
+  public void addCommand(Executable com){
     commands.add(com);
   }
   public void jumpToCommand(int index){
@@ -31,7 +33,7 @@ public class CommandHistory implements HistoryAPI {
     }
     currentIndex = index;
   }
-  public CommandLineAPI getCurrentCommand(){
+  public Executable getCurrentCommand(){
     return commands.get(currentIndex);
   }
   public int getCurrentIndex(){
