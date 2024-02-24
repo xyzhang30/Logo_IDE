@@ -24,9 +24,4 @@ public class Forward extends CommandExecutable {
     return 0;
   }
 
-//  @Override
-//  public double execute() {
-//
-//  }
-
 }
