@@ -2,6 +2,7 @@ package slogo.model.command;
 
 import java.util.List;
 import slogo.model.api.Executable;
+import slogo.model.command.executables.CommandExecutable;
 import slogo.model.turtle.TurtleModel;
 
 public class Forward extends CommandExecutable {

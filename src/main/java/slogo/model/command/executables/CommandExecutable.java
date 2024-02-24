@@ -1,4 +1,4 @@
-package slogo.model.command;
+package slogo.model.command.executables;
 
 import java.util.List;
 import slogo.model.api.Executable;
