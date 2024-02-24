@@ -1,4 +1,4 @@
-package slogo.model.xmlParser;
+package slogo.model.xmlparser;
 
 import java.io.File;
 import java.io.FileNotFoundException;

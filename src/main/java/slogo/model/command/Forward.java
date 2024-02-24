@@ -1,18 +1,20 @@
 package slogo.model.command;
 
+import java.util.List;
+import slogo.model.api.Executable;
 import slogo.model.turtle.TurtleModel;
 
-public class Forward extends SingleLineCommand {
+public class Forward extends CommandExecutable {
 
-  private int distance;
+  private double distance;
 
-  public Forward(int distance, TurtleModel turtle) {
-    super(turtle);
-    this.distance = distance;
+  public Forward(List<Executable> parameterExecutables, TurtleModel turtle) {
+    super(parameterExecutables, turtle);
+    distance = getParameterData().get(0);
   }
 
   @Override
-  public double execute() {
+  public double internalLogicExecution() {
     double distX = distance * Math.cos(getTurtle().getDirection());
     double distY = distance * Math.sin(getTurtle().getDirection());
 
@@ -21,5 +23,10 @@ public class Forward extends SingleLineCommand {
 
     return 0;
   }
+
+//  @Override
+//  public double execute() {
+//
+//  }
 
 }

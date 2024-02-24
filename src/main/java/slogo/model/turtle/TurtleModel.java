@@ -10,12 +10,7 @@ public class TurtleModel {
   private boolean visible;
 
   public TurtleModel() {
-    this.posX = 0;
-    this.posY = 0;
-    this.speed = 1; //default values (might change later)
-    this.direction = 0;
-    this.penDown = false; //default to false, might change
-    this.visible = true; //default to visible
+    initialize();
   }
 
   public double getPosX() {
@@ -65,5 +60,18 @@ public class TurtleModel {
 
   public void setVisible(boolean visible) {
     this.visible = visible;
+  }
+
+  public void reset() {
+    initialize();
+  }
+
+  private void initialize() {
+    this.posX = 0;
+    this.posY = 0;
+    this.speed = 1; //default values (might change later)
+    this.direction = 0;
+    this.penDown = false; //default to false, might change
+    this.visible = true; //default to visible
   }
 }
