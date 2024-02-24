@@ -62,11 +62,11 @@ public class TurtleModel {
     this.visible = visible;
   }
 
-  public void reset(){
+  public void reset() {
     initialize();
   }
 
-  private void initialize(){
+  private void initialize() {
     this.posX = 0;
     this.posY = 0;
     this.speed = 1; //default values (might change later)
