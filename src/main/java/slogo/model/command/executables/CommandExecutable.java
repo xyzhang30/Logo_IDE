@@ -1,7 +1,6 @@
 package slogo.model.command.executables;
 
 import java.util.List;
-import slogo.model.api.Executable;
 import slogo.model.turtle.TurtleModel;
 
 public abstract class CommandExecutable implements Executable {

@@ -3,17 +3,7 @@ package slogo.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import slogo.model.command.Forward;
 import slogo.model.turtle.TurtleModel;
-import java.util.InputMismatchException;
-import java.lang.IllegalArgumentException;
-import java.util.concurrent.TimeUnit;
-import javafx.animation.Animation;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class CommandTest {
   private TurtleModel turt;

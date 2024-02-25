@@ -1,4 +1,4 @@
-package slogo.model.api;
+package slogo.model.command.executables;
 
 /**
  * Interface for a single Executable.
