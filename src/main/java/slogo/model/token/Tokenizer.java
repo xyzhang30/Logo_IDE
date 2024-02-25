@@ -1,12 +1,54 @@
 package slogo.model.token;
 
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.ResourceBundle;
+import java.util.regex.Pattern;
+import slogo.example.RegexMatching;
 import slogo.model.api.InvalidCommandException;
 
-/**
- * Internal API for Tokenizer. Turns Strings into Tokens. For use by Parser.
- */
-public interface Tokenizer {
+public class Tokenizer implements TokenizerApi{
+  private static final String LANGUAGE_RESOURCE_PATH =
+      RegexMatching.class.getPackageName() + ".languages.";
+  private List<Entry<String, Pattern>> myTokens = new ArrayList<>();
 
-  List<Token> tokenize(String lineInput) throws InvalidCommandException;
+  @Override
+  public List<Token> tokenize(String lineInput) throws InvalidCommandException {
+    List<Token> tokens = new ArrayList<>();
+    for (String symbol : lineInput.split(" ")) {
+      tokens.add(new Token(getTokenType(symbol), symbol));
+    }
+    return tokens;
+  }
+  private String getTokenType(String text) throws IllegalArgumentException {
+    for (Entry<String, Pattern> e : myTokens) {
+      if (match(text, e.getValue())) {
+        return e.getKey();
+      }
+    }
+    throw new IllegalArgumentException(String.format("Invalid command given: %s", text));
+  }
+  private boolean match(String text, Pattern regex) {
+    // THIS IS THE IMPORTANT LINE
+    return text != null && regex.matcher(text.trim()).matches();
+  }
+  void setPatterns(String language) {
+    // language specific matches are more specific, so add first to ensure they are checked first
+    myTokens = getPatterns(language);
+    // general checks, added last
+    myTokens.addAll(getPatterns("Syntax"));
+  }
+  private List<Entry<String, Pattern>> getPatterns(String language) {
+    List<Entry<String, Pattern>> tokens = new ArrayList<>();
+    ResourceBundle resources = ResourceBundle.getBundle(LANGUAGE_RESOURCE_PATH + language);
+    for (String key : Collections.list(resources.getKeys())) {
+      tokens.add(new SimpleEntry<>(key,
+          // THIS IS THE OTHER IMPORTANT LINE
+          Pattern.compile(resources.getString(key), Pattern.CASE_INSENSITIVE)));
+    }
+    return tokens;
+  }
 }
