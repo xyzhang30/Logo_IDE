@@ -1,8 +1,14 @@
 package slogo.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import slogo.model.command.executables.ConstantExecutable;
+import slogo.model.command.executables.Executable;
+import slogo.model.command.executables.Forward;
 import slogo.model.turtle.TurtleModel;
 
 public class CommandTest {
@@ -15,13 +21,16 @@ public class CommandTest {
   }
 
   @Test
-  void testForward () {
+  void testForwardToRight() {
 
-//    //straight forward
-//    Forward forward = new Forward(50, turt);
-//    forward.execute();
-//    assertEquals(50, turt.getPosX());
-//    assertEquals(0, turt.getPoxY());
+    List<Executable> params = new ArrayList<>();
+    params.add(new ConstantExecutable(50));
+
+    //straight forward
+    Forward forward = new Forward(params, turt);
+    forward.execute();
+    assertEquals(50, turt.getPosX());
+    assertEquals(0, turt.getPoxY());
 //
 //    //reset turtle
 //    turt.reset();
