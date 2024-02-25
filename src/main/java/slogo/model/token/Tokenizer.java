@@ -25,17 +25,13 @@ public class Tokenizer implements TokenizerApi{
   }
   private String getTokenType(String text) throws IllegalArgumentException {
     for (Entry<String, Pattern> e : myTokens) {
-      if (match(text, e.getValue())) {
+      if (text != null && e.getValue().matcher(text.trim()).matches()) {
         return e.getKey();
       }
     }
     throw new IllegalArgumentException(String.format("Invalid command given: %s", text));
   }
-  private boolean match(String text, Pattern regex) {
-    // THIS IS THE IMPORTANT LINE
-    return text != null && regex.matcher(text.trim()).matches();
-  }
-  void setPatterns(String language) {
+  public void setLanguage(String language) {
     // language specific matches are more specific, so add first to ensure they are checked first
     myTokens = getPatterns(language);
     // general checks, added last
