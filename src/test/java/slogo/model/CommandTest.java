@@ -17,34 +17,34 @@ public class CommandTest {
   @BeforeEach
   void setUp() {
     turt = new TurtleModel();
-    turt.setDirection(0);
   }
 
   @Test
   void testForwardToRight() {
+    turt.setDirection(0); //facing right
 
     List<Executable> params = new ArrayList<>();
-    params.add(new ConstantExecutable(50));
+    params.add(new ConstantExecutable(50)); //move 50 to the right
 
     //straight forward
     Forward forward = new Forward(params, turt);
-    forward.execute();
+    forward.internalLogicExecution();
     assertEquals(50, turt.getPosX());
-    assertEquals(0, turt.getPoxY());
-//
-//    //reset turtle
-//    turt.reset();
-//    assertEquals(0, turt.getPosX());
-//    assertEquals(0, turt.getPoxY());
-//
-//    //straight up --> doesn't work
-//    turt.setDirection(90);
-//    forward.execute();
-//    assertEquals(0, turt.getPosX());
-//    assertEquals(50, turt.getPoxY());
-
-//    assertEquals((short)35.35533905932737, (short)turt.getPosX());
-//    assertEquals((short)-35.35533905932738, (short)turt.getPoxY());
+    assertEquals(0, turt.getPoxY()); //should get form (0,0) to (50,0)
   }
 
+
+//  @Test
+//  void testForwardToTop(){
+//    turt.setDirection(90); //facing top
+//
+//    List<Executable> params = new ArrayList<>();
+//    params.add(new ConstantExecutable(50)); //move 50 to the right
+//
+//    //straight forward
+//    Forward forward = new Forward(params, turt);
+//    forward.internalLogicExecution();
+//    assertEquals(0, turt.getPosX());
+//    assertEquals(50, turt.getPoxY()); //should get form (0,0) to (50,0)
+//  }
 }
