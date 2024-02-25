@@ -1,10 +1,13 @@
 package slogo.model.turtle;
 
-public class TurtleModel {
+import slogo.model.api.TurtleModelApi;
+import slogo.model.api.TurtleRecord;
+
+public class TurtleModel implements TurtleModelApi {
 
   private double posX;
   private double posY;
-  private int speed;
+  private double speed;
   private double direction; //0 = right; 90 = top; 180 = left; 270 = bottom;
   private boolean penDown;
   private boolean visible;
@@ -29,7 +32,7 @@ public class TurtleModel {
     this.posY = newPosY;
   }
 
-  public int getSpeed() {
+  public double getSpeed() {
     return speed;
   }
 
@@ -79,5 +82,15 @@ public class TurtleModel {
     this.direction = 0;
     this.penDown = false; //default to false, might change
     this.visible = true; //default to visible
+  }
+
+  /**
+   * Packs the Turtle attributes into a record to be sent to View.
+   * Records are immutable, so View will not be able to modify model attributes.
+   * @return TurtleRecord  record storing all TurtleModel attributes
+   */
+  @Override
+  public TurtleRecord getAttributes() {
+    return new TurtleRecord(posX,posY,speed,direction,penDown,visible);
   }
 }
