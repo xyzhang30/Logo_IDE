@@ -51,8 +51,7 @@ public class TurtleModel implements TurtleModelApi {
    * @param newDirection direction input in degrees
    */
   public void setDirection(int newDirection) {
-    double angleDegrees = newDirection;
-    this.direction = Math.toRadians(angleDegrees);
+    this.direction = Math.toRadians(newDirection);
   }
 
   public boolean isPenDown() {
