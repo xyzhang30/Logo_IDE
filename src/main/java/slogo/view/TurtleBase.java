@@ -7,6 +7,8 @@ public interface TurtleBase {
 
   void setImage(Image tImage);
 
+  Image getImage();
+
   void setPenColor(Color color);
 
   void setPenDown(boolean penDown);

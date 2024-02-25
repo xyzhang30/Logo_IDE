@@ -1,5 +1,7 @@
 package slogo.view;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
@@ -9,14 +11,19 @@ public class TurtleView implements TurtleBase {
 
   private Pen pen;
 
-  public TurtleView() {
-    tImage = new Image();
+  public TurtleView() throws FileNotFoundException {
+    tImage = new Image(new File("src/main/resources/view/turtle1.png").toURI().toString());
 
   }
 
   @Override
   public void setImage(Image tImage) {
     this.tImage = tImage;
+  }
+
+  @Override
+  public Image getImage() {
+    return tImage;
   }
 
   @Override

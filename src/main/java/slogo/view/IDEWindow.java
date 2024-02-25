@@ -1,6 +1,7 @@
 package slogo.view;
 
 import java.awt.Dimension;
+import java.io.FileNotFoundException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -25,6 +26,7 @@ public class IDEWindow {
 
 
 
+
   public IDEWindow (Stage stage) {
     this.stage = stage;
   }
@@ -41,7 +43,7 @@ public class IDEWindow {
 
   }
 
-  public Scene makeScene (int width, int height) {
+  public Scene makeScene (int width, int height) throws FileNotFoundException {
     BorderPane root = new BorderPane();
 
     // must be first since other panels may refer to page
@@ -49,6 +51,9 @@ public class IDEWindow {
     root.setTop(c1.getRoot());
     this.t1 = new TextInputPane(200,200,"hi");
     root.setBottom(this.t1.getRoot());
+
+    TurtlePane turtlePane = new TurtlePane(400,400,"hi");
+    root.setCenter(turtlePane.getRoot());
     // control the navigation
     // create scene to hold UI
     Scene scene = new Scene(root, width, height);
