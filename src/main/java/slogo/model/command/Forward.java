@@ -7,7 +7,7 @@ import slogo.model.turtle.TurtleModel;
 
 public class Forward extends CommandExecutable {
 
-  private double distance;
+  private final double distance;
 
   public Forward(List<Executable> parameterExecutables, TurtleModel turtle) {
     super(parameterExecutables, turtle);
