@@ -1,21 +1,19 @@
 package slogo.model.turtle;
 
-public class TurtleModel {
+import slogo.model.api.TurtleModelApi;
+import slogo.model.api.TurtleRecord;
+
+public class TurtleModel implements TurtleModelApi {
 
   private double posX;
   private double posY;
-  private int speed;
+  private double speed;
   private double direction; //0 = right; 90 = top; 180 = left; 270 = bottom;
   private boolean penDown;
   private boolean visible;
 
   public TurtleModel() {
-    this.posX = 0;
-    this.posY = 0;
-    this.speed = 1; //default values (might change later)
-    this.direction = 0;
-    this.penDown = false; //default to false, might change
-    this.visible = true; //default to visible
+    initialize();
   }
 
   public double getPosX() {
@@ -34,7 +32,7 @@ public class TurtleModel {
     this.posY = newPosY;
   }
 
-  public int getSpeed() {
+  public double getSpeed() {
     return speed;
   }
 
@@ -46,9 +44,14 @@ public class TurtleModel {
     return direction;
   }
 
+  /**
+   * gets a direction input in degrees and cast it to radians, and set it as the new direction of
+   * the turtle
+   *
+   * @param newDirection direction input in degrees
+   */
   public void setDirection(int newDirection) {
-    double angleDegrees = newDirection;
-    this.direction = Math.toRadians(angleDegrees);
+    this.direction = Math.toRadians(newDirection);
   }
 
   public boolean isPenDown() {
@@ -65,5 +68,28 @@ public class TurtleModel {
 
   public void setVisible(boolean visible) {
     this.visible = visible;
+  }
+
+  public void reset() {
+    initialize();
+  }
+
+  private void initialize() {
+    this.posX = 0;
+    this.posY = 0;
+    this.speed = 1; //default values (might change later)
+    this.direction = 0;
+    this.penDown = false; //default to false, might change
+    this.visible = true; //default to visible
+  }
+
+  /**
+   * Packs the Turtle attributes into a record to be sent to View.
+   * Records are immutable, so View will not be able to modify model attributes.
+   * @return TurtleRecord  record storing all TurtleModel attributes
+   */
+  @Override
+  public TurtleRecord getAttributes() {
+    return new TurtleRecord(posX,posY,speed,direction,penDown,visible);
   }
 }

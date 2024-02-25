@@ -1,4 +1,4 @@
-package slogo.model.xmlParser;
+package slogo.model.xmlparser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,7 +18,7 @@ public class CommandXmlParser {
 
   private String commandName;
   private String commandDescription;
-  private Map<String, String> parameters;
+  private final Map<String, String> parameters;
   private int numParamsExpected;
   private String returnValueType; //do we even need this since everything returns a double?
   private String implementationName;
