@@ -1,4 +1,4 @@
-package slogo.model.api;
+package slogo.model.token;
 
 import java.util.List;
 

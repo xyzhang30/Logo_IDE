@@ -1,4 +1,4 @@
-package slogo.model.api;
+package slogo.model.token;
 
 public record Token(String type, String value) {
 
