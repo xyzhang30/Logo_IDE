@@ -2,11 +2,12 @@ package slogo.model.command;
 
 import java.util.List;
 import slogo.model.api.Executable;
+import slogo.model.command.executables.CommandExecutable;
 import slogo.model.turtle.TurtleModel;
 
 public class Forward extends CommandExecutable {
 
-  private double distance;
+  private final double distance;
 
   public Forward(List<Executable> parameterExecutables, TurtleModel turtle) {
     super(parameterExecutables, turtle);

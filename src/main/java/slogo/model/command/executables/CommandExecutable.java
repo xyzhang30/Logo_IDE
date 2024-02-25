@@ -1,4 +1,4 @@
-package slogo.model.command;
+package slogo.model.command.executables;
 
 import java.util.List;
 import slogo.model.api.Executable;
@@ -6,9 +6,9 @@ import slogo.model.turtle.TurtleModel;
 
 public abstract class CommandExecutable implements Executable {
 
-  private List<Executable> parameterExecutables;
+  private final List<Executable> parameterExecutables;
   private List<Double> parameterData;
-  private TurtleModel turtle;
+  private final TurtleModel turtle;
 
   public CommandExecutable(List<Executable> parameterExecutables, TurtleModel turtle) {
     this.parameterExecutables = parameterExecutables;
