@@ -1,5 +1,7 @@
 package slogo.model.api;
 
+import slogo.model.command.executables.Executable;
+
 /**
  * External Interface for History tracker object
  */
