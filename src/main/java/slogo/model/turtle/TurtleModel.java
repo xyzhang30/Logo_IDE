@@ -41,6 +41,10 @@ public class TurtleModel {
     return direction;
   }
 
+  /**
+   * gets a direction input in degrees and cast it to radians, and set it as the new direction of the turtle
+   * @param newDirection direction input in degrees
+   */
   public void setDirection(int newDirection) {
     double angleDegrees = newDirection;
     this.direction = Math.toRadians(angleDegrees);
