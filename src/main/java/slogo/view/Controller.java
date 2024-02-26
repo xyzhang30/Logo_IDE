@@ -3,8 +3,10 @@ package slogo.view;
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import slogo.model.api.InputRecord;
 import slogo.model.api.ParserApi;
 import slogo.model.turtle.TurtleModel;
+import slogo.model.parser.TreeParser;
 import slogo.model.xmlparser.CommandXmlParser;
 
 public class Controller  {
@@ -28,6 +30,10 @@ public class Controller  {
     i1 = new IDEWindow(stage, this);
   }
 
+  public void update(double elapsedTime) {
+    i1.updateTurtle();
+  }
+
   public void start() throws Exception {
     i1.start(model);
   }
@@ -36,7 +42,7 @@ public class Controller  {
     //System.out.println(i1.getText());
 
     String command = i1.getText();
-    parser.parseTree(command);
+    parser.parseTree(new InputRecord(command));
     i1.updateTurtle();
   }
 
