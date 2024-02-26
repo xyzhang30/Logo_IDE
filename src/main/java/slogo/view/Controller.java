@@ -3,6 +3,7 @@ package slogo.view;
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import slogo.model.api.ParserApi;
 import slogo.model.turtle.TurtleModel;
 import slogo.model.xmlparser.CommandXmlParser;
 
@@ -19,6 +20,8 @@ public class Controller  {
 
   // private final TurtleModel model;
 
+  ParserApi parser = new TreeParser();
+
 
   public Controller(Stage stage, TurtleModel model) {
     this.model = model;
@@ -31,7 +34,10 @@ public class Controller  {
 
   public void run() {
     //System.out.println(i1.getText());
-    System.out.println(i1.getText());
+
+    String command = i1.getText();
+    parser.parseTree(command);
+    i1.updateTurtle();
   }
 
   public void step() {
