@@ -10,8 +10,8 @@ public class TextInputPane extends CreatePane implements TextInput {
 
   private String text = "";
 
-  public TextInputPane(int height, int width, String cssClassName) {
-    super(height, width, cssClassName);
+  public TextInputPane(int height, int width, String cssClassName, String language) {
+    super(height, width, cssClassName, language);
     root = new Pane();
     create();
   }
