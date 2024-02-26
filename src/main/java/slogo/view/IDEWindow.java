@@ -9,7 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import slogo.model.turtle.TurtleModel;
+import slogo.model.api.TurtleModelApi;
 
 public class IDEWindow {
 
@@ -37,7 +37,7 @@ public class IDEWindow {
 
   private Controller controller;
 
-  TurtleModel model;
+  TurtleModelApi model;
 
 
 
@@ -46,7 +46,7 @@ public class IDEWindow {
     this.controller = controller;
   }
 
-  public void start(TurtleModel model) throws Exception {
+  public void start(TurtleModelApi model) throws Exception {
     stage.setTitle(TITLE);
     // add our user interface components to Frame and show it
     this.model = model;
@@ -59,7 +59,7 @@ public class IDEWindow {
 
   }
 
-  public Scene makeScene (int width, int height, TurtleModel model) throws FileNotFoundException {
+  public Scene makeScene (int width, int height, TurtleModelApi model) throws FileNotFoundException {
     BorderPane root = new BorderPane();
 
     // must be first since other panels may refer to page

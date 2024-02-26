@@ -5,17 +5,17 @@ import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import slogo.model.turtle.TurtleModel;
+import slogo.model.api.TurtleModelApi;
 
 public class TurtlePane extends CreatePane implements TurtleBase{
 
 
 
   ImageView turtleImage;
-  private TurtleModel model;
+  private TurtleModelApi model;
   private boolean imageHere;
 
-  public TurtlePane(int height, int width, String cssClassName, TurtleModel model, String language) throws FileNotFoundException {
+  public TurtlePane(int height, int width, String cssClassName, TurtleModelApi model, String language) throws FileNotFoundException {
     super(height, width, cssClassName, language);
     this.model = model;
     root = new StackPane();
