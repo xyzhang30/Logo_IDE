@@ -9,10 +9,6 @@ public class PenDraw implements Pen {
   private Color penColor;
 
   private int penSize;
-  @Override
-  public boolean getPenDown() {
-    return penDown;
-  }
 
   @Override
   public Color getPenColor() {
