@@ -5,6 +5,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import slogo.model.api.InputRecord;
 import slogo.model.api.ParserApi;
+import slogo.model.api.TurtleModelApi;
 import slogo.model.turtle.TurtleModel;
 import slogo.model.parser.TreeParser;
 import slogo.model.xmlparser.CommandXmlParser;

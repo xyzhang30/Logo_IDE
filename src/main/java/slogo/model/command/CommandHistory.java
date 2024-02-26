@@ -12,9 +12,9 @@ public class CommandHistory implements HistoryApi {
   private List<Executable> commands;
   private int currentIndex;
 
-  public CommandHistory() {
-    clearHistory();
-  }
+//  public CommandHistory() {
+//    clearHistory();
+//  }
 
   public double executeCurrentCommand() {
     return commands.get(currentIndex).execute();
@@ -32,24 +32,24 @@ public class CommandHistory implements HistoryApi {
     commands.add(com);
   }
 
-  public void jumpToCommand(int index) {
-    if (index > commands.size() || index < 0) {
-      throw new IndexOutOfBoundsException("Attempted to jump to an invalid index in history");
-    }
-    currentIndex = index;
-  }
-
-  public Executable getCurrentCommand() {
-    return commands.get(currentIndex);
-  }
-
-  public int getCurrentIndex() {
-    return currentIndex;
-  }
-
-  private void clearHistory() {
-    commands = new ArrayList<>();
-    currentIndex = 0;
-  }
+//  public void jumpToCommand(int index) {
+//    if (index > commands.size() || index < 0) {
+//      throw new IndexOutOfBoundsException("Attempted to jump to an invalid index in history");
+//    }
+//    currentIndex = index;
+//  }
+//
+//  public Executable getCurrentCommand() {
+//    return commands.get(currentIndex);
+//  }
+//
+//  public int getCurrentIndex() {
+//    return currentIndex;
+//  }
+//
+//  private void clearHistory() {
+//    commands = new ArrayList<>();
+//    currentIndex = 0;
+//  }
 
 }

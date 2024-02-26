@@ -1,10 +1,9 @@
 package slogo.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.List;
 import org.junit.jupiter.api.Test;
-import slogo.model.api.InvalidCommandException;
 import slogo.model.token.Tokenizer;
 
 
@@ -13,6 +12,7 @@ public class ExceptionTest {
   @Test
   void TestInvalidCommandException(){
     Tokenizer tokenizer = new Tokenizer("English");
+    assertEquals("fwd",tokenizer.tokenize("fwd 5").get(0).value());
     assertThrows(IllegalArgumentException.class, () -> {
       tokenizer.tokenize("fwd f0");
     });
