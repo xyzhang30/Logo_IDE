@@ -3,7 +3,9 @@ package slogo.view;
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -84,5 +86,12 @@ public class IDEWindow {
 
   public void updateTurtle() {
     tp1.update();
+  }
+
+  public Stage getStage() {
+    return stage;
+  }
+  public TextArea getTextArea(){
+    return t1.getTextArea();
   }
 }

@@ -3,8 +3,11 @@ See interfaces in slogo/model/api for external APIs
 See other interfaces in their respective packages for internal APIs
 
 ### View Internal
-  * This is the internal view API. We changed this API include the Graphics, TurtleBase, Pen, and TextInput.
-how is this part of code
+* ```SceneManagerExternal``` and ```TurtleViewInternal``` were removed
+* ```ControlPane``` implements the ```Control``` API interface that initializes the buttons at the top of the screen
+* ```TurtlePane``` implements the ```TurtleBase``` API interface for the turtle
+* ```TextInputPane``` implements the ```TextInput``` API interface for the text-editor
+* ```Animations``` class implements the ```Graphics``` API interface for the animations in the codebase
 
 ### Model Internal
 * ```commandLineInternal``` was changed to ```Executable```, a more generalized one for all executable nodes in the syntax tree, and with a name that makes more sense intuitively

@@ -28,4 +28,7 @@ public class TextInputPane extends CreatePane implements TextInput {
     //System.out.println("Initial text content: " + textEditorContent);
     return ta1.getText();
   }
+  public TextArea getTextArea() {
+    return ta1;
+  }
 }
