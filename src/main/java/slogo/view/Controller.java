@@ -3,7 +3,6 @@ package slogo.view;
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import slogo.model.xmlParser.CommandXmlParser;
 
 public class Controller extends Application {
 

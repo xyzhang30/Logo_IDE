@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import slogo.model.turtle.TurtleModel;
 
 public class TurtleView implements TurtleBase {
 
   private Image tImage;
+  private TurtleModel model;
 
   private Pen pen;
 
@@ -42,13 +44,13 @@ public class TurtleView implements TurtleBase {
   }
 
   @Override
-  public void setAngle(double angle) {
-
+  public void setAngle() {
+    model.getAttributes().direction();
   }
 
   @Override
   public void setxPosition(int xPosition) {
-
+    tImage.
   }
 
   @Override
@@ -64,20 +66,5 @@ public class TurtleView implements TurtleBase {
   @Override
   public void setIsVisible() {
 
-  }
-
-  @Override
-  public int getxPosition() {
-    return 0;
-  }
-
-  @Override
-  public int getyPosition() {
-    return 0;
-  }
-
-  @Override
-  public double getAngle() {
-    return 0;
   }
 }

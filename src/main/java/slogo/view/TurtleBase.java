@@ -25,10 +25,4 @@ public interface TurtleBase {
 
   void setIsVisible();
 
-  int getxPosition();
-
-  int getyPosition();
-
-  double getAngle();
-
 }

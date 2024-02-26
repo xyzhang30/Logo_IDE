@@ -40,6 +40,8 @@ public class ControlPane extends CreatePane {
     makeButton("Pause", event -> controller.pause());
     makeButton("Help", event -> controller.help());
   }
+  //button handler in controller and then pass in map of the button handlers into controlpane
+
   private void makeButton (String property, EventHandler<ActionEvent> handler) {
     // represent all supported image suffixes
     final String IMAGE_FILE_SUFFIXES = String.format(".*\\.(%s)", String.join("|", ImageIO.getReaderFileSuffixes()));

@@ -4,8 +4,6 @@ import javafx.scene.paint.Color;
 
 public interface Pen {
 
-  boolean getPenDown();
-
   Color getPenColor();
 
   int getSize();
