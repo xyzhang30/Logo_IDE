@@ -119,7 +119,7 @@ Note: additional XML file for IDE (initial) config that includes background colo
   * Controller:
     * Functionality: Handles user interactions and manages the flow of data between the model and the view. 
     * Collaboration: Interacts with various UI components such as SplashScreen, CodeEditor, Graphics, etc., and communicates with the model to fetch data or execute commands. 
-    * Resources: Needs access to UI components and the model. 
+    * Resources: Needs access to UI components and the model.
     * Method Signatures: Method signatures should be designed to handle user interactions and delegate tasks to appropriate components without revealing internal implementations.
 
   * SplashScreen, CodeEditor, Graphics, Drawing, Start Screen:
