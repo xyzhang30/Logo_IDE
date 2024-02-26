@@ -36,7 +36,7 @@ public class TurtlePane extends CreatePane {
     turtleImage.setLayoutX(model.getAttributes().ypos());
   }
 
-  private void isVisible(){
+  private void isVisible() {
 
   }
 
