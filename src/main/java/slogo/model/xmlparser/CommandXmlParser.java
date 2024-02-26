@@ -39,20 +39,16 @@ public class CommandXmlParser {
     }
 
     Document doc = parseFile(path);
-    parseSimulation(doc);
-//
-//    // validate simulation, handling any potential errors
-//    validateSimulation();
+    parseDocument(doc);
+
   }
 
-  private void parseSimulation(Document doc) throws FileNotFoundException {
+  private void parseDocument(Document doc) throws FileNotFoundException {
 
-    // obtaining the simulation node containing all the configuration data
-    Node simulationNode = doc.getElementsByTagName("command").item(0);
+    Node commandNode = doc.getElementsByTagName("command").item(0);
 
-    Element element = (Element) simulationNode;
+    Element element = (Element) commandNode;
 
-    // check if simulation node is empty
     if (element.getElementsByTagName("*").getLength() == 0) {
       throw new FileNotFoundException();
     }
@@ -63,20 +59,6 @@ public class CommandXmlParser {
     // parse parameters
     parseParameters(element.getElementsByTagName("parameters").item(0));
 
-//    // check if simulation type exists
-//    if (!SIMULATION_TYPES.contains(type)) {
-//      throw new InvalidValueException(
-//          String.format(resourceBundle.getString("NonExistentSimulationType"), type));
-//    }
-
-//    // parse initial states
-//    parseStates(element.getElementsByTagName(INITIAL_STATES_FIELD_NAME).item(0));
-//
-//    // parse random configuration states
-//    parseRandomConfig(element.getElementsByTagName(RANDOM_CONFIG_FIELD_NAME)
-//        .item(0));
-//
-//    totalNumCells = states.size();
   }
 
   private void parseParameters(Node parametersNode) {
@@ -88,7 +70,6 @@ public class CommandXmlParser {
     for (int i = 0; i < parametersNodeList.getLength(); i++) {
       Node parameterNode = parametersNodeList.item(i);
       String name = parameterNode.getNodeName();
-      // check if parameter name is valid for given simulation
 
       String paramDescription = parameterNode.getTextContent();
       this.parameters.put(name, paramDescription);
@@ -111,12 +92,6 @@ public class CommandXmlParser {
       // create a new File object for the XML file
       File file = new File(path);
 
-//      // check file extension (only accepts .xml files)
-//      if (!getFileExtension(file.getName()).equals("xml")) {
-//        throw new InvalidFileFormatException(
-//            String.format(resourceBundle.getString("InvalidFileType"), path));
-//      }
-//
       return createDocument(file, path);
     } catch (NullPointerException | ParserConfigurationException | IOException | SAXException e) {
       throw new FileNotFoundException();

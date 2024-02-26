@@ -1,0 +1,17 @@
+See interfaces in slogo/model/api for external APIs
+
+See other interfaces in their respective packages for internal APIs
+
+### View Internal
+  * This is the internal view API. We changed this API include the Graphics, TurtleBase, Pen, and TextInput.
+how is this part of code
+
+### Model Internal
+* ```commandLineInternal``` was changed to ```Executable```, a more generalized one for all executable nodes in the syntax tree, and with a name that makes more sense intuitively
+* ```TokenizerApi```: implemented by the tokenizer, ```tokenize()``` is called by parser to cast each element in a line of code into tokens, ```setLanguage()``` sets the language used, provides a way to switch languages. 
+
+### Model External
+* ```commandParserExternal``` was changed to ```ParserApi``` with the parse method taking in a record instead of a string to allow more abstraction and flexibility
+* ```ExecutionerApi```: implemented by executioner, responsible for executing/calling the commands to execute their logic
+* ```HistoryApi```: 
+* ```TurtleModelApi```: implemented by the turtle model, used by the turtle view to get the turtle model data from a record
