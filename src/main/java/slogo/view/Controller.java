@@ -3,6 +3,7 @@ package slogo.view;
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import slogo.model.turtle.TurtleModel;
 
 public class Controller extends Application {
 
@@ -13,15 +14,18 @@ public class Controller extends Application {
 
   private Stage stage;
 
+  private TurtleModel model;
 
-  public Controller() {
+
+  public Controller(TurtleModel model) {
     stage = new Stage();
     i1 = new IDEWindow(stage);
+    this.model = model;
   }
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    i1.start();
+    i1.start(model);
   }
 
 
