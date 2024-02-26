@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import slogo.model.turtle.TurtleModel;
 
-public class TurtlePane extends CreatePane {
+public class TurtlePane extends CreatePane implements TurtleBase{
 
 
 
