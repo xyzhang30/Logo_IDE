@@ -8,5 +8,5 @@ public interface TurtleModelApi {
   /**
    * Returns the Turtle's attributes, packed into a record.
    */
-  abstract TurtleRecord getAttributes();
+  TurtleRecord getAttributes();
 }

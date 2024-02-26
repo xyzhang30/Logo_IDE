@@ -8,4 +8,14 @@ public class Executioner implements ExecutionerApi {
   public Executioner(Executable root){
     this.root = root;
   }
+
+  @Override
+  public void reset() {
+
+  }
+
+  @Override
+  public void step() {
+    root.execute();
+  }
 }
