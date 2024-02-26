@@ -16,6 +16,8 @@ public class IDEWindow {
 
   public static final String STYLESHEET = "default.css";
 
+  public static final String defaultLanguage = "french";
+
   private static final int WINDOW_WIDTH = 500;
 
   private static final int WINDOW_HEIGHT = 500;
@@ -24,7 +26,7 @@ public class IDEWindow {
 
   public static final Dimension DEFAULT_SIZE = new Dimension(900, 600);
 
-  private TextInputPane t1 = new TextInputPane(100,100,"");
+  private TextInputPane t1 = new TextInputPane(100,100,"hi", "english");
 
   private TurtlePane tp1;
 
@@ -56,12 +58,12 @@ public class IDEWindow {
     BorderPane root = new BorderPane();
 
     // must be first since other panels may refer to page
-    ControlPane c1 = new ControlPane(200, 200, "hi", controller);
+    ControlPane c1 = new ControlPane(200, 200, STYLESHEET, controller, defaultLanguage);
     root.setTop(c1.getRoot());
-    this.t1 = new TextInputPane(200,200,"hi");
+    this.t1 = new TextInputPane(200,200,STYLESHEET, defaultLanguage);
     root.setBottom(this.t1.getRoot());
 
-    tp1 = new TurtlePane(400,400,"hi", model);
+    tp1 = new TurtlePane(400,400,STYLESHEET, model, defaultLanguage);
     root.setCenter(tp1.getRoot());
     // control the navigation
     // create scene to hold UI

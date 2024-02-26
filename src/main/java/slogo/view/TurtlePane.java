@@ -15,8 +15,8 @@ public class TurtlePane extends CreatePane {
   private TurtleModel model;
   private boolean imageHere;
 
-  public TurtlePane(int height, int width, String cssClassName, TurtleModel model) throws FileNotFoundException {
-    super(height, width, cssClassName);
+  public TurtlePane(int height, int width, String cssClassName, TurtleModel model, String language) throws FileNotFoundException {
+    super(height, width, cssClassName, language);
     this.model = model;
     root = new StackPane();
     turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));
