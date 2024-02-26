@@ -1,4 +1,4 @@
-package slogo.model.api;
+package slogo.model.command;
 
 import slogo.model.command.executables.Executable;
 

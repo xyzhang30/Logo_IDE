@@ -3,7 +3,6 @@ package slogo.model.command;
 import java.util.ArrayList;
 import java.util.List;
 import slogo.model.command.executables.Executable;
-import slogo.model.api.HistoryApi;
 
 /**
  * A list of commandLines. Manages the history of entered commands.

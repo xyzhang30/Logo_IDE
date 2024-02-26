@@ -1,5 +1,8 @@
 package slogo.model.api;
 
+/**
+ * Error for when a uninstantiated variable is referenced.
+ */
 public class InvalidVariableException extends RuntimeException{
 
   public InvalidVariableException(String message) {
