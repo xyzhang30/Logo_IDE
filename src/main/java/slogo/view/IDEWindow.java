@@ -18,6 +18,9 @@ public class IDEWindow {
 
   public static final String defaultLanguage = "french";
 
+  public static final String DEFAULT_RESOURCE_PACKAGE = "View.";
+  public static final String DEFAULT_RESOURCE_FOLDER = "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
+
   private static final int WINDOW_WIDTH = 500;
 
   private static final int WINDOW_HEIGHT = 500;
@@ -69,7 +72,7 @@ public class IDEWindow {
     // create scene to hold UI
     Scene scene = new Scene(root, width, height);
     // uncomment to activate CSS styling
-    // scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
+    scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
     return scene;
   }
 

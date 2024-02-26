@@ -28,7 +28,7 @@ public abstract class CreatePane {
       this.cssClassName = cssClassName;
       this.language = language;
       myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
-      this.root.getStyleClass().add(cssClassName);
+     // root.getStyleClass().add(cssClassName);
   }
 
   protected Pane getRoot() {
