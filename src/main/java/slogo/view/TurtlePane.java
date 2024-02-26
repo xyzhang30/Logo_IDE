@@ -13,13 +13,16 @@ public class TurtlePane extends CreatePane {
 
   ImageView turtleImage;
   private TurtleModel model;
+  private boolean imageHere;
 
-  public TurtlePane(int height, int width, String cssClassName) throws FileNotFoundException {
+  public TurtlePane(int height, int width, String cssClassName, TurtleModel model) throws FileNotFoundException {
     super(height, width, cssClassName);
+    this.model = model;
     root = new StackPane();
-    turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));;
+    turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));
     turtleImage.setFitWidth(50);
     turtleImage.setFitHeight(50);
+    imageHere = true;
     update();
     create();
   }
@@ -33,11 +36,14 @@ public class TurtlePane extends CreatePane {
   }
 
   private void updateYCoordinate(){
-    turtleImage.setLayoutX(model.getAttributes().ypos());
+    turtleImage.setLayoutY(model.getAttributes().ypos());
   }
 
   private void isVisible(){
-
+    if (model.getAttributes().visible() && !imageHere) {
+      turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));
+      imageHere = true;
+    }
   }
 
   @Override
@@ -48,5 +54,6 @@ public class TurtlePane extends CreatePane {
     updateDirection();
     updateXCoordinate();
     updateYCoordinate();
+    isVisible();
   }
 }

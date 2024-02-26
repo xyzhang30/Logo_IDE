@@ -7,10 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import slogo.model.turtle.TurtleModel;
 
 public class IDEWindow {
 
   private Stage stage;
+
 
   public static final String STYLESHEET = "default.css";
 
@@ -29,12 +31,13 @@ public class IDEWindow {
 
   public IDEWindow (Stage stage) {
     this.stage = stage;
+
   }
 
-  public void start() throws Exception {
+  public void start(TurtleModel model) throws Exception {
     stage.setTitle(TITLE);
     // add our user interface components to Frame and show it
-    stage.setScene(makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
+    stage.setScene(makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height, model));
     stage.setAlwaysOnTop(true);
     stage.show();
 
@@ -43,16 +46,16 @@ public class IDEWindow {
 
   }
 
-  public Scene makeScene (int width, int height) throws FileNotFoundException {
+  public Scene makeScene (int width, int height, TurtleModel model) throws FileNotFoundException {
     BorderPane root = new BorderPane();
 
     // must be first since other panels may refer to page
-    ControlPane c1 = new ControlPane(200, 200, "hi", new Controller());
+    ControlPane c1 = new ControlPane(200, 200, "hi", new Controller(model));
     root.setTop(c1.getRoot());
     this.t1 = new TextInputPane(200,200,"hi");
     root.setBottom(this.t1.getRoot());
 
-    TurtlePane turtlePane = new TurtlePane(400,400,"hi");
+    TurtlePane turtlePane = new TurtlePane(400,400,"hi", model);
     root.setCenter(turtlePane.getRoot());
     // control the navigation
     // create scene to hold UI
