@@ -18,17 +18,26 @@ public class TurtlePane extends CreatePane {
     super(height, width, cssClassName);
     root = new StackPane();
     turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));;
-    turtleImage.setLayoutY(0);
-    turtleImage.setLayoutX(0);
     turtleImage.setFitWidth(50);
     turtleImage.setFitHeight(50);
-    updateDirection();
+    update();
     create();
-
   }
 
   private void updateDirection() {
     turtleImage.setRotate(model.getAttributes().direction());
+  }
+
+  private void updateXCoordinate(){
+    turtleImage.setLayoutX(model.getAttributes().xpos());
+  }
+
+  private void updateYCoordinate(){
+    turtleImage.setLayoutX(model.getAttributes().ypos());
+  }
+
+  private void isVisible(){
+
   }
 
   @Override
@@ -36,7 +45,8 @@ public class TurtlePane extends CreatePane {
     root.getChildren().add(turtleImage);
   }
   public void update() {
-     turtleImage.setLayoutX(turtle.getxPosition());
-     turtleImage.setLayoutY(turtle.getyPosition());
+    updateDirection();
+    updateXCoordinate();
+    updateYCoordinate();
   }
 }
