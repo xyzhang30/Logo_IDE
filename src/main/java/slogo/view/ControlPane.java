@@ -13,16 +13,13 @@ import javax.imageio.ImageIO;
 
 public class ControlPane extends CreatePane implements Control {
 
-  private ResourceBundle myResources;
 
-  public static final String DEFAULT_RESOURCE_PACKAGE = "slogo.View.";
-  public static final String DEFAULT_RESOURCE_FOLDER = "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
 
   private final Controller controller;
 
-  public ControlPane(int height, int width, String cssClassName, Controller controller) {
-    super(height, width, cssClassName);
-    // myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + cssClassName);
+  public ControlPane(int height, int width, String cssClassName, Controller controller, String language) {
+    super(height, width, cssClassName, language);
+
     this.controller = controller;
     root = new HBox();
     create();
@@ -46,7 +43,7 @@ public class ControlPane extends CreatePane implements Control {
     // represent all supported image suffixes
     final String IMAGE_FILE_SUFFIXES = String.format(".*\\.(%s)", String.join("|", ImageIO.getReaderFileSuffixes()));
     Button result = new Button();
-    String label = property;//myResources.getString(property);
+    String label = myResources.getString(property);
     if (label.matches(IMAGE_FILE_SUFFIXES)) {
       result.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(DEFAULT_RESOURCE_FOLDER + label))));
     }
