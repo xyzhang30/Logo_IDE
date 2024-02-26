@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 import javax.imageio.ImageIO;
 
 
-public class ControlPane extends CreatePane {
+public class ControlPane extends CreatePane implements Control {
 
   private ResourceBundle myResources;
 
@@ -34,7 +34,7 @@ public class ControlPane extends CreatePane {
     addButtons();
   }
 
-  private void addButtons() {
+  public void addButtons() {
     makeButton("Run", event -> controller.run());
     makeButton("Step", event -> controller.step());
     makeButton("Pause", event -> controller.pause());
@@ -42,7 +42,7 @@ public class ControlPane extends CreatePane {
   }
   //button handler in controller and then pass in map of the button handlers into controlpane
 
-  private void makeButton (String property, EventHandler<ActionEvent> handler) {
+  public void makeButton (String property, EventHandler<ActionEvent> handler) {
     // represent all supported image suffixes
     final String IMAGE_FILE_SUFFIXES = String.format(".*\\.(%s)", String.join("|", ImageIO.getReaderFileSuffixes()));
     Button result = new Button();

@@ -4,7 +4,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.TextArea;
 
-public class TextInputPane extends CreatePane {
+public class TextInputPane extends CreatePane implements TextInput {
 
   private final TextArea ta1 = new TextArea();
 
