@@ -20,7 +20,7 @@ public class Forward extends CommandExecutable {
     getTurtle().setPosX(getTurtle().getPosX() + distX);
     getTurtle().setPosY(getTurtle().getPoxY() + distY);
 
-    return 0;
+    return distance;
   }
 
 }
