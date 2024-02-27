@@ -2,7 +2,7 @@ package slogo.view;
 
 import javafx.scene.paint.Color;
 
-public class PenDraw implements Pen {
+public class PenDraw implements PenGraphics {
 
   private boolean penDown;
 

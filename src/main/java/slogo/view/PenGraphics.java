@@ -2,7 +2,7 @@ package slogo.view;
 
 import javafx.scene.paint.Color;
 
-public interface Pen {
+public interface PenGraphics {
 
   Color getPenColor();
 
