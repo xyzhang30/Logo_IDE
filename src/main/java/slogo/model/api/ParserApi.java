@@ -13,6 +13,6 @@ public interface ParserApi {
    * @return Executable  The root of the tree of command Executables.
    * @throws InvalidParameterNumberException  If the data is syntactically incorrect.
    */
-  Executable parseTree(Record inputRecord) throws InvalidParameterNumberException;
+  Executable parseTree(InputRecord inputRecord) throws InvalidParameterNumberException;
 
 }
