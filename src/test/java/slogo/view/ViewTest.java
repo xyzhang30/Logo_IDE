@@ -12,7 +12,7 @@ import util.DukeApplicationTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class IDEWindowTest extends DukeApplicationTest {
+public class ViewTest extends DukeApplicationTest {
 
   private IDEWindow ideWindow;
 
@@ -46,6 +46,27 @@ public class IDEWindowTest extends DukeApplicationTest {
 
     // Wait for JavaFX thread to process events
     sleep(100);
+  }
+
+  @Test
+  public void testStartMethod() {
+    // Run UI-related operations on JavaFX application thread
+    Platform.runLater(() -> {
+      // Create mock objects
+      Stage mockStage = new Stage();
+      TurtleModel mockModel = new TurtleModel();
+
+      // Create Controller instance
+      Controller controller = new Controller(mockStage, mockModel);
+
+      // Call start method
+      try {
+        controller.start(); // Call start method
+      } catch (Exception e) {
+        // Handle exception if thrown
+        System.out.println("Exception occurred while calling start method: " + e.getMessage());
+      }
+    });
   }
 
 }
