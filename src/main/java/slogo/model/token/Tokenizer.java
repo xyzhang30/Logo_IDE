@@ -24,22 +24,19 @@ public class Tokenizer implements TokenizerApi{
   @Override
   public List<Token> tokenize(String lineInput) throws IllegalArgumentException, InvalidVariableException {
     List<Token> tokens = new ArrayList<>();
-    for (String symbol : lineInput.split(" ")) {
-      System.out.println(symbol);
+    for (String symbol : lineInput.split("\\s+")) {
       tokens.add(new Token(getTokenType(symbol), symbol));
     }
     return tokens;
   }
 
   private String getTokenType(String text) throws IllegalArgumentException, InvalidVariableException {
-    System.out.println(text);
-    System.out.println(myTokens);
     for (Entry<String, Pattern> e : myTokens) {
       if (text != null && e.getValue().matcher(text.trim()).matches()) {
         return e.getKey();
       }
     }
-    throw new IllegalArgumentException(String.format("Invalid command given: %s", text));
+    return "Error";
   }
 
   public void setLanguage(String language) {
