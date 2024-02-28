@@ -3,6 +3,10 @@ package slogo.model.command.executables;
 import java.util.List;
 import slogo.model.turtle.TurtleModel;
 
+/**
+ * @author Alisha Zhang
+ */
+
 public class Back extends CommandExecutable{
 
   private double distance;
