@@ -17,6 +17,7 @@ public class Main extends Application {
 
   private void step(double elapsedTime) {
     // c1.update(elapsedTime);
+
   }
   @Override
   public void start(Stage primaryStage) throws Exception {
