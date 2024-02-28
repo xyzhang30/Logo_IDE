@@ -45,7 +45,8 @@ public class TreeParser implements ParserApi {
     Token t = tokens.remove(0);
     Executable branch = null;
     switch (t.type()){
-      case "Comment": break;
+      case "Comment":
+        return craftBranch(tokens);
       case "Constant":
         return new ConstantExecutable(Double.parseDouble(t.value()));
       case "Variable":
