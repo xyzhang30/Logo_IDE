@@ -11,17 +11,21 @@ public class TurtleView {
 
   private ImageView turtleImage;
 
+  public static final int TURTLE_SIZE = 50;
+
   private Pane pane;
 
   public TurtleView(int width, int height, double startX, double startY, double startDirection) {
     pane = new Pane();
+    turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));
+    turtleImage.setFitWidth(TURTLE_SIZE);
+    turtleImage.setFitHeight(TURTLE_SIZE);
+    pane.setLayoutX(0);
+    pane.setLayoutY(0);
     pane.setPrefWidth(width);
     pane.setPrefHeight(height);
-    turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));
-    turtleImage.setFitWidth(50);
-    turtleImage.setFitHeight(50);
-    turtleImage.setX(startX);
-    turtleImage.setY(startY);
+    turtleImage.setX(-(TURTLE_SIZE/2));
+    turtleImage.setY(-(TURTLE_SIZE/2));
     turtleImage.setRotate(startDirection);
     pane.getChildren().add(turtleImage);
     imageHere = true;
@@ -42,7 +46,7 @@ public class TurtleView {
   }
 
   private void updateXCoordinate(double x){
-    turtleImage.setTranslateY(x);
+    turtleImage.setTranslateX(x);
   }
 
   private void updateYCoordinate(double y){

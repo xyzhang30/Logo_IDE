@@ -69,7 +69,7 @@ public class IDEWindow {
     // must be first since other panels may refer to page
     ControlPane c1 = new ControlPane(200, 200, controller, defaultLanguage);
     root.setTop(c1.getRoot());
-    this.t1 = new TextInputPane(200,900, defaultLanguage);
+    this.t1 = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, defaultLanguage);
     root.setBottom(this.t1.getRoot());
 
     tp1 = new TurtlePane(400,400, model, defaultLanguage, speed);

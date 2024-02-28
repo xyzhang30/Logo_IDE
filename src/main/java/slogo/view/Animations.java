@@ -13,6 +13,10 @@ public class Animations implements Graphics {
 
   public Animations(int height, int width, String language) {
     canvas = new Canvas(width, height);
+    canvas.setLayoutX(0);
+    canvas.setLayoutY(0);
+    canvas.setWidth(900);
+    canvas.setHeight(height);
     gc = canvas.getGraphicsContext2D();
     pen = new PenDraw();
     gc.setStroke(pen.getPenColor());

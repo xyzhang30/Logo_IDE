@@ -3,13 +3,14 @@ package slogo.view;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import slogo.model.api.TurtleModelApi;
 
 public class TurtlePane extends CreatePane implements TurtleBase {
 
-  private static final int defaultLineLength = 100;
+  private static final int defaultLineLength = 1000;
   private final TurtleModelApi model;
   private final Animations a1;
   private int speed;
@@ -40,6 +41,8 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
   @Override
   public void create() {
+    StackPane.setAlignment(turtle.getRoot(), Pos.CENTER);
+    StackPane.setAlignment(a1.getCanvas(), Pos.CENTER);
     getRoot().getChildren().add(turtle.getRoot());
     getRoot().getChildren().add(a1.getCanvas());
   }
