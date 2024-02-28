@@ -17,11 +17,11 @@ public class ControlPane extends CreatePane implements Control {
 
   private final Controller controller;
 
-  public ControlPane(int height, int width, String cssClassName, Controller controller, String language) {
-    super(height, width, cssClassName, language);
+  public ControlPane(int height, int width, Controller controller, String language) {
+    super(height, width, language);
 
     this.controller = controller;
-    root = new HBox();
+    setRoot(new HBox());
     create();
 
   }
@@ -36,6 +36,8 @@ public class ControlPane extends CreatePane implements Control {
     makeButton("Step", event -> controller.step());
     makeButton("Pause", event -> controller.pause());
     makeButton("Help", event -> controller.help());
+    makeButton("Speed_Up", event -> controller.speedUp());
+    makeButton("Slow_Down", event -> controller.slowDown());
   }
   //button handler in controller and then pass in map of the button handlers into controlpane
 
@@ -43,7 +45,7 @@ public class ControlPane extends CreatePane implements Control {
     // represent all supported image suffixes
     final String IMAGE_FILE_SUFFIXES = String.format(".*\\.(%s)", String.join("|", ImageIO.getReaderFileSuffixes()));
     Button result = new Button();
-    String label = myResources.getString(property);
+    String label = getMyResources().getString(property);
     if (label.matches(IMAGE_FILE_SUFFIXES)) {
       result.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(DEFAULT_RESOURCE_FOLDER + label))));
     }

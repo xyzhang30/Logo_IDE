@@ -1,10 +1,13 @@
 package slogo.view;
 
 import javafx.stage.Stage;
+import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
 import slogo.model.api.ParserApi;
 import slogo.model.api.TurtleModelApi;
+import slogo.model.command.executables.Executable;
 import slogo.model.parser.TreeParser;
+import slogo.model.turtle.TurtleModel;
 
 public class Controller  {
 
@@ -13,7 +16,7 @@ public class Controller  {
 
   protected final IDEWindow i1;
 
-  private final TurtleModelApi model;
+  private final TurtleModel model;
 
   private Stage stage;
 
@@ -22,7 +25,7 @@ public class Controller  {
   ParserApi parser = new TreeParser();
 
 
-  public Controller(Stage stage, TurtleModelApi model) {
+  public Controller(Stage stage, TurtleModel model) {
     this.model = model;
     i1 = new IDEWindow(stage, this);
   }
@@ -39,7 +42,8 @@ public class Controller  {
     //System.out.println(i1.getText());
 
     String command = i1.getText();
-    parser.parseTree(new InputRecord(command));
+
+    // Executable ex = parser.parseTree(new InputRecord(command));
     i1.updateTurtle();
   }
 
@@ -48,9 +52,14 @@ public class Controller  {
   }
 
   public void pause() {
+    model.setDirection((int) (Math.random()*360.0));
+    model.setPosX((int) (Math.random()*400.0));
+    model.setPosY((int) (Math.random()*400.0));
+    i1.updateTurtle();
   }
 
   public void help() {
+    i1.clearLine();
   }
 
   public void feedHistory() {
@@ -58,5 +67,16 @@ public class Controller  {
   }
   public void feedVariables() {
 
+  }
+
+  public void speedUp() {
+    System.out.println(i1.getSpeed());
+    i1.setSpeed(i1.getSpeed()+1);
+  }
+
+  public void slowDown() {
+    if (i1.getSpeed()>1) {
+      i1.setSpeed(i1.getSpeed()-1);
+    }
   }
 }

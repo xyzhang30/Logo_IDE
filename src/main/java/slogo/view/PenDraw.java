@@ -10,6 +10,24 @@ public class PenDraw implements PenGraphics {
 
   private int penSize;
 
+  private static final int defaultSize = 2;
+
+  private static final Color defaultColor = Color.RED;
+
+  private static final boolean defaultPenDown = true;
+
+  public PenDraw() {
+    penDown = defaultPenDown;
+    penColor = defaultColor;
+    penSize = defaultSize;
+  }
+
+  public PenDraw(boolean penDown, Color penColor, int penSize) {
+    this.penDown = penDown;
+    this.penColor = penColor;
+    this.penSize = penSize;
+  }
+
   @Override
   public Color getPenColor() {
     return penColor;

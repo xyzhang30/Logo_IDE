@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import slogo.model.turtle.TurtleModel;
 import slogo.view.Controller;
-import slogo.view.IDEWindow;
 
 public class Main extends Application {
 
@@ -17,14 +16,13 @@ public class Main extends Application {
   public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
 
   private void step(double elapsedTime) {
-    c1.update(elapsedTime);
+    // c1.update(elapsedTime);
   }
   @Override
   public void start(Stage primaryStage) throws Exception {
     TurtleModel model = new TurtleModel();
     c1 = new Controller(primaryStage, model);
     c1.start();
-
     Timeline animation = new Timeline();
     animation.setCycleCount(Timeline.INDEFINITE);
     animation.getKeyFrames()
