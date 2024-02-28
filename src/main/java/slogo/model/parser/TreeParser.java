@@ -6,6 +6,7 @@ import slogo.model.api.InvalidTokenException;
 import slogo.model.api.InvalidParameterNumberException;
 import slogo.model.api.ParserApi;
 import slogo.model.command.Executioner;
+import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.token.Token;
 import slogo.model.token.Tokenizer;
@@ -19,7 +20,8 @@ public class TreeParser implements ParserApi {
     tokenizer = new Tokenizer("English");
   }
   @Override
-  public Executable parseTree(InputRecord myRecord) throws InvalidParameterNumberException, InvalidTokenException {
+  public Executable parseTree(InputRecord myRecord) throws InvalidParameterNumberException {
+
     for (String line : myRecord.input().split("\n")){
       for (Token t : tokenizer.tokenize(line)){
         switch (t.type()){
@@ -30,11 +32,20 @@ public class TreeParser implements ParserApi {
           case "ListStart": break;
           case "ListEnd": break;
           default:
-            throw new InvalidTokenException("Input contains Token that doesn't match any provided regex.");
+            try{
+              //reflection
+            }
+            catch (InvalidParameterNumberException e){
+
+            }
         }
         System.out.println(t.type());
       }
     }
     return null;
+  }
+
+  private Executable craftBranch(){
+    return new ConstantExecutable(0);
   }
 }
