@@ -5,7 +5,7 @@ package slogo.model.command.executables;
  */
 public class ConstantExecutable implements Executable {
 
-  private static double myValue;
+  private final double myValue;
 
   public ConstantExecutable(double d) {
     myValue = d;
