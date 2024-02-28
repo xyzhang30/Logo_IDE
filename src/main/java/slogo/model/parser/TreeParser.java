@@ -1,11 +1,13 @@
 package slogo.model.parser;
 
+import java.lang.reflect.InvocationTargetException;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
-import slogo.model.api.InvalidTokenException;
+import slogo.model.api.InvalidCommandException;
 import slogo.model.api.InvalidParameterNumberException;
 import slogo.model.api.ParserApi;
 import slogo.model.command.Executioner;
+import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.token.Token;
@@ -13,6 +15,7 @@ import slogo.model.token.Tokenizer;
 import slogo.model.token.TokenizerApi;
 
 public class TreeParser implements ParserApi {
+  public static final String EXEC_REFS = "slogo.model.command.executables.";
   private ExecutionerApi root;
   private TokenizerApi tokenizer;
   public TreeParser(){
@@ -20,7 +23,8 @@ public class TreeParser implements ParserApi {
     tokenizer = new Tokenizer("English");
   }
   @Override
-  public Executable parseTree(InputRecord myRecord) throws InvalidParameterNumberException {
+  public Executable parseTree(InputRecord myRecord) throws InvalidParameterNumberException,
+      InvalidCommandException {
 
     for (String line : myRecord.input().split("\n")){
       for (Token t : tokenizer.tokenize(line)){
@@ -33,13 +37,17 @@ public class TreeParser implements ParserApi {
           case "ListEnd": break;
           default:
             try{
-              //reflection
+              Executable n =  (CommandExecutable) Class.forName(EXEC_REFS + t.type())
+                  .getDeclaredConstructor().newInstance();
             }
-            catch (InvalidParameterNumberException e){
-
+            catch (ClassNotFoundException e){
+              throw new InvalidCommandException("Nonexistent Command");
+            }
+            catch (NoSuchMethodException | IllegalAccessException | InstantiationException |
+                   InvocationTargetException e) {
+              throw new RuntimeException(e);
             }
         }
-        System.out.println(t.type());
       }
     }
     return null;
