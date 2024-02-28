@@ -7,7 +7,7 @@ import slogo.model.turtle.TurtleModel;
  * @author Alisha Zhang
  */
 
-public class Back extends CommandExecutable{
+public class Back extends CommandExecutable {
 
   private double distance;
 

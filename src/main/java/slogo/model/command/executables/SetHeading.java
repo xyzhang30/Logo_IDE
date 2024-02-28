@@ -3,7 +3,7 @@ package slogo.model.command.executables;
 import java.util.List;
 import slogo.model.turtle.TurtleModel;
 
-public class SetHeading extends CommandExecutable{
+public class SetHeading extends CommandExecutable {
 
   private double degrees;
 

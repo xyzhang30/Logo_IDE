@@ -7,8 +7,8 @@ public class Towards extends CommandExecutable {
 
   private double degrees;
 
-  double facingPosX;
-  double facingPosY;
+  private double facingPosX;
+  private double facingPosY;
 
   public Towards(List<Executable> parameterExecutables, TurtleModel turtle) {
     super(parameterExecutables, turtle);
@@ -26,10 +26,10 @@ public class Towards extends CommandExecutable {
 //    System.out.println(lengthX);
     double lengthY = facingPosY - getTurtle().getPoxY();
 //    System.out.println(lengthY);
-    double lengthHyp = Math.sqrt(Math.pow(lengthX,2)+Math.pow(lengthY,2));
+    double lengthHyp = Math.sqrt(Math.pow(lengthX, 2) + Math.pow(lengthY, 2));
     System.out.println(lengthHyp);
 
-    double angleRadian = Math.cos(lengthX/lengthHyp);
+    double angleRadian = Math.cos(lengthX / lengthHyp);
     System.out.println(angleRadian);
     getTurtle().setDirection(Math.toDegrees(angleRadian));
     System.out.println(getTurtle().getDegreesDirection());

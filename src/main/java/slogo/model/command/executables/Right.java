@@ -7,7 +7,7 @@ import slogo.model.turtle.TurtleModel;
  * @author Alisha Zhang
  */
 
-public class Right extends CommandExecutable{
+public class Right extends CommandExecutable {
 
   private double degrees;
 
