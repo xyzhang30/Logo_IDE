@@ -10,7 +10,7 @@ import slogo.model.token.Tokenizer;
 public class ExceptionTest {
 
   @Test
-  void TestInvalidCommandException(){
+  void TestIllegalArgumentException(){
     Tokenizer tokenizer = new Tokenizer("English");
     assertEquals("fwd",tokenizer.tokenize("fwd 5").get(0).value());
     assertThrows(IllegalArgumentException.class, () -> {

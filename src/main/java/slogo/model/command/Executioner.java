@@ -4,8 +4,10 @@ import slogo.model.api.ExecutionerApi;
 import slogo.model.command.executables.Executable;
 
 public class Executioner implements ExecutionerApi {
+
   private Executable root;
-  public Executioner(){
+
+  public Executioner() {
 
   }
 

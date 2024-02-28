@@ -7,11 +7,11 @@ import slogo.model.turtle.TurtleModel;
  * @author Alisha Zhang
  */
 
-public class Forward extends CommandExecutable {
+public class Back extends CommandExecutable {
 
-  private final double distance;
+  private double distance;
 
-  public Forward(List<Executable> parameterExecutables, TurtleModel turtle) {
+  public Back(List<Executable> parameterExecutables, TurtleModel turtle) {
     super(parameterExecutables, turtle);
     distance = getParameterData().get(0);
   }
@@ -21,12 +21,11 @@ public class Forward extends CommandExecutable {
     double distX = distance * Math.cos(getTurtle().getRadianDirection());
     double distY = distance * Math.sin(getTurtle().getRadianDirection());
 
-    getTurtle().setPosX(getTurtle().getPosX() + distX);
-    getTurtle().setPosY(getTurtle().getPoxY() + distY);
-
-    System.out.println(getTurtle().getRadianDirection());
+    getTurtle().setPosX(getTurtle().getPosX() - distX);
+    getTurtle().setPosY(getTurtle().getPoxY() - distY);
 
     return distance;
   }
+
 
 }

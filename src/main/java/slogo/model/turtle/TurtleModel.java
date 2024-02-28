@@ -40,7 +40,11 @@ public class TurtleModel implements TurtleModelApi {
     this.speed = newSpeed;
   }
 
-  public double getDirection() {
+  public double getRadianDirection() {
+    return Math.toRadians(direction);
+  }
+
+  public double getDegreesDirection(){
     return direction;
   }
 
@@ -50,8 +54,8 @@ public class TurtleModel implements TurtleModelApi {
    *
    * @param newDirection direction input in degrees
    */
-  public void setDirection(int newDirection) {
-    this.direction =newDirection;
+  public void setDirection(double newDirection) {
+    this.direction = newDirection; // in degrees
   }
 
   public boolean isPenDown() {
