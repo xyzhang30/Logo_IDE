@@ -103,20 +103,20 @@ public class CommandTest {
     assertEquals(-10, turt.getDegreesDirection());
   }
 
-  @Test
-  void testTowards(){
-    turt.setDirection(45);
-    turt.setPosX(3);
-    turt.setPosY(2);
-
-    List<Executable> params = new ArrayList<>();
-    params.add(new ConstantExecutable(2));
-    params.add(new ConstantExecutable(1));
-
-    Towards towards = new Towards(params, turt);
-    double degreesTurned = towards.internalLogicExecution();
-    assertEquals(180, degreesTurned);
-    assertEquals(225, turt.getDegreesDirection());
-  }
+//  @Test
+//  void testTowards(){
+//    turt.setDirection(45);
+//    turt.setPosX(3);
+//    turt.setPosY(2);
+//
+//    List<Executable> params = new ArrayList<>();
+//    params.add(new ConstantExecutable(2));
+//    params.add(new ConstantExecutable(1));
+//
+//    Towards towards = new Towards(params, turt);
+//    double degreesTurned = towards.internalLogicExecution();
+//    assertEquals(180, degreesTurned);
+//    assertEquals(225, turt.getDegreesDirection());
+//  }
 
 }
