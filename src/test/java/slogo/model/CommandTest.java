@@ -21,7 +21,7 @@ public class CommandTest {
 
   @Test
   void testForwardToRight() {
-    turt.setDirection(0); //facing right
+    turt.setDirection(90); //facing right
 
     List<Executable> params = new ArrayList<>();
     params.add(new ConstantExecutable(50)); //move 50 to the right
@@ -29,8 +29,8 @@ public class CommandTest {
     //straight forward
     Forward forward = new Forward(params, turt);
     forward.internalLogicExecution();
-    assertEquals(50, turt.getPosX());
-    assertEquals(0, turt.getPoxY()); //should get form (0,0) to (50,0)
+    assertEquals(0, (short)turt.getPosX());
+    assertEquals(50, (short)turt.getPoxY()); //should get form (0,0) to (50,0)
   }
 
 
