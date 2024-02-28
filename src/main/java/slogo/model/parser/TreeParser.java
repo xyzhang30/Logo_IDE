@@ -29,7 +29,7 @@ public class TreeParser implements ParserApi {
     List<Token> tokens = tokenizer.tokenize(myRecord.input());
     while (!tokens.isEmpty()){
       Token t = tokens.remove(0);
-      System.out.println(t.type());
+      System.out.println(t.type()+t.value());
     }
     for (Token t : tokenizer.tokenize(myRecord.input())){
       switch (t.type()){
