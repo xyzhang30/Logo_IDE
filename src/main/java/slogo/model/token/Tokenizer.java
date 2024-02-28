@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import slogo.example.RegexMatching;
 import slogo.model.api.InvalidCommandException;
-import slogo.model.api.InvalidConstantException;
 import slogo.model.api.InvalidVariableException;
 import slogo.model.api.UnterminatedListException;
 
@@ -23,7 +22,7 @@ public class Tokenizer implements TokenizerApi{
   }
 
   @Override
-  public List<Token> tokenize(String lineInput) throws IllegalArgumentException, InvalidConstantException, InvalidVariableException {
+  public List<Token> tokenize(String lineInput) throws IllegalArgumentException, InvalidVariableException {
     List<Token> tokens = new ArrayList<>();
     for (String symbol : lineInput.split(" ")) {
       System.out.println(symbol);
@@ -32,7 +31,7 @@ public class Tokenizer implements TokenizerApi{
     return tokens;
   }
 
-  private String getTokenType(String text) throws IllegalArgumentException, InvalidConstantException, InvalidVariableException {
+  private String getTokenType(String text) throws IllegalArgumentException, InvalidVariableException {
     System.out.println(text);
     System.out.println(myTokens);
     for (Entry<String, Pattern> e : myTokens) {
