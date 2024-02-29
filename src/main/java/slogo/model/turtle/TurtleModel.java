@@ -24,7 +24,7 @@ public class TurtleModel implements TurtleModelApi {
     this.posX = newPosX;
   }
 
-  public double getPoxY() {
+  public double getPosY() {
     return posY;
   }
 
