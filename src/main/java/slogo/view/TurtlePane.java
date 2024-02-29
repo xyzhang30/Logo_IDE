@@ -80,7 +80,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
       KeyFrame keyFrame = new KeyFrame(Duration.millis(i * 10), e -> {
         a1.drawLine(startX, startY, x, y);
-        turtle.turtleUpdate(x,y,direction);
+        turtle.turtleUpdate(x,y,direction, true);
 
       });
 

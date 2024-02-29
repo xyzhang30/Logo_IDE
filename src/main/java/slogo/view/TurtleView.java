@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-public class TurtleView {
+public class TurtleView implements TurtleV {
 
   private boolean imageHere;
 
@@ -36,7 +36,7 @@ public class TurtleView {
     return turtleImage;
   }
 
-  public void turtleUpdate(double x, double y, double direction) {
+  public void turtleUpdate(double x, double y, double direction, boolean visible) {
     updateDirection(direction);
     updateXCoordinate(x);
     updateYCoordinate(y);
@@ -56,6 +56,11 @@ public class TurtleView {
 
   public Pane getRoot() {
     return pane;
+  }
+
+  @Override
+  public void setTurtleImage(Image t1) {
+
   }
 
   private void isVisible(boolean visible) {
