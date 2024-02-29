@@ -14,6 +14,7 @@ import slogo.model.api.ParserApi;
 import slogo.model.command.Executioner;
 import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.ConstantExecutable;
+import slogo.model.command.executables.ErrorExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.VariableExecutable;
 import slogo.model.token.Token;
@@ -44,7 +45,6 @@ public class TreeParser implements ParserApi {
 
   private Executable craftBranch(List<Token> tokens){
     Token t = tokens.remove(0);
-    Executable branch = null;
     switch (t.type()){
       case "Comment":
         return craftBranch(tokens);
@@ -58,8 +58,9 @@ public class TreeParser implements ParserApi {
       case "Error": break;
       default:
         try{
-          Class<CommandExecutable> c = (Class<CommandExecutable>) Class.forName(EXEC_REFS+t.type());
-          branch = (CommandExecutable) Class.forName(EXEC_REFS + t.type())
+          Class<?> c = Class.forName(EXEC_REFS+t.type());
+          System.out.println(c.getConstructors()[0].getParameterCount());
+          Executable branch = (CommandExecutable) Class.forName(EXEC_REFS + t.type())
               .getDeclaredConstructor().newInstance();
         }
         catch (ClassNotFoundException e){
@@ -70,6 +71,6 @@ public class TreeParser implements ParserApi {
           throw new RuntimeException(e);
         }
     }
-    return branch;
+    return new ErrorExecutable("Detected Invalid Regex: "+t.value());
   }
 }
