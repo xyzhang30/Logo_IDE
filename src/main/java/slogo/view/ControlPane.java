@@ -1,14 +1,18 @@
 package slogo.view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
 
 
@@ -39,6 +43,7 @@ public class ControlPane extends CreatePane implements Control {
     makeButton("Help", event -> controller.help());
     makeButton("Speed_Up", event -> controller.speedUp());
     makeButton("Slow_Down", event -> controller.slowDown());
+    makeColorPicker("SelectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
   }
   //button handler in controller and then pass in map of the button handlers into controlpane
 
@@ -56,5 +61,12 @@ public class ControlPane extends CreatePane implements Control {
     }
     result.setOnAction(handler);
     getRoot().getChildren().addAll(result);
+  }
+
+  public void makeColorPicker(String property, EventHandler<ActionEvent> handler) {
+    ColorPicker colorPicker = new ColorPicker();
+    colorPicker.setId(property);
+    colorPicker.setOnAction(handler);
+    getRoot().getChildren().add(colorPicker);
   }
 }

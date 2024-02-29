@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import slogo.model.api.TurtleModelApi;
+import javafx.scene.paint.Color;
 
 public class IDEWindow {
 
@@ -114,5 +115,9 @@ public class IDEWindow {
 
   public void pause() {
     tp1.stopTimeline();
+  }
+
+  public void updateColor(Color c1) {
+    tp1.updateColor(c1);
   }
 }

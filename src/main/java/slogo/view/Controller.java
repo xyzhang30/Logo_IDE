@@ -1,5 +1,6 @@
 package slogo.view;
 
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
@@ -16,7 +17,7 @@ public class Controller  {
 
   private final IDEWindow i1;
 
-  private final TurtleModelApi model;
+  private final TurtleModel model;
 
   private Stage stage;
 
@@ -35,33 +36,33 @@ public class Controller  {
   }
 
   public void start() throws Exception {
-//    i1.start(model);
+      i1.start(model);
   }
 
   public void run() {
-    //System.out.println(i1.getText());
+    System.out.println(i1.getText());
 
     // String command = i1.getText();
 
     // Executable ex = parser.parseTree(new InputRecord(command));
     // i1.updateTurtle();
-//    i1.resume();
+    i1.resume();
   }
 
   public void step() {
-//    i1.pause();
+    i1.pause();
   }
 
   public void pause() {
-//    model.setDirection((int) (Math.random()*360.0));
-//    model.setPosX((int) (Math.random()*400.0));
-//    model.setPosY((int) (Math.random()*400.0));
-//    i1.updateTurtle();
+    model.setDirection((int) (Math.random()*360.0));
+    model.setPosX((int) (Math.random()*400.0));
+    model.setPosY((int) (Math.random()*400.0));
+    i1.updateTurtle();
   }
 
   public void help() {
     //
-    // i1.clearLine();
+    i1.clearLine();
   }
 
   public void feedHistory() {
@@ -84,5 +85,9 @@ public class Controller  {
 
   public int getSpeed() {
     return i1.getSpeed();
+  }
+
+  public void changeColor(Color value) {
+    i1.updateColor(value);
   }
 }

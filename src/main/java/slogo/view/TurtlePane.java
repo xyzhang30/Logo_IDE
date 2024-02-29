@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import slogo.model.api.TurtleModelApi;
 
@@ -25,6 +26,8 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
   private Timeline timeline;
 
+  private final PenGraphics pen;
+
   public TurtlePane(int height, int width, TurtleModelApi model, String language, int speed) {
     super(height, width, language);
     getRoot().setPrefHeight(height);
@@ -34,7 +37,8 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     this.speed = speed;
     turtle = new TurtleView(width, height,
         model.getAttributes().xpos(), model.getAttributes().ypos(), model.getAttributes().direction());
-    a1 = new Animations(height, width, language);
+    pen = new PenDraw();
+    a1 = new Animations(height, width, language, pen);
     currentX = model.getAttributes().xpos();
     currentY = model.getAttributes().ypos();
     currentDirection = model.getAttributes().direction();
@@ -101,5 +105,9 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     if (timeline != null && timeline.getStatus().equals(Timeline.Status.RUNNING)) {
       timeline.pause();
     }
+  }
+
+  public void updateColor(Color c1) {
+    pen.setPenColor(c1);
   }
 }
