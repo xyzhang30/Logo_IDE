@@ -10,15 +10,14 @@ public class DifferenceCommand extends CommandExecutable {
   private double numOne;
   private double numTwo;
 
-  public DifferenceCommand(List<Executable> parameterExecutables,
-      TurtleModel turtle) {
-    super(parameterExecutables, turtle);
+  public DifferenceCommand(List<Executable> parameterExecutables) {
+    super(parameterExecutables);
     numOne = getParameterData().get(0);
     numTwo = getParameterData().get(1);
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
     return numOne - numTwo;
   }
 }

@@ -1,7 +1,6 @@
 package slogo.model.command.executables.turtleCommand;
 
 import java.util.List;
-import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.turtle.TurtleModel;
 
@@ -9,7 +8,7 @@ import slogo.model.turtle.TurtleModel;
  * @author Alisha Zhang
  */
 
-public class Back extends CommandExecutable {
+public class Back extends TurtleExecutable {
 
   private double distance;
 
@@ -19,7 +18,7 @@ public class Back extends CommandExecutable {
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
     double distX = distance * Math.cos(getTurtle().getRadianDirection());
     double distY = distance * Math.sin(getTurtle().getRadianDirection());
 

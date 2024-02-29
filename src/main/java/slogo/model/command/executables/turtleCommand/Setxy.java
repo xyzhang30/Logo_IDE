@@ -1,11 +1,10 @@
 package slogo.model.command.executables.turtleCommand;
 
 import java.util.List;
-import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.turtle.TurtleModel;
 
-public class Setxy extends CommandExecutable {
+public class Setxy extends TurtleExecutable {
 
   private double newPosX;
   private double newPoxY;
@@ -17,7 +16,7 @@ public class Setxy extends CommandExecutable {
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
     double distMoved = Math.sqrt(
         Math.pow(getTurtle().getPosX() - newPosX, 2) + Math.pow(getTurtle().getPosY() - newPoxY,
             2));

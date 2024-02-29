@@ -1,7 +1,6 @@
 package slogo.model.command.executables.turtleCommand;
 
 import java.util.List;
-import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.turtle.TurtleModel;
 
@@ -9,7 +8,7 @@ import slogo.model.turtle.TurtleModel;
  * @author Alisha Zhang
  */
 
-public class Right extends CommandExecutable {
+public class Right extends TurtleExecutable {
 
   private double degrees;
 
@@ -19,7 +18,7 @@ public class Right extends CommandExecutable {
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
     double currRadianDirection = getTurtle().getRadianDirection();
     double newRadianDirection = currRadianDirection - Math.toRadians(degrees);
     getTurtle().setDirection(Math.toDegrees(newRadianDirection));

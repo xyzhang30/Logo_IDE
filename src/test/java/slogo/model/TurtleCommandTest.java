@@ -36,7 +36,7 @@ public class TurtleCommandTest {
 
     //straight forward
     Forward forward = new Forward(params, turt);
-    forward.internalLogicExecution();
+    forward.execute();
     assertEquals(50, (short)turt.getPosX());
     assertEquals(0, (short)turt.getPosY()); //should get form (0,0) to (50,0)
   }
@@ -49,7 +49,7 @@ public class TurtleCommandTest {
 
     //straight forward
     Forward forward = new Forward(params, turt);
-    forward.internalLogicExecution();
+    forward.execute();
     assertEquals(0, (short)turt.getPosX());
     assertEquals(50, (short)turt.getPosY()); //should get form (0,0) to (50,0)
   }
@@ -62,7 +62,7 @@ public class TurtleCommandTest {
 
     //straight forward
     Back back = new Back(params, turt);
-    back.internalLogicExecution();
+    back.execute();
     assertEquals(0, (short)turt.getPosX());
     assertEquals(-40, (short)turt.getPosY());
   }
@@ -74,7 +74,7 @@ public class TurtleCommandTest {
     params.add(new ConstantExecutable(45)); //turn 45 degrees counterclockwise
 
     Left left = new Left(params, turt);
-    left.internalLogicExecution();
+    left.execute();
     assertEquals(90, turt.getDegreesDirection());
   }
 
@@ -85,7 +85,7 @@ public class TurtleCommandTest {
     params.add(new ConstantExecutable(45)); //turn 45 degrees clockwise
 
     Right right = new Right(params, turt);
-    right.internalLogicExecution();
+    right.execute();
     assertEquals(0, turt.getDegreesDirection());
   }
 
@@ -96,7 +96,7 @@ public class TurtleCommandTest {
     params.add(new ConstantExecutable(-10)); //set heading to -10
 
     SetHeading setHeading = new SetHeading(params, turt);
-    double degreesTurned = setHeading.internalLogicExecution();
+    double degreesTurned = setHeading.execute();
     assertEquals(20, degreesTurned);
     assertEquals(-10, turt.getDegreesDirection());
   }
@@ -111,7 +111,7 @@ public class TurtleCommandTest {
     params.add(new ConstantExecutable(1));
 
     Towards towards = new Towards(params, turt);
-    double degreesTurned = towards.internalLogicExecution();
+    double degreesTurned = towards.execute();
     assertEquals(180, degreesTurned);
     assertEquals(225, turt.getDegreesDirection());
   }
@@ -127,7 +127,7 @@ public class TurtleCommandTest {
 
     Towards towards = new Towards(params, turt);
 
-    double degreesTurned = towards.internalLogicExecution();
+    double degreesTurned = towards.execute();
     assertEquals(0, degreesTurned);
     assertEquals(45, turt.getDegreesDirection());
   }
@@ -138,7 +138,7 @@ public class TurtleCommandTest {
     params.add(new ConstantExecutable(1));
 
     Setxy setxy = new Setxy(params,turt);
-    double distMoved = setxy.internalLogicExecution();
+    double distMoved = setxy.execute();
     assertEquals(1, distMoved);
     assertEquals(0, turt.getPosX());
     assertEquals(1, turt.getPosY());
@@ -151,7 +151,7 @@ public class TurtleCommandTest {
 
     Home home = new Home(params, turt);
 
-    double distMoved = home.internalLogicExecution();
+    double distMoved = home.execute();
     assertEquals(0, turt.getPosX());
     assertEquals(0, turt.getPosY());
     assertEquals(5, distMoved);

@@ -9,14 +9,13 @@ public class MinusCommand extends CommandExecutable {
 
   private double num;
 
-  public MinusCommand(List<Executable> parameterExecutables,
-      TurtleModel turtle) {
-    super(parameterExecutables, turtle);
+  public MinusCommand(List<Executable> parameterExecutables) {
+    super(parameterExecutables);
     num = getParameterData().get(0);
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
     return 0 - num;
   }
 }

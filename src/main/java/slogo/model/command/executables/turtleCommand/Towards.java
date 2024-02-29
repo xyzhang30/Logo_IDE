@@ -5,7 +5,7 @@ import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.turtle.TurtleModel;
 
-public class Towards extends CommandExecutable {
+public class Towards extends TurtleExecutable {
 
   private double facingPosX;
   private double facingPosY;
@@ -17,7 +17,7 @@ public class Towards extends CommandExecutable {
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
 
     if (facingPosX == getTurtle().getPosX() && facingPosY == getTurtle().getPosY()) {
       return 0;

@@ -10,15 +10,14 @@ public class SumCommand extends CommandExecutable {
   private double numOne;
   private double numTwo;
 
-  public SumCommand(List<Executable> parameterExecutables,
-      TurtleModel turtle) {
-    super(parameterExecutables, turtle);
+  public SumCommand(List<Executable> parameterExecutables) {
+    super(parameterExecutables);
     numOne = getParameterData().get(0);
     numTwo = getParameterData().get(1);
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
     return numOne + numTwo;
   }
 }

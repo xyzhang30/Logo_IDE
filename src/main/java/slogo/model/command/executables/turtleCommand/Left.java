@@ -9,7 +9,7 @@ import slogo.model.turtle.TurtleModel;
  * @author Alisha Zhang
  */
 
-public class Left extends CommandExecutable {
+public class Left extends TurtleExecutable {
 
   private double degrees;
 
@@ -19,7 +19,7 @@ public class Left extends CommandExecutable {
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
     double currRadianDirection = getTurtle().getRadianDirection();
     double newRadianDirection = currRadianDirection + Math.toRadians(degrees);
     getTurtle().setDirection(Math.toDegrees(newRadianDirection));

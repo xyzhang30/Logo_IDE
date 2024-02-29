@@ -1,11 +1,10 @@
 package slogo.model.command.executables.turtleCommand;
 
 import java.util.List;
-import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.turtle.TurtleModel;
 
-public class SetHeading extends CommandExecutable {
+public class SetHeading extends TurtleExecutable {
 
   private double degrees;
 
@@ -15,7 +14,7 @@ public class SetHeading extends CommandExecutable {
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
     double originalDirection = getTurtle().getDegreesDirection();
     getTurtle().setDirection(degrees); //set the new direction to degrees
     return Math.abs(originalDirection - getTurtle().getDegreesDirection());

@@ -10,14 +10,13 @@ public class RandomCommand extends CommandExecutable {
 
   private double max;
 
-  public RandomCommand(List<Executable> parameterExecutables,
-      TurtleModel turtle) {
-    super(parameterExecutables, turtle);
+  public RandomCommand(List<Executable> parameterExecutables) {
+    super(parameterExecutables);
     max = getParameterData().get(0);
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
     Random rand = new Random();
     return rand.nextDouble(max);
   }

@@ -9,7 +9,7 @@ import slogo.model.turtle.TurtleModel;
  * @author Alisha Zhang
  */
 
-public class Forward extends CommandExecutable {
+public class Forward extends TurtleExecutable {
 
   private final double distance;
 
@@ -19,7 +19,7 @@ public class Forward extends CommandExecutable {
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
     double distX = distance * Math.cos(getTurtle().getRadianDirection());
     double distY = distance * Math.sin(getTurtle().getRadianDirection());
 

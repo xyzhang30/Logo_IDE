@@ -5,14 +5,14 @@ import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.turtle.TurtleModel;
 
-public class Home extends CommandExecutable {
+public class Home extends TurtleExecutable {
 
   public Home(List<Executable> parameterExecutables, TurtleModel turtle) {
     super(parameterExecutables, turtle);
   }
 
   @Override
-  public double internalLogicExecution() {
+  public double execute() {
     double distMoved = Math.sqrt(
         Math.pow(getTurtle().getPosX(), 2) + Math.pow(getTurtle().getPosY(), 2));
 
