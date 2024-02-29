@@ -69,4 +69,8 @@ public class ViewTest extends DukeApplicationTest {
     });
   }
 
+  @Test
+  public void testingGit(){
+
+  }
 }
