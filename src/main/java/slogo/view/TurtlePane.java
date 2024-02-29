@@ -1,59 +1,105 @@
 package slogo.view;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import java.util.concurrent.atomic.AtomicBoolean;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 import slogo.model.api.TurtleModelApi;
 
-public class TurtlePane extends CreatePane implements TurtleBase{
+public class TurtlePane extends CreatePane implements TurtleBase {
 
+  private static final int defaultLineLength = 1000;
+  private final TurtleModelApi model;
+  private final Animations a1;
+  private int speed;
 
+  private double currentX;
 
-  ImageView turtleImage;
-  private TurtleModelApi model;
-  private boolean imageHere;
+  private double currentY;
 
-  public TurtlePane(int height, int width, String cssClassName, TurtleModelApi model, String language) throws FileNotFoundException {
-    super(height, width, cssClassName, language);
+  private double currentDirection;
+
+  private final TurtleView turtle;
+
+  private Timeline timeline;
+
+  public TurtlePane(int height, int width, TurtleModelApi model, String language, int speed) {
+    super(height, width, language);
+    getRoot().setPrefHeight(height);
+    getRoot().setPrefWidth(width);
     this.model = model;
-    root = new StackPane();
-    turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));
-    turtleImage.setFitWidth(50);
-    turtleImage.setFitHeight(50);
-    imageHere = true;
-    update();
+    setRoot(new StackPane());
+    this.speed = speed;
+    turtle = new TurtleView(width, height,
+        model.getAttributes().xpos(), model.getAttributes().ypos(), model.getAttributes().direction());
+    a1 = new Animations(height, width, language);
+    currentX = model.getAttributes().xpos();
+    currentY = model.getAttributes().ypos();
+    currentDirection = model.getAttributes().direction();
     create();
-  }
-
-  private void updateDirection() {
-    turtleImage.setRotate(model.getAttributes().direction());
-  }
-
-  private void updateXCoordinate(){
-    turtleImage.setLayoutX(model.getAttributes().xpos());
-  }
-
-  private void updateYCoordinate(){
-    turtleImage.setLayoutY(model.getAttributes().ypos());
-  }
-
-  private void isVisible(){
-    if (model.getAttributes().visible() && !imageHere) {
-      turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));
-      imageHere = true;
-    }
   }
 
   @Override
   public void create() {
-    root.getChildren().add(turtleImage);
+    StackPane.setAlignment(turtle.getRoot(), Pos.CENTER);
+    StackPane.setAlignment(a1.getCanvas(), Pos.CENTER);
+    getRoot().getChildren().add(turtle.getRoot());
+    getRoot().getChildren().add(a1.getCanvas());
   }
   public void update() {
-    updateDirection();
-    updateXCoordinate();
-    updateYCoordinate();
-    isVisible();
+    Timeline timeline = createTimeline(currentX, currentY, currentDirection, model.getAttributes().xpos(),
+        model.getAttributes().ypos(), model.getAttributes().direction());
+    timeline.play();
+    currentX = model.getAttributes().xpos();
+    currentY = model.getAttributes().ypos();
+    currentDirection = model.getAttributes().direction();
+  }
+
+  public void setSpeed(int speed) {
+    this.speed = speed;
+  }
+  public void clear() {
+    a1.clearCanvas();
+  }
+
+  private Timeline createTimeline(double startX, double startY, double startDirection, double endX, double endY,
+      double endDirection) {
+    timeline = new Timeline();
+    timeline.setCycleCount(1);
+    for (int i = 0; i < (defaultLineLength/speed); i++) {
+      double x = startX + i * (endX - startX) / ((double) defaultLineLength /speed);
+      double y = startY + i * (endY - startY) / ((double) defaultLineLength /speed);
+      double direction = startDirection + i * (endDirection - startDirection) / (
+          (double) defaultLineLength /speed);
+
+      KeyFrame keyFrame = new KeyFrame(Duration.millis(i * 10), e -> {
+        a1.drawLine(startX, startY, x, y);
+        turtle.turtleUpdate(x,y,direction);
+
+      });
+
+      timeline.getKeyFrames().add(keyFrame);
+    }
+
+    // Set an event handler for when the timeline finishes
+    timeline.setOnFinished(e -> {
+      timeline.stop(); // Stop the timeline after drawing once
+    });
+
+    return timeline;
+  }
+
+  public void startTimeline() {
+    if (timeline != null && !timeline.getStatus().equals(Timeline.Status.RUNNING)) {
+      timeline.play();
+    }
+  }
+
+  public void stopTimeline() {
+    if (timeline != null && timeline.getStatus().equals(Timeline.Status.RUNNING)) {
+      timeline.pause();
+    }
   }
 }
