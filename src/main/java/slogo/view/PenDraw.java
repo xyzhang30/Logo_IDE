@@ -12,7 +12,7 @@ public class PenDraw implements PenGraphics {
 
   private static final int defaultSize = 2;
 
-  private static final Color defaultColor = Color.RED;
+  private static final Color defaultColor = Color.BLUE;
 
   private static final boolean defaultPenDown = true;
 

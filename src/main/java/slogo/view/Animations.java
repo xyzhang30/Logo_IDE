@@ -11,11 +11,12 @@ public class Animations implements Graphics {
 
   private final PenGraphics pen;
 
+
   public Animations(int height, int width, String language) {
     canvas = new Canvas(width, height);
     canvas.setLayoutX(0);
     canvas.setLayoutY(0);
-    canvas.setWidth(900);
+    canvas.setWidth(width);
     canvas.setHeight(height);
     gc = canvas.getGraphicsContext2D();
     pen = new PenDraw();
@@ -39,7 +40,7 @@ public class Animations implements Graphics {
 
   @Override
   public void drawImage(double x, double y, double width, double height, String imagePath) {
-
+    // gc.drawImage(turtle.getTurtleImage(), x, y);
   }
 
   @Override

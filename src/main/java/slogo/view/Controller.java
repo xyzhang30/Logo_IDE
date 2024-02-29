@@ -41,14 +41,15 @@ public class Controller  {
   public void run() {
     //System.out.println(i1.getText());
 
-    String command = i1.getText();
+    // String command = i1.getText();
 
     // Executable ex = parser.parseTree(new InputRecord(command));
-    i1.updateTurtle();
+    // i1.updateTurtle();
+    i1.resume();
   }
 
   public void step() {
-    i1.updateTurtle();
+    i1.pause();
   }
 
   public void pause() {

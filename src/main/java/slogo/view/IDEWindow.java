@@ -23,10 +23,6 @@ public class IDEWindow {
   public static final String DEFAULT_RESOURCE_PACKAGE = "View.";
   public static final String DEFAULT_RESOURCE_FOLDER = "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
 
-  private static final int WINDOW_WIDTH = 500;
-
-  private static final int WINDOW_HEIGHT = 500;
-
   private static final String TITLE = "TURTLE";
 
   public static final Dimension DEFAULT_SIZE = new Dimension(900, 600);
@@ -110,5 +106,13 @@ public class IDEWindow {
 
   public void clearLine() {
     tp1.clear();
+  }
+
+  public void resume() {
+    tp1.startTimeline();
+  }
+
+  public void pause() {
+    tp1.stopTimeline();
   }
 }

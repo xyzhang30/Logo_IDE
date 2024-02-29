@@ -3,6 +3,7 @@ package slogo.view;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -46,6 +47,7 @@ public class ControlPane extends CreatePane implements Control {
     final String IMAGE_FILE_SUFFIXES = String.format(".*\\.(%s)", String.join("|", ImageIO.getReaderFileSuffixes()));
     Button result = new Button();
     String label = getMyResources().getString(property);
+    result.setId(property);
     if (label.matches(IMAGE_FILE_SUFFIXES)) {
       result.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(DEFAULT_RESOURCE_FOLDER + label))));
     }

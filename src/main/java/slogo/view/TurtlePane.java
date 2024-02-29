@@ -23,6 +23,8 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
   private final TurtleView turtle;
 
+  private Timeline timeline;
+
   public TurtlePane(int height, int width, TurtleModelApi model, String language, int speed) {
     super(height, width, language);
     getRoot().setPrefHeight(height);
@@ -64,7 +66,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
   private Timeline createTimeline(double startX, double startY, double startDirection, double endX, double endY,
       double endDirection) {
-    Timeline timeline = new Timeline();
+    timeline = new Timeline();
     timeline.setCycleCount(1);
     for (int i = 0; i < (defaultLineLength/speed); i++) {
       double x = startX + i * (endX - startX) / ((double) defaultLineLength /speed);
@@ -89,4 +91,15 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     return timeline;
   }
 
+  public void startTimeline() {
+    if (timeline != null && !timeline.getStatus().equals(Timeline.Status.RUNNING)) {
+      timeline.play();
+    }
+  }
+
+  public void stopTimeline() {
+    if (timeline != null && timeline.getStatus().equals(Timeline.Status.RUNNING)) {
+      timeline.pause();
+    }
+  }
 }
