@@ -18,7 +18,7 @@ import slogo.model.command.executables.turtleCommand.Setxy;
 import slogo.model.command.executables.turtleCommand.Towards;
 import slogo.model.turtle.TurtleModel;
 
-public class CommandTest {
+public class TurtleCommandTest {
   private TurtleModel turt;
   private List<Executable> params;
 
