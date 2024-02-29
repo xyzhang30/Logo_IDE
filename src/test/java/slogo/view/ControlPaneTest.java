@@ -19,10 +19,12 @@ public class ControlPaneTest extends DukeApplicationTest {
 
   private ControlPane cp1;
 
+  private IDEWindow i1;
+
   @Override
   public void start(Stage stage) throws FileNotFoundException {
     controller = new Controller(stage, new TurtleModel());
-    IDEWindow i1 = new IDEWindow(stage, controller);
+    i1 = new IDEWindow(stage, controller);
     stage.setScene(i1.makeScene(800,800, new TurtleModel()));
     stage.show();
   }
@@ -40,18 +42,18 @@ public class ControlPaneTest extends DukeApplicationTest {
   @Test
   public void testSpeedUpButtonClick() {
     Button button = lookup("#Speed_Up").query();
-    int initialSpeed = controller.i1.getSpeed();
+    int initialSpeed = controller.getSpeed();
     clickOn(button);
-    int newSpeed = controller.i1.getSpeed();
+    int newSpeed = controller.getSpeed();
     assertEquals(initialSpeed + 1, newSpeed, "Speed should be increased by one");
   }
 
   @Test
   public void testSlowDownButtonClick() {
     Button button = lookup("#Slow_Down").query();
-    int initialSpeed = controller.i1.getSpeed();
+    int initialSpeed = controller.getSpeed();
     clickOn(button);
-    int newSpeed = controller.i1.getSpeed();
+    int newSpeed = controller.getSpeed();
     assertEquals(initialSpeed - 1, newSpeed, "Speed should be decreased by one");
   }
 }

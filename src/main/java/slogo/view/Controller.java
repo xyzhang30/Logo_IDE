@@ -14,9 +14,9 @@ public class Controller  {
   // how much to adjust updates per second
   public static final int SPEED_ADJUSTMENT = 1;
 
-  protected final IDEWindow i1;
+  private final IDEWindow i1;
 
-  private final TurtleModel model;
+  private final TurtleModelApi model;
 
   private Stage stage;
 
@@ -35,7 +35,7 @@ public class Controller  {
   }
 
   public void start() throws Exception {
-    i1.start(model);
+//    i1.start(model);
   }
 
   public void run() {
@@ -45,22 +45,23 @@ public class Controller  {
 
     // Executable ex = parser.parseTree(new InputRecord(command));
     // i1.updateTurtle();
-    i1.resume();
+//    i1.resume();
   }
 
   public void step() {
-    i1.pause();
+//    i1.pause();
   }
 
   public void pause() {
-    model.setDirection((int) (Math.random()*360.0));
-    model.setPosX((int) (Math.random()*400.0));
-    model.setPosY((int) (Math.random()*400.0));
-    i1.updateTurtle();
+//    model.setDirection((int) (Math.random()*360.0));
+//    model.setPosX((int) (Math.random()*400.0));
+//    model.setPosY((int) (Math.random()*400.0));
+//    i1.updateTurtle();
   }
 
   public void help() {
-    i1.clearLine();
+    //
+    // i1.clearLine();
   }
 
   public void feedHistory() {
@@ -79,5 +80,9 @@ public class Controller  {
     if (i1.getSpeed()>1) {
       i1.setSpeed(i1.getSpeed()-1);
     }
+  }
+
+  public int getSpeed() {
+    return i1.getSpeed();
   }
 }
