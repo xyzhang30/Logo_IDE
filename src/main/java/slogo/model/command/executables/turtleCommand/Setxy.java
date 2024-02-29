@@ -18,7 +18,9 @@ public class Setxy extends CommandExecutable {
 
   @Override
   public double internalLogicExecution() {
-    double distMoved = Math.sqrt(Math.pow(getTurtle().getPosX() - newPosX, 2) + Math.pow(getTurtle().getPosY() - newPoxY, 2));
+    double distMoved = Math.sqrt(
+        Math.pow(getTurtle().getPosX() - newPosX, 2) + Math.pow(getTurtle().getPosY() - newPoxY,
+            2));
 
     getTurtle().setPosX(newPosX);
     getTurtle().setPosY(newPoxY);

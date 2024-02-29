@@ -13,7 +13,8 @@ public class Home extends CommandExecutable {
 
   @Override
   public double internalLogicExecution() {
-    double distMoved = Math.sqrt(Math.pow(getTurtle().getPosX(), 2) + Math.pow(getTurtle().getPosY(), 2));
+    double distMoved = Math.sqrt(
+        Math.pow(getTurtle().getPosX(), 2) + Math.pow(getTurtle().getPosY(), 2));
 
     getTurtle().setPosX(0);
     getTurtle().setPosY(0);

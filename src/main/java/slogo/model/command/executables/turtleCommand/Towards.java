@@ -19,7 +19,7 @@ public class Towards extends CommandExecutable {
   @Override
   public double internalLogicExecution() {
 
-    if (facingPosX == getTurtle().getPosX() && facingPosY == getTurtle().getPosY()){
+    if (facingPosX == getTurtle().getPosX() && facingPosY == getTurtle().getPosY()) {
       return 0;
     }
 
@@ -29,11 +29,11 @@ public class Towards extends CommandExecutable {
     double lengthY = facingPosY - getTurtle().getPosY();
 
     double degreesOffSet = 0; //first quadrant (default value)
-    if (lengthX < 0 && lengthY >= 0){ //second quadrant
+    if (lengthX < 0 && lengthY >= 0) { //second quadrant
       degreesOffSet = 90;
-    } else if (lengthX < 0 && lengthY < 0){ //third
+    } else if (lengthX < 0 && lengthY < 0) { //third
       degreesOffSet = 180;
-    } else if (lengthX >= 0 && lengthY < 0){ //fourth
+    } else if (lengthX >= 0 && lengthY < 0) { //fourth
       degreesOffSet = 270;
     }
 
