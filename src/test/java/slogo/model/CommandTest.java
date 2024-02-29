@@ -10,6 +10,7 @@ import slogo.model.command.executables.Back;
 import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.Forward;
+import slogo.model.command.executables.Home;
 import slogo.model.command.executables.Left;
 import slogo.model.command.executables.Right;
 import slogo.model.command.executables.SetHeading;
@@ -142,4 +143,18 @@ public class CommandTest {
     assertEquals(0, turt.getPosX());
     assertEquals(1, turt.getPosY());
   }
+
+  @Test
+  void TestHome(){
+    turt.setPosX(4);
+    turt.setPosY(-3);
+
+    Home home = new Home(params, turt);
+
+    double distMoved = home.internalLogicExecution();
+    assertEquals(0, turt.getPosX());
+    assertEquals(0, turt.getPosY());
+    assertEquals(5, distMoved);
+  }
+
 }
