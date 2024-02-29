@@ -22,7 +22,7 @@ public class Forward extends CommandExecutable {
     double distY = distance * Math.sin(getTurtle().getRadianDirection());
 
     getTurtle().setPosX(getTurtle().getPosX() + distX);
-    getTurtle().setPosY(getTurtle().getPoxY() + distY);
+    getTurtle().setPosY(getTurtle().getPosY() + distY);
 
     System.out.println(getTurtle().getRadianDirection());
 

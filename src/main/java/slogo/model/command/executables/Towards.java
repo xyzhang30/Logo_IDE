@@ -5,8 +5,6 @@ import slogo.model.turtle.TurtleModel;
 
 public class Towards extends CommandExecutable {
 
-  private double degrees;
-
   private double facingPosX;
   private double facingPosY;
 
@@ -18,21 +16,27 @@ public class Towards extends CommandExecutable {
 
   @Override
   public double internalLogicExecution() {
+
+    if (facingPosX == getTurtle().getPosX() && facingPosY == getTurtle().getPosY()){
+      return 0;
+    }
+
     double originalDirection = getTurtle().getDegreesDirection();
 
     double lengthX = facingPosX - getTurtle().getPosX();
-    System.out.println(facingPosX);
-    System.out.println(getTurtle().getPosX());
-//    System.out.println(lengthX);
-    double lengthY = facingPosY - getTurtle().getPoxY();
-//    System.out.println(lengthY);
-    double lengthHyp = Math.sqrt(Math.pow(lengthX, 2) + Math.pow(lengthY, 2));
-    System.out.println(lengthHyp);
+    double lengthY = facingPosY - getTurtle().getPosY();
 
-    double angleRadian = Math.cos(lengthX / lengthHyp);
-    System.out.println(angleRadian);
-    getTurtle().setDirection(Math.toDegrees(angleRadian));
-    System.out.println(getTurtle().getDegreesDirection());
+    double degreesOffSet = 0; //first quadrant (default value)
+    if (lengthX < 0 && lengthY >= 0){ //second quadrant
+      degreesOffSet = 90;
+    } else if (lengthX < 0 && lengthY < 0){ //third
+      degreesOffSet = 180;
+    } else if (lengthX >= 0 && lengthY < 0){ //fourth
+      degreesOffSet = 270;
+    }
+
+    double angleRadian = Math.atan(Math.abs(lengthX) / Math.abs(lengthY));
+    getTurtle().setDirection(Math.toDegrees(angleRadian) + degreesOffSet);
 
     return Math.abs(originalDirection - getTurtle().getDegreesDirection());
   }
