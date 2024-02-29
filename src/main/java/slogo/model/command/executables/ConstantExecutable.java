@@ -6,9 +6,12 @@ package slogo.model.command.executables;
 public class ConstantExecutable implements Executable {
 
   private final double myValue;
-
-  public ConstantExecutable(double d) {
-    myValue = d;
+  /**
+   * Constructor for Constant Executables.
+   * @param value  The value of this Constant
+   */
+  public ConstantExecutable(double value) {
+    myValue = value;
   }
 
   /**
