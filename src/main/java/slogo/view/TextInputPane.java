@@ -10,16 +10,16 @@ public class TextInputPane extends CreatePane implements TextInput {
 
   private String text = "";
 
-  public TextInputPane(int height, int width, String cssClassName, String language) {
-    super(height, width, cssClassName, language);
-    root = new Pane();
+  public TextInputPane(int height, int width, String language) {
+    super(height, width, language);
+    setRoot(new Pane());
     create();
   }
 
   @Override
   public void create() {
     ta1.setPrefSize(width, height);
-    root.getChildren().add(ta1);
+    getRoot().getChildren().add(ta1);
     ta1.setPromptText("Code Here");
   }
 

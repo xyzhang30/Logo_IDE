@@ -10,32 +10,47 @@ public abstract class CreatePane {
   protected final int height;
   protected final int width;
 
-  protected ResourceBundle myResources;
+  private ResourceBundle myResources;
 
   public static final String DEFAULT_RESOURCE_PACKAGE = "View.";
   public static final String DEFAULT_RESOURCE_FOLDER = "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
 
-  protected final String cssClassName;
+  private String language;
 
-  protected String language;
+  private Pane root;
 
-  protected Pane root;
-
-  public CreatePane(int height, int width, String cssClassName, String language) {
+  public CreatePane(int height, int width, String language) {
       this.height = height;
       this.width = width;
       root = new Pane();
-      this.cssClassName = cssClassName;
       this.language = language;
       myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
-     // root.getStyleClass().add(cssClassName);
   }
 
-  protected Pane getRoot() {
+  public Pane getRoot() {
     return root;
+  }
+
+  public void setRoot(Pane root) {
+    this.root = root;
   }
 
   public abstract void create();
 
 
+  public ResourceBundle getMyResources() {
+    return myResources;
+  }
+
+  public void setMyResources(ResourceBundle myResources) {
+    this.myResources = myResources;
+  }
+
+  public String getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(String language) {
+    this.language = language;
+  }
 }
