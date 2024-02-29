@@ -1,0 +1,543 @@
+[33mcommit a3fa5a9c2aa5ae125a087ce7ec11001570c5def1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mDoga_View[m[33m)[m
+Author: Doga Ozmen <odo4@duke.edu>
+Date:   Thu Feb 29 16:19:12 2024 -0500
+
+    git lab
+
+[33mcommit 5c913ab7a70fd08f24575888dfbae1b1e69deaf7[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Thu Feb 29 15:52:02 2024 -0500
+
+    French Properties
+
+[33mcommit 547db795aeee9932372f21dee92b7f02a6c6199b[m
+Merge: 823cc9a 468270f
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Thu Feb 29 15:50:48 2024 -0500
+
+    Merge Conflict
+
+[33mcommit 468270ff68d107dd90b081ccb25d935df8bb8327[m
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Thu Feb 29 15:41:50 2024 -0500
+
+    Ready to Merge
+
+[33mcommit 912e17d1a7f10becfc4dd0bb6c43bcd53f858ce3[m
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Thu Feb 29 15:36:49 2024 -0500
+
+    Added Tests
+
+[33mcommit 823cc9a41796ae07b942197ea73b31b38f8ff155[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Thu Feb 29 14:55:07 2024 -0500
+
+    Added Diagetic Errors for Executables
+
+[33mcommit 3c598e2f9443718dd80182f9c75c5737ee7c0b37[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Thu Feb 29 11:12:08 2024 -0500
+
+    Modified parser command order
+
+[33mcommit d70c36fc90f2a9d2eb1add565e74864fe2502e1f[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Thu Feb 29 10:33:05 2024 -0500
+
+    Added division between turtle CommandExecutables and general CommandExecutables
+
+[33mcommit c5fae08ae50e1dd56aaa7f417cabb5c00131d86a[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Thu Feb 29 10:09:04 2024 -0500
+
+    Added javadoc to Constant and Variable Executables
+
+[33mcommit 3f8be22aa0057b548af0dd0aef008a463e86b471[m
+Merge: 36018ff 347c02c
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 07:00:49 2024 +0000
+
+    Merge branch 'alisha' into 'main'
+    
+    math commands
+    
+    See merge request compsci308_2024spring/slogo_team04!17
+
+[33mcommit 347c02cab18ea88b2cdb718b3d5cb45c44df030f[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 01:32:26 2024 -0500
+
+    edited button names
+
+[33mcommit 0ebbb8861de7710325afb85770d5f6b561bd7b03[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 01:03:49 2024 -0500
+
+    name changed to turtlecommandtest
+
+[33mcommit 1bb5d99ed7dba55df78620fdd4441301d4f62a99[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 01:02:47 2024 -0500
+
+    SLOGO-24,25,26,27,28,29,30: core math commands
+
+[33mcommit 4429e15bdb97171bc8bb66a66a6a83569997abf2[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 01:02:08 2024 -0500
+
+    reformat code
+
+[33mcommit 51e766d478c1cd17ef19cb17029d91c8b4b6ca8b[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 00:39:38 2024 -0500
+
+    refactored turtle commands into turtle command package
+
+[33mcommit 36018ffbdc360914048bf2cdfc35febf238d6e28[m
+Merge: 5cd7acb 45ac42c
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 05:31:43 2024 +0000
+
+    Merge branch 'alisha' into 'main'
+    
+    slogo 11-17 implemented + tested
+    
+    See merge request compsci308_2024spring/slogo_team04!16
+
+[33mcommit 45ac42cc0601e511e4614e33acb23b5cd196eb7e[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 00:30:32 2024 -0500
+
+    SLOGO-13,14,15,16,17: added commands -- show/hide turtle, pen down/up, home
+
+[33mcommit 288df103482c7e3234482b492b01de0aaa4b2086[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 00:18:36 2024 -0500
+
+    fixed spelling error in setPosY()
+
+[33mcommit 3d897531aadf0f20b5f1a5e1406793eac7660622[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 00:18:11 2024 -0500
+
+    DESIGN-18: TOWARD test when input is the same point as the turtle's current pos; SETXY tests
+
+[33mcommit f006dc6e667fbce2d73cd0cd6c2406e8490595c8[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 00:16:57 2024 -0500
+
+    SLOGO-12: added SETXY
+
+[33mcommit ab674026348f49e7f6d577ba55dc2c4562471e6e[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Thu Feb 29 00:00:43 2024 -0500
+
+    SLOGO-11: TOWARDS + test working
+
+[33mcommit 5cd7acbaa453ad83732462ed0f2fdf619d65463b[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Wed Feb 28 18:56:42 2024 -0500
+
+    Implemented Comment handling in parser
+
+[33mcommit b36a8812b22b68ecb18fa3acd4cc05fa4383d450[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Wed Feb 28 18:53:45 2024 -0500
+
+    Implemented parser logic for constant and variables
+
+[33mcommit 9c4d3b629750f236031175c66696275ba20e1147[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Wed Feb 28 18:12:10 2024 -0500
+
+    Tokenizer reads comments as a single token
+
+[33mcommit 370602fef8190684308a5f055432c083c99e00b6[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Wed Feb 28 15:40:57 2024 -0500
+
+    Replaced static with final keyword in constant executable preventing instances from holding unique data
+
+[33mcommit f355cc914b319b4bf2f7ba525db52a57b4864461[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Wed Feb 28 13:08:34 2024 -0500
+
+    Regex checking fixes in parser and tokenizer
+
+[33mcommit ca6652cfa0ce721983651accbedfc459ff0fe3b3[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Wed Feb 28 11:29:31 2024 -0500
+
+    Implemented reflection in parser
+
+[33mcommit a598aff3183ce75a6d08b6e598a8fe995f511bf8[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Wed Feb 28 03:50:24 2024 -0500
+
+    Added private helper to parser
+
+[33mcommit 51474496f78bf0b4e316720dee80e8d99ccbe66b[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Wed Feb 28 03:12:55 2024 -0500
+
+    parser branch statement
+
+[33mcommit c8e70f5afe05951f3ec9c69c0f24c229da4e7e3c[m
+Merge: e3c3f00 d69243c
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 07:07:54 2024 +0000
+
+    Merge branch 'alisha' into 'main'
+    
+    BACK, LEFT, RIGHT, TOWARDS, SETHEADING + testing
+    
+    See merge request compsci308_2024spring/slogo_team04!15
+
+[33mcommit d69243cfa24d5818452c80d4e575ffc26f79a754[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 02:05:30 2024 -0500
+
+    code quality fix
+
+[33mcommit 82934eda41c549dc8f01b4114e0f8c395de0e479[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 01:56:10 2024 -0500
+
+    commented out testHeading because it's failing
+
+[33mcommit 7475f4c01e817356f7807bf2a6e237a59239a9af[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 01:53:55 2024 -0500
+
+    DESIGN-18: added tests for BACK, LEFT, RIGHT, SETHEADING, TOWARDS
+
+[33mcommit 9c70479e981f513fe48fbe9e5fa8eeb24128c335[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 01:52:39 2024 -0500
+
+    added comments
+
+[33mcommit 1902d1364b0686000a1d1bdc7eb28a03a643ad96[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 01:52:09 2024 -0500
+
+    separated getDirection to radian and degree
+
+[33mcommit 832e3e57b691921c7c3a46da40698609e2e9133d[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 01:51:36 2024 -0500
+
+    SLOGO-11: added TOWARDS
+
+[33mcommit 860a634f0f12ad9636642e75e843a3c370ba1693[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 01:51:04 2024 -0500
+
+    SLOGO-10: added SETHEADING
+
+[33mcommit 2a36d8e47002cdde45d74b022129d809ffc3e300[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 01:50:40 2024 -0500
+
+    SLOGO-09: added RIGHT
+
+[33mcommit b0f46cd7585ede50359a76c28e4cdde1787beaaa[m
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Wed Feb 28 00:43:25 2024 -0500
+
+    Will add Tests Next
+
+[33mcommit e8b6b1ad6f0f0c7cf75163a532886b4cc4e099f7[m
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Wed Feb 28 00:42:54 2024 -0500
+
+    Fixed Some Bugs
+
+[33mcommit 0e085634ef0c7a7dd1f91c764eb236d407786b2b[m
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Wed Feb 28 00:10:35 2024 -0500
+
+    [Slogo-74] Line and Turtle Animations
+
+[33mcommit fdd272bd4cc81bc87230195ac3409b2812311e73[m
+Merge: 6bac63e e3c3f00
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 00:09:44 2024 -0500
+
+    Merge branch 'main' of coursework.cs.duke.edu:compsci308_2024spring/slogo_team04 into alisha
+
+[33mcommit 6bac63e4640cf38f19131e8391f3edfbfb908f4c[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 00:09:34 2024 -0500
+
+    changed getDirection to getRadianDirection
+
+[33mcommit 33f793f040f80b3f1f4414e59d3306c3e638473f[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Wed Feb 28 00:08:30 2024 -0500
+
+    SLOGO-06,07,08: added back and left, modified forward
+
+[33mcommit e3c3f000e3ecaca788980254ec1e6d986953d3f7[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Tue Feb 27 17:28:28 2024 -0500
+
+    Preparing Parser for implementation
+
+[33mcommit f2636ed0bb070d9d5858eb8c7c0830a817362064[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Tue Feb 27 16:15:30 2024 -0500
+
+    SLOGO-06: changed return 0 to return distance
+
+[33mcommit bee9f116f84b1e2ee4a3899dd47bc05495340932[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Tue Feb 27 16:13:35 2024 -0500
+
+    changed test name
+
+[33mcommit 075e61d1d241bf57855144c9b537c8a689f0b789[m[33m ([m[1;32mmain[m[33m)[m
+Author: Doga Ozmen <odo4@duke.edu>
+Date:   Tue Feb 27 15:19:18 2024 -0500
+
+    fixed graphics/pen interface and class naming
+
+[33mcommit 928051449b75a0faa3d89d426562043f4c8b4545[m
+Author: Doga Ozmen <odo4@duke.edu>
+Date:   Tue Feb 27 15:16:50 2024 -0500
+
+    combined view testcases into one file
+
+[33mcommit ad8b0f4a057e4afb7558c1255ef26ff2a5b8b7d9[m[33m ([m[1;31morigin/kevin[m[33m)[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Tue Feb 27 15:12:03 2024 -0500
+
+    Parser fix for data type
+
+[33mcommit 878b2818fbbd5994fcf91b74e2aad4221bd982d7[m[33m ([m[1;31morigin/alisha[m[33m)[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Mon Feb 26 01:36:44 2024 -0500
+
+    Replaced specific class initialization of TurtleModel with API use on View side
+
+[33mcommit c3aa1aff1edd231be861f1e54b165fbd448e5bbf[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Mon Feb 26 01:27:12 2024 -0500
+
+    Exceptions and JUnit test cases
+
+[33mcommit c28ed69134f588977a8d5bc070cf5cd34ca322e2[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Mon Feb 26 00:55:32 2024 -0500
+
+    javadoc for exceptions
+
+[33mcommit 2f02f40f95d59e6386af9e7a772283739ece639a[m
+Author: Doga Ozmen <odo4@duke.edu>
+Date:   Sun Feb 25 23:41:47 2024 -0500
+
+    added javadocs for viewAPI_revised
+
+[33mcommit 1c97fa25bf045ce9d5e481139714044beb242d87[m
+Author: Doga Ozmen <odo4@duke.edu>
+Date:   Sun Feb 25 23:33:10 2024 -0500
+
+    View Internal APIs descriptions added to the API_REVISED doc
+
+[33mcommit 664047b4005812a2927bab975166d4783b4ba602[m
+Merge: 30eda1e 47975a2
+Author: Doga Ozmen <odo4@duke.edu>
+Date:   Sun Feb 25 23:24:50 2024 -0500
+
+    Merge branch 'main' of coursework.cs.duke.edu:compsci308_2024spring/slogo_team04
+
+[33mcommit 30eda1ed887801218e62dcf7b000f85127250f9c[m
+Author: Doga Ozmen <odo4@duke.edu>
+Date:   Sun Feb 25 23:24:33 2024 -0500
+
+    86% line coverage for view: tests implemented
+
+[33mcommit 47975a207dab51c3c865cec1cc14c34fd4711f9f[m
+Merge: 445505c b003c36
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Mon Feb 26 04:15:39 2024 +0000
+
+    Merge branch 'alisha' into 'main'
+    
+    tests + revised api md
+    
+    See merge request compsci308_2024spring/slogo_team04!14
+
+[33mcommit b003c36095338f56e77714fd369b0db28b02cb3a[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Sun Feb 25 23:14:03 2024 -0500
+
+    added model internal and model external in api_revised (moved into api_revised folder)
+
+[33mcommit 445505c30513b7090f08e85335b2acf13ec3637f[m
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Sun Feb 25 23:09:16 2024 -0500
+
+    [Slogo-70] Beginning of Ability to use stylesheets
+
+[33mcommit ae5d4dad83c4130f5d6e5f1c01da24fed3a602aa[m
+Merge: 3075c4a eda511e
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Sun Feb 25 23:03:01 2024 -0500
+
+    Merge branch 'main' of coursework.cs.duke.edu:compsci308_2024spring/slogo_team04 into alisha
+
+[33mcommit eda511e5355d3d69f8ce350c2ec5baeb539a08e2[m
+Merge: dadc98e 076f34d
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Mon Feb 26 04:02:11 2024 +0000
+
+    Merge branch 'Fixing_View_Stuff' into 'main'
+    
+    [Slogo-69] Added Beginning of Ability to Switch Languages
+    
+    See merge request compsci308_2024spring/slogo_team04!13
+
+[33mcommit 076f34d79e498a027917306d741fd1ec032b160b[m
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Sun Feb 25 23:01:27 2024 -0500
+
+    [Slogo-69] Added Beginning of Ability to Switch Languages
+
+[33mcommit 3075c4a5d3752c3b511c2a25beabd163ac488a80[m
+Merge: 350ea5e dadc98e
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Sun Feb 25 22:49:28 2024 -0500
+
+    Merge branch 'main' of coursework.cs.duke.edu:compsci308_2024spring/slogo_team04 into alisha
+
+[33mcommit dadc98e7161a6ebe40d1f4d23c3ba1df56c216c1[m
+Merge: 1f63184 f12b6d6
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Sun Feb 25 22:14:46 2024 -0500
+
+    Merge branch 'main' of coursework.cs.duke.edu:compsci308_2024spring/slogo_team04 into kevin
+
+[33mcommit 1f63184855828f21db67700a8146f7de2f4e63aa[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Sun Feb 25 22:14:41 2024 -0500
+
+    API fixes
+
+[33mcommit 350ea5eb4e50beb3644698abb79231dc4232eb39[m
+Merge: 08d82b3 f12b6d6
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Sun Feb 25 21:55:25 2024 -0500
+
+    Merge branch 'main' of coursework.cs.duke.edu:compsci308_2024spring/slogo_team04 into alisha
+
+[33mcommit f12b6d66833912a72211ae37db38c0598c99f1d3[m
+Merge: f3a8193 c7fe35d
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Mon Feb 26 02:52:31 2024 +0000
+
+    Merge branch 'Fixing_View_Stuff' into 'main'
+    
+    Bug Fixes
+    
+    See merge request compsci308_2024spring/slogo_team04!12
+
+[33mcommit c7fe35d97439f88bcc7f5a5ef02ac894e1051406[m
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Sun Feb 25 21:51:59 2024 -0500
+
+    Bug Fixes
+
+[33mcommit 08d82b3b6175d26c2ce31a00361d405d35fbcb1c[m
+Merge: 39dc2bd f3a8193
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Sun Feb 25 21:46:43 2024 -0500
+
+    Merge branch 'main' of coursework.cs.duke.edu:compsci308_2024spring/slogo_team04 into alisha
+
+[33mcommit 39dc2bd5d9c20150346a03f46bd58f8a583dc3b5[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Sun Feb 25 21:45:28 2024 -0500
+
+    cleaned up unused code and comments
+
+[33mcommit 970181e34a6d6ef2a43439ba390cd188f2c08309[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Sun Feb 25 21:44:47 2024 -0500
+
+    DESIGN-18: added a test xml file for xmlparser unit test
+
+[33mcommit d443e25e9dc49251f7bbb2133c984bf1623cc643[m
+Author: Alisha Zhang <xz352@duke.edu>
+Date:   Sun Feb 25 21:44:03 2024 -0500
+
+    DESIGN-18: turtle model tests + xml parser tests
+
+[33mcommit f3a8193d4c9dcea6cced77ce890ee3bad8329a35[m
+Merge: 70eb2d8 e13ec2c
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Mon Feb 26 02:26:52 2024 +0000
+
+    Merge branch 'Fixing_View_Stuff' into 'main'
+    
+    Fixed View Issues. Now sending text to parser
+    
+    See merge request compsci308_2024spring/slogo_team04!11
+
+[33mcommit e13ec2c222c526e871c1074e9906e22b07862267[m
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Sun Feb 25 21:26:21 2024 -0500
+
+    Fixed View Issues. Now sending text to parser
+
+[33mcommit 70eb2d8855103fad803992df873e4309aa0e45d5[m
+Merge: c34ec79 a6fbba3
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Sun Feb 25 21:21:41 2024 -0500
+
+    Merge branch 'main' of coursework.cs.duke.edu:compsci308_2024spring/slogo_team04 into kevin
+
+[33mcommit c34ec79404006d58b20e3e9e55d1044177bc4975[m
+Author: Kevin Deng <kd254@duke.edu>
+Date:   Sun Feb 25 21:21:37 2024 -0500
+
+    Skeleton for executioner and parser
+
+[33mcommit a6fbba39f9f98cbabbb48321ebc23d3e4d9434d6[m
+Merge: 52ee29e f7eed80
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Mon Feb 26 02:07:59 2024 +0000
+
+    Merge branch 'Fixing_View_Stuff' into 'main'
+    
+    Fixed Updates to View
+    
+    See merge request compsci308_2024spring/slogo_team04!10
+
+[33mcommit f7eed802fb573d6f90ee5895a5e2b029e263fa55[m[33m ([m[1;31morigin/Fixing_View_Stuff[m[33m)[m
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Sun Feb 25 21:07:21 2024 -0500
+
+    Fixed Updates to View
+
+[33mcommit 52ee29efedfd947dc7ca57087b8d3f7312cb014e[m
+Merge: 74fbffc db262af
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Mon Feb 26 01:30:42 2024 +0000
+
+    Merge branch 'View_Stuff' into 'main'
+    
+    Interfaces Added
+    
+    See merge request compsci308_2024spring/slogo_team04!9
+
+[33mcommit db262af3df68a59f40af2ce163f277b0f6c30f31[m
+Merge: cb001c1 74fbffc
+Author: Spencer Katz <sek49@duke.edu>
+Date:   Mon Feb 26 01:30:24 2024 +0000
+
+    Merge branch 'main' into 'View_Stuff'
+    
+    # Conflicts:
+    #   src/main/java/slogo/view/TurtlePane.java
