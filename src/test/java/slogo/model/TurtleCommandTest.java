@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import slogo.model.command.executables.Back;
+import slogo.model.command.executables.turtleCommand.Back;
 import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.Executable;
-import slogo.model.command.executables.Forward;
-import slogo.model.command.executables.Home;
-import slogo.model.command.executables.Left;
-import slogo.model.command.executables.Right;
-import slogo.model.command.executables.SetHeading;
-import slogo.model.command.executables.Setxy;
-import slogo.model.command.executables.Towards;
+import slogo.model.command.executables.turtleCommand.Forward;
+import slogo.model.command.executables.turtleCommand.Home;
+import slogo.model.command.executables.turtleCommand.Left;
+import slogo.model.command.executables.turtleCommand.Right;
+import slogo.model.command.executables.turtleCommand.SetHeading;
+import slogo.model.command.executables.turtleCommand.Setxy;
+import slogo.model.command.executables.turtleCommand.Towards;
 import slogo.model.turtle.TurtleModel;
 
-public class CommandTest {
+public class TurtleCommandTest {
   private TurtleModel turt;
   private List<Executable> params;
 
