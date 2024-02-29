@@ -1,5 +1,6 @@
 package slogo.model.parser;
 
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ import slogo.model.token.Tokenizer;
 import slogo.model.token.TokenizerApi;
 
 public class TreeParser implements ParserApi {
-  public static final String EXEC_REFS = "slogo.model.command.executables.";
+  public static final String EXEC_REFS = "slogo.model.command.executables.turtleCommand.";
   private ExecutionerApi executioner;
   private final TokenizerApi tokenizer;
   private Map<String,Double> variablesTable;
@@ -57,6 +58,7 @@ public class TreeParser implements ParserApi {
       case "Error": break;
       default:
         try{
+          Class<CommandExecutable> c = (Class<CommandExecutable>) Class.forName(EXEC_REFS+t.type());
           branch = (CommandExecutable) Class.forName(EXEC_REFS + t.type())
               .getDeclaredConstructor().newInstance();
         }
