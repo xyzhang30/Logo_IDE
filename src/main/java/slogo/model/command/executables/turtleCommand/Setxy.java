@@ -1,9 +1,11 @@
-package slogo.model.command.executables;
+package slogo.model.command.executables.turtleCommand;
 
 import java.util.List;
+import slogo.model.command.executables.CommandExecutable;
+import slogo.model.command.executables.Executable;
 import slogo.model.turtle.TurtleModel;
 
-public class Setxy extends CommandExecutable{
+public class Setxy extends CommandExecutable {
 
   private double newPosX;
   private double newPoxY;
