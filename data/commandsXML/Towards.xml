@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>towards</canonical_name>
+  <category>Turtle Command</category>
+  <description>Turns turtle to face the point (x, y), where (0, 0) is the center of the screen</description>
+  <example>towards 2 1</example>
+  <parameters>
+    <posX>x coordinate of the point turtle is turning to face</posX>
+    <poxY>y coordinate of the point turtle is turning to face</poxY>
+  </parameters>
+  <return_value>Double, degrees turtle turned</return_value>
+  <number_of_expected_parameters>2</number_of_expected_parameters>
+  <implementing_class>turtleCommand/Towards</implementing_class>
+</command>

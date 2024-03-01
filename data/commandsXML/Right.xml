@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>right</canonical_name>
+  <category>Turtle Command</category>
+  <description>Turns turtle clockwise by the specified angle</description>
+  <example>rt 45</example>
+  <parameters>
+    <degrees>The degree of the turning angle (clockwise)</degrees>
+  </parameters>
+  <return_value>Double, degrees turtle turned</return_value>
+  <number_of_expected_parameters>1</number_of_expected_parameters>
+  <implementing_class>turtleCommand/Right</implementing_class>
+</command>

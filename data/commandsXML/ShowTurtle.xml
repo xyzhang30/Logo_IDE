@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>showturtle</canonical_name>
+  <category>Turtle Command</category>
+  <description>Makes turtle visible</description>
+  <example>st</example>
+  <parameters>
+  </parameters>
+  <return_value>Double, 1</return_value>
+  <number_of_expected_parameters>0</number_of_expected_parameters>
+  <implementing_class>turtleCommand/ShowTurtle</implementing_class>
+</command>
