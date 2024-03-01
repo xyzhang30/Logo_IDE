@@ -12,8 +12,8 @@ public class Towards extends TurtleExecutable {
 
   public Towards(List<Executable> parameterExecutables, TurtleModel turtle) {
     super(parameterExecutables, turtle);
-    facingPosX = getParameterData().get(0);
-    facingPosY = getParameterData().get(1);
+    facingPosX = parameterExecutables.get(0).execute();
+    facingPosY = parameterExecutables.get(1).execute();
   }
 
   @Override

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>setxy</canonical_name>
+  <category>Turtle Command</category>
+  <description>Moves turtle to an absolute screen position, where (0, 0) is the center of the screen</description>
+  <example>goto 2 3</example>
+  <parameters>
+    <posX>new x coordinate to move the turtle to</posX>
+    <poxY>new y coordinate to move the turtle to</poxY>
+  </parameters>
+  <return_value>Double, distance turtle moved</return_value>
+  <number_of_expected_parameters>2</number_of_expected_parameters>
+  <implementing_class>turtleCommand/Setxy</implementing_class>
+</command>

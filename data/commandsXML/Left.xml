@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>left</canonical_name>
+  <category>Turtle Command</category>
+  <description>Turns turtle counterclockwise by the specified angle</description>
+  <example>left 45</example>
+  <parameters>
+    <degrees>The degree of the turning angle (counterclockwise)</degrees>
+  </parameters>
+  <return_value>Double, degrees turtle turned</return_value>
+  <number_of_expected_parameters>1</number_of_expected_parameters>
+  <implementing_class>turtleCommand/Left</implementing_class>
+</command>
