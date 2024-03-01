@@ -34,6 +34,7 @@ public class TurtleCommandTest {
 
     params.add(new ConstantExecutable(50)); //move 50 to the right
 
+    System.out.println(params.get(0).execute());
     //straight forward
     Forward forward = new Forward(params, turt);
     forward.execute();
