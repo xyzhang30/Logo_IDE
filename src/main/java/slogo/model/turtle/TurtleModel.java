@@ -11,9 +11,18 @@ public class TurtleModel implements TurtleModelApi {
   private double direction; //0 = right; 90 = top; 180 = left; 270 = bottom;
   private boolean penDown;
   private boolean visible;
+  private boolean eraseTrace;
 
   public TurtleModel() {
     initialize();
+  }
+
+  public boolean isEraseTrace(){
+    return eraseTrace;
+  }
+
+  public void setEraseTrace(boolean erase){
+    this.eraseTrace = erase;
   }
 
   public double getPosX() {
@@ -85,6 +94,7 @@ public class TurtleModel implements TurtleModelApi {
     this.direction = 0;
     this.penDown = false; //default to false, might change
     this.visible = true; //default to visible
+    this.eraseTrace = false;
   }
 
   /**
@@ -94,6 +104,6 @@ public class TurtleModel implements TurtleModelApi {
    */
   @Override
   public TurtleRecord getAttributes() {
-    return new TurtleRecord(posX,posY,speed,direction,penDown,visible);
+    return new TurtleRecord(posX,posY,speed,direction,penDown,visible,eraseTrace);
   }
 }
