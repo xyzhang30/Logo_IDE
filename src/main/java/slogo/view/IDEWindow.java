@@ -18,32 +18,32 @@ public class IDEWindow {
 
   public static final String STYLESHEET = "default.css";
 
-  public static final String defaultLanguage = "french";
+  public static final String defaultLanguage = "english";
 
   public static final String DEFAULT_RESOURCE_PACKAGE = "View.";
   public static final String DEFAULT_RESOURCE_FOLDER = "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
-
-  private static final int WINDOW_WIDTH = 500;
-
-  private static final int WINDOW_HEIGHT = 500;
 
   private static final String TITLE = "TURTLE";
 
   public static final Dimension DEFAULT_SIZE = new Dimension(900, 600);
 
-  private TextInputPane t1 = new TextInputPane(100,100,"hi", "english");
+  private TextInputPane t1 = new TextInputPane(100,100, "english");
 
   private TurtlePane tp1;
 
   private Controller controller;
 
-  TurtleModelApi model;
+  private TurtleModelApi model;
 
+  private int speed;
+
+  private static final int STARTSPEED = 2;
 
 
   public IDEWindow (Stage stage, Controller controller) {
     this.stage = stage;
     this.controller = controller;
+    speed = STARTSPEED;
   }
 
   public void start(TurtleModelApi model) throws Exception {
@@ -63,12 +63,12 @@ public class IDEWindow {
     BorderPane root = new BorderPane();
 
     // must be first since other panels may refer to page
-    ControlPane c1 = new ControlPane(200, 200, STYLESHEET, controller, defaultLanguage);
+    ControlPane c1 = new ControlPane(200, 200, controller, defaultLanguage);
     root.setTop(c1.getRoot());
-    this.t1 = new TextInputPane(200,200,STYLESHEET, defaultLanguage);
+    this.t1 = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, defaultLanguage);
     root.setBottom(this.t1.getRoot());
 
-    tp1 = new TurtlePane(400,400,STYLESHEET, model, defaultLanguage);
+    tp1 = new TurtlePane(400,400, model, defaultLanguage, speed);
     root.setCenter(tp1.getRoot());
     // control the navigation
     // create scene to hold UI
@@ -85,6 +85,7 @@ public class IDEWindow {
   }
 
   public void updateTurtle() {
+    tp1.setSpeed(speed);
     tp1.update();
   }
 
@@ -93,5 +94,25 @@ public class IDEWindow {
   }
   public TextArea getTextArea(){
     return t1.getTextArea();
+  }
+
+  public int getSpeed() {
+    return speed;
+  }
+
+  public void setSpeed(int speed) {
+    this.speed = speed;
+  }
+
+  public void clearLine() {
+    tp1.clear();
+  }
+
+  public void resume() {
+    tp1.startTimeline();
+  }
+
+  public void pause() {
+    tp1.stopTimeline();
   }
 }
