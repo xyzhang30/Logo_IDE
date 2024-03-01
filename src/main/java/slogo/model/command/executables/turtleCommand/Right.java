@@ -14,7 +14,7 @@ public class Right extends TurtleExecutable {
 
   public Right(List<Executable> parameterExecutables, TurtleModel turtle) {
     super(parameterExecutables, turtle);
-    degrees = getParameterData().get(0);
+    degrees = parameterExecutables.get(0).execute();
   }
 
   @Override

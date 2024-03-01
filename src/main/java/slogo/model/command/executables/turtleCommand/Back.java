@@ -14,7 +14,7 @@ public class Back extends TurtleExecutable {
 
   public Back(List<Executable> parameterExecutables, TurtleModel turtle) {
     super(parameterExecutables, turtle);
-    distance = getParameterData().get(0);
+    distance = parameterExecutables.get(0).execute();
   }
 
   @Override
