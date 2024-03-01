@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>setheading</canonical_name>
+  <category>Turtle Command</category>
+  <description>Turns turtle to an absolute heading angle (right = 0; up = 90; left = 180; down = 360)</description>
+  <example>seth 180</example>
+  <parameters>
+    <degrees>The degree of the turning angle (counterclockwise)</degrees>
+  </parameters>
+  <return_value>Double, degrees turtle turned</return_value>
+  <number_of_expected_parameters>1</number_of_expected_parameters>
+  <implementing_class>turtleCommand/SetHeading</implementing_class>
+</command>

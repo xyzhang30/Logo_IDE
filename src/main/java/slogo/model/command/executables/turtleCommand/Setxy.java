@@ -11,8 +11,8 @@ public class Setxy extends TurtleExecutable {
 
   public Setxy(List<Executable> parameterExecutables, TurtleModel turtle) {
     super(parameterExecutables, turtle);
-    newPosX = getParameterData().get(0);
-    newPoxY = getParameterData().get(1);
+    newPosX = parameterExecutables.get(0).execute();
+    newPoxY = parameterExecutables.get(1).execute();
   }
 
   @Override
