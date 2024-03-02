@@ -7,7 +7,7 @@ import java.util.Map;
  */
 public class VariableExecutable implements Executable{
   private final String signature;
-  private Map<String,Double> myMap;
+  private final Map<String,Double> myMap;
 
   /**
    * Constructor for Variable Executables.
