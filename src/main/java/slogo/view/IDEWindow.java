@@ -6,14 +6,19 @@ import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import slogo.model.api.TurtleModelApi;
+import javafx.scene.paint.Color;
 
 public class IDEWindow {
 
   private Stage stage;
+
+  private Scene scene;
 
 
   public static final String STYLESHEET = "default.css";
@@ -30,6 +35,7 @@ public class IDEWindow {
   private TextInputPane t1 = new TextInputPane(100,100, "english");
 
   private TurtlePane tp1;
+  private ButtonPane buttonPane;
 
   private Controller controller;
 
@@ -60,19 +66,24 @@ public class IDEWindow {
   }
 
   public Scene makeScene (int width, int height, TurtleModelApi model) throws FileNotFoundException {
-    BorderPane root = new BorderPane();
+    Pane root = new AnchorPane();
 
     // must be first since other panels may refer to page
-    ControlPane c1 = new ControlPane(200, 200, controller, defaultLanguage);
-    root.setTop(c1.getRoot());
+    ControlPane c1 = new ControlPane(DEFAULT_SIZE.height/6, DEFAULT_SIZE.width, controller, defaultLanguage);
+    AnchorPane.setTopAnchor(c1.getRoot(), 0.0);
+    root.getChildren().add(c1.getRoot());
     this.t1 = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, defaultLanguage);
-    root.setBottom(this.t1.getRoot());
+    AnchorPane.setBottomAnchor(t1.getRoot(), 0.0);
+    root.getChildren().add(t1.getRoot());
 
-    tp1 = new TurtlePane(400,400, model, defaultLanguage, speed);
-    root.setCenter(tp1.getRoot());
+    tp1 = new TurtlePane(DEFAULT_SIZE.height/2,DEFAULT_SIZE.width/2, model, defaultLanguage, speed);
+    AnchorPane.setBottomAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/4);
+    AnchorPane.setTopAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/6);
+    AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width/4);
+    root.getChildren().add(tp1.getRoot());
     // control the navigation
     // create scene to hold UI
-    Scene scene = new Scene(root, width, height);
+    scene = new Scene(root, width, height);
     // uncomment to activate CSS styling
     scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
     return scene;
@@ -103,6 +114,9 @@ public class IDEWindow {
   public void setSpeed(int speed) {
     this.speed = speed;
   }
+  public ButtonPane getButtonPane() {
+    return buttonPane;
+  }
 
   public void clearLine() {
     tp1.clear();
@@ -114,5 +128,14 @@ public class IDEWindow {
 
   public void pause() {
     tp1.stopTimeline();
+  }
+
+  public void updateColor(Color c1) {
+    tp1.updateColor(c1);
+  }
+
+  public void setStylesheet(String stylesheet) {
+    scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + stylesheet).toExternalForm());
+    System.out.println(stylesheet);
   }
 }

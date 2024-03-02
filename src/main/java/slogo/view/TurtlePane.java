@@ -5,6 +5,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import slogo.model.api.TurtleModelApi;
 
@@ -21,9 +23,11 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
   private double currentDirection;
 
-  private final TurtleView turtle;
+  private final TurtleV turtle;
 
   private Timeline timeline;
+
+  private final PenGraphics pen;
 
   public TurtlePane(int height, int width, TurtleModelApi model, String language, int speed) {
     super(height, width, language);
@@ -34,10 +38,13 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     this.speed = speed;
     turtle = new TurtleView(width, height,
         model.getAttributes().xpos(), model.getAttributes().ypos(), model.getAttributes().direction());
-    a1 = new Animations(height, width, language);
+    pen = new PenDraw();
+    a1 = new Animations(height, width, language, pen);
     currentX = model.getAttributes().xpos();
     currentY = model.getAttributes().ypos();
     currentDirection = model.getAttributes().direction();
+    getRoot().getTransforms().addAll(
+        new Translate(width / 2, height / 2));
     create();
   }
 
@@ -50,7 +57,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   }
   public void update() {
     Timeline timeline = createTimeline(currentX, currentY, currentDirection, model.getAttributes().xpos(),
-        model.getAttributes().ypos(), model.getAttributes().direction());
+        model.getAttributes().ypos(), model.getAttributes().direction(), model.getAttributes().visible());
     timeline.play();
     currentX = model.getAttributes().xpos();
     currentY = model.getAttributes().ypos();
@@ -65,7 +72,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   }
 
   private Timeline createTimeline(double startX, double startY, double startDirection, double endX, double endY,
-      double endDirection) {
+      double endDirection, boolean visible) {
     timeline = new Timeline();
     timeline.setCycleCount(1);
     for (int i = 0; i < (defaultLineLength/speed); i++) {
@@ -76,7 +83,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
       KeyFrame keyFrame = new KeyFrame(Duration.millis(i * 10), e -> {
         a1.drawLine(startX, startY, x, y);
-        turtle.turtleUpdate(x,y,direction);
+        turtle.turtleUpdate(x,y,direction, visible);
 
       });
 
@@ -101,5 +108,9 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     if (timeline != null && timeline.getStatus().equals(Timeline.Status.RUNNING)) {
       timeline.pause();
     }
+  }
+
+  public void updateColor(Color c1) {
+    pen.setPenColor(c1);
   }
 }

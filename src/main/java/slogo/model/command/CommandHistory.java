@@ -32,6 +32,12 @@ public class CommandHistory implements HistoryApi {
     commands.add(com);
   }
 
+  public List<Executable> getCommands() {
+    return commands;
+  }
+
+
+
 //  public void jumpToCommand(int index) {
 //    if (index > commands.size() || index < 0) {
 //      throw new IndexOutOfBoundsException("Attempted to jump to an invalid index in history");
