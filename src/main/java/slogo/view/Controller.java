@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import slogo.model.api.ParserApi;
+import slogo.model.api.TurtleModelApi;
 import slogo.model.parser.TreeParser;
 import slogo.model.turtle.TurtleModel;
 import javafx.scene.layout.BorderPane;
@@ -20,7 +21,7 @@ public class Controller  {
 
   private final IDEWindow i1;
 
-  private final TurtleModel model;
+  private final TurtleModelApi model;
 
   private Stage stage;
 
