@@ -1,33 +1,126 @@
 package slogo;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import slogo.model.turtle.TurtleModel;
 import slogo.view.Controller;
+import slogo.model.turtle.TurtleModel;
+
+import java.io.IOException;
 
 public class Main extends Application {
 
-  public static final int FRAMES_PER_SECOND = 60;
-  public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
+  private Stage primaryStage;
 
-  private void step(double elapsedTime) {
-    // c1.update(elapsedTime);
-
-  }
   @Override
-  public void start(Stage primaryStage) throws Exception {
-    TurtleModel model = new TurtleModel();
-    Controller c1 = new Controller(primaryStage, model);
-    c1.start();
-    Timeline animation = new Timeline();
-    animation.setCycleCount(Timeline.INDEFINITE);
-    animation.getKeyFrames()
-        .add(new KeyFrame(Duration.seconds(SECOND_DELAY), e -> step(SECOND_DELAY)));
-    animation.play();
+  public void start(Stage primaryStage) {
+    this.primaryStage = primaryStage;
+    primaryStage.setTitle("SLogo Splash Screen");
+
+    // Program's name label
+    Label programNameLabel = new Label("SLogo");
+    programNameLabel.setStyle("-fx-font-size: 24; -fx-font-weight: bold;");
+
+    // Language selection dropdown
+    Menu languageMenu = new Menu("Select Language");
+
+    MenuItem frenchItem = new MenuItem("French");
+    frenchItem.setOnAction(event -> {
+      try {
+        switchToFrench();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    });
+
+    MenuItem englishItem = new MenuItem("English");
+    englishItem.setOnAction(event -> {
+      try {
+        switchToEnglish();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    });
+
+    MenuItem spanishItem = new MenuItem("Spanish");
+    spanishItem.setOnAction(event -> {
+      try {
+        switchToSpanish();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    });
+
+    languageMenu.getItems().addAll(frenchItem, englishItem, spanishItem);
+    MenuBar menuBar = new MenuBar();
+    menuBar.getMenus().add(languageMenu);
+
+    // Color theme selection dropdown (dummy data)
+    ComboBox<String> colorThemeComboBox = new ComboBox<>();
+    colorThemeComboBox.getItems().addAll("Theme 1", "Theme 2", "Theme 3");
+    colorThemeComboBox.setPromptText("Select Color Theme");
+
+    // Button for starting a new session
+    Button newSessionButton = new Button("Start New Session");
+    newSessionButton.setOnAction(event -> {
+      try {
+        startNewSession();
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
+    });
+
+    Button loadSessionButton = new Button("Load Session");
+    loadSessionButton.setOnAction(event -> {
+      try {
+        loadSession();
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
+    });
+
+    // VBox to hold all elements
+    VBox root = new VBox(20);
+    root.setAlignment(Pos.CENTER);
+    root.setPadding(new Insets(20));
+    root.getChildren().addAll(programNameLabel, menuBar, colorThemeComboBox, newSessionButton, loadSessionButton);
+
+    Scene scene = new Scene(root, 400, 300);
+    primaryStage.setScene(scene);
+    primaryStage.show();
   }
 
+  private void loadSession() {
+    System.out.println("Loading");
+  }
 
+  private void startNewSession() throws Exception {
+    // Call the method to start the main application functionality
+    TurtleModel model = new TurtleModel();
+    Controller controller = new Controller(primaryStage, model);
+    controller.start();
+  }
+
+  private void switchToSpanish() throws IOException {
+    // Perform actions to switch to Spanish
+    System.out.println("Switching to Spanish...");
+  }
+
+  private void switchToFrench() throws IOException {
+    // Perform actions to switch to French
+    System.out.println("Switching to French...");
+  }
+
+  private void switchToEnglish() throws IOException {
+    // Perform actions to switch to English
+    System.out.println("Switching to English...");
+  }
+
+  public static void main(String[] args) {
+    launch(args);
+  }
 }

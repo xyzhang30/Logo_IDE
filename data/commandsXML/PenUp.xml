@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>penup</canonical_name>
+  <category>Turtle Command</category>
+  <description>Puts pen up such that when the turtle moves, it does not leave a trail</description>
+  <example>pu</example>
+  <parameters>
+  </parameters>
+  <return_value>Double, 0</return_value>
+  <number_of_expected_parameters>0</number_of_expected_parameters>
+  <implementing_class>turtleCommand/PenUp</implementing_class>
+</command>

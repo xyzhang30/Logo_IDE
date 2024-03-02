@@ -83,7 +83,7 @@ public class CommandXmlParser {
     returnValueType = element.getElementsByTagName("return_value").item(0).getTextContent();
     numParamsExpected = Integer.parseInt(
         element.getElementsByTagName("number_of_expected_parameters").item(0).getTextContent());
-    implementationName = element.getElementsByTagName("implementing_class_or_method_name").item(0)
+    implementationName = element.getElementsByTagName("implementing_class").item(0)
         .getTextContent();
   }
 

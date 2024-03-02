@@ -35,6 +35,7 @@ public class IDEWindow {
   private TextInputPane t1 = new TextInputPane(100,100, "english");
 
   private TurtlePane tp1;
+  private ButtonPane buttonPane;
 
   private Controller controller;
 
@@ -112,6 +113,9 @@ public class IDEWindow {
 
   public void setSpeed(int speed) {
     this.speed = speed;
+  }
+  public ButtonPane getButtonPane() {
+    return buttonPane;
   }
 
   public void clearLine() {

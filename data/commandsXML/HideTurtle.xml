@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>hideturtle</canonical_name>
+  <category>Turtle Command</category>
+  <description>Makes turtle invisible</description>
+  <example>hideturtle</example>
+  <parameters>
+  </parameters>
+  <return_value>Double, 0</return_value>
+  <number_of_expected_parameters>0</number_of_expected_parameters>
+  <implementing_class>turtleCommand/HideTurtle</implementing_class>
+</command>

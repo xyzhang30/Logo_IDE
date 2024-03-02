@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>home</canonical_name>
+  <category>Turtle Command</category>
+  <description>Moves turtle to the center of the screen (0 0)</description>
+  <example>home</example>
+  <parameters>
+  </parameters>
+  <return_value>Double, distance turtle moved</return_value>
+  <number_of_expected_parameters>0</number_of_expected_parameters>
+  <implementing_class>turtleCommand/Home</implementing_class>
+</command>
