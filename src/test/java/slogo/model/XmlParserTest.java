@@ -50,4 +50,12 @@ public class XmlParserTest {
     Map<String, String> expected = new HashMap<>();
     assertEquals(expected, commandXmlParser.getParameters());
   }
+
+  @Test
+  void TestNonExistantFile() {
+    assertThrows(FileNotFoundException.class, () -> {
+      commandXmlParser.readXml("Forwar");
+    });
+  }
+
 }

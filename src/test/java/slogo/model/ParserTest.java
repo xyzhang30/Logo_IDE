@@ -11,12 +11,13 @@ import slogo.model.api.InputRecord;
 import slogo.model.api.ParserApi;
 import slogo.model.parser.TreeParser;
 
-public class testParser {
+public class ParserTest {
   private ParserApi myParser;
   @BeforeEach
   void setup(){
     myParser = new TreeParser();
   }
+
   @Test
   void testSimple(){
     try {
