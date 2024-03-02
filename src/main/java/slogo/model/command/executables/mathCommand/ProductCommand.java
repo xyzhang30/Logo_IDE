@@ -12,12 +12,12 @@ public class ProductCommand extends CommandExecutable {
 
   public ProductCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
-    numOne = getParameterData().get(0);
-    numTwo = getParameterData().get(1);
+    numOne = parameterExecutables.get(0).execute();
+    numTwo = parameterExecutables.get(1).execute();
   }
 
   @Override
   public double execute() {
-    return numOne * numTwo;
+    return (numOne * numTwo);
   }
 }

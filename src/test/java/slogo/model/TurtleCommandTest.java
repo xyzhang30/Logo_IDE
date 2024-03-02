@@ -10,12 +10,17 @@ import slogo.model.command.executables.turtleCommand.Back;
 import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.turtleCommand.Forward;
+import slogo.model.command.executables.turtleCommand.Heading;
 import slogo.model.command.executables.turtleCommand.Home;
 import slogo.model.command.executables.turtleCommand.Left;
+import slogo.model.command.executables.turtleCommand.PenDownQuery;
 import slogo.model.command.executables.turtleCommand.Right;
 import slogo.model.command.executables.turtleCommand.SetHeading;
 import slogo.model.command.executables.turtleCommand.Setxy;
+import slogo.model.command.executables.turtleCommand.ShowingQuery;
 import slogo.model.command.executables.turtleCommand.Towards;
+import slogo.model.command.executables.turtleCommand.Xcor;
+import slogo.model.command.executables.turtleCommand.Ycor;
 import slogo.model.turtle.TurtleModel;
 
 public class TurtleCommandTest {
@@ -157,5 +162,41 @@ public class TurtleCommandTest {
     assertEquals(0, turt.getPosY());
     assertEquals(5, distMoved);
   }
+
+  @Test
+  void TestXcorQuery(){
+    turt.setPosX(50);
+    Xcor xcor = new Xcor(params,turt);
+    assertEquals(50, xcor.execute());
+  }
+
+  @Test
+  void TestYcorQuery(){
+    turt.setPosY(5);
+    Ycor ycor = new Ycor(params,turt);
+    assertEquals(5, ycor.execute());
+  }
+
+  @Test
+  void TestHeadingQuery(){
+    turt.setDirection(90);
+    Heading heading = new Heading(params,turt);
+    assertEquals(90, heading.execute());
+  }
+
+  @Test
+  void TestPenDownQuery(){
+    turt.setPenDown(false);
+    PenDownQuery penDownQuery = new PenDownQuery(params,turt);
+    assertEquals(0, penDownQuery.execute());
+  }
+
+  @Test
+  void TestShowingQuery(){
+    turt.setVisible(true);
+    ShowingQuery showingQuery = new ShowingQuery(params,turt);
+    assertEquals(1, showingQuery.execute());
+  }
+
 
 }

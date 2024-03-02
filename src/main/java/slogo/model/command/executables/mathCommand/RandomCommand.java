@@ -12,7 +12,7 @@ public class RandomCommand extends CommandExecutable {
 
   public RandomCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
-    max = getParameterData().get(0);
+    max = parameterExecutables.get(0).execute();
   }
 
   @Override

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>sum</canonical_name>
+  <category>Math Command</category>
+  <description>Returns sum of the values of expr1 and expr2</description>
+  <example>sum 10 10</example>
+  <parameters>
+    <expr1>double, first number to add</expr1>
+    <expr2>double, second number to add</expr2>
+  </parameters>
+  <return_value>Double, sum of expr1 and expr2</return_value>
+  <number_of_expected_parameters>2</number_of_expected_parameters>
+  <implementing_class>mathCommand/SumCommand</implementing_class>
+</command>
