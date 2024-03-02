@@ -12,4 +12,6 @@ public interface HistoryApi {
   void addCommand(Executable c);
 
   void incrementCommandIndex();
+
+  void saveFile(String fileName);
 }
