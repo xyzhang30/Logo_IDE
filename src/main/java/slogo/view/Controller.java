@@ -35,7 +35,7 @@ public class Controller  {
   }
 
   public void start() throws Exception {
-//    i1.start(model);
+    i1.start(model);
   }
 
   public void run() {

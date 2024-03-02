@@ -30,6 +30,7 @@ public class IDEWindow {
   private TextInputPane t1 = new TextInputPane(100,100, "english");
 
   private TurtlePane tp1;
+  private ButtonPane buttonPane;
 
   private Controller controller;
 
@@ -70,6 +71,9 @@ public class IDEWindow {
 
     tp1 = new TurtlePane(400,400, model, defaultLanguage, speed);
     root.setCenter(tp1.getRoot());
+
+   // this.buttonPane = new ButtonPane();
+    root.setRight(buttonPane);
     // control the navigation
     // create scene to hold UI
     Scene scene = new Scene(root, width, height);
@@ -102,6 +106,9 @@ public class IDEWindow {
 
   public void setSpeed(int speed) {
     this.speed = speed;
+  }
+  public ButtonPane getButtonPane() {
+    return buttonPane;
   }
 
   public void clearLine() {
