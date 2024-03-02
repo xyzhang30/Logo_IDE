@@ -140,4 +140,7 @@ public class IDEWindow {
     System.out.println(stylesheet);
   }
 
+  public void updateBackground(Color c1) {
+      tp1.updateBackground(c1);
+  }
 }

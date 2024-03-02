@@ -43,8 +43,6 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     currentX = model.getAttributes().xpos();
     currentY = model.getAttributes().ypos();
     currentDirection = model.getAttributes().direction();
-    getRoot().getTransforms().addAll(
-        new Translate(width / 2, height / 2));
     create();
   }
 
@@ -112,5 +110,18 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
   public void updateColor(Color c1) {
     pen.setPenColor(c1);
+  }
+
+  public void updateBackground(Color c1) {
+    System.out.println(c1.getBlue());
+    getRoot().setStyle("-fx-background-color: " + toHexCode(c1) + ";");
+  }
+
+  private String toHexCode(Color color) {
+    int r = (int) (color.getRed() * 255);
+    int g = (int) (color.getGreen() * 255);
+    int b = (int) (color.getBlue() * 255);
+
+    return String.format("#%02X%02X%02X", r, g, b);
   }
 }
