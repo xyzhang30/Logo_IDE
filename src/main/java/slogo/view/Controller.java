@@ -2,11 +2,7 @@ package slogo.view;
 
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import slogo.model.api.ExecutionerApi;
-import slogo.model.api.InputRecord;
 import slogo.model.api.ParserApi;
-import slogo.model.api.TurtleModelApi;
-import slogo.model.command.executables.Executable;
 import slogo.model.parser.TreeParser;
 import slogo.model.turtle.TurtleModel;
 
@@ -40,29 +36,25 @@ public class Controller  {
   }
 
   public void run() {
-    System.out.println(i1.getText());
+    // System.out.println(i1.getText());
 
     // String command = i1.getText();
 
     // Executable ex = parser.parseTree(new InputRecord(command));
     // i1.updateTurtle();
-    i1.resume();
+
   }
 
   public void step() {
-    i1.pause();
+
   }
 
   public void pause() {
-    model.setDirection((int) (Math.random()*360.0));
-    model.setPosX((int) (Math.random()*400.0));
-    model.setPosY((int) (Math.random()*400.0));
-    i1.updateTurtle();
+
   }
 
   public void help() {
-    //
-    i1.clearLine();
+
   }
 
   public void feedHistory() {
@@ -89,5 +81,9 @@ public class Controller  {
 
   public void changeColor(Color value) {
     i1.updateColor(value);
+  }
+
+  public void changeStylesheet(String stylesheet) {
+    i1.setStylesheet(stylesheet);
   }
 }

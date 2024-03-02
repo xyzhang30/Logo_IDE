@@ -21,10 +21,12 @@ public class TurtleView implements TurtleV {
     turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));
     turtleImage.setFitWidth(TURTLE_SIZE);
     turtleImage.setFitHeight(TURTLE_SIZE);
-    pane.setLayoutX(100000);
-    pane.setLayoutY(0);
-    pane.setPrefWidth(1000000000);
+    // pane.setLayoutX(100000);
+    // pane.setLayoutY(0);
+    pane.setPrefWidth(width);
     pane.setPrefHeight(height);
+    // turtleImage.setX(-((TURTLE_SIZE)/2));
+    // turtleImage.setY(-((TURTLE_SIZE)/2));
     turtleImage.setX(0);
     turtleImage.setY(0);
     turtleImage.setRotate(startDirection);
@@ -40,6 +42,7 @@ public class TurtleView implements TurtleV {
     updateDirection(direction);
     updateXCoordinate(x);
     updateYCoordinate(y);
+    isVisible(visible);
   }
 
   private void updateDirection(double direction) {
@@ -60,16 +63,17 @@ public class TurtleView implements TurtleV {
 
   @Override
   public void setTurtleImage(Image t1) {
-
+    turtleImage = new ImageView(t1);
   }
 
   private void isVisible(boolean visible) {
     if (visible && !imageHere) {
-      turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));
+      pane.getChildren().add(turtleImage);
       imageHere = true;
     }
     else if (!visible && imageHere) {
-      pane.getChildren().removeAll();
+      pane.getChildren().remove(turtleImage);
+      imageHere = false;
     }
   }
 }
