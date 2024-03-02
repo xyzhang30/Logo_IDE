@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>product</canonical_name>
+  <category>Math Command</category>
+  <description>Returns product of the values of expr1 and expr2</description>
+  <example>product 5 2</example>
+  <parameters>
+    <expr1>double, first number</expr1>
+    <expr2>double, second number</expr2>
+  </parameters>
+  <return_value>Double, product of expr1 and expr2</return_value>
+  <number_of_expected_parameters>2</number_of_expected_parameters>
+  <implementing_class>mathCommand/ProductCommand</implementing_class>
+</command>

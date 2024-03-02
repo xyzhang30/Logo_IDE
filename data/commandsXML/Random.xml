@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>random</canonical_name>
+  <category>Math Command</category>
+  <description>Returns random non-negative number strictly less than max</description>
+  <example>random 50</example>
+  <parameters>
+    <max>double, the ceiling for the random number</max>
+  </parameters>
+  <return_value>Double, a random number between 0 and max</return_value>
+  <number_of_expected_parameters>1</number_of_expected_parameters>
+  <implementing_class>mathCommand/RandomCommand</implementing_class>
+</command>
