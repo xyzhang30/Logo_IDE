@@ -20,8 +20,8 @@ public class ViewTest extends DukeApplicationTest {
   public void start(Stage stage) throws FileNotFoundException {
     // Initialize your scene here
     TurtleModel mockModel = new TurtleModel();
-    Controller controller = new Controller(stage, mockModel);
-    ideWindow = new IDEWindow(stage, controller);
+    Controller controller = new Controller(stage, mockModel, language);
+    ideWindow = new IDEWindow(stage, controller, language);
     Scene scene = ideWindow.makeScene(600, 400, mockModel);
     stage.setScene(scene);
     stage.show();
@@ -57,7 +57,7 @@ public class ViewTest extends DukeApplicationTest {
       TurtleModel mockModel = new TurtleModel();
 
       // Create Controller instance
-      Controller controller = new Controller(mockStage, mockModel);
+      Controller controller = new Controller(mockStage, mockModel, language);
 
       // Call start method
       try {

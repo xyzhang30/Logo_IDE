@@ -25,6 +25,8 @@ public class IDEWindow {
 
   public static final String defaultLanguage = "english";
 
+  private String language;
+
   public static final String DEFAULT_RESOURCE_PACKAGE = "View.";
   public static final String DEFAULT_RESOURCE_FOLDER = "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
 
@@ -35,7 +37,6 @@ public class IDEWindow {
   private TextInputPane t1 = new TextInputPane(100,100, "english");
 
   private TurtlePane tp1;
-  private ButtonPane buttonPane;
 
   private Controller controller;
 
@@ -46,9 +47,10 @@ public class IDEWindow {
   private static final int STARTSPEED = 2;
 
 
-  public IDEWindow (Stage stage, Controller controller) {
+  public IDEWindow (Stage stage, Controller controller, String language) {
     this.stage = stage;
     this.controller = controller;
+    this.language = language;
     speed = STARTSPEED;
   }
 
@@ -81,6 +83,8 @@ public class IDEWindow {
     AnchorPane.setTopAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/6);
     AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width/4);
     root.getChildren().add(tp1.getRoot());
+
+
     // control the navigation
     // create scene to hold UI
     scene = new Scene(root, width, height);
@@ -114,9 +118,6 @@ public class IDEWindow {
   public void setSpeed(int speed) {
     this.speed = speed;
   }
-  public ButtonPane getButtonPane() {
-    return buttonPane;
-  }
 
   public void clearLine() {
     tp1.clear();
@@ -138,4 +139,5 @@ public class IDEWindow {
     scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + stylesheet).toExternalForm());
     System.out.println(stylesheet);
   }
+
 }

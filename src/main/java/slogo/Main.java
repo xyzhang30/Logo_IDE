@@ -15,6 +15,7 @@ import java.io.IOException;
 public class Main extends Application {
 
   private Stage primaryStage;
+  private String language;
 
   @Override
   public void start(Stage primaryStage) {
@@ -101,23 +102,26 @@ public class Main extends Application {
   private void startNewSession() throws Exception {
     // Call the method to start the main application functionality
     TurtleModel model = new TurtleModel();
-    Controller controller = new Controller(primaryStage, model);
+    Controller controller = new Controller(primaryStage, model, language);
     controller.start();
   }
 
   private void switchToSpanish() throws IOException {
     // Perform actions to switch to Spanish
     System.out.println("Switching to Spanish...");
+    language = "spanish";
   }
 
   private void switchToFrench() throws IOException {
     // Perform actions to switch to French
     System.out.println("Switching to French...");
+    language = "french";
   }
 
   private void switchToEnglish() throws IOException {
     // Perform actions to switch to English
     System.out.println("Switching to English...");
+    language = "english";
   }
 
   public static void main(String[] args) {
