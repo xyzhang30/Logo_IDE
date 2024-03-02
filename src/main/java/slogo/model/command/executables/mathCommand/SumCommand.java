@@ -12,8 +12,8 @@ public class SumCommand extends CommandExecutable {
 
   public SumCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
-    numOne = getParameterData().get(0);
-    numTwo = getParameterData().get(1);
+    numOne = parameterExecutables.get(0).execute();
+    numTwo = parameterExecutables.get(1).execute();
   }
 
   @Override

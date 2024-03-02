@@ -11,7 +11,7 @@ public class MinusCommand extends CommandExecutable {
 
   public MinusCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
-    num = getParameterData().get(0);
+    num = parameterExecutables.get(0).execute();
   }
 
   @Override
