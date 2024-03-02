@@ -1,14 +1,21 @@
 package slogo.view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
 
 
@@ -39,6 +46,12 @@ public class ControlPane extends CreatePane implements Control {
     makeButton("Help", event -> controller.help());
     makeButton("Speed_Up", event -> controller.speedUp());
     makeButton("Slow_Down", event -> controller.slowDown());
+    makeColorPicker("SelectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
+    makeDropdown("DropdownSelector", event -> {
+      ComboBox<String> comboBox = (ComboBox<String>) event.getSource();
+      String selectedOption = comboBox.getValue();
+      controller.changeStylesheet(selectedOption);
+    });
   }
   //button handler in controller and then pass in map of the button handlers into controlpane
 
@@ -57,4 +70,24 @@ public class ControlPane extends CreatePane implements Control {
     result.setOnAction(handler);
     getRoot().getChildren().addAll(result);
   }
+
+  public void makeColorPicker(String property, EventHandler<ActionEvent> handler) {
+    ColorPicker colorPicker = new ColorPicker();
+    colorPicker.setId(property);
+    colorPicker.setOnAction(handler);
+    getRoot().getChildren().add(colorPicker);
+  }
+
+  public void makeDropdown(String property, EventHandler<ActionEvent> handler) {
+    ObservableList<String> options = FXCollections.observableArrayList(
+        "dark.css",
+        "duke.css",
+        "default.css"
+    );
+    ComboBox<String> dropdown = new ComboBox<>(options);
+    dropdown.setId(property);
+    dropdown.setOnAction(handler);
+    getRoot().getChildren().add(dropdown);
+  }
 }
+

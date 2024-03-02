@@ -12,14 +12,14 @@ public class Animations implements Graphics {
   private final PenGraphics pen;
 
 
-  public Animations(int height, int width, String language) {
+  public Animations(int height, int width, String language, PenGraphics pen) {
     canvas = new Canvas(width, height);
     canvas.setLayoutX(0);
     canvas.setLayoutY(0);
     canvas.setWidth(width);
     canvas.setHeight(height);
     gc = canvas.getGraphicsContext2D();
-    pen = new PenDraw();
+    this.pen = pen;
     gc.setStroke(pen.getPenColor());
     gc.setLineWidth(pen.getSize());
   }

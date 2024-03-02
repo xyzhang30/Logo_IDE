@@ -3,6 +3,8 @@ package slogo.view;
 import java.io.FileNotFoundException;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -56,4 +58,11 @@ public class ControlPaneTest extends DukeApplicationTest {
     int newSpeed = controller.getSpeed();
     assertEquals(initialSpeed - 1, newSpeed, "Speed should be decreased by one");
   }
+
+//  public void testColorPicker() {
+//    // Click on the "SelectColor" ColorPicker
+//    ColorPicker cp1 = lookup("#SelectColor").query();
+//    clickOn(cp1);
+//
+//  }
 }
