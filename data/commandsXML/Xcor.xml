@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>xcor</canonical_name>
+  <category>Turtle Query</category>
+  <description>Returns the turtle's X coordinate from the center of the screen</description>
+  <example>xcor</example>
+  <parameters>
+  </parameters>
+  <return_value>Double, turtle's x coordinate</return_value>
+  <number_of_expected_parameters>0</number_of_expected_parameters>
+  <implementing_class>turtleCommand/Xcor</implementing_class>
+</command>

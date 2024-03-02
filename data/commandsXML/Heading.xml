@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>heading</canonical_name>
+  <category>Turtle Query</category>
+  <description>Returns the turtle's heading in degrees</description>
+  <example>heading</example>
+  <parameters>
+  </parameters>
+  <return_value>Double, the angle turtle is facing in degrees</return_value>
+  <number_of_expected_parameters>0</number_of_expected_parameters>
+  <implementing_class>turtleCommand/Heading</implementing_class>
+</command>
