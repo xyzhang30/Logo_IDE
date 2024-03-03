@@ -31,11 +31,10 @@ public class Controller  {
   private State state;
 
 
-  public Controller(Stage stage, Executioner executioner, String language, TurtleModel t1) {
+  public Controller(Stage stage, Executioner executioner, String language) {
     this.executioner = executioner;
     state = State.STOPPED;
-    model = t1;
-    // this.model = this.executioner.getModel();
+    this.model = this.executioner.getModel();
     i1 = new IDEWindow(stage, this, language);
 
   }
