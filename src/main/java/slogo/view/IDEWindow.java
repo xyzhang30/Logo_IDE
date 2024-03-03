@@ -3,9 +3,13 @@ package slogo.view;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -164,5 +168,22 @@ public class IDEWindow {
   public boolean prevComplete() {
     return tp1.complete();
   }
+
+  public void showError(String message) {
+    Alert alert = new Alert(AlertType.ERROR);
+    alert.setTitle(ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language).getString("errorWindowTitle"));
+
+    Label messageText;
+    try {
+      messageText = new Label(ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language).getString("error" + message));
+    } catch (Exception e) {
+      messageText = new Label(message);
+    }
+    messageText.setWrapText(true);
+    alert.getDialogPane().setContent(messageText);
+
+    alert.show();
+  }
+
 }
 
