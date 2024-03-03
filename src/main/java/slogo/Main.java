@@ -18,6 +18,7 @@ public class Main extends Application {
 
   private Stage primaryStage;
   private String language;
+  private String selectedTheme = "default.css";
 
   @Override
   public void start(Stage primaryStage) {
@@ -64,8 +65,11 @@ public class Main extends Application {
 
     // Color theme selection dropdown (dummy data)
     ComboBox<String> colorThemeComboBox = new ComboBox<>();
-    colorThemeComboBox.getItems().addAll("Theme 1", "Theme 2", "Theme 3");
+    colorThemeComboBox.getItems().addAll("dark.css",
+        "duke.css",
+        "default.css");
     colorThemeComboBox.setPromptText("Select Color Theme");
+    colorThemeComboBox.setOnAction(event -> selectedTheme = colorThemeComboBox.getValue()); // Store the selected theme
 
     // Button for starting a new session
     Button newSessionButton = new Button("Start New Session");
@@ -100,42 +104,39 @@ public class Main extends Application {
   private void loadSession() {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open Session File");
-    // Set extension filters if needed
-    // fileChooser.getExtensionFilters().addAll(
-    //         new FileChooser.ExtensionFilter("Session Files", "*.session"),
-    //         new FileChooser.ExtensionFilter("All Files", "*.*")
-    // );
     File selectedFile = fileChooser.showOpenDialog(primaryStage);
     if (selectedFile != null) {
-      // Perform loading of the session from the selected file
       System.out.println("Loading session from file: " + selectedFile.getAbsolutePath());
-      // You can add your loading logic here
     } else {
       System.out.println("No session file selected.");
     }
   }
 
   private void startNewSession() throws Exception {
-    // Call the method to start the main application functionality
     TurtleModel model = new TurtleModel();
     Controller controller = new Controller(primaryStage, model, language);
+
+    if (selectedTheme.isEmpty()) {
+      selectedTheme = "default.css";
+    }
+
+
     controller.start();
+    controller.changeStylesheet(selectedTheme); // Change stylesheet based on selected theme
+
   }
 
   private void switchToSpanish() throws IOException {
-    // Perform actions to switch to Spanish
     System.out.println("Switching to Spanish...");
     language = "spanish";
   }
 
   private void switchToFrench() throws IOException {
-    // Perform actions to switch to French
     System.out.println("Switching to French...");
     language = "french";
   }
 
   private void switchToEnglish() throws IOException {
-    // Perform actions to switch to English
     System.out.println("Switching to English...");
     language = "english";
   }
@@ -144,4 +145,3 @@ public class Main extends Application {
     launch(args);
   }
 }
-
