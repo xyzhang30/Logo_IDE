@@ -119,6 +119,9 @@ public class Main extends Application {
   private void startNewSession() throws Exception {
     // Call the method to start the main application functionality
     Executioner e1 = new Executioner();
+    if (language == null){
+      language = "english";
+    }
     Controller controller = new Controller(primaryStage, e1, language);
     controller.start();
   }
