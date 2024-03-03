@@ -13,11 +13,11 @@ import slogo.model.api.InvalidParameterNumberException;
 import slogo.model.api.ParserApi;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.Executioner;
-import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.ErrorExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.VariableExecutable;
+import slogo.model.command.executables.RootExecutable;
 import slogo.model.token.Token;
 import slogo.model.token.Tokenizer;
 import slogo.model.token.TokenizerApi;
@@ -38,13 +38,14 @@ public class TreeParser implements ParserApi {
   @Override
   public Executable parseTree(InputRecord myRecord) throws InvalidParameterNumberException,
       InvalidCommandException {
-    List<Executable> root = new ArrayList<>();
+    List<Executable> tree = new ArrayList<>();
     List<Token> tokens = tokenizer.tokenize(myRecord.input());
     while (!tokens.isEmpty()){
       System.out.println(tokens.size());
-      root.add(craftBranch(tokens));
+      tree.add(craftBranch(tokens));
     }
-    return null;
+    Executable root = new RootExecutable(tree);
+    return root;
   }
 
   private Executable craftBranch(List<Token> tokens) {
