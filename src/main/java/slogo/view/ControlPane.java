@@ -47,6 +47,7 @@ public class ControlPane extends CreatePane implements Control {
     makeButton("Speed_Up", event -> controller.speedUp());
     makeButton("Slow_Down", event -> controller.slowDown());
     makeColorPicker("SelectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
+    makeColorPicker("SelectBackgroundColor", event -> controller.changeBackgroundColor(((ColorPicker) event.getSource()).getValue()));
     makeDropdown("DropdownSelector", event -> {
       ComboBox<String> comboBox = (ComboBox<String>) event.getSource();
       String selectedOption = comboBox.getValue();

@@ -27,6 +27,8 @@ public class TurtleView implements TurtleV {
     pane.setPrefHeight(height);
     // turtleImage.setX(-((TURTLE_SIZE)/2));
     // turtleImage.setY(-((TURTLE_SIZE)/2));
+    turtleImage.setTranslateX(width/2);
+    turtleImage.setTranslateY(height/2);
     turtleImage.setX(0);
     turtleImage.setY(0);
     turtleImage.setRotate(startDirection);

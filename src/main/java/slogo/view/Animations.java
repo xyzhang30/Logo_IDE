@@ -18,6 +18,8 @@ public class Animations implements Graphics {
     canvas.setLayoutY(0);
     canvas.setWidth(width);
     canvas.setHeight(height);
+    canvas.setTranslateX(width/2);
+    canvas.setTranslateY(height/2);
     gc = canvas.getGraphicsContext2D();
     this.pen = pen;
     gc.setStroke(pen.getPenColor());

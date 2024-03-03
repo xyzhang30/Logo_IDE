@@ -71,14 +71,14 @@ public class IDEWindow {
     Pane root = new AnchorPane();
 
     // must be first since other panels may refer to page
-    ControlPane c1 = new ControlPane(DEFAULT_SIZE.height/6, DEFAULT_SIZE.width, controller, defaultLanguage);
+    ControlPane c1 = new ControlPane(DEFAULT_SIZE.height/6, DEFAULT_SIZE.width, controller, language);
     AnchorPane.setTopAnchor(c1.getRoot(), 0.0);
     root.getChildren().add(c1.getRoot());
-    this.t1 = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, defaultLanguage);
+    this.t1 = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, language);
     AnchorPane.setBottomAnchor(t1.getRoot(), 0.0);
     root.getChildren().add(t1.getRoot());
 
-    tp1 = new TurtlePane(DEFAULT_SIZE.height/2,DEFAULT_SIZE.width/2, model, defaultLanguage, speed);
+    tp1 = new TurtlePane(DEFAULT_SIZE.height/2,DEFAULT_SIZE.width/2, model, language, speed);
     AnchorPane.setBottomAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/4);
     AnchorPane.setTopAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/6);
     AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width/4);
@@ -140,4 +140,7 @@ public class IDEWindow {
     System.out.println(stylesheet);
   }
 
+  public void updateBackground(Color c1) {
+      tp1.updateBackground(c1);
+  }
 }

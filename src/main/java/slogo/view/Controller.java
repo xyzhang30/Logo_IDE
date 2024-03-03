@@ -95,4 +95,8 @@ public class Controller  {
   public void changeStylesheet(String stylesheet) {
     i1.setStylesheet(stylesheet);
   }
+
+  public void changeBackgroundColor(Color value) {
+    i1.updateBackground(value);
+  }
 }

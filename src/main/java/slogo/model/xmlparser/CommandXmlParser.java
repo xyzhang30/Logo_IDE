@@ -23,6 +23,7 @@ public class CommandXmlParser {
   private String returnValueType; //do we even need this since everything returns a double?
   private String implementationName;
   private String commandCategory; //do we need this??
+  private String commandExample;
 
   public CommandXmlParser() {
     this.parameters = new HashMap<>();
@@ -79,6 +80,7 @@ public class CommandXmlParser {
   private void parseSingleFields(Element element) {
     commandName = element.getElementsByTagName("canonical_name").item(0).getTextContent();
     commandCategory = element.getElementsByTagName("category").item(0).getTextContent();
+    commandExample = element.getElementsByTagName("example").item(0).getTextContent();
     commandDescription = element.getElementsByTagName("description").item(0).getTextContent();
     returnValueType = element.getElementsByTagName("return_value").item(0).getTextContent();
     numParamsExpected = Integer.parseInt(
@@ -142,4 +144,6 @@ public class CommandXmlParser {
   public String getCommandCategory() {
     return commandCategory;
   }
+
+  public String getExample(){return commandExample;}
 }
