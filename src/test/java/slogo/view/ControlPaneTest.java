@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import slogo.model.command.Executioner;
 import slogo.model.turtle.TurtleModel;
 import util.DukeApplicationTest;
 
@@ -25,7 +26,7 @@ public class ControlPaneTest extends DukeApplicationTest {
 
   @Override
   public void start(Stage stage) throws FileNotFoundException {
-    controller = new Controller(stage, new TurtleModel(), "english");
+    controller = new Controller(stage, new Executioner(), "english");
     i1 = new IDEWindow(stage, controller, "english");
     stage.setScene(i1.makeScene(800,800, new TurtleModel()));
     stage.show();

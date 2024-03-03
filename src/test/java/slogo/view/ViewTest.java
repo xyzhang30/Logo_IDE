@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import slogo.model.command.Executioner;
 import slogo.model.turtle.TurtleModel;
 import util.DukeApplicationTest;
 
@@ -23,7 +24,7 @@ public class ViewTest extends DukeApplicationTest {
     // Initialize your scene here
     language = "english";
     TurtleModel mockModel = new TurtleModel();
-    Controller controller = new Controller(stage, mockModel, language);
+    Controller controller = new Controller(stage, new Executioner(), language);
     ideWindow = new IDEWindow(stage, controller, language);
     Scene scene = ideWindow.makeScene(600, 400, mockModel);
     stage.setScene(scene);
@@ -60,7 +61,7 @@ public class ViewTest extends DukeApplicationTest {
       TurtleModel mockModel = new TurtleModel();
 
       // Create Controller instance
-      Controller controller = new Controller(mockStage, mockModel, language);
+      Controller controller = new Controller(mockStage, new Executioner(), language);
 
       // Call start method
       try {
