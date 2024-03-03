@@ -2,13 +2,20 @@ package slogo.model.command.executables;
 
 import java.util.List;
 
+/**
+ * Executable class for Lists of Executables
+ */
 public class ListExecutable implements Executable {
 
   private final List<Executable> myList;
   private int currentIndex;
 
-  public ListExecutable(List<Executable> tlist) {
-    myList = tlist;
+  /**
+   * Constructor for List Executable
+   * @param inlist  The list of Executables to be stored
+   */
+  public ListExecutable(List<Executable> inlist) {
+    myList = inlist;
     currentIndex = 0;
   }
 
