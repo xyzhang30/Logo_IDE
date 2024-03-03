@@ -7,8 +7,8 @@ import javafx.scene.layout.Pane;
 public abstract class CreatePane {
 
 
-  protected final int height;
-  protected final int width;
+  private final int height;
+  private final int width;
 
   private ResourceBundle myResources;
 
@@ -52,5 +52,13 @@ public abstract class CreatePane {
 
   public void setLanguage(String language) {
     this.language = language;
+  }
+
+  public int getHeight() {
+    return height;
+  }
+
+  public int getWidth() {
+    return width;
   }
 }
