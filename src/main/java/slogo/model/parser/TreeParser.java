@@ -61,10 +61,6 @@ public class TreeParser implements ParserApi {
       case "ListEnd": break;
       case "Error": break;
       default:
-        List<Executable> parameters = new ArrayList<>();
-        for (int i=0;i<getNumParams(t.type());i++){
-          parameters.add(craftBranch(tokens));
-        }
         Class<?> cc = ErrorExecutable.class;
         try{
           cc = Class.forName(EXEC_REFS + "mathCommand." + t.type());
@@ -78,14 +74,18 @@ public class TreeParser implements ParserApi {
           }
         }
 
+        List<Executable> parameters = new ArrayList<>();
+        for (int i=0;i<getNumParams(t.type());i++){
+          parameters.add(craftBranch(tokens));
+        }
+
         try{
-          CommandExecutable branch = (CommandExecutable) cc.getDeclaredConstructor().newInstance();
+          return (Executable) cc.getDeclaredConstructor(List.class).newInstance(parameters);
         }
         catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException |
                  InstantiationException e) {
           throw new RuntimeException(e);
         }
-        return null;
     }
     return new ErrorExecutable("Detected Invalid Regex: "+t.value());
   }
