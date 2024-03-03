@@ -75,11 +75,11 @@ public class IDEWindow {
     ControlPane c1 = new ControlPane(DEFAULT_SIZE.height/10, DEFAULT_SIZE.width, controller, defaultLanguage);
     AnchorPane.setTopAnchor(c1.getRoot(), 0.0);
     root.getChildren().add(c1.getRoot());
-    this.t1 = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, defaultLanguage);
+    this.t1 = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, language);
     AnchorPane.setBottomAnchor(t1.getRoot(), 0.0);
     root.getChildren().add(t1.getRoot());
 
-    tp1 = new TurtlePane(DEFAULT_SIZE.height/2,DEFAULT_SIZE.width/2, model, defaultLanguage, speed);
+    tp1 = new TurtlePane(DEFAULT_SIZE.height/2,DEFAULT_SIZE.width/2, model, language, speed);
     AnchorPane.setBottomAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/4);
     AnchorPane.setTopAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/10);
     AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width/4);

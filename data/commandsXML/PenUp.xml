@@ -8,5 +8,5 @@
   </parameters>
   <return_value>Double, 0</return_value>
   <number_of_expected_parameters>0</number_of_expected_parameters>
-  <implementing_class>turtleCommand/PenUp</implementing_class>
+  <implementing_class>turtlecommand/PenUp</implementing_class>
 </command>

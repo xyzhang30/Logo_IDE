@@ -1,6 +1,5 @@
 package slogo.model.command;
 
-import java.util.ArrayList;
 import java.util.List;
 import slogo.model.command.executables.Executable;
 
@@ -34,6 +33,11 @@ public class CommandHistory implements HistoryApi {
 
   public List<Executable> getCommands() {
     return commands;
+  }
+
+  public void saveFile(String filename){
+    for (Executable e : commands){
+    }
   }
 
 
