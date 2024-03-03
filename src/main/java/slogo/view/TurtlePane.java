@@ -1,5 +1,6 @@
 package slogo.view;
 
+import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,17 +17,11 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   private final TurtleModelApi model;
   private final Animations a1;
   private int speed;
-
   private double currentX;
-
   private double currentY;
-
   private double currentDirection;
-
   private final TurtleV turtle;
-
   private Timeline timeline;
-
   private final PenGraphics pen;
 
   public TurtlePane(int height, int width, TurtleModelApi model, String language, int speed) {
@@ -51,7 +46,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     StackPane.setAlignment(turtle.getRoot(), Pos.CENTER);
     StackPane.setAlignment(a1.getCanvas(), Pos.CENTER);
     getRoot().getChildren().add(turtle.getRoot());
-    getRoot().getChildren().add(a1.getCanvas());
+    getRoot().getChildren().add(a1.getRoot());
   }
   public void update() {
     Timeline timeline = createTimeline(currentX, currentY, currentDirection, model.getAttributes().xpos(),
@@ -123,5 +118,12 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     int b = (int) (color.getBlue() * 255);
 
     return String.format("#%02X%02X%02X", r, g, b);
+  }
+
+  public void updateImage(File selectedFile) {
+    turtle.updateImage(selectedFile);
+    turtle.turtleUpdate(model.getAttributes().xpos(),
+        model.getAttributes().ypos(), model.getAttributes().direction(),
+        model.getAttributes().visible());
   }
 }

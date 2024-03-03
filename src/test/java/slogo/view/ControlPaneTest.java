@@ -26,7 +26,7 @@ public class ControlPaneTest extends DukeApplicationTest {
   @Override
   public void start(Stage stage) throws FileNotFoundException {
     controller = new Controller(stage, new TurtleModel(), "english");
-    i1 = new IDEWindow(stage, controller);
+    i1 = new IDEWindow(stage, controller, "english");
     stage.setScene(i1.makeScene(800,800, new TurtleModel()));
     stage.show();
   }
@@ -37,8 +37,8 @@ public class ControlPaneTest extends DukeApplicationTest {
     verifyThat("#Step", hasText("Step"));
     verifyThat("#Pause", hasText("Pause"));
     verifyThat("#Help", hasText("Help"));
-    verifyThat("#Speed_Up", hasText("Speed Up"));
-    verifyThat("#Slow_Down", hasText("Slow Down"));
+    verifyThat("#Speed_Up", hasText("Faster"));
+    verifyThat("#Slow_Down", hasText("Slower"));
   }
 
   @Test

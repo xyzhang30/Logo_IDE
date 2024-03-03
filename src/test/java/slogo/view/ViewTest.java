@@ -16,9 +16,12 @@ public class ViewTest extends DukeApplicationTest {
 
   private IDEWindow ideWindow;
 
+  private String language;
+
   @Override
   public void start(Stage stage) throws FileNotFoundException {
     // Initialize your scene here
+    language = "english";
     TurtleModel mockModel = new TurtleModel();
     Controller controller = new Controller(stage, mockModel, language);
     ideWindow = new IDEWindow(stage, controller, language);
