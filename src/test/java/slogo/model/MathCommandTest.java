@@ -5,23 +5,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import org.assertj.core.internal.Diff;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.Executable;
-import slogo.model.command.executables.mathCommand.AndCommand;
-import slogo.model.command.executables.mathCommand.DifferenceCommand;
-import slogo.model.command.executables.mathCommand.EqualCommand;
-import slogo.model.command.executables.mathCommand.GreaterCommand;
-import slogo.model.command.executables.mathCommand.LessCommand;
-import slogo.model.command.executables.mathCommand.MinusCommand;
-import slogo.model.command.executables.mathCommand.OrCommand;
-import slogo.model.command.executables.mathCommand.ProductCommand;
-import slogo.model.command.executables.mathCommand.QuotientCommand;
-import slogo.model.command.executables.mathCommand.RandomCommand;
-import slogo.model.command.executables.mathCommand.SumCommand;
+import slogo.model.command.executables.mathcommand.AndCommand;
+import slogo.model.command.executables.mathcommand.DifferenceCommand;
+import slogo.model.command.executables.mathcommand.EqualCommand;
+import slogo.model.command.executables.mathcommand.GreaterCommand;
+import slogo.model.command.executables.mathcommand.LessCommand;
+import slogo.model.command.executables.mathcommand.MinusCommand;
+import slogo.model.command.executables.mathcommand.OrCommand;
+import slogo.model.command.executables.mathcommand.ProductCommand;
+import slogo.model.command.executables.mathcommand.QuotientCommand;
+import slogo.model.command.executables.mathcommand.RandomCommand;
+import slogo.model.command.executables.mathcommand.SumCommand;
 
 public class MathCommandTest {
 
