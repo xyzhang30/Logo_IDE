@@ -68,40 +68,29 @@ public class IDEWindow {
 
   }
 
-  public Scene makeScene(int width, int height, TurtleModelApi model) throws FileNotFoundException {
-    // Create root pane
+  public Scene makeScene (int width, int height, TurtleModelApi model) throws FileNotFoundException {
     Pane root = new AnchorPane();
 
-    // ControlPane at the top
-    ControlPane c1 = new ControlPane(DEFAULT_SIZE.height / 10, DEFAULT_SIZE.width, controller, defaultLanguage);
+    // must be first since other panels may refer to page
+    ControlPane c1 = new ControlPane(DEFAULT_SIZE.height/10, DEFAULT_SIZE.width, controller, language);
     AnchorPane.setTopAnchor(c1.getRoot(), 0.0);
     root.getChildren().add(c1.getRoot());
-
-    // TextInputPane at the bottom
-    this.t1 = new TextInputPane(DEFAULT_SIZE.height / 4, DEFAULT_SIZE.width, language);
+    this.t1 = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, language);
     AnchorPane.setBottomAnchor(t1.getRoot(), 0.0);
     root.getChildren().add(t1.getRoot());
 
-    // TurtlePane in the center
-    tp1 = new TurtlePane(DEFAULT_SIZE.height / 2, DEFAULT_SIZE.width / 2, model, language, speed);
-    AnchorPane.setBottomAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height / 4);
-    AnchorPane.setTopAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height / 10);
-    AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width / 4);
+    tp1 = new TurtlePane(DEFAULT_SIZE.height/2,DEFAULT_SIZE.width/2, model, language, speed);
+    AnchorPane.setBottomAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/4);
+    AnchorPane.setTopAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/10);
+    AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width/4);
     root.getChildren().add(tp1.getRoot());
 
-    // CommandPane on the right
-    CommandPane commandPane = new CommandPane(DEFAULT_SIZE.height, DEFAULT_SIZE.width / 4, language);
-    AnchorPane.setBottomAnchor(commandPane.getRoot(), (double) DEFAULT_SIZE.height / 4);
-    AnchorPane.setTopAnchor(commandPane.getRoot(), (double) DEFAULT_SIZE.height / 10);
-    AnchorPane.setRightAnchor(commandPane.getRoot(), 0.0);
-    root.getChildren().add(commandPane.getRoot());
 
-    // Create the scene
-    Scene scene = new Scene(root, width, height);
-
-    // Uncomment to activate CSS styling
+    // control the navigation
+    // create scene to hold UI
+    scene = new Scene(root, width, height);
+    // uncomment to activate CSS styling
     scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
-
     return scene;
   }
 
@@ -154,10 +143,11 @@ public class IDEWindow {
   }
 
   public void updateBackground(Color c1) {
-      tp1.updateBackground(c1);
+    tp1.updateBackground(c1);
   }
 
   public void updateImage(File selectedFile) {
     tp1.updateImage(selectedFile);
   }
 }
+
