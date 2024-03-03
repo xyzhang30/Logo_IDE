@@ -6,10 +6,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import slogo.view.Controller;
 import slogo.model.turtle.TurtleModel;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -96,7 +98,21 @@ public class Main extends Application {
   }
 
   private void loadSession() {
-    System.out.println("Loading");
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Open Session File");
+    // Set extension filters if needed
+    // fileChooser.getExtensionFilters().addAll(
+    //         new FileChooser.ExtensionFilter("Session Files", "*.session"),
+    //         new FileChooser.ExtensionFilter("All Files", "*.*")
+    // );
+    File selectedFile = fileChooser.showOpenDialog(primaryStage);
+    if (selectedFile != null) {
+      // Perform loading of the session from the selected file
+      System.out.println("Loading session from file: " + selectedFile.getAbsolutePath());
+      // You can add your loading logic here
+    } else {
+      System.out.println("No session file selected.");
+    }
   }
 
   private void startNewSession() throws Exception {
