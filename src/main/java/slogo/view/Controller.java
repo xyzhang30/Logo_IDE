@@ -34,7 +34,7 @@ public class Controller  {
   public Controller(Stage stage, Executioner executioner, String language) {
     this.executioner = executioner;
     state = State.STOPPED;
-    this.model = this.executioner.getModel();
+    this.model = this.executioner.getTurtleModel();
     i1 = new IDEWindow(stage, this, language);
 
   }

@@ -25,12 +25,12 @@ import slogo.model.turtle.TurtleModel;
 
 public class TreeParser implements ParserApi {
   public static final String EXEC_REFS = "slogo.model.command.executables.";
-  private ExecutionerApi executioner;
+//  private ExecutionerApi executioner;
   private final TokenizerApi tokenizer;
   private final Map<String,Double> variablesTable;
   private TurtleModelApi turtle;
   public TreeParser(){
-    executioner = new Executioner();
+//    executioner = new Executioner();
     tokenizer = new Tokenizer("English");
     variablesTable = new HashMap<>();
     turtle = new TurtleModel();
