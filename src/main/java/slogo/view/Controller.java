@@ -1,19 +1,16 @@
 package slogo.view;
 
 import java.io.File;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import slogo.model.api.ExecutionerApi;
+import slogo.model.api.InputRecord;
 import slogo.model.api.ParserApi;
 import slogo.model.api.TurtleModelApi;
+import slogo.model.command.Executioner;
+import slogo.model.command.executables.Executable;
 import slogo.model.parser.TreeParser;
 import slogo.model.turtle.TurtleModel;
-import javafx.scene.layout.BorderPane;
 
 public class Controller  {
 
@@ -28,11 +25,14 @@ public class Controller  {
 
   // private final TurtleModel model;
 
-  ParserApi parser = new TreeParser();
+  private final ExecutionerApi executioner;
+  private ParserApi parser = new TreeParser();
 
 
-  public Controller(Stage stage, TurtleModel model, String language) {
-    this.model = model;
+  public Controller(Stage stage, Executioner executioner, String language, TurtleModel t1) {
+    this.executioner = executioner;
+    model = t1;
+    // this.model = this.executioner.getModel();
     i1 = new IDEWindow(stage, this, language);
 
   }
@@ -47,20 +47,32 @@ public class Controller  {
 
   public void run() {
     // System.out.println(i1.getText());
+    boolean end = false;
+    String command = i1.getText();
+    executioner.parseTree(new InputRecord(command));
+    while (executioner.hasNext()) {
+      if (i1.prevComplete()) {
+        executioner.runNext();
+      }
+    }
 
-    // String command = i1.getText();
 
-    // Executable ex = parser.parseTree(new InputRecord(command));
+
+//    executioner.parseTree(new InputRecord(command));
+//    executioner.runNext(TurtleModelApi);
+//
     // i1.updateTurtle();
 
   }
 
   public void step() {
-
+    String command = i1.getText();
+    Executable ex = parser.parseTree(new InputRecord(command));
+    // ex.runNext();
   }
 
   public void pause() {
-
+    i1.pause();
   }
 
   public void help() {

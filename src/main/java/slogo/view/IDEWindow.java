@@ -72,7 +72,7 @@ public class IDEWindow {
     Pane root = new AnchorPane();
 
     // must be first since other panels may refer to page
-    ControlPane c1 = new ControlPane(DEFAULT_SIZE.height/10, DEFAULT_SIZE.width, controller, defaultLanguage);
+    ControlPane c1 = new ControlPane(DEFAULT_SIZE.height/10, DEFAULT_SIZE.width, controller, language);
     AnchorPane.setTopAnchor(c1.getRoot(), 0.0);
     root.getChildren().add(c1.getRoot());
     this.t1 = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, language);
@@ -129,7 +129,12 @@ public class IDEWindow {
   }
 
   public void pause() {
-    tp1.stopTimeline();
+    if (tp1.getPaused()) {
+      resume();
+    }
+    else {
+      tp1.stopTimeline();
+    }
   }
 
   public void updateColor(Color c1) {
@@ -139,7 +144,6 @@ public class IDEWindow {
   public void setStylesheet(String stylesheet) {
     scene.getStylesheets().remove(0);
     scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + stylesheet).toExternalForm());
-    System.out.println(stylesheet);
   }
 
   public void updateBackground(Color c1) {
@@ -148,5 +152,9 @@ public class IDEWindow {
 
   public void updateImage(File selectedFile) {
     tp1.updateImage(selectedFile);
+  }
+
+  public boolean prevComplete() {
+    return tp1.complete();
   }
 }

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import slogo.model.command.Executioner;
 import slogo.view.Controller;
 import slogo.model.turtle.TurtleModel;
 
@@ -101,8 +102,9 @@ public class Main extends Application {
 
   private void startNewSession() throws Exception {
     // Call the method to start the main application functionality
-    TurtleModel model = new TurtleModel();
-    Controller controller = new Controller(primaryStage, model, language);
+    Executioner e1 = new Executioner();
+    TurtleModel t1 = new TurtleModel();
+    Controller controller = new Controller(primaryStage, e1, language, t1);
     controller.start();
   }
 
