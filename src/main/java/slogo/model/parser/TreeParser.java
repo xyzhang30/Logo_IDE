@@ -64,14 +64,13 @@ public class TreeParser implements ParserApi {
         Class<?> clazz = ErrorExecutable.class;
         try{
           clazz = Class.forName(EXEC_REFS + "mathCommand." + t.type());
-          System.out.println(clazz.getConstructors()[0].getParameterCount());
         }
         catch (ClassNotFoundException e){
           try {
             clazz = Class.forName(EXEC_REFS + "turtleCommand." + t.type());
           }
           catch (ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
+            throw new InvalidCommandException(ex.getMessage());
           }
         }
         try{
