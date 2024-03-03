@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import slogo.model.command.Executioner;
 import slogo.view.Controller;
 import slogo.model.turtle.TurtleModel;
 
@@ -113,14 +114,9 @@ public class Main extends Application {
   }
 
   private void startNewSession() throws Exception {
-    TurtleModel model = new TurtleModel();
-    Controller controller = new Controller(primaryStage, model, language);
-
-    if (selectedTheme.isEmpty()) {
-      selectedTheme = "default.css";
-    }
-
-
+    // Call the method to start the main application functionality
+    Executioner e1 = new Executioner();
+    Controller controller = new Controller(primaryStage, e1, language);
     controller.start();
     controller.changeStylesheet(selectedTheme); // Change stylesheet based on selected theme
 

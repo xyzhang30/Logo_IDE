@@ -13,6 +13,8 @@ public class CommandPane extends CreatePane {
     super(height, width, language);
     userVariable = new UserVariable();
     displayBox = new VBox();
+    getRoot().setPrefHeight(height);
+    getRoot().setPrefWidth(width);
 
     updateDisplay();
 

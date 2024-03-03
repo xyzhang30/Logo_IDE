@@ -2,6 +2,8 @@ package slogo.view;
 
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
+import javafx.animation.Animation;
+import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
@@ -24,8 +26,11 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   private Timeline timeline;
   private final PenGraphics pen;
 
+  private boolean paused;
+
   public TurtlePane(int height, int width, TurtleModelApi model, String language, int speed) {
     super(height, width, language);
+    paused = false;
     getRoot().setPrefHeight(height);
     getRoot().setPrefWidth(width);
     this.model = model;
@@ -93,6 +98,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
   public void startTimeline() {
     if (timeline != null && !timeline.getStatus().equals(Timeline.Status.RUNNING)) {
+      paused = false;
       timeline.play();
     }
   }
@@ -100,6 +106,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   public void stopTimeline() {
     if (timeline != null && timeline.getStatus().equals(Timeline.Status.RUNNING)) {
       timeline.pause();
+      paused = true;
     }
   }
 
@@ -108,7 +115,6 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   }
 
   public void updateBackground(Color c1) {
-    System.out.println(c1.getBlue());
     getRoot().setStyle("-fx-background-color: " + toHexCode(c1) + ";");
   }
 
@@ -125,5 +131,17 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     turtle.turtleUpdate(model.getAttributes().xpos(),
         model.getAttributes().ypos(), model.getAttributes().direction(),
         model.getAttributes().visible());
+  }
+
+  public boolean complete() {
+    if (timeline.getStatus().equals(Status.STOPPED)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  public boolean getPaused() {
+    return paused;
   }
 }

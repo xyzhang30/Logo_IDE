@@ -85,7 +85,7 @@ public class IDEWindow {
     AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width/4);
     root.getChildren().add(tp1.getRoot());
 
-    CommandPane commandPane = new CommandPane(DEFAULT_SIZE.height, DEFAULT_SIZE.width / 8, language);
+    CommandPane commandPane = new CommandPane(DEFAULT_SIZE.height, DEFAULT_SIZE.width / 4, language);
     AnchorPane.setBottomAnchor(commandPane.getRoot(), (double) DEFAULT_SIZE.height / 8);
     AnchorPane.setTopAnchor(commandPane.getRoot(), (double) DEFAULT_SIZE.height / 16);
     AnchorPane.setRightAnchor(commandPane.getRoot(), 0.0);
@@ -136,7 +136,12 @@ public class IDEWindow {
   }
 
   public void pause() {
-    tp1.stopTimeline();
+    if (tp1.getPaused()) {
+      resume();
+    }
+    else {
+      tp1.stopTimeline();
+    }
   }
 
   public void updateColor(Color c1) {
@@ -146,7 +151,6 @@ public class IDEWindow {
   public void setStylesheet(String stylesheet) {
     scene.getStylesheets().remove(0);
     scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + stylesheet).toExternalForm());
-    System.out.println(stylesheet);
   }
 
   public void updateBackground(Color c1) {
@@ -155,6 +159,10 @@ public class IDEWindow {
 
   public void updateImage(File selectedFile) {
     tp1.updateImage(selectedFile);
+  }
+
+  public boolean prevComplete() {
+    return tp1.complete();
   }
 }
 
