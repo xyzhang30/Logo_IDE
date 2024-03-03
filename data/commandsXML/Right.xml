@@ -9,5 +9,5 @@
   </parameters>
   <return_value>Double, degrees turtle turned</return_value>
   <number_of_expected_parameters>1</number_of_expected_parameters>
-  <implementing_class>turtleCommand/Right</implementing_class>
+  <implementing_class>turtlecommand/Right</implementing_class>
 </command>

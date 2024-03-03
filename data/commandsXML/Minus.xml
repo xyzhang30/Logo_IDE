@@ -9,5 +9,5 @@
   </parameters>
   <return_value>Double, negative of expr</return_value>
   <number_of_expected_parameters>1</number_of_expected_parameters>
-  <implementing_class>mathCommand/MinusCommand</implementing_class>
+  <implementing_class>mathcommand/MinusCommand</implementing_class>
 </command>

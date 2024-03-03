@@ -8,5 +8,5 @@
   </parameters>
   <return_value>1 or 0, depending on whether the turtle is visible</return_value>
   <number_of_expected_parameters>0</number_of_expected_parameters>
-  <implementing_class>turtleCommand/ShowingQuery</implementing_class>
+  <implementing_class>turtlecommand/ShowingQuery</implementing_class>
 </command>

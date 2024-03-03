@@ -9,5 +9,5 @@
   </parameters>
   <return_value>Double, a random number between 0 and max</return_value>
   <number_of_expected_parameters>1</number_of_expected_parameters>
-  <implementing_class>mathCommand/RandomCommand</implementing_class>
+  <implementing_class>mathcommand/RandomCommand</implementing_class>
 </command>
