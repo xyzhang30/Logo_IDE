@@ -115,7 +115,6 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   }
 
   public void updateBackground(Color c1) {
-    System.out.println(c1.getBlue());
     getRoot().setStyle("-fx-background-color: " + toHexCode(c1) + ";");
   }
 

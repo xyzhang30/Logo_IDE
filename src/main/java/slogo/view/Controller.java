@@ -28,11 +28,13 @@ public class Controller  {
   private final ExecutionerApi executioner;
   private ParserApi parser = new TreeParser();
 
+  private State state;
 
-  public Controller(Stage stage, Executioner executioner, String language, TurtleModel t1) {
+
+  public Controller(Stage stage, Executioner executioner, String language) {
     this.executioner = executioner;
-    model = t1;
-    // this.model = this.executioner.getModel();
+    state = State.STOPPED;
+    this.model = this.executioner.getModel();
     i1 = new IDEWindow(stage, this, language);
 
   }
@@ -47,31 +49,49 @@ public class Controller  {
 
   public void run() {
     // System.out.println(i1.getText());
-    boolean end = false;
-    String command = i1.getText();
-//    executioner.parseTree(new InputRecord(command));
-//    while (executioner.hasNext()) {
-//      if (i1.prevComplete()) {
-//        executioner.runNext();
-//      }
-//    }
-
-
-
-//    executioner.parseTree(new InputRecord(command));
-//    executioner.runNext(TurtleModelApi);
-//
-    // i1.updateTurtle();
-
+    if (state == State.STOPPED) {
+      state = State.RUNNING;
+      boolean end = false;
+      String command = i1.getText();
+      executioner.parseTree(new InputRecord(command));
+      while (executioner.hasNext()) {
+        if (i1.prevComplete()) {
+          executioner.runNext();
+          i1.updateTurtle();
+        }
+        else {
+          continue;
+        }
+      }
+    }
+    state = State.STOPPED;
   }
 
   public void step() {
     String command = i1.getText();
-    Executable ex = parser.parseTree(new InputRecord(command));
+    if (state == State.STOPPED) {
+      state = State.RUNNING;
+      executioner.parseTree(new InputRecord(command));
+      if (executioner.hasNext()) {
+        executioner.runNext();
+        i1.updateTurtle();
+      }
+    }
+    while (!i1.prevComplete()) {
+      // hold here while running
+    }
+    state = State.STOPPED;
+
     // ex.runNext();
   }
 
   public void pause() {
+    if (state == State.PAUSED) {
+      state = State.RUNNING;
+    }
+    else {
+      state = State.PAUSED;
+    }
     i1.pause();
   }
 
