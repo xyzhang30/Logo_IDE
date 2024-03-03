@@ -12,7 +12,8 @@ public class ListExecutable implements Executable {
 
   /**
    * Constructor for List Executable
-   * @param inlist  The list of Executables to be stored
+   *
+   * @param inlist The list of Executables to be stored
    */
   public ListExecutable(List<Executable> inlist) {
     myList = inlist;
