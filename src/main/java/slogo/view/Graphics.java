@@ -11,8 +11,6 @@ public interface Graphics {
 
   GraphicsContext getGraphicsContext();
 
-  void drawImage(double x, double y, double width, double height, String imagePath);
-
   void drawLine(double x1, double y1, double x2, double y2);
 
 

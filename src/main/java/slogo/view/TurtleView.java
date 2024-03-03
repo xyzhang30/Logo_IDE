@@ -4,6 +4,7 @@ import java.io.File;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.transform.Translate;
 
 public class TurtleView implements TurtleV {
 
@@ -13,26 +14,26 @@ public class TurtleView implements TurtleV {
 
   public static final int TURTLE_SIZE = 50;
 
+  private int width;
+
+  private double startDirection;
+
+  private int height;
+
   private Pane pane;
 
   public TurtleView(int width, int height, double startX, double startY, double startDirection) {
+    this.width = width;
+    this.height = height;
+    this.startDirection = startDirection;
     pane = new Pane();
     pane.setId("TurtleImagePane");
-    turtleImage = new ImageView(new Image(new File("src/main/resources/view/turtle1.png").toURI().toString()));
-    turtleImage.setFitWidth(TURTLE_SIZE);
-    turtleImage.setFitHeight(TURTLE_SIZE);
-    // pane.setLayoutX(100000);
-    // pane.setLayoutY(0);
+    turtleImage = new ImageView(new Image(new File("src/main/resources/view/images/turtle1.png").toURI().toString()));
+    pane.setTranslateX(width / 2);
+    pane.setTranslateY(height / 2);
     pane.setPrefWidth(width);
     pane.setPrefHeight(height);
-    // turtleImage.setX(-((TURTLE_SIZE)/2));
-    // turtleImage.setY(-((TURTLE_SIZE)/2));
-    turtleImage.setTranslateX(width/2);
-    turtleImage.setTranslateY(height/2);
-    turtleImage.setX(0);
-    turtleImage.setY(0);
-    turtleImage.setRotate(startDirection);
-    pane.getChildren().add(turtleImage);
+    initialize();
     imageHere = true;
   }
 
@@ -64,8 +65,19 @@ public class TurtleView implements TurtleV {
   }
 
   @Override
-  public void setTurtleImage(Image t1) {
-    turtleImage = new ImageView(t1);
+  public void updateImage(File selectedFile) {
+    pane.getChildren().remove(0);
+    turtleImage = new ImageView(new Image(selectedFile.toURI().toString()));
+    initialize();
+  }
+
+  private void initialize() {
+    turtleImage.setFitWidth(TURTLE_SIZE);
+    turtleImage.setFitHeight(TURTLE_SIZE);
+    turtleImage.setX(-((TURTLE_SIZE)/2));
+    turtleImage.setY(-((TURTLE_SIZE)/2));
+    turtleImage.setRotate(startDirection);
+    pane.getChildren().add(turtleImage);
   }
 
   private void isVisible(boolean visible) {

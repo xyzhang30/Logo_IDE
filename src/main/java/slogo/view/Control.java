@@ -11,5 +11,5 @@ public interface Control {
 
   void addButtons();
 
-  void makeButton (String property, EventHandler<ActionEvent> handler);
+
 }

@@ -1,6 +1,7 @@
 package slogo.view;
 
 import java.awt.Dimension;
+import java.io.File;
 import java.io.FileNotFoundException;
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -32,7 +33,7 @@ public class IDEWindow {
 
   private static final String TITLE = "TURTLE";
 
-  public static final Dimension DEFAULT_SIZE = new Dimension(900, 600);
+  public static final Dimension DEFAULT_SIZE = new Dimension(1200, 800);
 
   private TextInputPane t1 = new TextInputPane(100,100, "english");
 
@@ -71,7 +72,7 @@ public class IDEWindow {
     Pane root = new AnchorPane();
 
     // must be first since other panels may refer to page
-    ControlPane c1 = new ControlPane(DEFAULT_SIZE.height/6, DEFAULT_SIZE.width, controller, language);
+    ControlPane c1 = new ControlPane(DEFAULT_SIZE.height/10, DEFAULT_SIZE.width, controller, defaultLanguage);
     AnchorPane.setTopAnchor(c1.getRoot(), 0.0);
     root.getChildren().add(c1.getRoot());
     this.t1 = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, language);
@@ -80,7 +81,7 @@ public class IDEWindow {
 
     tp1 = new TurtlePane(DEFAULT_SIZE.height/2,DEFAULT_SIZE.width/2, model, language, speed);
     AnchorPane.setBottomAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/4);
-    AnchorPane.setTopAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/6);
+    AnchorPane.setTopAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/10);
     AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width/4);
     root.getChildren().add(tp1.getRoot());
 
@@ -136,11 +137,16 @@ public class IDEWindow {
   }
 
   public void setStylesheet(String stylesheet) {
+    scene.getStylesheets().remove(0);
     scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + stylesheet).toExternalForm());
     System.out.println(stylesheet);
   }
 
   public void updateBackground(Color c1) {
       tp1.updateBackground(c1);
+  }
+
+  public void updateImage(File selectedFile) {
+    tp1.updateImage(selectedFile);
   }
 }

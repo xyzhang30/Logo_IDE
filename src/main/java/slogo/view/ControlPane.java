@@ -1,5 +1,6 @@
 package slogo.view;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -16,7 +17,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import javafx.stage.DirectoryChooser;
 
 
 public class ControlPane extends CreatePane implements Control {
@@ -53,6 +58,8 @@ public class ControlPane extends CreatePane implements Control {
       String selectedOption = comboBox.getValue();
       controller.changeStylesheet(selectedOption);
     });
+    makeButton("Select_Image", event -> openFile());
+
   }
   //button handler in controller and then pass in map of the button handlers into controlpane
 
@@ -73,9 +80,12 @@ public class ControlPane extends CreatePane implements Control {
   }
 
   public void makeColorPicker(String property, EventHandler<ActionEvent> handler) {
+    String label = getMyResources().getString(property);
+
     ColorPicker colorPicker = new ColorPicker();
     colorPicker.setId(property);
     colorPicker.setOnAction(handler);
+    colorPicker.setPromptText(label);
     getRoot().getChildren().add(colorPicker);
   }
 
@@ -88,7 +98,32 @@ public class ControlPane extends CreatePane implements Control {
     ComboBox<String> dropdown = new ComboBox<>(options);
     dropdown.setId(property);
     dropdown.setOnAction(handler);
+    String label = getMyResources().getString(property);
+    dropdown.setPromptText(label);
     getRoot().getChildren().add(dropdown);
   }
+
+  private void openFile() {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Open File");
+
+    // Set the initial directory to src/main/resources/view/images/
+    String initialPath = "src/main/resources/view/images/";
+    fileChooser.setInitialDirectory(new File(initialPath));
+
+    // Add filters if necessary, e.g., to filter by file extension
+    fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg"));
+
+    File selectedFile = fileChooser.showOpenDialog(new Stage());
+
+    if (selectedFile != null) {
+      // Pass the selected file to the controller
+      controller.processSelectedPNGFile(selectedFile);
+    }
+  }
+
+
 }
+
+
 

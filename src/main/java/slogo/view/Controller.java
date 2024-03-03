@@ -1,5 +1,6 @@
 package slogo.view;
 
+import java.io.File;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -98,5 +99,9 @@ public class Controller  {
 
   public void changeBackgroundColor(Color value) {
     i1.updateBackground(value);
+  }
+
+  public void processSelectedPNGFile(File selectedFile) {
+    i1.updateImage(selectedFile);
   }
 }
