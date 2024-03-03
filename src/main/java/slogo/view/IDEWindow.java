@@ -85,7 +85,7 @@ public class IDEWindow {
     AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width/4);
     root.getChildren().add(tp1.getRoot());
 
-    CommandPane commandPane = new CommandPane(DEFAULT_SIZE.height, DEFAULT_SIZE.width / 8, language);
+    CommandPane commandPane = new CommandPane(DEFAULT_SIZE.height, DEFAULT_SIZE.width / 4, language);
     AnchorPane.setBottomAnchor(commandPane.getRoot(), (double) DEFAULT_SIZE.height / 8);
     AnchorPane.setTopAnchor(commandPane.getRoot(), (double) DEFAULT_SIZE.height / 16);
     AnchorPane.setRightAnchor(commandPane.getRoot(), 0.0);

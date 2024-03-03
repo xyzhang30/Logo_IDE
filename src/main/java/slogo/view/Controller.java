@@ -49,12 +49,12 @@ public class Controller  {
     // System.out.println(i1.getText());
     boolean end = false;
     String command = i1.getText();
-    executioner.parseTree(new InputRecord(command));
-    while (executioner.hasNext()) {
-      if (i1.prevComplete()) {
-        executioner.runNext();
-      }
-    }
+//    executioner.parseTree(new InputRecord(command));
+//    while (executioner.hasNext()) {
+//      if (i1.prevComplete()) {
+//        executioner.runNext();
+//      }
+//    }
 
 
 
