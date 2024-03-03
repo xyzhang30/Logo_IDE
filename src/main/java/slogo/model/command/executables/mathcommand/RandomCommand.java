@@ -1,0 +1,22 @@
+package slogo.model.command.executables.mathcommand;
+
+import java.util.List;
+import java.util.Random;
+import slogo.model.command.executables.CommandExecutable;
+import slogo.model.command.executables.Executable;
+
+public class RandomCommand extends CommandExecutable {
+
+  private double max;
+
+  public RandomCommand(List<Executable> parameterExecutables) {
+    super(parameterExecutables);
+    max = parameterExecutables.get(0).execute();
+  }
+
+  @Override
+  public double execute() {
+    Random rand = new Random();
+    return rand.nextDouble(max);
+  }
+}
