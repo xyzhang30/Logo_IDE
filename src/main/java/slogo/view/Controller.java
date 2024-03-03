@@ -86,13 +86,14 @@ public class Controller  {
   }
 
   public void pause() {
-    if (state == State.PAUSED) {
-      state = State.RUNNING;
+    if (state != State.STOPPED) {
+      if (state == State.PAUSED) {
+        state = State.RUNNING;
+      } else {
+        state = State.PAUSED;
+      }
+      i1.pause();
     }
-    else {
-      state = State.PAUSED;
-    }
-    i1.pause();
   }
 
   public void help() {
