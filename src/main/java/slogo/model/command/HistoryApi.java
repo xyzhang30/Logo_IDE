@@ -17,7 +17,7 @@ public interface HistoryApi {
 
   void incrementCommandIndex();
 
-  void saveFile(String fileName);
+  void saveFile(String fileName, String folderPath);
 
   void setStrings(List<String> inputStrings);
 
