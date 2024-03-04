@@ -1,6 +1,8 @@
 package slogo.view;
 
 import java.io.File;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import slogo.model.api.ExecutionerApi;
@@ -67,8 +69,15 @@ public class Controller  {
       state = State.STOPPED;
     }
     catch (RuntimeException e) {
-      i1.showError(e.getMessage());
+//      i1.showError(e.getMessage());
+      showMessage(AlertType.ERROR, e.getMessage());
     }
+  }
+
+  public void showMessage(AlertType type, String message) {
+    Alert alert = new Alert(type, message);
+    alert.initOwner(stage);
+    alert.showAndWait();
   }
 
   public void step() {
@@ -88,7 +97,8 @@ public class Controller  {
       state = State.STOPPED;
     }
     catch (RuntimeException e) {
-      i1.showError(e.getMessage());
+//      i1.showError(e.getMessage());
+      showMessage(AlertType.ERROR, e.getMessage());
     }
 
     // ex.runNext();
