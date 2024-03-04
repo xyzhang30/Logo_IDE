@@ -8,19 +8,17 @@ import slogo.model.environment.EnvironmentApi;
 public class Repeat implements Executable {
 
   private int repeats;
-  private List<Executable> commands;
+//  private List<Executable> commands;
+  private ListExecutable list;
 
   public Repeat(int timesToRepeat, ListExecutable commandListObject){
     this.repeats = timesToRepeat;
-    this.commands = commandListObject.getList();
+    this.list = commandListObject;
   }
 
-  //TODO:
   @Override
   public double execute(EnvironmentApi env) {
-//    for (Executable e : commands){
-//      e.execute();
-//    }
-    return 0;
+    list.executeAll(env);
+    return list.getList().size() * repeats;
   }
 }
