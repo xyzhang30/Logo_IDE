@@ -2,17 +2,17 @@ package slogo.model.command.executables.turtlecommand;
 
 import java.util.List;
 import slogo.model.command.executables.Executable;
-import slogo.model.turtle.TurtleModel;
+import slogo.model.environment.EnvironmentApi;
 
 public class Ycor extends TurtleExecutable{
 
-  public Ycor(List<Executable> parameterExecutables,
-      TurtleModel t) {
-    super(parameterExecutables, t);
+
+  public Ycor(List<Executable> parameterExecutables) {
+    super(parameterExecutables);
   }
 
   @Override
-  public double execute() {
-    return getTurtle().getPosY();
+  public double execute(EnvironmentApi env) {
+    return env.getTurtle().getPosY();
   }
 }

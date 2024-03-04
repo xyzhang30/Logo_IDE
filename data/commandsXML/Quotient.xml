@@ -10,5 +10,5 @@
   </parameters>
   <return_value>Double, result of expr1/expr2</return_value>
   <number_of_expected_parameters>2</number_of_expected_parameters>
-  <implementing_class>mathcommand/QuotientCommand</implementing_class>
+  <implementing_class>mathcommand.QuotientCommand</implementing_class>
 </command>

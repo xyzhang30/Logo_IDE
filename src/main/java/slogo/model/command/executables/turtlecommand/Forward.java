@@ -2,6 +2,7 @@ package slogo.model.command.executables.turtlecommand;
 
 import java.util.List;
 import slogo.model.command.executables.Executable;
+import slogo.model.environment.EnvironmentApi;
 import slogo.model.turtle.TurtleModel;
 
 /**
@@ -10,24 +11,26 @@ import slogo.model.turtle.TurtleModel;
 
 public class Forward extends TurtleExecutable {
 
-  private final double distance;
+  private final Executable distance;
 
-  public Forward(List<Executable> parameterExecutables, TurtleModel turtle) {
-    super(parameterExecutables, turtle);
-    distance = parameterExecutables.get(0).execute();
+  public Forward(List<Executable> parameterExecutables) {
+    super(parameterExecutables);
+    distance = parameterExecutables.get(0);
   }
 
   @Override
-  public double execute() {
-    double distX = distance * Math.cos(getTurtle().getRadianDirection());
-    double distY = distance * Math.sin(getTurtle().getRadianDirection());
+  public double execute(EnvironmentApi env) {
+    double traversalDistance = distance.execute(env);
 
-    getTurtle().setPosX(getTurtle().getPosX() + distX);
-    getTurtle().setPosY(getTurtle().getPosY() + distY);
+    double distX = traversalDistance * Math.cos(env.getTurtle().getRadianDirection());
+    double distY = traversalDistance * Math.sin(env.getTurtle().getRadianDirection());
 
-    System.out.println(getTurtle().getRadianDirection());
+    env.getTurtle().setPosX(env.getTurtle().getPosX() + distX);
+    env.getTurtle().setPosY(env.getTurtle().getPosY() + distY);
 
-    return distance;
+    System.out.println(env.getTurtle().getRadianDirection());
+
+    return traversalDistance;
   }
 
 }

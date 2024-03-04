@@ -1,22 +1,20 @@
 package slogo.model.command.executables;
 
 import java.util.Map;
+import slogo.model.environment.EnvironmentApi;
 
 /**
  * Executable class for variables that store constants.
  */
 public class VariableExecutable implements Executable{
   private final String signature;
-  private final Map<String,Double> myMap;
 
   /**
    * Constructor for Variable Executables.
    * @param sig  Variable Signature
-   * @param map  Mapping of all Variable names to corresponding values
    */
-  public VariableExecutable(String sig, Map<String,Double> map){
+  public VariableExecutable(String sig){
     signature = sig;
-    myMap = map;
   }
 
   /**
@@ -24,15 +22,15 @@ public class VariableExecutable implements Executable{
    * @return double  The value stored in this variable.
    */
   @Override
-  public double execute() {
-    return myMap.get(signature);
+  public double execute(EnvironmentApi env) {
+    return env.getVarMap().get(signature);
   }
 
   /**
-   * Instantiates this variable. Assigns a value to be stored by this variable.
-   * @param value  The constant value to be assigned to this variable.
+   * Returns this variable executable's unique signature.
+   * @return String  The variable signature
    */
-  public void assign(double value){
-    myMap.put(signature,value);
+  public String getSignature(){
+    return signature;
   }
 }

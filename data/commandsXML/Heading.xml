@@ -8,5 +8,5 @@
   </parameters>
   <return_value>Double, the angle turtle is facing in degrees</return_value>
   <number_of_expected_parameters>0</number_of_expected_parameters>
-  <implementing_class>turtlecommand/Heading</implementing_class>
+  <implementing_class>turtlecommand.Heading</implementing_class>
 </command>

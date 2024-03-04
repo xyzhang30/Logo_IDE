@@ -1,5 +1,7 @@
 package slogo.model.command.executables;
 
+import slogo.model.environment.EnvironmentApi;
+
 /**
  * Executable class for a constant.
  */
@@ -16,11 +18,11 @@ public class ConstantExecutable implements Executable {
 
   /**
    * Constants return their values when executed.
-   *
+   * @param env  the environment (unused by constant)
    * @return double  the constant value
    */
   @Override
-  public double execute() {
+  public double execute(EnvironmentApi env) {
     return myValue;
   }
 }

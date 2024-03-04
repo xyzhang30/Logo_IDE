@@ -3,21 +3,22 @@ package slogo.model.command.executables.mathcommand;
 import java.util.List;
 import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
+import slogo.model.environment.EnvironmentApi;
 
 public class GreaterCommand extends CommandExecutable {
 
-  private double test1;
-  private double test2;
+  private Executable test1;
+  private Executable test2;
 
   public GreaterCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
-    test1 = parameterExecutables.get(0).execute();
-    test2 = parameterExecutables.get(1).execute();
+    test1 = parameterExecutables.get(0);
+    test2 = parameterExecutables.get(1);
   }
 
   @Override
-  public double execute() {
-    if ((test1 - test2) > 0.001){
+  public double execute(EnvironmentApi env) {
+    if (test1.execute(env) - test2.execute(env) > 0.001){
       return 1;
     }
     return 0;

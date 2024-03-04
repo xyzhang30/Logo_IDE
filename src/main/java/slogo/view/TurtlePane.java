@@ -43,6 +43,8 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     currentX = model.getAttributes().xpos();
     currentY = model.getAttributes().ypos();
     currentDirection = model.getAttributes().direction();
+    timeline = new Timeline();
+    timeline.stop();
     create();
   }
 

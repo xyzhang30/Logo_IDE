@@ -1,6 +1,7 @@
 package slogo.model.command.executables;
 
 import java.util.List;
+import slogo.model.environment.EnvironmentApi;
 
 /**
  * Executable class for Lists of Executables
@@ -30,8 +31,8 @@ public class ListExecutable implements Executable {
    * @return 0  Nothing, this is just a wrapped list
    */
   @Override
-  public double execute() {
-    return myList.get(currentIndex).execute();
+  public double execute(EnvironmentApi env) {
+    return myList.get(currentIndex).execute(env);
   }
 
   /**
@@ -51,7 +52,7 @@ public class ListExecutable implements Executable {
   /**
    * Executes all Executables in this list at once.
    */
-  public void executeAll() {
-    myList.forEach(Executable::execute);
+  public void executeAll(EnvironmentApi env) {
+    myList.forEach(e->e.execute(env));
   }
 }
