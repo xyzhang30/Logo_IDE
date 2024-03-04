@@ -14,8 +14,8 @@ import slogo.model.token.Token;
 public class CommandHistory implements HistoryApi {
 
   private List<String> inputStrings;
-  private List<Executable> commands;
-  private List<Token> tokens;
+//  private List<Executable> commands;
+//  private List<Token> tokens;
   private int currentIndex;
 
   private String executedCommands;
@@ -30,32 +30,33 @@ public class CommandHistory implements HistoryApi {
     executedCommands = "";
   }
 
-  @Override
-  public void setTokens(List<Token> tokens) {
-    this.tokens = tokens;
-  }
-
-  @Override
-  public double executeCurrentCommand() {
-    return commands.get(currentIndex).execute();
-  }
-
-  @Override
-  public void incrementCommandIndex() {
-    if (currentIndex > commands.size()) {
-      throw new IndexOutOfBoundsException(String.format(
-          "Attempted to increment past end of history. History has %s items.", commands.size()));
-    }
-    currentIndex++;
-  }
-
-  public void addCommand(Executable com) {
-    commands.add(com);
-  }
-
-//  public List<Executable> getCommands() {
-//    return commands;
+//  @Override
+//  public void setTokens(List<Token> tokens) {
+//    this.tokens = tokens;
 //  }
+
+//  @Override
+//  public double executeCurrentCommand() {
+//    return commands.get(currentIndex).execute();
+//  }
+
+//  @Override
+//  public void incrementCommandIndex() {
+//    if (currentIndex > commands.size()) {
+//      throw new IndexOutOfBoundsException(String.format(
+//          "Attempted to increment past end of history. History has %s items.", commands.size()));
+//    }
+//    currentIndex++;
+//  }
+
+//  public void addCommand(Executable com) {
+//    commands.add(com);
+//  }
+
+  @Override
+  public String getCommands() {
+    return executedCommands;
+  }
 
   @Override
   public void saveFile(String fileName, String folderPath) {
@@ -77,7 +78,7 @@ public class CommandHistory implements HistoryApi {
   @Override
   public void saveCurrent() {
     executedCommands += inputStrings.get(currentIndex);
-    executedCommands += " ";
+    executedCommands += "\n";
     currentIndex ++;
   }
 

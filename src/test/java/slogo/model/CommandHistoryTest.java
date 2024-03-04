@@ -41,13 +41,13 @@ public class CommandHistoryTest {
     try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
       String line;
       while ((line = reader.readLine()) != null) {
-        content.append(line);
+        content.append(line + "\n");
       }
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
 
-    Assertions.assertEquals("test 02", content.toString().strip());
+    Assertions.assertEquals("test\n02", content.toString().strip());
 
     file.delete();
   }

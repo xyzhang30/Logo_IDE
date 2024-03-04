@@ -9,17 +9,19 @@ import slogo.model.token.Token;
  */
 public interface HistoryApi {
 
-  void setTokens(List<Token> tokens);
+//  void setTokens(List<Token> tokens);
 
-  double executeCurrentCommand();
+//  double executeCurrentCommand();
 
-  void addCommand(Executable c);
+//  void addCommand(Executable c);
 
-  void incrementCommandIndex();
+//  void incrementCommandIndex();
 
   void saveFile(String fileName, String folderPath);
 
   void setStrings(List<String> inputStrings);
 
   void saveCurrent();
-}
+  String getCommands();
+
+  }
