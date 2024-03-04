@@ -1,24 +1,28 @@
 package slogo.model.command.executables.structures;
 
 import java.util.List;
+import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.ListExecutable;
 import slogo.model.environment.EnvironmentApi;
 
-public class Repeat implements Executable {
-
-  private int repeats;
-//  private List<Executable> commands;
-  private ListExecutable list;
-
-  public Repeat(int timesToRepeat, ListExecutable commandListObject){
-    this.repeats = timesToRepeat;
-    this.list = commandListObject;
+public class Repeat extends CommandExecutable {
+  private final Executable repetitions;
+  private final ListExecutable listContent;
+  public Repeat(List<Executable> parameterExecutables) {
+    super(parameterExecutables);
+    repetitions = parameterExecutables.get(0);
+    listContent = (ListExecutable) parameterExecutables.get(1);
   }
 
   @Override
   public double execute(EnvironmentApi env) {
-    list.executeAll(env);
-    return list.getList().size() * repeats;
+    double val = 0;
+    for (int i=0;i<repetitions.execute(env);i++){
+      for (Executable e : listContent.getList()){
+        val = e.execute(env);
+      }
+    }
+    return val;
   }
 }

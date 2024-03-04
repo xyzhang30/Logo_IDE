@@ -25,11 +25,14 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   private final TurtleV turtle;
   private Timeline timeline;
   private final PenGraphics pen;
-
   private boolean paused;
 
-  public TurtlePane(int height, int width, TurtleModelApi model, String language, int speed) {
+  private Controller controller;
+
+  public TurtlePane(int height, int width, TurtleModelApi model, String language,
+      int speed, Controller controller) {
     super(height, width, language);
+    this.controller = controller;
     paused = false;
     getRoot().setPrefHeight(height);
     getRoot().setPrefWidth(width);
@@ -93,6 +96,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     // Set an event handler for when the timeline finishes
     timeline.setOnFinished(e -> {
       timeline.stop(); // Stop the timeline after drawing once
+      controller.runNext();
     });
 
     return timeline;

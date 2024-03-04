@@ -33,8 +33,11 @@ public class Controller  {
 
   private State state;
 
+  private boolean stepping;
+
 
   public Controller(Stage stage, Executioner executioner, String language) {
+    stepping = false;
     this.executioner = executioner;
     state = State.STOPPED;
     this.model = this.executioner.getTurtleModel();
@@ -51,29 +54,7 @@ public class Controller  {
   }
 
   public void run() {
-    // System.out.println(i1.getText());
-    try {
-      if (state == State.STOPPED) {
-        boolean end = false;
-        String command = i1.getText();
-        executioner.parseTree(new InputRecord(command));
-        state = State.RUNNING;
-        while (executioner.hasNext()) {
-          if (i1.prevComplete()) {
-            executioner.runNext();
-            i1.updateTurtle();
-          } else {
-            continue;
-          }
-        }
-      }
-      state = State.STOPPED;
-    }
-    catch (RuntimeException e) {
-      state = State.STOPPED;
-//      i1.showError(e.getMessage());
-      showMessage(AlertType.ERROR, e.getMessage());
-    }
+    setUpRun();
   }
 
   public void showMessage(AlertType type, String message) {
@@ -83,31 +64,28 @@ public class Controller  {
   }
 
   public void step() {
+    stepping = true;
+    setUpRun();
+  }
+
+  private void setUpRun() {
     String command = i1.getText();
     try {
       if (state == State.STOPPED) {
-        executioner.parseTree(new InputRecord(command));
-        state = State.RUNNING;
-        if (executioner.hasNext()) {
-          executioner.runNext();
-          i1.updateTurtle();
+        if (command != null && !command.equals("")) {
+          executioner.parseTree(new InputRecord(command));
         }
+        runFirst();
       }
-      while (!i1.prevComplete()) {
-        // hold here while running
-      }
+    } catch (RuntimeException e) {
       state = State.STOPPED;
-    }
-    catch (RuntimeException e) {
-      state = State.STOPPED;
-//      i1.showError(e.getMessage());
       showMessage(AlertType.ERROR, e.getMessage());
     }
-
-    // ex.runNext();
+    clearText();
   }
 
   public void pause() {
+    System.out.println(state.toString());
     if (state != State.STOPPED) {
       if (state == State.PAUSED) {
         state = State.RUNNING;
@@ -165,6 +143,29 @@ public class Controller  {
 
   public String getText() {
     return i1.getText();
+  }
+
+  public void clearText() {
+    i1.clearText();
+  }
+
+  public void runNext() {
+    if (!stepping) {
+      runFirst();
+    }
+    else {
+      state = State.STOPPED;
+      stepping = false;
+    }
+  }
+  public void runFirst() {
+    if (executioner.hasNext()) {
+      state = State.RUNNING;
+      executioner.runNext();
+      i1.updateTurtle();
+    } else {
+      state = State.STOPPED;
+    }
   }
 }
 

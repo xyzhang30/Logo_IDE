@@ -28,8 +28,6 @@ public class Forward extends TurtleExecutable {
     env.getTurtle().setPosX(env.getTurtle().getPosX() + distX);
     env.getTurtle().setPosY(env.getTurtle().getPosY() + distY);
 
-    System.out.println(env.getTurtle().getRadianDirection());
-
     return traversalDistance;
   }
 

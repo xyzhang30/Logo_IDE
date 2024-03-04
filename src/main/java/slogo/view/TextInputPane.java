@@ -21,7 +21,6 @@ public class TextInputPane extends CreatePane implements TextInput {
     ta1.setPrefSize(getWidth(), getHeight());
     ta1.setId("TextInput");
     getRoot().getChildren().add(ta1);
-    ta1.setPromptText("Code Here");
   }
 
   public String getTextInput() {
@@ -29,7 +28,13 @@ public class TextInputPane extends CreatePane implements TextInput {
     //System.out.println("Initial text content: " + textEditorContent);
     return ta1.getText();
   }
+
+  public void clearText() {
+    ta1.clear();
+  }
+
   public TextArea getTextArea() {
     return ta1;
   }
+
 }
