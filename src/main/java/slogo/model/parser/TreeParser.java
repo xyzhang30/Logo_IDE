@@ -1,6 +1,7 @@
 package slogo.model.parser;
 
 
+import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import slogo.model.api.InvalidCommandException;
 import slogo.model.api.InvalidParameterNumberException;
 import slogo.model.api.ParserApi;
 import slogo.model.api.TurtleModelApi;
+import slogo.model.command.CommandHistory;
 import slogo.model.command.Executioner;
 import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.ErrorExecutable;
@@ -22,6 +24,7 @@ import slogo.model.token.Token;
 import slogo.model.token.Tokenizer;
 import slogo.model.token.TokenizerApi;
 import slogo.model.turtle.TurtleModel;
+import slogo.model.xmlparser.CommandXmlParser;
 
 public class TreeParser implements ParserApi {
   public static final String EXEC_REFS = "slogo.model.command.executables.";
@@ -29,17 +32,23 @@ public class TreeParser implements ParserApi {
   private final TokenizerApi tokenizer;
   private final Map<String,Double> variablesTable;
   private TurtleModelApi turtle;
+  private CommandHistory history;
+  private CommandXmlParser xmlParser;
+
   public TreeParser(){
 //    executioner = new Executioner();
     tokenizer = new Tokenizer("English");
     variablesTable = new HashMap<>();
     turtle = new TurtleModel();
+    xmlParser = new CommandXmlParser();
   }
   @Override
   public Executable parseTree(InputRecord myRecord) throws InvalidParameterNumberException,
       InvalidCommandException {
     List<Executable> tree = new ArrayList<>();
     List<Token> tokens = tokenizer.tokenize(myRecord.input());
+    history = new CommandHistory();
+    history.setTokens(tokens);
     while (!tokens.isEmpty()){
       System.out.println(tokens.size());
       tree.add(craftBranch(tokens));
@@ -64,15 +73,19 @@ public class TreeParser implements ParserApi {
       default:
         Class<?> cc = ErrorExecutable.class;
         try{
-          cc = Class.forName(EXEC_REFS + "mathCommand." + t.type());
+          xmlParser.readXml(t.type());
+          cc = Class.forName(EXEC_REFS + "mathcommand." + t.type() + "Command");
         }
         catch (ClassNotFoundException e){
           try {
-            cc = Class.forName(EXEC_REFS + "turtleCommand." + t.type());
+            xmlParser.readXml(t.type());
+            cc = Class.forName(EXEC_REFS + "turtlecommand." + t.type());
           }
-          catch (ClassNotFoundException ex) {
+          catch (ClassNotFoundException | FileNotFoundException ex) {
             throw new InvalidCommandException(ex.getMessage());
           }
+        } catch (FileNotFoundException e) {
+          throw new InvalidCommandException(e.getMessage());
         }
 
         List<Executable> parameters = new ArrayList<>();
@@ -92,6 +105,6 @@ public class TreeParser implements ParserApi {
   }
 
   private int getNumParams(String sig){
-    return 1;
+    return xmlParser.getNumParamsExpected();
   }
 }
