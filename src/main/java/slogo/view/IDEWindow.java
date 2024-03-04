@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import slogo.model.api.TurtleModelApi;
 import javafx.scene.paint.Color;
@@ -178,6 +179,7 @@ public class IDEWindow {
 
   public void showError(String message) {
     Alert alert = new Alert(AlertType.ERROR);
+    alert.initModality(Modality.APPLICATION_MODAL); // Set modality
     alert.setTitle(ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language).getString("errorWindowTitle"));
 
     Label messageText;
