@@ -4,16 +4,12 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ResourceBundle;
-import javafx.application.Application;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import slogo.model.api.TurtleModelApi;
@@ -46,6 +42,7 @@ public class IDEWindow {
   private Controller controller;
 
   private TurtleModelApi model;
+  private CommandHistoryPane historyPane;
 
   private int speed;
 
@@ -89,11 +86,17 @@ public class IDEWindow {
     AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width/4);
     root.getChildren().add(tp1.getRoot());
 
-    CommandPane commandPane = new CommandPane(DEFAULT_SIZE.height, DEFAULT_SIZE.width / 4, language);
+    UserDefPane commandPane = new UserDefPane(DEFAULT_SIZE.height/15, DEFAULT_SIZE.width/4, language);
     AnchorPane.setBottomAnchor(commandPane.getRoot(), (double) DEFAULT_SIZE.height / 8);
-    AnchorPane.setTopAnchor(commandPane.getRoot(), (double) DEFAULT_SIZE.height / 16);
+    AnchorPane.setTopAnchor(commandPane.getRoot(), 0.0);
     AnchorPane.setRightAnchor(commandPane.getRoot(), 0.0);
     root.getChildren().add(commandPane.getRoot());
+
+    this.historyPane = new CommandHistoryPane(DEFAULT_SIZE.height/2, DEFAULT_SIZE.width/20, language);
+    AnchorPane.setBottomAnchor(historyPane.getRoot(), (double) DEFAULT_SIZE.height / 8);
+    AnchorPane.setTopAnchor(historyPane.getRoot(), (double) DEFAULT_SIZE.height/20);
+    AnchorPane.setLeftAnchor(historyPane.getRoot(), 0.0);
+    root.getChildren().add(historyPane.getRoot());
 
 
 
