@@ -10,5 +10,5 @@
   </parameters>
   <return_value>Double, distance turtle moved</return_value>
   <number_of_expected_parameters>2</number_of_expected_parameters>
-  <implementing_class>turtlecommand/Setxy</implementing_class>
+  <implementing_class>turtlecommand.Setxy</implementing_class>
 </command>
