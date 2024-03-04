@@ -8,5 +8,5 @@
   </parameters>
   <return_value>1 or 0, depending on whether the pen is down or not</return_value>
   <number_of_expected_parameters>0</number_of_expected_parameters>
-  <implementing_class>turtlecommand/PenDownQuery</implementing_class>
+  <implementing_class>turtlecommand.PenDownQuery</implementing_class>
 </command>

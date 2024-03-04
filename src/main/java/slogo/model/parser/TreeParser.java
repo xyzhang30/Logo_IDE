@@ -44,22 +44,26 @@ public class TreeParser implements ParserApi {
     List<Executable> tree = new ArrayList<>();
     List<Token> tokens = tokenizer.tokenize(myRecord.input());
     history = new CommandHistory();
-    history.setTokens(tokens);
     while (!tokens.isEmpty()){
       System.out.println(tokens.size());
-      tree.add(craftBranch(tokens));
+      String string = "";
+      List<String> commandString = new ArrayList<>();
+      commandString.add(string);
+
+      tree.add(craftBranch(tokens, commandString));
+      inputStrings.add(commandString.get(0));
     }
     history.setStrings(inputStrings);
     Executable root = new RootExecutable(tree);
     return root;
   }
 
-  private Executable craftBranch(List<Token> tokens) {
+  private Executable craftBranch(List<Token> tokens, List<String> commandString) {
     Token t = tokens.remove(0);
-    String inputString = t.value();
+    commandString.set(0, commandString.get(0) + t.value() + " "); //add token value into string
     switch (t.type()){
       case "Comment":
-        return craftBranch(tokens);
+        return craftBranch(tokens, commandString);
       case "Constant":
         return new ConstantExecutable(Double.parseDouble(t.value()));
       case "Variable":
@@ -72,7 +76,7 @@ public class TreeParser implements ParserApi {
         Class<?> cc = ErrorExecutable.class;
         try{
           xmlParser.readXml(t.type());
-          cc = Class.forName(EXEC_REFS + "mathcommand." + t.type() + "Command");
+          cc = Class.forName(EXEC_REFS + getClassPath(t.type()));
         }
         catch (ClassNotFoundException e){
           try {
@@ -88,11 +92,10 @@ public class TreeParser implements ParserApi {
 
         List<Executable> parameters = new ArrayList<>();
         for (int i=0;i<getNumParams(t.type());i++){
-          parameters.add(craftBranch(tokens));
+          parameters.add(craftBranch(tokens, commandString));
         }
 
         try{
-          inputStrings.add(inputString);
           return (Executable) cc.getDeclaredConstructor(List.class).newInstance(parameters);
         }
         catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException |
@@ -105,6 +108,10 @@ public class TreeParser implements ParserApi {
 
   private int getNumParams(String sig){
     return xmlParser.getNumParamsExpected();
+  }
+
+  private String getClassPath(String sig){
+    return xmlParser.getImplementationName();
   }
 
 }
