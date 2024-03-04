@@ -34,7 +34,7 @@ public class CommandHistory implements HistoryApi {
 
   @Override
   public double executeCurrentCommand() {
-    return commands.get(currentIndex).execute();
+    return 0; //disabled, corrections forthcoming
   }
 
   @Override

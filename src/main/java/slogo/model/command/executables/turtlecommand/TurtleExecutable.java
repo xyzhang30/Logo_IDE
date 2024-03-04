@@ -6,12 +6,7 @@ import slogo.model.command.executables.Executable;
 import slogo.model.turtle.TurtleModel;
 
 public abstract class TurtleExecutable extends CommandExecutable {
-  private TurtleModel turtle;
-  public TurtleExecutable(List<Executable> parameterExecutables, TurtleModel t) {
+  public TurtleExecutable(List<Executable> parameterExecutables) {
     super(parameterExecutables);
-    turtle = t;
-  }
-  public TurtleModel getTurtle(){
-    return turtle;
   }
 }
