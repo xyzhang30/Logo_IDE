@@ -2,30 +2,33 @@ package slogo.model.command.executables.turtlecommand;
 
 import java.util.List;
 import slogo.model.command.executables.Executable;
+import slogo.model.environment.EnvironmentApi;
 import slogo.model.turtle.TurtleModel;
 
 public class Towards extends TurtleExecutable {
 
-  private double facingPosX;
-  private double facingPosY;
+  private Executable targetX;
+  private Executable targetY;
 
-  public Towards(List<Executable> parameterExecutables, TurtleModel turtle) {
-    super(parameterExecutables, turtle);
-    facingPosX = parameterExecutables.get(0).execute();
-    facingPosY = parameterExecutables.get(1).execute();
+  public Towards(List<Executable> parameterExecutables) {
+    super(parameterExecutables);
+    targetX = parameterExecutables.get(0);
+    targetY = parameterExecutables.get(1);
   }
 
   @Override
-  public double execute() {
+  public double execute(EnvironmentApi env) {
+    double facingPosX = targetX.execute(env);
+    double facingPosY = targetY.execute(env);
 
-    if (facingPosX == getTurtle().getPosX() && facingPosY == getTurtle().getPosY()) {
+    if (facingPosX == env.getTurtle().getPosX() && facingPosY == env.getTurtle().getPosY()) {
       return 0;
     }
 
-    double originalDirection = getTurtle().getDegreesDirection();
+    double originalDirection = env.getTurtle().getDegreesDirection();
 
-    double lengthX = facingPosX - getTurtle().getPosX();
-    double lengthY = facingPosY - getTurtle().getPosY();
+    double lengthX = facingPosX - env.getTurtle().getPosX();
+    double lengthY = facingPosY - env.getTurtle().getPosY();
 
     double degreesOffSet = 0; //first quadrant (default value)
     if (lengthX < 0 && lengthY >= 0) { //second quadrant
@@ -37,8 +40,8 @@ public class Towards extends TurtleExecutable {
     }
 
     double angleRadian = Math.atan(Math.abs(lengthX) / Math.abs(lengthY));
-    getTurtle().setDirection(Math.toDegrees(angleRadian) + degreesOffSet);
+    env.getTurtle().setDirection(Math.toDegrees(angleRadian) + degreesOffSet);
 
-    return Math.abs(originalDirection - getTurtle().getDegreesDirection());
+    return Math.abs(originalDirection - env.getTurtle().getDegreesDirection());
   }
 }

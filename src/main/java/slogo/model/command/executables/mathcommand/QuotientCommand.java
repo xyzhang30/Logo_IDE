@@ -3,20 +3,21 @@ package slogo.model.command.executables.mathcommand;
 import java.util.List;
 import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
+import slogo.model.environment.EnvironmentApi;
 
 public class QuotientCommand extends CommandExecutable {
 
-  private double numOne;
-  private double numTwo;
+  private Executable numOne;
+  private Executable numTwo;
 
   public QuotientCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
-    numOne = parameterExecutables.get(0).execute();
-    numTwo = parameterExecutables.get(1).execute();
+    numOne = parameterExecutables.get(0);
+    numTwo = parameterExecutables.get(1);
   }
 
   @Override
-  public double execute() {
-    return numOne / numTwo;
+  public double execute(EnvironmentApi env) {
+    return numOne.execute(env) / numTwo.execute(env);
   }
 }

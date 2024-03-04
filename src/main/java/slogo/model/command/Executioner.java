@@ -3,20 +3,20 @@ package slogo.model.command;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
 import slogo.model.api.TurtleModelApi;
-import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.RootExecutable;
+import slogo.model.environment.Environment;
+import slogo.model.environment.EnvironmentApi;
 import slogo.model.parser.TreeParser;
-import slogo.model.turtle.TurtleModel;
 
 public class Executioner implements ExecutionerApi {
 
   private RootExecutable root;
   private TreeParser treeParser;
-  private TurtleModel turtleModel;
+  private EnvironmentApi environment;
 
 
   public Executioner() {
-    turtleModel = new TurtleModel();
+    environment = new Environment(0,0);
     treeParser = new TreeParser();
     root = null;
   }
@@ -28,7 +28,7 @@ public class Executioner implements ExecutionerApi {
 
   @Override
   public void step() {
-    root.execute();
+    root.execute(environment);
   }
 
   @Override
@@ -39,7 +39,7 @@ public class Executioner implements ExecutionerApi {
   @Override
   public void runNext() {
     try{
-      root.execute();
+      root.execute(environment);
 
     } catch (Exception e){
       throw new RuntimeException();
@@ -53,6 +53,6 @@ public class Executioner implements ExecutionerApi {
 
   @Override
   public TurtleModelApi getTurtleModel(){
-    return turtleModel;
+    return environment.getTurtle();
   }
 }

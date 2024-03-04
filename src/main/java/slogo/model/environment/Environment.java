@@ -6,10 +6,10 @@ import slogo.model.api.TurtleModelApi;
 import slogo.model.command.executables.Executable;
 import slogo.model.turtle.TurtleModel;
 
-public class Environment {
+public class Environment implements EnvironmentApi {
   private final Map<String, Double> variableMap;
   private final Map<String, Executable> functionMap;
-  private final TurtleModelApi turtle;
+  private final TurtleModel turtle;
   private final int width;
   private final int height;
   public Environment(int w,int h){
@@ -19,16 +19,26 @@ public class Environment {
     width = w;
     height = h;
   }
+  @Override
   public Map<String,Double> getVarMap(){
     return variableMap;
   }
+  @Override
   public Map<String,Executable> getFuncMap(){
     return functionMap;
   }
-  public TurtleModelApi getTurtle(){
+  @Override
+  public TurtleModel getTurtle(){
     return turtle;
   }
-  public int[] getScreen(){
-    return new int[]{width, height};
+
+  @Override
+  public int getWidth() {
+    return width;
+  }
+
+  @Override
+  public int getHeight() {
+    return height;
   }
 }

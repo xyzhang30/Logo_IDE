@@ -30,6 +30,8 @@ public class CommandHistory implements HistoryApi {
     executedCommands = "";
   }
 
+//  public List<Executable> getCommands() {
+//    return commands;
 //  @Override
 //  public void setTokens(List<Token> tokens) {
 //    this.tokens = tokens;

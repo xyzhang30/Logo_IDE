@@ -3,6 +3,7 @@ package slogo.model.command.executables.structures;
 import java.util.List;
 import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.ListExecutable;
+import slogo.model.environment.EnvironmentApi;
 
 public class Repeat implements Executable {
 
@@ -16,8 +17,8 @@ public class Repeat implements Executable {
   }
 
   @Override
-  public double execute() {
-    list.executeAll();
+  public double execute(EnvironmentApi env) {
+    list.executeAll(env);
     return list.getList().size() * repeats;
   }
 }

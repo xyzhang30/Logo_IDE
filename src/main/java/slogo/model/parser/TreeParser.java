@@ -4,14 +4,11 @@ package slogo.model.parser;
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import slogo.model.api.InputRecord;
 import slogo.model.api.InvalidCommandException;
 import slogo.model.api.InvalidParameterNumberException;
 import slogo.model.api.ParserApi;
-import slogo.model.api.TurtleModelApi;
 import slogo.model.command.CommandHistory;
 import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.ErrorExecutable;
@@ -21,20 +18,17 @@ import slogo.model.command.executables.RootExecutable;
 import slogo.model.token.Token;
 import slogo.model.token.Tokenizer;
 import slogo.model.token.TokenizerApi;
-import slogo.model.turtle.TurtleModel;
 import slogo.model.xmlparser.CommandXmlParser;
 
 public class TreeParser implements ParserApi {
   public static final String EXEC_REFS = "slogo.model.command.executables.";
   private final TokenizerApi tokenizer;
-  private final Map<String,Double> variablesTable;
   private CommandHistory history;
   private CommandXmlParser xmlParser;
   private List<String> inputStrings;
 
   public TreeParser(){
     tokenizer = new Tokenizer("English");
-    variablesTable = new HashMap<>();
     xmlParser = new CommandXmlParser();
     inputStrings = new ArrayList<>();
   }
@@ -67,7 +61,7 @@ public class TreeParser implements ParserApi {
       case "Constant":
         return new ConstantExecutable(Double.parseDouble(t.value()));
       case "Variable":
-        return new VariableExecutable(t.value(), variablesTable);
+        return new VariableExecutable(t.value());
       case "Command": break;
       case "ListStart": break;
       case "ListEnd": break;

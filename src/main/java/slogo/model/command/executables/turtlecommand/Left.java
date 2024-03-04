@@ -2,6 +2,7 @@ package slogo.model.command.executables.turtlecommand;
 
 import java.util.List;
 import slogo.model.command.executables.Executable;
+import slogo.model.environment.EnvironmentApi;
 import slogo.model.turtle.TurtleModel;
 
 /**
@@ -10,18 +11,19 @@ import slogo.model.turtle.TurtleModel;
 
 public class Left extends TurtleExecutable {
 
-  private double degrees;
+  private Executable angle;
 
-  public Left(List<Executable> parameterExecutables, TurtleModel turtle) {
-    super(parameterExecutables, turtle);
-    degrees = parameterExecutables.get(0).execute();
+  public Left(List<Executable> parameterExecutables) {
+    super(parameterExecutables);
+    angle = parameterExecutables.get(0);
   }
 
   @Override
-  public double execute() {
-    double currRadianDirection = getTurtle().getRadianDirection();
+  public double execute(EnvironmentApi env) {
+    double degrees = angle.execute(env);
+    double currRadianDirection = env.getTurtle().getRadianDirection();
     double newRadianDirection = currRadianDirection + Math.toRadians(degrees);
-    getTurtle().setDirection(Math.toDegrees(newRadianDirection));
+    env.getTurtle().setDirection(Math.toDegrees(newRadianDirection));
     return degrees;
   }
 }
