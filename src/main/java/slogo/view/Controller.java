@@ -14,6 +14,7 @@ import slogo.model.command.executables.Executable;
 import slogo.model.parser.TreeParser;
 import slogo.model.turtle.TurtleModel;
 
+
 public class Controller  {
 
   // how much to adjust updates per second
@@ -158,5 +159,9 @@ public class Controller  {
   public void processSelectedPNGFile(File selectedFile) {
     i1.updateImage(selectedFile);
   }
+
+  public IDEWindow getIDEWindow() { return i1;
+  }
 }
+
 
