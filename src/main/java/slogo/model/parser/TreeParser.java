@@ -76,7 +76,7 @@ public class TreeParser implements ParserApi {
         Class<?> cc = ErrorExecutable.class;
         try{
           xmlParser.readXml(t.type());
-          cc = Class.forName(EXEC_REFS + "mathcommand." + t.type() + "Command");
+          cc = Class.forName(EXEC_REFS + getClassPath(t.type()));
         }
         catch (ClassNotFoundException e){
           try {
@@ -108,6 +108,10 @@ public class TreeParser implements ParserApi {
 
   private int getNumParams(String sig){
     return xmlParser.getNumParamsExpected();
+  }
+
+  private String getClassPath(String sig){
+    return xmlParser.getImplementationName();
   }
 
 }
