@@ -162,6 +162,10 @@ public class Controller  {
 
   public IDEWindow getIDEWindow() { return i1;
   }
+
+  public String getText() {
+    return i1.getText();
+  }
 }
 
 
