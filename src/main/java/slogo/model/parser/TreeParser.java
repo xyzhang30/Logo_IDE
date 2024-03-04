@@ -13,6 +13,7 @@ import slogo.model.command.CommandHistory;
 import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.ErrorExecutable;
 import slogo.model.command.executables.Executable;
+import slogo.model.command.executables.ListExecutable;
 import slogo.model.command.executables.VariableExecutable;
 import slogo.model.command.executables.RootExecutable;
 import slogo.model.token.Token;
@@ -62,7 +63,14 @@ public class TreeParser implements ParserApi {
       case "Variable":
         return new VariableExecutable(t.value());
       case "Command": break;
-      case "ListStart": break;
+      case "ListStart":
+        List<Executable> listContents = new ArrayList<>();
+        tokens.remove(0);
+        while (!tokens.get(0).type().equals("ListEnd")){
+          listContents.add(craftBranch(tokens,commandString));
+        }
+        tokens.remove(0);
+        return new ListExecutable(listContents);
       case "ListEnd": break;
       case "Error": break;
       default:
