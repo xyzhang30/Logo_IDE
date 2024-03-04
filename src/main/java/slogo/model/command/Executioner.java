@@ -38,7 +38,12 @@ public class Executioner implements ExecutionerApi {
 
   @Override
   public void runNext() {
+    try{
+      root.execute();
 
+    } catch (Exception e){
+      throw new RuntimeException();
+    }
   }
 
   @Override

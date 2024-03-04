@@ -34,6 +34,7 @@ public class TreeParser implements ParserApi {
   private TurtleModelApi turtle;
   private CommandHistory history;
   private CommandXmlParser xmlParser;
+  private List<String> inputStrings;
 
   public TreeParser(){
 //    executioner = new Executioner();
@@ -41,6 +42,7 @@ public class TreeParser implements ParserApi {
     variablesTable = new HashMap<>();
     turtle = new TurtleModel();
     xmlParser = new CommandXmlParser();
+    inputStrings = new ArrayList<>();
   }
   @Override
   public Executable parseTree(InputRecord myRecord) throws InvalidParameterNumberException,
@@ -53,12 +55,14 @@ public class TreeParser implements ParserApi {
       System.out.println(tokens.size());
       tree.add(craftBranch(tokens));
     }
+    history.setStrings(inputStrings);
     Executable root = new RootExecutable(tree);
     return root;
   }
 
   private Executable craftBranch(List<Token> tokens) {
     Token t = tokens.remove(0);
+    String inputString = t.value();
     switch (t.type()){
       case "Comment":
         return craftBranch(tokens);
@@ -94,6 +98,7 @@ public class TreeParser implements ParserApi {
         }
 
         try{
+          inputStrings.add(inputString);
           return (Executable) cc.getDeclaredConstructor(List.class).newInstance(parameters);
         }
         catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException |
@@ -107,4 +112,5 @@ public class TreeParser implements ParserApi {
   private int getNumParams(String sig){
     return xmlParser.getNumParamsExpected();
   }
+
 }
