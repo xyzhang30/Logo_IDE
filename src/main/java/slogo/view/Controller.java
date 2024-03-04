@@ -35,7 +35,7 @@ public class Controller  {
   public Controller(Stage stage, Executioner executioner, String language) {
     this.executioner = executioner;
     state = State.STOPPED;
-    this.model = this.executioner.getModel();
+    this.model = this.executioner.getTurtleModel();
     i1 = new IDEWindow(stage, this, language);
 
   }
@@ -50,38 +50,47 @@ public class Controller  {
 
   public void run() {
     // System.out.println(i1.getText());
-    if (state == State.STOPPED) {
-      state = State.RUNNING;
-      boolean end = false;
-      String command = i1.getText();
-      executioner.parseTree(new InputRecord(command));
-      while (executioner.hasNext()) {
-        if (i1.prevComplete()) {
-          executioner.runNext();
-          i1.updateTurtle();
-        }
-        else {
-          continue;
+    try {
+      if (state == State.STOPPED) {
+        boolean end = false;
+        String command = i1.getText();
+        executioner.parseTree(new InputRecord(command));
+        state = State.RUNNING;
+        while (executioner.hasNext()) {
+          if (i1.prevComplete()) {
+            executioner.runNext();
+            i1.updateTurtle();
+          } else {
+            continue;
+          }
         }
       }
+      state = State.STOPPED;
     }
-    state = State.STOPPED;
+    catch (RuntimeException e) {
+      i1.showError(e.getMessage());
+    }
   }
 
   public void step() {
     String command = i1.getText();
-    if (state == State.STOPPED) {
-      state = State.RUNNING;
-      executioner.parseTree(new InputRecord(command));
-      if (executioner.hasNext()) {
-        executioner.runNext();
-        i1.updateTurtle();
+    try {
+      if (state == State.STOPPED) {
+        executioner.parseTree(new InputRecord(command));
+        state = State.RUNNING;
+        if (executioner.hasNext()) {
+          executioner.runNext();
+          i1.updateTurtle();
+        }
       }
+      while (!i1.prevComplete()) {
+        // hold here while running
+      }
+      state = State.STOPPED;
     }
-    while (!i1.prevComplete()) {
-      // hold here while running
+    catch (RuntimeException e) {
+      i1.showError(e.getMessage());
     }
-    state = State.STOPPED;
 
     // ex.runNext();
   }

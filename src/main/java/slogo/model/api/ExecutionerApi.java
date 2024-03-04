@@ -14,4 +14,12 @@ public interface ExecutionerApi {
    * Performs one instruction from the tree.
    */
   void step();
+
+  void parseTree(InputRecord commandInput);
+
+  void runNext();
+
+  boolean hasNext();
+
+  TurtleModelApi getTurtleModel();
 }
