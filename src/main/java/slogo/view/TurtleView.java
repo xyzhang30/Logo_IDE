@@ -64,6 +64,10 @@ public class TurtleView implements TurtleV {
     return pane;
   }
 
+  public boolean getImageHere() {
+    return imageHere;
+  }
+
   @Override
   public void updateImage(File selectedFile) {
     pane.getChildren().remove(0);

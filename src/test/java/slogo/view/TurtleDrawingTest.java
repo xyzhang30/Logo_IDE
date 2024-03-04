@@ -27,6 +27,7 @@ public class TurtleDrawingTest {
     assertEquals(90, turtleView.getTurtleImage().getRotate(), "Rotation should be updated to 90 degrees");
     assertEquals(50, turtleView.getTurtleImage().getTranslateX(), "X-coordinate should be updated to 50");
     assertEquals(75, turtleView.getTurtleImage().getTranslateY(), "Y-coordinate should be updated to 75");
+    assertTrue(turtleView.getImageHere(), "Turtle Should be Visible");
   }
 
 }
