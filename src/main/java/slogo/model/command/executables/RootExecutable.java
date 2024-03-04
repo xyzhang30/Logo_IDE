@@ -20,8 +20,8 @@ public class RootExecutable implements Executable {
 
   @Override
   public double execute(EnvironmentApi env) {
-    tree.get(currIdx).execute(env);
+    double val = tree.get(currIdx).execute(env);
     currIdx ++;
-    return 0;
+    return val;
   }
 }

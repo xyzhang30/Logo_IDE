@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.model.api.InputRecord;
 import slogo.model.api.ParserApi;
+import slogo.model.command.executables.RootExecutable;
+import slogo.model.environment.Environment;
 import slogo.model.parser.TreeParser;
 
 public class ParserTest {
