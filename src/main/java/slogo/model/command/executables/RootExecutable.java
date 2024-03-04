@@ -7,20 +7,25 @@ public class RootExecutable implements Executable {
 
   private List<Executable> tree;
   private int currIdx;
-  private int nextIdx;
 
   public RootExecutable(List<Executable> tree){
     this.tree = tree;
     currIdx = 0;
-    nextIdx = 1;
   }
 
   public boolean hasNext(){
-    return tree.get(nextIdx) != null;
+    return tree.get(currIdx) != null;
   }
 
   @Override
   public double execute() {
+    runNext();
+    currIdx ++;
     return 0;
   }
+
+  private void runNext(){
+    tree.get(currIdx).execute();
+  }
+
 }
