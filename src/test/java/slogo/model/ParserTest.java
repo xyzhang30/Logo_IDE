@@ -9,8 +9,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.model.api.InputRecord;
 import slogo.model.api.ParserApi;
+<<<<<<< HEAD
 import slogo.model.command.executables.RootExecutable;
 import slogo.model.environment.Environment;
+=======
+import slogo.model.command.Executioner;
+>>>>>>> d67de584c03b5aef6fcf125c49eff07b79974de8
 import slogo.model.parser.TreeParser;
 
 public class ParserTest {
@@ -29,7 +33,18 @@ public class ParserTest {
     } catch (Exception e) {
       System.out.println("ERROR: Unable to read input file " + e.getMessage());
     }
+  }
 
+  @Test
+  void testTwoSingleLineCommandInput(){
+    String test = "fd 50\nleft 90";
+    InputRecord inputRecord = new InputRecord(test);
+    Executioner executioner = new Executioner();
+    executioner.parseTree(inputRecord);
+    executioner.runNext();
+    assertEquals(50, executioner.getTurtleModel().getAttributes().xpos());
+    executioner.runNext();
+    assertEquals(90, executioner.getTurtleModel().getAttributes().direction());
   }
 
 }

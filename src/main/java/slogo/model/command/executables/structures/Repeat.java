@@ -9,7 +9,6 @@ import slogo.model.environment.EnvironmentApi;
 public class Repeat extends CommandExecutable {
   private final Executable repetitions;
   private final ListExecutable listContent;
-
   public Repeat(List<Executable> parameterExecutables) {
     super(parameterExecutables);
     repetitions = parameterExecutables.get(0);
