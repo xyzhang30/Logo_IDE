@@ -159,5 +159,9 @@ public class Controller  {
   public void processSelectedPNGFile(File selectedFile) {
     i1.updateImage(selectedFile);
   }
+
+  public IDEWindow getIDEWindow() { return i1;
+  }
 }
+
 
