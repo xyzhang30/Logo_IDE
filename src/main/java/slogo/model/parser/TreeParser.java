@@ -7,14 +7,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
 import slogo.model.api.InvalidCommandException;
 import slogo.model.api.InvalidParameterNumberException;
 import slogo.model.api.ParserApi;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.CommandHistory;
-import slogo.model.command.Executioner;
 import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.ErrorExecutable;
 import slogo.model.command.executables.Executable;
@@ -28,19 +26,15 @@ import slogo.model.xmlparser.CommandXmlParser;
 
 public class TreeParser implements ParserApi {
   public static final String EXEC_REFS = "slogo.model.command.executables.";
-//  private ExecutionerApi executioner;
   private final TokenizerApi tokenizer;
   private final Map<String,Double> variablesTable;
-  private TurtleModelApi turtle;
   private CommandHistory history;
   private CommandXmlParser xmlParser;
   private List<String> inputStrings;
 
   public TreeParser(){
-//    executioner = new Executioner();
     tokenizer = new Tokenizer("English");
     variablesTable = new HashMap<>();
-    turtle = new TurtleModel();
     xmlParser = new CommandXmlParser();
     inputStrings = new ArrayList<>();
   }
