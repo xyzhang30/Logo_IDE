@@ -79,6 +79,7 @@ public class Controller  {
       }
     } catch (RuntimeException e) {
       state = State.STOPPED;
+      e.printStackTrace();
       showMessage(AlertType.ERROR, e.getMessage());
     }
     clearText();
