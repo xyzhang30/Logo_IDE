@@ -10,5 +10,5 @@
   </parameters>
   <return_value>Double, 1 if at least one of test1 and test2 are non-zero, 0 otherwise</return_value>
   <number_of_expected_parameters>2</number_of_expected_parameters>
-  <implementing_class>mathcommand/OrCommand</implementing_class>
+  <implementing_class>mathcommand.OrCommand</implementing_class>
 </command>

@@ -1,6 +1,8 @@
 package slogo.view;
 
 import java.io.File;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import slogo.model.api.ExecutionerApi;
@@ -67,8 +69,16 @@ public class Controller  {
       state = State.STOPPED;
     }
     catch (RuntimeException e) {
-      i1.showError(e.getMessage());
+      state = State.STOPPED;
+//      i1.showError(e.getMessage());
+      showMessage(AlertType.ERROR, e.getMessage());
     }
+  }
+
+  public void showMessage(AlertType type, String message) {
+    Alert alert = new Alert(type, message);
+    alert.initOwner(stage);
+    alert.showAndWait();
   }
 
   public void step() {
@@ -88,7 +98,9 @@ public class Controller  {
       state = State.STOPPED;
     }
     catch (RuntimeException e) {
-      i1.showError(e.getMessage());
+      state = State.STOPPED;
+//      i1.showError(e.getMessage());
+      showMessage(AlertType.ERROR, e.getMessage());
     }
 
     // ex.runNext();
@@ -118,12 +130,12 @@ public class Controller  {
 
   public void speedUp() {
     System.out.println(i1.getSpeed());
-    i1.setSpeed(i1.getSpeed()+1);
+    i1.setSpeed(i1.getSpeed()+SPEED_ADJUSTMENT);
   }
 
   public void slowDown() {
-    if (i1.getSpeed()>1) {
-      i1.setSpeed(i1.getSpeed()-1);
+    if (i1.getSpeed()>SPEED_ADJUSTMENT) {
+      i1.setSpeed(i1.getSpeed()-SPEED_ADJUSTMENT);
     }
   }
 
