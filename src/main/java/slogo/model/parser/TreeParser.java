@@ -79,15 +79,7 @@ public class TreeParser implements ParserApi {
           xmlParser.readXml(t.type());
           cc = Class.forName(EXEC_REFS + getClassPath(t.type()));
         }
-        catch (ClassNotFoundException e){
-          try {
-            xmlParser.readXml(t.type());
-            cc = Class.forName(EXEC_REFS + "turtlecommand." + t.type());
-          }
-          catch (ClassNotFoundException | FileNotFoundException ex) {
-            throw new InvalidCommandException(ex.getMessage());
-          }
-        } catch (FileNotFoundException e) {
+        catch (ClassNotFoundException | FileNotFoundException e){
           throw new InvalidCommandException(e.getMessage());
         }
 
