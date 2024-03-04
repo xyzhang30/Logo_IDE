@@ -67,6 +67,7 @@ public class Controller  {
       state = State.STOPPED;
     }
     catch (RuntimeException e) {
+      state = State.STOPPED;
       i1.showError(e.getMessage());
     }
   }
@@ -88,6 +89,7 @@ public class Controller  {
       state = State.STOPPED;
     }
     catch (RuntimeException e) {
+      state = State.STOPPED;
       i1.showError(e.getMessage());
     }
 
