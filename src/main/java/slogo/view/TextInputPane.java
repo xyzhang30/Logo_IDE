@@ -19,6 +19,7 @@ public class TextInputPane extends CreatePane implements TextInput {
   @Override
   public void create() {
     ta1.setPrefSize(getWidth(), getHeight());
+    ta1.setId("TextInput");
     getRoot().getChildren().add(ta1);
     ta1.setPromptText("Code Here");
   }
