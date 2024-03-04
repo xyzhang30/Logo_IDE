@@ -12,11 +12,11 @@ public class Executioner implements ExecutionerApi {
 
   private RootExecutable root;
   private TreeParser treeParser;
-  private EnvironmentApi environment;
+  private final EnvironmentApi environment;
 
 
   public Executioner() {
-    environment = new Environment(0,0);
+    environment = new Environment(400,600);
     treeParser = new TreeParser();
     root = null;
   }

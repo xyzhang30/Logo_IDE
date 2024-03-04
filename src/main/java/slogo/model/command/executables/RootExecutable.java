@@ -15,18 +15,13 @@ public class RootExecutable implements Executable {
   }
 
   public boolean hasNext(){
-    return tree.get(currIdx) != null;
+    return currIdx<tree.size();
   }
 
   @Override
   public double execute(EnvironmentApi env) {
-    runNext();
+    tree.get(currIdx).execute(env);
     currIdx ++;
     return 0;
   }
-
-  private void runNext(){
-    tree.get(currIdx).execute(new Environment(100,200));// THIS IS NOT A CORRECT USE!S
-  }
-
 }
