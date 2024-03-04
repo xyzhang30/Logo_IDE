@@ -1,5 +1,7 @@
 package slogo.model.command;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import javafx.scene.web.HTMLEditorSkin.Command;
 import slogo.model.command.executables.CommandExecutable;
@@ -25,6 +27,7 @@ public class CommandHistory implements HistoryApi {
 
   public CommandHistory(){
     currentIndex = 0;
+    executedCommands = "";
   }
 
   @Override
@@ -54,8 +57,16 @@ public class CommandHistory implements HistoryApi {
 //    return commands;
 //  }
 
-  public void saveFile(String filename){
+  @Override
+  public void saveFile(String fileName, String folderPath) {
+    String filePath = folderPath + "/" + fileName; // Constructing the file path
 
+    try (FileWriter writer = new FileWriter(filePath)) {
+      writer.write(executedCommands); // Writing the executedCommands string to the file
+      System.out.println("File saved successfully: " + filePath);
+    } catch (IOException e) {
+      System.err.println("Error saving file: " + e.getMessage());
+    }
   }
 
   @Override
@@ -66,6 +77,8 @@ public class CommandHistory implements HistoryApi {
   @Override
   public void saveCurrent() {
     executedCommands += inputStrings.get(currentIndex);
+    executedCommands += " ";
+    currentIndex ++;
   }
 
 //  public void jumpToCommand(int index) {
