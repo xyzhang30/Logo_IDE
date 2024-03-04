@@ -39,7 +39,6 @@ public class TreeParser implements ParserApi {
     List<Token> tokens = tokenizer.tokenize(myRecord.input());
     history = new CommandHistory();
     while (!tokens.isEmpty()){
-      System.out.println(tokens.size());
       String string = "";
       List<String> commandString = new ArrayList<>();
       commandString.add(string);
