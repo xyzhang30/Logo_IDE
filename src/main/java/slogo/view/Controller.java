@@ -118,12 +118,12 @@ public class Controller  {
 
   public void speedUp() {
     System.out.println(i1.getSpeed());
-    i1.setSpeed(i1.getSpeed()+1);
+    i1.setSpeed(i1.getSpeed()+SPEED_ADJUSTMENT);
   }
 
   public void slowDown() {
-    if (i1.getSpeed()>1) {
-      i1.setSpeed(i1.getSpeed()-1);
+    if (i1.getSpeed()>SPEED_ADJUSTMENT) {
+      i1.setSpeed(i1.getSpeed()-SPEED_ADJUSTMENT);
     }
   }
 
