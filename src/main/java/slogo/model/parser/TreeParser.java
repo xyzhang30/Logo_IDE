@@ -6,7 +6,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import slogo.model.api.InvalidCommandException;
-import slogo.model.api.InvalidParameterNumberException;
 import slogo.model.api.ParserApi;
 import slogo.model.command.CommandHistory;
 import slogo.model.command.executables.ConstantExecutable;
@@ -22,7 +21,7 @@ import slogo.model.xmlparser.CommandXmlParser;
 public class TreeParser implements ParserApi {
   public static final String EXEC_REFS = "slogo.model.command.executables.";
   private CommandHistory history;
-  private CommandXmlParser xmlParser;
+  private final CommandXmlParser xmlParser;
   private List<String> inputStrings;
 
   public TreeParser(){
@@ -30,8 +29,7 @@ public class TreeParser implements ParserApi {
     inputStrings = new ArrayList<>();
   }
   @Override
-  public Executable parseTree(List<Token> tokens) throws InvalidParameterNumberException,
-      InvalidCommandException {
+  public Executable parseTree(List<Token> tokens) {
     List<Executable> tree = new ArrayList<>();
     history = new CommandHistory();
     while (!tokens.isEmpty()){
