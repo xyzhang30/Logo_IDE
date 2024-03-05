@@ -13,7 +13,7 @@ public class Xcor extends TurtleExecutable{
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
-    return env.getTurtle().getPosX();
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
+    return turtle.getPosX();
   }
 }

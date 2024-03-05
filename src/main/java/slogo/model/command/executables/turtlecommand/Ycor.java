@@ -3,6 +3,7 @@ package slogo.model.command.executables.turtlecommand;
 import java.util.List;
 import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
+import slogo.model.turtle.TurtleModel;
 
 public class Ycor extends TurtleExecutable{
 
@@ -12,7 +13,7 @@ public class Ycor extends TurtleExecutable{
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
-    return env.getTurtle().getPosY();
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
+    return turtle.getPosY();
   }
 }

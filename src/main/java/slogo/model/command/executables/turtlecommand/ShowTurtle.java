@@ -12,8 +12,8 @@ public class ShowTurtle extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
-    env.getTurtle().setVisible(true);
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
+    turtle.setVisible(true);
     return 1;
   }
 }
