@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
@@ -31,5 +32,37 @@ public class RunningTest extends DukeApplicationTest {
     controller.start();
   }
 
+  @Test
+  public void testForwardCommand() {
+    // Assuming "TextInput" is the id of your TextArea
+    TextArea t1 = lookup("#TextInput").query();
 
+    t1.setText("fd 50");
+
+    Button button = lookup("#Run").query();
+    clickOn(button);
+    sleep(2000);
+
+    assertEquals(50, controller.getModel().getAttributes().xpos());
+  }
+
+  @Test
+  public void testPauseDisabledOnStart() {
+    Button button = lookup("#Pause").query();
+    clickOn(button);
+    assertEquals(State.STOPPED, controller.getState());
+  }
+
+  @Test public void testPauseWhenRunning() {
+    TextArea t1 = lookup("#TextInput").query();
+    t1.setText("fd 50");
+
+    Button button = lookup("#Run").query();
+    clickOn(button);
+    sleep(500);
+
+    Button button1 = lookup("#Pause").query();
+    clickOn(button1);
+    assertEquals(State.PAUSED, controller.getState());
+  }
 }
