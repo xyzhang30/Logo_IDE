@@ -9,13 +9,14 @@ import slogo.model.turtle.TurtleModel;
 public class Environment implements EnvironmentApi {
   private final Map<String, Double> variableMap;
   private final Map<String, Executable> functionMap;
-  private final TurtleModel turtle;
+  private final Map<Double,TurtleModel> turtleMap;
   private final int width;
   private final int height;
   public Environment(int w,int h){
     variableMap = new HashMap<>();
     functionMap = new HashMap<>();
-    turtle = new TurtleModel();
+    turtleMap = new HashMap<>();
+    turtleMap.put(1.0,new TurtleModel(1.0));
     width = w;
     height = h;
   }
@@ -29,14 +30,12 @@ public class Environment implements EnvironmentApi {
   }
   @Override
   public TurtleModel getTurtle(){
-    return turtle;
+    return turtleMap.get(1.0);
   }
-
   @Override
   public int getWidth() {
     return width;
   }
-
   @Override
   public int getHeight() {
     return height;

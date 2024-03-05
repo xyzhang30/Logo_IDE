@@ -5,6 +5,7 @@ import slogo.model.api.TurtleRecord;
 
 public class TurtleModel implements TurtleModelApi {
 
+  private final double id;
   private double posX;
   private double posY;
   private double speed;
@@ -13,7 +14,11 @@ public class TurtleModel implements TurtleModelApi {
   private boolean visible;
   private boolean eraseTrace;
 
-  public TurtleModel() {
+  public TurtleModel(){
+    this(1);
+  }
+  public TurtleModel(double ID) {
+    id = ID;
     initialize();
   }
 
