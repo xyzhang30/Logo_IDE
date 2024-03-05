@@ -36,7 +36,7 @@ public class UserVariable {
   public void parseAndExecute(String input) {
     // Pass the input to TreeParser for parsing and execution
     try {
-      treeParser.parseTree(new InputRecord(input));
+//      treeParser.parseTree(new InputRecord(input));
     } catch (InvalidParameterNumberException | InvalidCommandException e) {
       // Handle exceptions if needed
       e.printStackTrace();

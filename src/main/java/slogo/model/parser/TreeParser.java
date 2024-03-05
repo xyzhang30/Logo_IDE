@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import slogo.model.api.InputRecord;
 import slogo.model.api.InvalidCommandException;
 import slogo.model.api.InvalidParameterNumberException;
 import slogo.model.api.ParserApi;
@@ -18,27 +17,22 @@ import slogo.model.command.executables.ListExecutable;
 import slogo.model.command.executables.VariableExecutable;
 import slogo.model.command.executables.RootExecutable;
 import slogo.model.token.Token;
-import slogo.model.token.Tokenizer;
-import slogo.model.token.TokenizerApi;
 import slogo.model.xmlparser.CommandXmlParser;
 
 public class TreeParser implements ParserApi {
   public static final String EXEC_REFS = "slogo.model.command.executables.";
-  private final TokenizerApi tokenizer;
   private CommandHistory history;
   private CommandXmlParser xmlParser;
   private List<String> inputStrings;
 
   public TreeParser(){
-    tokenizer = new Tokenizer("English");
     xmlParser = new CommandXmlParser();
     inputStrings = new ArrayList<>();
   }
   @Override
-  public Executable parseTree(InputRecord myRecord) throws InvalidParameterNumberException,
+  public Executable parseTree(List<Token> tokens) throws InvalidParameterNumberException,
       InvalidCommandException {
     List<Executable> tree = new ArrayList<>();
-    List<Token> tokens = tokenizer.tokenize(myRecord.input());
     history = new CommandHistory();
     while (!tokens.isEmpty()){
       String string = "";
