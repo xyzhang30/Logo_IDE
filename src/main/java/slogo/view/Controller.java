@@ -167,6 +167,14 @@ public class Controller  {
       state = State.STOPPED;
     }
   }
+
+  public State getState() {
+    return state;
+  }
+
+  public TurtleModelApi getModel() {
+    return model;
+  }
 }
 
 
