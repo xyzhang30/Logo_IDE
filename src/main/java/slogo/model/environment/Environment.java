@@ -17,6 +17,7 @@ public class Environment implements EnvironmentApi {
     functionMap = new HashMap<>();
     turtleMap = new HashMap<>();
     turtleMap.put(1.0,new TurtleModel(1.0));
+    turtleMap.get(1.0).setActive(true);
     width = w;
     height = h;
   }
