@@ -11,10 +11,6 @@ public interface EnvironmentApi {
   Map<String, Executable> getFuncMap();
 
   Map<Double, TurtleModel> getTurtleMap();
-
-  @Deprecated
-  TurtleModel getTurtle();
-
   int getWidth();
 
   int getHeight();

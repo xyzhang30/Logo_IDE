@@ -39,11 +39,6 @@ public class Environment implements EnvironmentApi {
   }
 
   @Override
-  public TurtleModel getTurtle() {
-    return turtleMap.get(1.0);
-  }
-
-  @Override
   public int getWidth() {
     return width;
   }
