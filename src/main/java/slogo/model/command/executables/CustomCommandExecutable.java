@@ -10,6 +10,6 @@ public class CustomCommandExecutable implements Executable{
   }
   @Override
   public double execute(EnvironmentApi env) {
-    return 0;
+    return env.getFuncMap().get(signature).execute(env);
   }
 }
