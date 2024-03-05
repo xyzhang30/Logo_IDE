@@ -2,7 +2,7 @@ package slogo.model.command.executables;
 
 import slogo.model.environment.EnvironmentApi;
 
-public class CustomCommandExecutable extends CommandExecutable{
+public class CustomCommandExecutable implements Executable{
   private final String signature;
 
   public CustomCommandExecutable(String sig){
