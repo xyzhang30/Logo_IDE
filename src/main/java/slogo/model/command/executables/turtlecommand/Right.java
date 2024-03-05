@@ -11,7 +11,7 @@ import slogo.model.turtle.TurtleModel;
 
 public class Right extends TurtleExecutable {
 
-  private Executable angle;
+  private final Executable angle;
 
   public Right(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -19,11 +19,10 @@ public class Right extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
     double degrees = angle.execute(env);
-    double currRadianDirection = env.getTurtle().getRadianDirection();
-    double newRadianDirection = currRadianDirection - Math.toRadians(degrees);
-    env.getTurtle().setDirection(Math.toDegrees(newRadianDirection));
+    double newRadianDirection = turtle.getRadianDirection() - Math.toRadians(degrees);
+    turtle.setDirection(Math.toDegrees(newRadianDirection));
     return degrees;
   }
 }

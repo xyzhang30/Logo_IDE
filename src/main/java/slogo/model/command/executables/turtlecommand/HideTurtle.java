@@ -12,8 +12,8 @@ public class HideTurtle extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
-    env.getTurtle().setVisible(false);
-    return 0;
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
+    turtle.setVisible(false);
+    return 0.0;
   }
 }

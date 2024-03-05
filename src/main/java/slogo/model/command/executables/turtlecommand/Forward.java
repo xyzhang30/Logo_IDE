@@ -19,16 +19,14 @@ public class Forward extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
+  public double execute(EnvironmentApi env,TurtleModel turtle) {
     double traversalDistance = distance.execute(env);
 
-    double distX = traversalDistance * Math.cos(env.getTurtle().getRadianDirection());
-    double distY = traversalDistance * Math.sin(env.getTurtle().getRadianDirection());
+    double distX = traversalDistance * Math.cos(turtle.getRadianDirection());
+    double distY = traversalDistance * Math.sin(turtle.getRadianDirection());
 
-    env.getTurtle().setPosX(env.getTurtle().getPosX() + distX);
-    env.getTurtle().setPosY(env.getTurtle().getPosY() + distY);
-
-    System.out.println(env.getTurtle().getRadianDirection());
+    turtle.setPosX(turtle.getPosX() + distX);
+    turtle.setPosY(turtle.getPosY() + distY);
 
     return traversalDistance;
   }

@@ -53,6 +53,6 @@ public class Executioner implements ExecutionerApi {
 
   @Override
   public TurtleModelApi getTurtleModel(){
-    return environment.getTurtle();
+    return environment.getTurtleMap().get(1.0);
   }
 }

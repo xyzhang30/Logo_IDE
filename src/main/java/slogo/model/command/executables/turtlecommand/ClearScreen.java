@@ -12,14 +12,14 @@ public class ClearScreen extends TurtleExecutable{
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
-    env.getTurtle().setEraseTrace(true);
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
+    turtle.setEraseTrace(true);
 
     double distMoved = Math.sqrt(
-        Math.pow(env.getTurtle().getPosX(), 2) + Math.pow(env.getTurtle().getPosY(), 2));
+        Math.pow(turtle.getPosX(), 2) + Math.pow(turtle.getPosY(), 2));
 
-    env.getTurtle().setPosX(0);
-    env.getTurtle().setPosY(0);
+    turtle.setPosX(0);
+    turtle.setPosY(0);
 
     return distMoved;
   }

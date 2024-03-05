@@ -28,7 +28,7 @@ public class ListExecutable implements Executable {
   /**
    * Returns execution of the Executable at the current list index
    *
-   * @return 0  Nothing, this is just a wrapped list
+   * @return double  the value returned by the executable called at the current index.
    */
   @Override
   public double execute(EnvironmentApi env) {
