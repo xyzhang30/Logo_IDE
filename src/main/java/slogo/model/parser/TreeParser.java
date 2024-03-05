@@ -11,6 +11,7 @@ import slogo.model.api.InvalidParameterNumberException;
 import slogo.model.api.ParserApi;
 import slogo.model.command.CommandHistory;
 import slogo.model.command.executables.ConstantExecutable;
+import slogo.model.command.executables.CustomCommandExecutable;
 import slogo.model.command.executables.ErrorExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.ListExecutable;
@@ -62,7 +63,8 @@ public class TreeParser implements ParserApi {
         return new ConstantExecutable(Double.parseDouble(t.value()));
       case "Variable":
         return new VariableExecutable(t.value());
-      case "Command": break;
+      case "Command":
+        return new CustomCommandExecutable(t.value());
       case "ListStart":
         List<Executable> listContents = new ArrayList<>();
         tokens.remove(0);
@@ -71,8 +73,10 @@ public class TreeParser implements ParserApi {
         }
         tokens.remove(0);
         return new ListExecutable(listContents);
-      case "ListEnd": break;
-      case "Error": break;
+      case "ListEnd":
+        return new ErrorExecutable("Incorrect Syntax: Unpaired ] Detected.");
+      case "Error":
+        return new ErrorExecutable("Detected Invalid Regex: "+t.value());
       default:
         Class<?> cc = ErrorExecutable.class;
         try{
@@ -96,7 +100,6 @@ public class TreeParser implements ParserApi {
           throw new RuntimeException(e);
         }
     }
-    return new ErrorExecutable("Detected Invalid Regex: "+t.value());
   }
 
   private int getNumParams(String sig){
