@@ -9,10 +9,32 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
+import org.testfx.api.FxRobotInterface;
 import org.testfx.framework.junit5.ApplicationTest;
+import org.testfx.util.WaitForAsyncUtils;
 import slogo.model.command.Executioner;
 import slogo.model.turtle.TurtleModel;
 import util.DukeApplicationTest;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
+import org.junit.jupiter.api.Test;
+import org.testfx.api.FxRobot;
+import org.testfx.api.FxToolkit;
+import org.testfx.framework.junit5.ApplicationTest;
+import org.testfx.util.WaitForAsyncUtils;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
+import org.junit.jupiter.api.Test;
+import org.testfx.api.FxToolkit;
+import org.testfx.framework.junit5.ApplicationTest;
+
+import static org.testfx.api.FxAssert.verifyThat;
+
+
+
+import static org.testfx.api.FxAssert.verifyThat;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
@@ -35,10 +57,11 @@ public class TextPaneTest extends DukeApplicationTest {
   public void testTextInput() {
     // Assuming "TextInput" is the id of your TextArea
     TextArea t1 = lookup("#TextInput").query();
-    clickOn(t1).write("Hello, TestFX!");
+
+    t1.setText("Testing");
 
     // Verify the text using the controller (adjust the method name accordingly)
     String enteredText = controller.getText();  // Assuming getText() is the method to retrieve text
-    //assertEquals("Hello, TestFX!", enteredText);
+    assertEquals("Testing", enteredText);
   }
 }
