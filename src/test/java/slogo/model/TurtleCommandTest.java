@@ -33,7 +33,7 @@ public class TurtleCommandTest {
   @BeforeEach
   void setUp() {
     env = new Environment(100,100);
-    turt = env.getTurtle();
+    turt = env.getTurtleMap().get(1.0);
     params = new ArrayList<>();
   }
 

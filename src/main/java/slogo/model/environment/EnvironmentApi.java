@@ -10,7 +10,8 @@ public interface EnvironmentApi {
 
   Map<String, Executable> getFuncMap();
 
-  TurtleModel getTurtle();
+  Map<Double, TurtleModel> getTurtleMap();
   int getWidth();
+
   int getHeight();
 }

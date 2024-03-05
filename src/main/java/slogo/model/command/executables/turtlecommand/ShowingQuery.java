@@ -3,6 +3,7 @@ package slogo.model.command.executables.turtlecommand;
 import java.util.List;
 import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
+import slogo.model.turtle.TurtleModel;
 
 public class ShowingQuery extends TurtleExecutable{
 
@@ -11,8 +12,8 @@ public class ShowingQuery extends TurtleExecutable{
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
-    if (env.getTurtle().isVisible()){
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
+    if (turtle.isVisible()){
       return 1;
     }
     return 0;

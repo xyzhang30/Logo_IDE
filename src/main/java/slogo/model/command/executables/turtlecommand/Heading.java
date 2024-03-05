@@ -10,9 +10,8 @@ public class Heading extends TurtleExecutable{
   public Heading(List<Executable> parameterExecutables) {
     super(parameterExecutables);
   }
-
   @Override
-  public double execute(EnvironmentApi env) {
-    return env.getTurtle().getDegreesDirection();
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
+    return turtle.getDegreesDirection();
   }
 }

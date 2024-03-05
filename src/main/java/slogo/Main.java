@@ -10,7 +10,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import slogo.model.command.Executioner;
 import slogo.view.Controller;
-import slogo.model.turtle.TurtleModel;
 
 import java.io.File;
 import java.io.IOException;

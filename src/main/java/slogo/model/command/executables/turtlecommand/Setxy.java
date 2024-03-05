@@ -7,8 +7,8 @@ import slogo.model.turtle.TurtleModel;
 
 public class Setxy extends TurtleExecutable {
 
-  private Executable destinationX;
-  private Executable destinationY;
+  private final Executable destinationX;
+  private final Executable destinationY;
 
   public Setxy(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -17,15 +17,14 @@ public class Setxy extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
     double newPosX = destinationX.execute(env);
     double newPoxY = destinationY.execute(env);
     double distMoved = Math.sqrt(
-        Math.pow(env.getTurtle().getPosX() - newPosX, 2) + Math.pow(env.getTurtle().getPosY() - newPoxY,
-            2));
+        Math.pow(turtle.getPosX() - newPosX, 2) + Math.pow(turtle.getPosY() - newPoxY, 2));
 
-    env.getTurtle().setPosX(newPosX);
-    env.getTurtle().setPosY(newPoxY);
+    turtle.setPosX(newPosX);
+    turtle.setPosY(newPoxY);
 
     return distMoved;
   }

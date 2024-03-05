@@ -31,6 +31,6 @@ public class StructureCommandTest {
     params.add(myList);
     Repeat repeat = new Repeat(params);
     repeat.execute(env);
-    assertEquals(50*5,env.getTurtle().getPosX());
+    assertEquals(50*5,env.getTurtleMap().get(1.0).getPosX());
   }
 }

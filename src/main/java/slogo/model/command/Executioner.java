@@ -1,22 +1,26 @@
 package slogo.model.command;
 
+import java.util.List;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.executables.RootExecutable;
 import slogo.model.environment.Environment;
-import slogo.model.environment.EnvironmentApi;
 import slogo.model.parser.TreeParser;
+import slogo.model.token.Token;
+import slogo.model.token.Tokenizer;
 
 public class Executioner implements ExecutionerApi {
 
   private RootExecutable root;
-  private TreeParser treeParser;
-  private final EnvironmentApi environment;
+  private final Tokenizer tokenizer;
+  private final TreeParser treeParser;
+  private final Environment environment;
 
 
   public Executioner() {
     environment = new Environment(400,600);
+    tokenizer = new Tokenizer("English");
     treeParser = new TreeParser();
     root = null;
   }
@@ -33,7 +37,8 @@ public class Executioner implements ExecutionerApi {
 
   @Override
   public void parseTree(InputRecord commandInput) {
-    root = (RootExecutable)treeParser.parseTree(commandInput);
+    List<Token> tokens = tokenizer.tokenize(commandInput.input());
+    root = (RootExecutable)treeParser.parseTree(tokens);
   }
 
   @Override
@@ -53,6 +58,6 @@ public class Executioner implements ExecutionerApi {
 
   @Override
   public TurtleModelApi getTurtleModel(){
-    return environment.getTurtle();
+    return environment.getTurtleMap().get(1.0);
   }
 }

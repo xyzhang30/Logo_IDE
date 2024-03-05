@@ -15,10 +15,10 @@ public class SetHeading extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
     double degrees = angle.execute(env);
-    double originalDirection = env.getTurtle().getDegreesDirection();
-    env.getTurtle().setDirection(degrees); //set the new direction to degrees
-    return Math.abs(originalDirection - env.getTurtle().getDegreesDirection());
+    double originalDirection = turtle.getDegreesDirection();
+    turtle.setDirection(degrees); //set the new direction to degrees
+    return Math.abs(originalDirection - turtle.getDegreesDirection());
   }
 }

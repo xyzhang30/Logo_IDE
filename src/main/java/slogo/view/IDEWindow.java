@@ -62,7 +62,6 @@ public class IDEWindow {
     // add our user interface components to Frame and show it
     this.model = model;
     stage.setScene(makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height, model));
-    stage.setAlwaysOnTop(true);
     stage.show();
 
 
