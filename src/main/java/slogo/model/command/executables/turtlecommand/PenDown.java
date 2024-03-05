@@ -3,6 +3,7 @@ package slogo.model.command.executables.turtlecommand;
 import java.util.List;
 import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
+import slogo.model.turtle.TurtleModel;
 
 public class PenDown extends TurtleExecutable {
 
@@ -12,8 +13,8 @@ public class PenDown extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
-    env.getTurtle().setPenDown(true);
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
+    turtle.setPenDown(true);
     return 1;
   }
 }

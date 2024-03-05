@@ -13,12 +13,12 @@ public class Home extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env) {
+  public double execute(EnvironmentApi env, TurtleModel turtle) {
     double distMoved = Math.sqrt(
-        Math.pow(env.getTurtle().getPosX(), 2) + Math.pow(env.getTurtle().getPosY(), 2));
+        Math.pow(turtle.getPosX(), 2) + Math.pow(turtle.getPosY(), 2));
 
-    env.getTurtle().setPosX(0);
-    env.getTurtle().setPosY(0);
+    turtle.setPosX(0);
+    turtle.setPosY(0);
 
     return distMoved;
   }
