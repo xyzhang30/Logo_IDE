@@ -16,9 +16,9 @@ public class DoTimes extends CommandExecutable {
 
   public DoTimes(List<Executable> parameterExecutables) {
     super(parameterExecutables);
-    var = (VariableExecutable) parameterExecutables.get(0);
-    limit = (ConstantExecutable) parameterExecutables.get(1);
-    listContent = (ListExecutable) parameterExecutables.get(2);
+    var = (VariableExecutable) ((ListExecutable) parameterExecutables.get(0)).getList().get(0);
+    limit = (ConstantExecutable) ((ListExecutable) parameterExecutables.get(0)).getList().get(1);
+    listContent = (ListExecutable) parameterExecutables.get(1);
   }
 
   @Override
