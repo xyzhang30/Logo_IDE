@@ -1,11 +1,13 @@
 package slogo.model.command.executables.structures;
 
+import java.util.ArrayList;
 import java.util.List;
 import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.ListExecutable;
 import slogo.model.command.executables.VariableExecutable;
+import slogo.model.command.executables.userdefined.Make;
 import slogo.model.environment.EnvironmentApi;
 
 public class ForCommand extends CommandExecutable {
@@ -30,15 +32,23 @@ public class ForCommand extends CommandExecutable {
   @Override
   public double execute(EnvironmentApi env) {
     double ret = 0;
-    double count = start.execute(env);
-    env.getVarMap().replace(var.getSignature(), count);
+
+    if (env.getVarMap().get(var.getSignature()) == null) { //when the variable does not exist
+      ConstantExecutable constant = new ConstantExecutable(0);
+      List<Executable> tempList = new ArrayList<>();
+      tempList.add(var);
+      tempList.add(constant);
+      Make make = new Make(tempList);
+      make.execute(env);
+    }
+
+    env.getVarMap().replace(var.getSignature(), start.execute(env));
 
     for (double i = start.execute(env); i < end.execute(env); i += increment.execute(env)) {
+      env.getVarMap().replace(var.getSignature(), i);
       for (Executable e : listContent.getList()) {
         ret = e.execute(env);
       }
-      count ++;
-      env.getVarMap().replace(var.getSignature(), count);
     }
     return ret;
   }
