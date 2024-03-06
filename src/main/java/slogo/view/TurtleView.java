@@ -70,7 +70,9 @@ public class TurtleView implements TurtleV {
 
   @Override
   public void updateImage(File selectedFile) {
-    pane.getChildren().remove(0);
+    if (!pane.getChildren().isEmpty()) {
+      pane.getChildren().remove(0);
+    }
     turtleImage = new ImageView(new Image(selectedFile.toURI().toString()));
     initialize();
   }
