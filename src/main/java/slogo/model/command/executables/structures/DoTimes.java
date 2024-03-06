@@ -23,14 +23,17 @@ public class DoTimes extends CommandExecutable {
 
   @Override
   public double execute(EnvironmentApi env) {
-    double val = 0; //default return
+    double count = 1;
+    double ret = 0; //default return
+    env.getVarMap().replace(var.getSignature(), count);
+
     for (int i = 0; i < limit.execute(env); i++) {
       for (Executable e : listContent.getList()) {
-        val = e.execute(env);
+        ret = e.execute(env);
       }
-      val ++;
-      env.getVarMap().replace(var.getSignature(), val);
+      count ++;
+      env.getVarMap().replace(var.getSignature(), count);
     }
-    return val;
+    return ret;
   }
 }
