@@ -58,4 +58,10 @@ public class XmlParserTest {
     });
   }
 
+  @Test
+  void TestEmptyParamTagForList() throws FileNotFoundException {
+    commandXmlParser.readXml("Repeat");
+    assertEquals("",commandXmlParser.getParameters().get("list_begin"));
+  }
+
 }
