@@ -17,7 +17,8 @@ public class Setxy extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env, TurtleModel turtle) {
+  public double executeSingle(EnvironmentApi env) {
+    TurtleModel turtle = env.getTurtleMap().get(getCurrentTurtleId());
     double newPosX = destinationX.execute(env);
     double newPoxY = destinationY.execute(env);
     double distMoved = Math.sqrt(

@@ -13,7 +13,8 @@ public class Home extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env, TurtleModel turtle) {
+  public double executeSingle(EnvironmentApi env) {
+    TurtleModel turtle = env.getTurtleMap().get(getCurrentTurtleId());
     double distMoved = Math.sqrt(
         Math.pow(turtle.getPosX(), 2) + Math.pow(turtle.getPosY(), 2));
 

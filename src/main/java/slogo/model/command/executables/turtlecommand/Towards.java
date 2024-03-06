@@ -17,7 +17,8 @@ public class Towards extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env, TurtleModel turtle) {
+  public double executeSingle(EnvironmentApi env) {
+    TurtleModel turtle = env.getTurtleMap().get(getCurrentTurtleId());
     double facingPosX = targetX.execute(env);
     double facingPosY = targetY.execute(env);
 

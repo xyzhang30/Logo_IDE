@@ -19,7 +19,8 @@ public class Left extends TurtleExecutable {
   }
 
   @Override
-  public double execute(EnvironmentApi env, TurtleModel turtle) {
+  public double executeSingle(EnvironmentApi env) {
+    TurtleModel turtle = env.getTurtleMap().get(getCurrentTurtleId());
     double degrees = angle.execute(env);
     double newRadianDirection = turtle.getRadianDirection() + Math.toRadians(degrees);
     turtle.setDirection(Math.toDegrees(newRadianDirection));
