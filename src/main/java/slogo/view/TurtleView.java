@@ -25,6 +25,7 @@ public class TurtleView implements TurtleV {
   public TurtleView(int width, int height, double startX, double startY, double startDirection) {
     this.width = width;
     this.height = height;
+    imageHere = true;
     this.startDirection = startDirection;
     pane = new Pane();
     pane.setId("TurtleImagePane");
@@ -34,7 +35,7 @@ public class TurtleView implements TurtleV {
     pane.setPrefWidth(width);
     pane.setPrefHeight(height);
     initialize();
-    imageHere = true;
+
   }
 
   public ImageView getTurtleImage() {
@@ -83,7 +84,9 @@ public class TurtleView implements TurtleV {
     turtleImage.setX(-((TURTLE_SIZE)/2));
     turtleImage.setY(-((TURTLE_SIZE)/2));
     turtleImage.setRotate(startDirection);
-    pane.getChildren().add(turtleImage);
+    if (imageHere) {
+      pane.getChildren().add(turtleImage);
+    }
   }
 
   private void isVisible(boolean visible) {
