@@ -6,7 +6,9 @@
   <example>repeat 5 [fd 50]</example>
   <parameters>
     <expr>double, times to repeat the commands in the list</expr>
+    <list_begin/>
     <commands>List, the commands to repeat expr times</commands>
+    <list_end/>
   </parameters>
   <return_value>Double, the value of the final command executed (0 if no commands are executed)</return_value>
   <number_of_expected_parameters>2</number_of_expected_parameters>

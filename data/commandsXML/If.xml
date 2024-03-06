@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>if</canonical_name>
+  <category>Structure Command</category>
+  <description>If expr is not 0, runs the command(s) given in the list</description>
+  <example>IF 1 [fd 50 left 90]</example>
+  <parameters>
+    <expr>constant, used to determine if the list gets executed or not</expr>
+    <list_begin/>
+    <commands>List, the commands to repeat</commands>
+    <list_end/>
+  </parameters>
+  <return_value>Double, the value of the final command executed (or 0 if no commands are executed)</return_value>
+  <number_of_expected_parameters>2</number_of_expected_parameters>
+  <implementing_class>structures.IfCommand</implementing_class>
+</command>

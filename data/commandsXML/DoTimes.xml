@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>dotimes</canonical_name>
+  <category>Structure Command</category>
+  <description>Runs command(s) for each value specified in the range, i.e., from (1 - limit) inclusive. Variable is assigned to each succeeding value so that it can be accessed by the command(s)</description>
+  <example>DOTIMES [:repeat 10] [fd 50 left 90]</example>
+  <parameters>
+    <list_begin/>
+    <variable>name of the variable</variable>
+    <limit>the upper bound of the variable (the commands repeat limit times)</limit>
+    <list_end/>
+    <list_begin/>
+    <commands>List, the commands to repeat limit times</commands>
+    <list_end/>
+  </parameters>
+  <return_value>Double, the value of the final command executed (or 0 if no commands are executed)</return_value>
+  <number_of_expected_parameters>2</number_of_expected_parameters>
+  <implementing_class>structures.DoTimes</implementing_class>
+</command>

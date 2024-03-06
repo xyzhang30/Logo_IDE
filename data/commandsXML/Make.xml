@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>make</canonical_name>
+  <category>Custom Command</category>
+  <description>Assigns the value of expr to variable, creating the variable if necessary</description>
+  <example>SET :test 1</example>
+  <parameters>
+    <variable>name of the variable</variable>
+    <expr>constant assigned to the variable</expr>
+  </parameters>
+  <return_value>Double, value of expr</return_value>
+  <number_of_expected_parameters>2</number_of_expected_parameters>
+  <implementing_class>userdefined.Make</implementing_class>
+</command>
