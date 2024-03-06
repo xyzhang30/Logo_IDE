@@ -7,7 +7,7 @@
   <parameters>
     <expr>constant, used to determine if the list gets executed or not</expr>
     <list_begin/>
-    <commands>List, the commands to repeat</commands>
+    <commands>List, the commands to execute if expr is true</commands>
     <list_end/>
   </parameters>
   <return_value>Double, the value of the final command executed (or 0 if no commands are executed)</return_value>

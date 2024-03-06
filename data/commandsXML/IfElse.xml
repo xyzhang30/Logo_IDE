@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>ifelse</canonical_name>
+  <category>Structure Command</category>
+  <description>If expr is not 0, runs the trueCommand(s) given in the first list, otherwise runs the falseCommand(s) given in the second list</description>
+  <example>IFELSE 1 [fd 50 left 90] [down 90]</example>
+  <parameters>
+    <expr>constant, used to determine if the list gets executed or not</expr>
+    <list_begin/>
+    <trueCommand>List, the commands to execute if expr is true</trueCommand>
+    <list_end/>
+    <list_begin/>
+    <falseCommand>List, the commands to execute if expr is false</falseCommand>
+    <list_end/>
+  </parameters>
+  <return_value>Double, the value of the final command executed (or 0 if no commands are executed)</return_value>
+  <number_of_expected_parameters>3</number_of_expected_parameters>
+  <implementing_class>structures.IfElse</implementing_class>
+</command>
