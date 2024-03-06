@@ -10,11 +10,11 @@ import slogo.model.environment.EnvironmentApi;
 
 public class ForCommand extends CommandExecutable {
 
-  VariableExecutable var;
-  ConstantExecutable start;
-  ConstantExecutable end;
-  ConstantExecutable increment;
-  ListExecutable listContent;
+  private final VariableExecutable var;
+  private final ConstantExecutable start;
+  private final ConstantExecutable end;
+  private final ConstantExecutable increment;
+  private final ListExecutable listContent;
 
   public ForCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
