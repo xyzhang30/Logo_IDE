@@ -47,13 +47,27 @@ public class RunningTest extends DukeApplicationTest {
   }
 
   @Test
+  public void testMultipleCommandRunSimple() {
+    TextArea t1 = lookup("#TextInput").query();
+
+    t1.setText("fd 50 fd 25");
+
+    Button button = lookup("#Run").query();
+    clickOn(button);
+    sleep(6000);
+
+    assertEquals(75, controller.getModel().getAttributes().xpos());
+  }
+
+  @Test
   public void testPauseDisabledOnStart() {
     Button button = lookup("#Pause").query();
     clickOn(button);
     assertEquals(State.STOPPED, controller.getState());
   }
 
-  @Test public void testPauseWhenRunning() {
+  @Test
+  public void testPauseWhenRunning() {
     TextArea t1 = lookup("#TextInput").query();
     t1.setText("fd 50");
 
@@ -65,4 +79,35 @@ public class RunningTest extends DukeApplicationTest {
     clickOn(button1);
     assertEquals(State.PAUSED, controller.getState());
   }
+
+  @Test
+  public void testResume() {
+    TextArea t1 = lookup("#TextInput").query();
+    t1.setText("fd 50");
+
+    Button button = lookup("#Run").query();
+    clickOn(button);
+    sleep(500);
+
+    Button button1 = lookup("#Pause").query();
+    clickOn(button1);
+    sleep(500);
+    clickOn(button1);
+    assertEquals(State.RUNNING, controller.getState());
+  }
+
+  @Test
+  public void testSimpleStep() {
+    TextArea t1 = lookup("#TextInput").query();
+    t1.setText("fd 50 fd 25");
+    Button button = lookup("#Step").query();
+    clickOn(button);
+    sleep(3000);
+    assertEquals(50, controller.getModel().getAttributes().xpos());
+    sleep(3000);
+    clickOn(button);
+    sleep(3000);
+    assertEquals(75, controller.getModel().getAttributes().xpos());
+  }
+
 }
