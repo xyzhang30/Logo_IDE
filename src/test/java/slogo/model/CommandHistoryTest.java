@@ -31,7 +31,7 @@ public class CommandHistoryTest {
     commandHistory.saveCurrent();
     commandHistory.saveCurrent();
     String fileName = "testingSave";
-    String folderPath = "C:/Users/alish/cs308/slogo_team04/data/examples";
+    String folderPath = "data/examples";
     commandHistory.saveFile(fileName, folderPath);
 
     File file = new File(folderPath + "/" + fileName);
