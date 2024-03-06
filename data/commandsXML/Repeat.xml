@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>repeat</canonical_name>
+  <category>Structure Command</category>
+  <description>Runs command(s) given in the list the value of expr number of times (the value of the current iteration, starting at 1, is automatically assigned to the variable :repcount so that it can be accessed by the command(s))</description>
+  <example>repeat 5 [fd 50]</example>
+  <parameters>
+    <expr>double, times to repeat the commands in the list</expr>
+    <list_begin/>
+    <commands>List, the commands to repeat expr times</commands>
+    <list_end/>
+  </parameters>
+  <return_value>Double, the value of the final command executed (0 if no commands are executed)</return_value>
+  <number_of_expected_parameters>2</number_of_expected_parameters>
+  <implementing_class>structures.Repeat</implementing_class>
+</command>

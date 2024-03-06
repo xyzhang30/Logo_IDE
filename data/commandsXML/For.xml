@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>for</canonical_name>
+  <category>Structure Command</category>
+  <description>Runs command(s) for each value specified in the range, i.e., from (start - end), going by increment. Variable is assigned to each succeeding value so that it can be accessed by the command(s)</description>
+  <example>FOR [:repeat 1 10 2] [fd 50 left 90]</example>
+  <parameters>
+    <list_begin/>
+    <variable>name of the variable</variable>
+    <start>lower bound of the variable</start>
+    <end>upper bound of the variable</end>
+    <increment>size of increment for the for loop</increment>
+    <list_end/>
+    <list_begin/>
+    <commands>List, the commands to repeat</commands>
+    <list_end/>
+  </parameters>
+  <return_value>Double, the value of the final command executed (or 0 if no commands are executed)</return_value>
+  <number_of_expected_parameters>2</number_of_expected_parameters>
+  <implementing_class>structures.ForCommand</implementing_class>
+</command>
