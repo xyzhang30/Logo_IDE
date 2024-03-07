@@ -65,6 +65,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     currentX = model.getAttributes().xpos();
     currentY = model.getAttributes().ypos();
     currentDirection = model.getAttributes().direction();
+    System.out.println("direction" + currentDirection);
   }
 
   public void setSpeed(int speed) {
@@ -81,7 +82,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     for (int i = 0; i < (defaultLineLength/speed); i++) {
       double x = startX + i * (endX - startX) / ((double) defaultLineLength /speed);
       double y = startY + i * (endY - startY) / ((double) defaultLineLength /speed);
-      double direction = startDirection + i * (endDirection - startDirection) / (
+      double direction = startDirection + i * (startDirection - endDirection) / (
           (double) defaultLineLength /speed);
 
       KeyFrame keyFrame = new KeyFrame(Duration.millis(i * 10), e -> {
