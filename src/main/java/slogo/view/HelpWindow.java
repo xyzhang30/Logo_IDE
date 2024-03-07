@@ -2,6 +2,7 @@ package slogo.view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Map;
 
 import javafx.geometry.Insets;
@@ -82,6 +83,7 @@ public class HelpWindow extends Stage {
       String description = xmlParser.getCommandDescription();
       int numParams = xmlParser.getNumParamsExpected();
       Map<String, String> parameters = xmlParser.getParameters();
+      List<String> paramOrder = xmlParser.getParamOrder();
       String example = xmlParser.getExample();
 
       // Create a VBox to hold command details
@@ -107,7 +109,10 @@ public class HelpWindow extends Stage {
 
       // Create a "Back" button to return to the main help screen
       Button backButton = new Button("Back");
-      backButton.setOnAction(event -> loadCommandOverview(helpPane));
+      backButton.setOnAction(event -> {
+        helpPane.getChildren().clear();
+        loadCommandOverview(helpPane);
+      });
 
       commandDetails.getChildren().add(backButton);
 
