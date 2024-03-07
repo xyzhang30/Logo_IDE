@@ -19,6 +19,10 @@ public class Ask extends CommandExecutable {
 
   @Override
   public double execute(EnvironmentApi env) {
+    List<Double> externalTurtleKeys = List.copyOf(env.getActiveTurtleKeys());
+    env.getActiveTurtleKeys().clear();
+
+    env.getActiveTurtleKeys();
     return 0;
   }
 }

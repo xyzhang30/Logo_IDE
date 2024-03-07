@@ -6,7 +6,6 @@ import slogo.model.api.TurtleRecord;
 public class TurtleModel implements TurtleModelApi {
 
   private final double id;
-  private boolean active;
   private double posX;
   private double posY;
   private double speed;
@@ -21,12 +20,6 @@ public class TurtleModel implements TurtleModelApi {
   public TurtleModel(double ID) {
     id = ID;
     initialize();
-  }
-  public boolean isActive(){
-    return active;
-  }
-  public void setActive(boolean activate){
-    active = activate;
   }
   public boolean isEraseTrace(){
     return eraseTrace;
@@ -99,7 +92,6 @@ public class TurtleModel implements TurtleModelApi {
   }
 
   private void initialize() {
-    this.active = false;
     this.posX = 0;
     this.posY = 0;
     this.speed = 1; //default values (might change later)

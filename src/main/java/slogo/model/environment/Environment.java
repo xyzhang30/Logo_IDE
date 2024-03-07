@@ -12,17 +12,27 @@ public class Environment implements EnvironmentApi {
   private final Map<String, Double> variableMap;
   private final Map<String, Executable> functionMap;
   private final Map<Double, TurtleModel> turtleMap;
+  private final List<Double> activeTurtleKeys;
   private final int width;
   private final int height;
 
+  /**
+   * Constructor for Environment.
+   * @param w
+   * @param h
+   */
   public Environment(int w, int h) {
     variableMap = new HashMap<>();
     functionMap = new HashMap<>();
     turtleMap = new HashMap<>();
-    turtleMap.put(1.0, new TurtleModel(1.0));
-    turtleMap.get(1.0).setActive(true);
+    activeTurtleKeys = new ArrayList<>();
+    defaultTurtle();
     width = w;
     height = h;
+  }
+  private void defaultTurtle(){
+    turtleMap.put(1.0, new TurtleModel(1.0));
+    activeTurtleKeys.add(1.0);
   }
 
   /**
@@ -32,7 +42,7 @@ public class Environment implements EnvironmentApi {
    */
   @Override
   public Map<String, Double> getVarMap() {
-    return null;
+    return variableMap;
   }
 
   /**
@@ -43,7 +53,7 @@ public class Environment implements EnvironmentApi {
    */
   @Override
   public Map<String, Executable> getFuncMap() {
-    return null;
+    return functionMap;
   }
 
   /**
@@ -53,7 +63,7 @@ public class Environment implements EnvironmentApi {
    */
   @Override
   public Map<Double, TurtleModel> getTurtleMap() {
-    return null;
+    return turtleMap;
   }
 
   /**
@@ -63,22 +73,16 @@ public class Environment implements EnvironmentApi {
    */
   @Override
   public List<Double> getActiveTurtleKeys() {
-    List<Double> activeKeys = new ArrayList<>();
-    for (double id : turtleMap.keySet()){
-      if (turtleMap.get(id).isActive()){
-        activeKeys.add(id);
-      }
-    }
-    return activeKeys;
+    return activeTurtleKeys;
   }
 
   @Override
   public int getWidth() {
-    return 0;
+    return width;
   }
 
   @Override
   public int getHeight() {
-    return 0;
+    return height;
   }
 }
