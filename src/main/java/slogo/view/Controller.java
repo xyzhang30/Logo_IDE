@@ -58,6 +58,7 @@ public class Controller  {
 
   public void run() {
     setUpRun();
+    feedHistory();
   }
 
   public void showMessage(AlertType type, String message) {
