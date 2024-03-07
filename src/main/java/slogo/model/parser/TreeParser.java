@@ -27,11 +27,11 @@ public class TreeParser implements ParserApi {
   public TreeParser(){
     xmlParser = new CommandXmlParser();
     inputStrings = new ArrayList<>();
+    history = new CommandHistory();
   }
   @Override
   public Executable parseTree(List<Token> tokens) {
     List<Executable> tree = new ArrayList<>();
-    history = new CommandHistory();
     while (!tokens.isEmpty()){
       String string = "";
       List<String> commandString = new ArrayList<>();
@@ -92,6 +92,10 @@ public class TreeParser implements ParserApi {
           throw new RuntimeException(e);
         }
     }
+  }
+
+  public CommandHistory getHistory(){
+    return history;
   }
 
   private int getNumParams(String sig){

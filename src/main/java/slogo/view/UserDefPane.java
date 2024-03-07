@@ -1,5 +1,6 @@
 package slogo.view;
 
+import java.util.HashMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
@@ -8,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import java.util.Map;
 import java.util.ResourceBundle;
+import slogo.model.command.Executioner;
 
 public class UserDefPane extends CreatePane {
 
@@ -15,12 +17,15 @@ public class UserDefPane extends CreatePane {
   private VBox displayBox;
   private ResourceBundle resourceBundle;
   private String language;
+  private Map<String, Double> variableItems;
+
 
   public UserDefPane(int height, int width, String language) {
     super(height, width, language);
     this.language = language;
     this.resourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
-    this.userVariable = userVariable;
+//    this.userVariable ;
+    variableItems = new HashMap<>();
 
     // Create a VBox to hold the content
     displayBox = new VBox();
@@ -45,46 +50,33 @@ public class UserDefPane extends CreatePane {
   }
 
   public void updateDisplay() {
+    // Clear the existing content in displayBox
     displayBox.getChildren().clear();
 
-
+    // Create ListView instances if needed
     ListView<String> variablesListView = new ListView<>();
     ListView<String> commandsListView = new ListView<>();
 
-    ObservableList<String> variablesItems = FXCollections.observableArrayList();
-    ObservableList<String> commandsItems = FXCollections.observableArrayList();
+    // Clear existing items in ListView instances
+    variablesListView.getItems().clear();
+    commandsListView.getItems().clear();
+
+    // Populate ListView instances with variable items
+    for (String variable : variableItems.keySet()) {
+      variablesListView.getItems().add(variable);
+    }
 
 
-    // Map<String, Double> userVariables = userVariable.getUserVariables();
-    // Map<String, String> userCommands = userVariable.getUserCommands();
+//    for (/* iterate over command items */) {
+//      // Add command items to commandsListView
+//    }
 
-    // Add user-defined variables to the list
-    String userDefinedVariablesTitle = resourceBundle.getString("userDefinedVariables");
-    // Uncomment the following section when have access to userVariable
-        /*
-        variablesItems.add(userDefinedVariablesTitle + ":");
-        for (String variableName : userVariables.keySet()) {
-            variablesItems.add(variableName + ": " + userVariables.get(variableName));
-        }
-        */
+    // Create labels for variables and commands
+    Label variablesLabel = new Label(resourceBundle.getString("userDefinedVariables") + ":");
+    Label commandsLabel = new Label(resourceBundle.getString("userDefinedCommands") + ":");
 
-    // Add user-defined commands to the list
-    String userDefinedCommandsTitle = resourceBundle.getString("userDefinedCommands");
-    // Uncomment the following section when have access to userVariable
-        /*
-        commandsItems.add(userDefinedCommandsTitle + ":");
-        for (String commandName : userCommands.keySet()) {
-            commandsItems.add(commandName + ": " + userCommands.get(commandName));
-        }
-        */
-
-    variablesListView.setItems(variablesItems);
-    commandsListView.setItems(commandsItems);
-
-    Label variablesLabel = new Label(userDefinedVariablesTitle + ":");
-    Label commandsLabel = new Label(userDefinedCommandsTitle + ":");
-
-
+    // Add labels and ListView instances to displayBox
     displayBox.getChildren().addAll(variablesLabel, variablesListView, commandsLabel, commandsListView);
   }
+
 }
