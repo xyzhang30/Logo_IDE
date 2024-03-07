@@ -27,12 +27,14 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   private final PenGraphics pen;
   private boolean paused;
 
+  private double id;
   private Controller controller;
 
   public TurtlePane(int height, int width, TurtleModelApi model, String language,
-      int speed, Controller controller) {
+      int speed, Controller controller, double id) {
     super(height, width, language);
     this.controller = controller;
+    this.id = id;
     paused = false;
     getRoot().setPrefHeight(height);
     getRoot().setPrefWidth(width);
@@ -142,14 +144,6 @@ public class TurtlePane extends CreatePane implements TurtleBase {
         model.getAttributes().visible());
   }
 
-  public boolean complete() {
-    if (timeline.getStatus().equals(Status.STOPPED)) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
   public boolean getPaused() {
     return paused;
   }
