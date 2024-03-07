@@ -40,7 +40,7 @@ public class Controller  {
   private CommandHistory cmdHistory;
   private CommandHistoryPane cmdHistoryPane;
   private UserDefPane userPane;
-  private String language;
+  //private String language;
 
 
   public Controller(Stage stage, Executioner executioner, String language) {
