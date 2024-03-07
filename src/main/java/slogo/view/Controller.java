@@ -10,7 +10,6 @@ import slogo.model.api.InputRecord;
 import slogo.model.api.ModelFactory;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.CommandHistory;
-import slogo.model.command.Executioner;
 
 
 public class Controller  {

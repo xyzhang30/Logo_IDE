@@ -1,10 +1,7 @@
 package slogo.model.api;
 
-import java.util.Map;
 import slogo.model.command.CommandHistory;
-import slogo.model.command.executables.Executable;
-import slogo.model.environment.Environment;
-import slogo.model.xmlparser.CommandXmlParser;
+import slogo.xmlparser.CommandXmlParser;
 
 /**
  * External API for the Executioner. Manages the execution of commands.

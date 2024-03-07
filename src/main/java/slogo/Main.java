@@ -9,7 +9,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import slogo.model.api.ModelFactory;
-import slogo.model.command.Executioner;
 import slogo.view.Controller;
 
 import java.io.File;

@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import slogo.model.xmlparser.CommandXmlParser;
+import slogo.xmlparser.CommandXmlParser;
 
 public class HelpWindow extends Stage {
 

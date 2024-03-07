@@ -1,17 +1,15 @@
 package slogo.model.command;
 
 import java.util.List;
-import java.util.Map;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
 import slogo.model.api.TurtleModelApi;
-import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.RootExecutable;
 import slogo.model.environment.Environment;
 import slogo.model.parser.TreeParser;
 import slogo.model.token.Token;
 import slogo.model.token.Tokenizer;
-import slogo.model.xmlparser.CommandXmlParser;
+import slogo.xmlparser.CommandXmlParser;
 
 public class Executioner implements ExecutionerApi {
 

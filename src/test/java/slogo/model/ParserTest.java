@@ -36,4 +36,14 @@ public class ParserTest {
     assertEquals(90, executioner.getTurtleModel().getAttributes().direction());
   }
 
+  @Test
+  void testSimpleRepeatParse(){
+    String test = "repeat 5 [ fd 50 ]";
+    InputRecord inputRecord = new InputRecord(test);
+    Executioner executioner = new Executioner();
+    executioner.parseTree(inputRecord);
+    executioner.runNext();
+    assertEquals(50, executioner.getTurtleModel().getAttributes().xpos());
+  }
+
 }
