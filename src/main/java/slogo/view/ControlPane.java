@@ -51,6 +51,13 @@ public class ControlPane extends CreatePane implements Control {
     makeButton("Help", event -> controller.help());
     makeButton("Speed_Up", event -> controller.speedUp());
     makeButton("Slow_Down", event -> controller.slowDown());
+    makeButton("New_Application", event -> {
+      try {
+        controller.newInstance();
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
+    });
     makeColorPicker("SelectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
     makeColorPicker("SelectBackgroundColor", event -> controller.changeBackgroundColor(((ColorPicker) event.getSource()).getValue()));
     makeDropdown("DropdownSelector", event -> {

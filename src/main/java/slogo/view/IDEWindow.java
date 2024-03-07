@@ -35,7 +35,7 @@ public class IDEWindow {
 
   private static final String TITLE = "TURTLE";
 
-  public static final Dimension DEFAULT_SIZE = new Dimension(1200, 800);
+  public static final Dimension DEFAULT_SIZE = new Dimension(1500, 1000);
 
   private TextInputPane t1 = new TextInputPane(100,100, "english");
 
