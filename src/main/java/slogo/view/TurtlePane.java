@@ -31,17 +31,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
   private Controller controller;
 
-  /**
-   * Constructs a TurtlePane with the specified dimensions, TurtleModelApi, language setting,
-   * speed, controller, and unique ID.
-   *
-   * @param height     the height of the TurtlePane.
-   * @param width      the width of the TurtlePane.
-   * @param model      the TurtleModelApi associated with the TurtlePane.
-   * @param language   the language setting for the TurtlePane.
-   * @param speed      the speed of turtle animations.
-   * @param controller the Controller instance managing the application.
-   */
+
   public TurtlePane(TurtlePaneRecord recordTurtle) {
     super(recordTurtle.height(), recordTurtle.width(), recordTurtle.language());
     controller = recordTurtle.controller();

@@ -4,12 +4,14 @@ import java.util.List;
 import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
+import slogo.model.turtle.TurtleModel;
 
 /**
  * Abstract parent class for all Executables that use Turtle.
  */
 public abstract class TurtleExecutable extends CommandExecutable {
   private double currentTurtleKey;
+  private TurtleModel currentTurtle;
 
   /**
    * Default constructor for Turtle Executable.
@@ -40,6 +42,7 @@ public abstract class TurtleExecutable extends CommandExecutable {
     double output = 0;
     for (double key : env.getActiveTurtleKeys()){
       currentTurtleKey = key;
+      currentTurtle = env.getTurtleMap().get(key);
       output = executeSingle(env);
     }
     return output;
@@ -53,4 +56,18 @@ public abstract class TurtleExecutable extends CommandExecutable {
    * @return double  The execution return value of the command on the specific turtle.
    */
   public abstract double executeSingle(EnvironmentApi env);
+
+  /**
+   * Helper function to move a Turtle in space.
+   * @param distance The distance to move the Turtle in the direction it's facing.
+   */
+  public void move(double distance){
+    double distX = distance * Math.cos(currentTurtle.getRadianDirection());
+    double distY = distance * Math.sin(currentTurtle.getRadianDirection());
+    currentTurtle.setPosX(currentTurtle.getPosX() + distX);
+    currentTurtle.setPosY(currentTurtle.getPosY() + distY);
+  }
+  public void rotate(double degrees){
+
+  }
 }

@@ -1,5 +1,6 @@
 package slogo.model.command;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import slogo.model.api.ExecutionerApi;
@@ -48,7 +49,6 @@ public class Executioner implements ExecutionerApi {
   public void runNext() {
     try{
       root.execute(environment);
-
     } catch (Exception e){
       throw new RuntimeException();
     }
@@ -62,6 +62,17 @@ public class Executioner implements ExecutionerApi {
   @Override
   public TurtleModelApi getTurtleModel(){
     return environment.getTurtleMap().get(1.0);
+  }
+
+  @Override
+  public Map<Double, TurtleModelApi> getTurtleModels() {
+    environment.syncTurtleActivation(); //This is TERRIBLE practice!
+    return Collections.unmodifiableMap(environment.getTurtleMap());
+  }
+
+  @Override
+  public List<Double> getActiveTurtles() {
+    return environment.getActiveTurtleKeys();
   }
 
   @Override
