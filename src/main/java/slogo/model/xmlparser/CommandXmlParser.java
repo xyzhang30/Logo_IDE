@@ -3,7 +3,9 @@ package slogo.model.xmlparser;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,7 +20,8 @@ public class CommandXmlParser {
 
   private String commandName;
   private String commandDescription;
-  private final Map<String, String> parameters;
+  private final Map<String, String> parameterDescription;
+  private List<String> paramOrder;
   private int numParamsExpected;
   private String returnValueType; //do we even need this since everything returns a double?
   private String implementationName;
@@ -26,7 +29,8 @@ public class CommandXmlParser {
   private String commandExample;
 
   public CommandXmlParser() {
-    this.parameters = new HashMap<>();
+    this.parameterDescription = new HashMap<>();
+    this.paramOrder = new ArrayList<>();
   }
 
   public void readXml(String commandName) throws FileNotFoundException {
@@ -72,9 +76,15 @@ public class CommandXmlParser {
       Node parameterNode = parametersNodeList.item(i);
       String name = parameterNode.getNodeName();
 
-      String paramDescription = parameterNode.getTextContent();
-      this.parameters.put(name, paramDescription);
+      this.paramOrder.add(name);
+      if (!name.equals("list_begin") && !name.equals("list_end")){
+        this.parameterDescription.put(name, parameterNode.getTextContent());
+      }
     }
+  }
+
+  public List<String> getParamOrder(){
+    return paramOrder;
   }
 
   private void parseSingleFields(Element element) {
@@ -126,7 +136,7 @@ public class CommandXmlParser {
   }
 
   public Map<String, String> getParameters() {
-    return parameters;
+    return parameterDescription;
   }
 
   public int getNumParamsExpected() {
