@@ -41,6 +41,9 @@ public class Controller  {
   private CommandHistoryPane cmdHistoryPane;
   private UserDefPane userPane;
 
+  //private String language;
+
+
 
   public Controller(Stage stage, Executioner executioner, String language) {
     stepping = false;
