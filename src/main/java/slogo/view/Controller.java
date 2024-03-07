@@ -9,6 +9,7 @@ import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
 import slogo.model.api.ParserApi;
 import slogo.model.api.TurtleModelApi;
+import slogo.model.command.CommandHistory;
 import slogo.model.command.Executioner;
 import slogo.model.command.executables.Executable;
 import slogo.model.parser.TreeParser;
@@ -34,6 +35,8 @@ public class Controller  {
   private State state;
 
   private boolean stepping;
+  private CommandHistory cmdHistory;
+  private CommandHistoryPane cmdHistoryPane;
 
 
   public Controller(Stage stage, Executioner executioner, String language) {
@@ -102,7 +105,8 @@ public class Controller  {
     helpWindow.show(); // Display the help window
   }
   public void feedHistory() {
-
+    cmdHistory = new CommandHistory();
+    cmdHistoryPane.addCommand(cmdHistory.getCommands());
   }
   public void feedVariables() {
 

@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import java.util.ResourceBundle;
+import javafx.scene.text.Text;
 
 public class CommandHistoryPane extends CreatePane {
 
@@ -14,16 +15,18 @@ public class CommandHistoryPane extends CreatePane {
   private ListView<String> listView;
   private ObservableList<String> commands;
   private ResourceBundle resourceBundle;
+  private Text commandText;
 
   public CommandHistoryPane(int height, int width, String language) {
     super(height, width, language);
     resourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
 
     commands = FXCollections.observableArrayList();
-    listView = new ListView<>(commands);
+    //listView = new ListView<>(commands);
+    commandText = new Text();
 
     scrollPane = new ScrollPane();
-    scrollPane.setContent(listView);
+    //scrollPane.setContent(listView);
     scrollPane.setFitToWidth(true); // Adjusts width to fit content
     scrollPane.setFitToHeight(true); // Adjusts height to fit content
 
@@ -36,7 +39,8 @@ public class CommandHistoryPane extends CreatePane {
   }
 
   public void addCommand(String command) {
-    commands.add(command);
+    commandText.setText(command);
+    scrollPane.setContent(commandText);
   }
 
   public void clearHistory() {
