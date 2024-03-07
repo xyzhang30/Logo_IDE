@@ -24,6 +24,7 @@ public class Ask extends CommandExecutable {
     turtleKeys.getList().forEach(exec -> {
       env.getActiveTurtleKeys().add(exec.execute(env));
     });
+    env.syncTurtleActivation();
 
     double output = 0;
     for (Executable e : commands.getList()) {
@@ -32,6 +33,7 @@ public class Ask extends CommandExecutable {
 
     env.getActiveTurtleKeys().clear();
     env.getActiveTurtleKeys().addAll(oldKeys);
+    env.syncTurtleActivation();
     return output;
   }
 }
