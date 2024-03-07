@@ -60,11 +60,11 @@ public class TreeParser implements ParserApi {
         return new CustomCommandExecutable(t.value());
       case "ListStart":
         List<Executable> listContents = new ArrayList<>();
-        tokens.remove(0);
         while (!tokens.get(0).type().equals("ListEnd")){
           listContents.add(craftBranch(tokens,commandString));
         }
         tokens.remove(0);
+        commandString.set(0, commandString.get(0) + "] ");
         return new ListExecutable(listContents);
       case "ListEnd":
         return new ErrorExecutable("Incorrect Syntax: Unpaired ] Detected.");

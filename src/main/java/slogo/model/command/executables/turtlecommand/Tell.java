@@ -17,6 +17,7 @@ public class Tell extends CommandExecutable {
   public double execute(EnvironmentApi env) {
     env.getActiveTurtleKeys().clear();
     ids.forEach(exec -> {env.getActiveTurtleKeys().add(exec.execute(env));});
+    env.syncTurtleActivation();
     return 0;
   }
 }
