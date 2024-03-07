@@ -8,13 +8,13 @@ public interface Graphics {
    */
 
   /**
-   * Method to be overidden to clear all lines on canvas
+   * Method to be overridden to clear all lines on canvas
    */
   void clearCanvas();
 
   /**
    *
-   * @return the graphcis context being used
+   * @return the graphics context being used
    */
   GraphicsContext getGraphicsContext();
 
