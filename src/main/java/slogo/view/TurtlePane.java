@@ -65,10 +65,13 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     for (Map.Entry<Double, TurtleModelApi> entry : model.entrySet()) {
       Double key = entry.getKey();
       TurtleModelApi value = entry.getValue();
-      TurtleV turtle = new TurtleView(getWidth(), getHeight(),
-          value.getAttributes().xpos(), value.getAttributes().ypos(), value.getAttributes().direction());
-      turtles.put(key, turtle);
-      getRoot().getChildren().add(turtle.getRoot());
+      if (!turtles.containsKey(key)) {
+        TurtleV turtle = new TurtleView(getWidth(), getHeight(),
+            value.getAttributes().xpos(), value.getAttributes().ypos(),
+            value.getAttributes().direction());
+        turtles.put(key, turtle);
+        getRoot().getChildren().add(turtle.getRoot());
+      }
     }
   }
 
@@ -85,6 +88,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
    * Updates the TurtlePane based on the current state of the associated TurtleModelApi.
    */
   public void update() {
+    createTurtleViews();
     Timeline timeline = createTimeline();
     timeline.play();
   }
