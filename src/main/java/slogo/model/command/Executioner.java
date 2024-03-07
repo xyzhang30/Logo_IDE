@@ -1,9 +1,11 @@
 package slogo.model.command;
 
 import java.util.List;
+import java.util.Map;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
 import slogo.model.api.TurtleModelApi;
+import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.RootExecutable;
 import slogo.model.environment.Environment;
 import slogo.model.parser.TreeParser;
@@ -16,6 +18,7 @@ public class Executioner implements ExecutionerApi {
   private final Tokenizer tokenizer;
   private final TreeParser treeParser;
   private final Environment environment;
+  private CommandHistory commandHistory;
 
 
   public Executioner() {
@@ -60,4 +63,19 @@ public class Executioner implements ExecutionerApi {
   public TurtleModelApi getTurtleModel(){
     return environment.getTurtleMap().get(1.0);
   }
+
+  @Override
+  public CommandHistory getHistory() {
+    return treeParser.getHistory();
+  }
+
+//  @Override
+//  public Map<String, Double> getVariableMap() {
+//    return environment.getVarMap();
+//  }
+//
+//  @Override
+//  public Map<String, Executable> getFunctionMap() {
+//    return environment.getFuncMap();
+//  }
 }

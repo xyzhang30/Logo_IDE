@@ -3,6 +3,7 @@ package slogo.view;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -48,6 +49,7 @@ public class IDEWindow {
   private int speed;
 
   private static final int STARTSPEED = 2;
+  private Map<String, Double> variableItems;
 
 
   public IDEWindow (Stage stage, Controller controller, String language) {
@@ -55,6 +57,7 @@ public class IDEWindow {
     this.controller = controller;
     this.language = language;
     speed = STARTSPEED;
+    this.variableItems = variableItems;
   }
 
   public void start(TurtleModelApi model) throws Exception {
@@ -119,6 +122,9 @@ public class IDEWindow {
     tp1.update();
   }
 
+  public CommandHistoryPane getHistoryPane(){
+    return historyPane;
+  }
   public Stage getStage() {
     return stage;
   }

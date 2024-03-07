@@ -37,6 +37,8 @@ public class Controller  {
   private boolean stepping;
   private CommandHistory cmdHistory;
   private CommandHistoryPane cmdHistoryPane;
+  private UserDefPane userPane;
+  private String language;
 
 
   public Controller(Stage stage, Executioner executioner, String language) {
@@ -45,7 +47,8 @@ public class Controller  {
     state = State.STOPPED;
     this.model = this.executioner.getTurtleModel();
     i1 = new IDEWindow(stage, this, language);
-
+    this.language = language;
+    cmdHistory = new CommandHistory();
   }
 
   public void update(double elapsedTime) {
@@ -58,7 +61,10 @@ public class Controller  {
 
   public void run() {
     setUpRun();
-    feedHistory();
+    cmdHistory = executioner.getHistory();
+//    cmdHistory.saveCurrent();
+    feedHistory(executioner.getHistory().getCommands());
+    feedVariables();
   }
 
   public void showMessage(AlertType type, String message) {
@@ -77,6 +83,7 @@ public class Controller  {
     try {
       if (state == State.STOPPED) {
         if (command != null && !command.equals("")) {
+          System.out.println("calling parse tree");
           executioner.parseTree(new InputRecord(command));
         }
         runFirst();
@@ -105,12 +112,13 @@ public class Controller  {
     HelpWindow helpWindow = new HelpWindow();
     helpWindow.show(); // Display the help window
   }
-  public void feedHistory() {
-    cmdHistory = new CommandHistory();
-    cmdHistoryPane.addCommand(cmdHistory.getCommands());
+  public void feedHistory(String commands) {
+//    cmdHistoryPane = new CommandHistoryPane(200, 50, language);
+    i1.getHistoryPane().addCommand(commands);
   }
   public void feedVariables() {
-
+    userPane = new UserDefPane(200, 50, language);
+    userPane.updateDisplay();
   }
 
   public void speedUp() {
