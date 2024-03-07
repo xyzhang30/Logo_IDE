@@ -1,14 +1,13 @@
 package slogo.model.command.executables.turtlecommand;
 
 import java.util.List;
-import java.util.Map;
 import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.ListExecutable;
 import slogo.model.environment.EnvironmentApi;
 
 public class Ask extends CommandExecutable {
-  private ListExecutable turtleKeys;
+  private final ListExecutable turtleKeys;
   private ListExecutable commands;
 
   public Ask(List<Executable> params) {
@@ -19,10 +18,14 @@ public class Ask extends CommandExecutable {
 
   @Override
   public double execute(EnvironmentApi env) {
-    List<Double> externalTurtleKeys = List.copyOf(env.getActiveTurtleKeys());
+    List<Double> oldKeys = List.copyOf(env.getActiveTurtleKeys());
     env.getActiveTurtleKeys().clear();
+    turtleKeys.getList().forEach(exec -> {env.getActiveTurtleKeys().add(exec.execute(env));});
 
-    env.getActiveTurtleKeys();
+    commands.getList().forEach(exec -> {exec.execute(env);});
+
+    env.getActiveTurtleKeys().clear();
+    env.getActiveTurtleKeys().addAll(oldKeys);
     return 0;
   }
 }
