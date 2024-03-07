@@ -4,6 +4,7 @@ import java.util.List;
 import slogo.model.command.executables.CommandExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
+import slogo.model.turtle.TurtleModel;
 
 /**
  * Abstract parent class for all Executables that use Turtle.
@@ -53,4 +54,17 @@ public abstract class TurtleExecutable extends CommandExecutable {
    * @return double  The execution return value of the command on the specific turtle.
    */
   public abstract double executeSingle(EnvironmentApi env);
+
+  /**
+   * Helper function to move a Turtle by a distance
+   * @param distance
+   */
+//  public void move(double distance){
+//
+//    double distX = distance * Math.cos(currentTurtle.getRadianDirection());
+//    double distY = distance * Math.sin(currentTurtle.getRadianDirection());
+//
+//    currentTurtle.setPosX(currentTurtle.getPosX() + distX);
+//    currentTurtle.setPosY(currentTurtle.getPosY() + distY);
+//  }
 }

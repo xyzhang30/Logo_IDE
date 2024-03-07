@@ -18,6 +18,7 @@ import slogo.model.command.executables.RootExecutable;
 import slogo.model.token.Token;
 import slogo.xmlparser.CommandXmlParser;
 
+
 public class TreeParser implements ParserApi {
   public static final String EXEC_REFS = "slogo.model.command.executables.";
   private CommandHistory history;

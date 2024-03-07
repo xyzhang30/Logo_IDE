@@ -1,5 +1,7 @@
 package slogo.model.api;
 
+import java.util.List;
+import java.util.Map;
 import slogo.model.command.CommandHistory;
 import slogo.xmlparser.CommandXmlParser;
 
@@ -23,8 +25,10 @@ public interface ExecutionerApi {
   void runNext();
 
   boolean hasNext();
-
+  @Deprecated
   TurtleModelApi getTurtleModel();
+  Map<Double, TurtleModelApi> getTurtleModels();
+  List<Double> getActiveTurtles();
 
   CommandHistory getHistory();
 

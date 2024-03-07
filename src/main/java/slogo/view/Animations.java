@@ -4,6 +4,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 
+/**
+ * Animations Class. Creates the lines drawn in the view
+ */
 public class Animations implements Graphics {
 
   private final Canvas canvas;
@@ -18,7 +21,13 @@ public class Animations implements Graphics {
 
   private final int height;
 
-
+  /**
+   * Constructor. Sets canvas, graphicsContext, and other variables.
+   * @param height = height of canvas
+   * @param width = width of canvas
+   * @param language = language in ase this became necessary
+   * @param pen = pen for storing values related to the lines being drawn
+   */
   public Animations(int height, int width, String language, PenGraphics pen) {
     this.width = width;
     this.height = height;
@@ -38,23 +47,45 @@ public class Animations implements Graphics {
   }
 
   @Override
+  /**
+   * clears all lines
+   */
   public void clearCanvas() {
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
   }
 
+  /**
+   *
+   * @return the canvas
+   */
   public Canvas getCanvas() {
     return canvas;
   }
 
+  /**
+   *
+   * @return the root that the canvas is on
+   */
   public Pane getRoot() {
     return pane;
   }
 
+  /**
+   *
+   * @returns the used graphic context
+   */
   @Override
   public GraphicsContext getGraphicsContext() {
     return gc;
   }
 
+  /**
+   * Draws line from starting coordinates from ending coordinates
+   * @param startX = starting x coordinate of line
+   * @param startY = starting y coordinate of line
+   * @param endX = ending x coordinate of line
+   * @param endY = ending y coordinate of line
+   */
   @Override
   public void drawLine(double startX, double startY, double endX, double endY) {
     gc.setStroke(pen.getPenColor());

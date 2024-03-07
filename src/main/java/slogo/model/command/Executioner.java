@@ -1,6 +1,8 @@
 package slogo.model.command;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
 import slogo.model.api.TurtleModelApi;
@@ -61,6 +63,16 @@ public class Executioner implements ExecutionerApi {
   @Override
   public TurtleModelApi getTurtleModel(){
     return environment.getTurtleMap().get(1.0);
+  }
+
+  @Override
+  public Map<Double, TurtleModelApi> getTurtleModels() {
+    return Collections.unmodifiableMap(environment.getTurtleMap());
+  }
+
+  @Override
+  public List<Double> getActiveTurtles() {
+    return environment.getActiveTurtleKeys();
   }
 
   @Override
