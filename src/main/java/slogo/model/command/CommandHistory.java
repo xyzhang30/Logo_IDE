@@ -45,10 +45,8 @@ public class CommandHistory implements HistoryApi {
 
   @Override
   public void saveCurrent() {
-    for (String s : inputStrings){
-      executedCommands = executedCommands.concat(s + "\n");
-      System.out.println("exe:"+executedCommands);
-    }
+    executedCommands = String.join("\n", inputStrings);
+    System.out.println("exe:"+executedCommands);
     System.out.println("inputStrings: "+inputStrings);
 //    executedCommands.append(inputStrings.get(currentIndex)).append("\n");
 //    System.out.println("executed commands: "+ executedCommands);
