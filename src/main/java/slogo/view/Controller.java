@@ -1,6 +1,9 @@
 package slogo.view;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
@@ -24,7 +27,7 @@ public class Controller  {
 
   private final IDEWindow i1;
 
-  private final TurtleModelApi model;
+  private final Map<Double, TurtleModelApi> model;
 
   private Stage stage;
 
@@ -53,7 +56,7 @@ public class Controller  {
     stepping = false;
     this.executioner = executioner;
     state = State.STOPPED;
-    this.model = this.executioner.getTurtleModel();
+    model = this.executioner.getTurtleModels();
     this.language = language;
     i1 = new IDEWindow(stage, this, language);
     cmdHistory = new CommandHistory();
@@ -290,7 +293,7 @@ public class Controller  {
    *
    * @return the TurtleModelApi instance.
    */
-  public TurtleModelApi getModel() {
+  public Map<Double, TurtleModelApi> getModel() {
     return model;
   }
 }

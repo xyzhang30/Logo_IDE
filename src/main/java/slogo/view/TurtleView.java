@@ -26,6 +26,12 @@ public class TurtleView implements TurtleV {
 
   private Pane pane;
 
+  private double x;
+
+  private double y;
+
+  private double direction;
+
   /**
    * Constructs a TurtleView with the specified dimensions, initial position, and starting
    * direction.
@@ -37,6 +43,9 @@ public class TurtleView implements TurtleV {
    * @param startDirection the starting direction of the turtle.
    */
   public TurtleView(int width, int height, double startX, double startY, double startDirection) {
+    x = startX;
+    y = startY;
+    direction = startDirection;
     this.width = width;
     this.height = height;
     imageHere = true;
@@ -74,6 +83,9 @@ public class TurtleView implements TurtleV {
     updateXCoordinate(x);
     updateYCoordinate(y);
     isVisible(visible);
+    this.x = x;
+    this.y = y;
+    this.direction = direction;
   }
 
   private void updateDirection(double direction) {
@@ -140,5 +152,21 @@ public class TurtleView implements TurtleV {
       imageHere = false;
     }
   }
+
+  @Override
+  public double getX() {
+    return x;
+  }
+
+  @Override
+  public double getY() {
+    return y;
+  }
+
+  @Override
+  public double getDirection() {
+    return direction;
+  }
+
 }
 

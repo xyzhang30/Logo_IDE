@@ -1,12 +1,15 @@
 package slogo.view;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import slogo.model.api.TurtleModelApi;
 import slogo.model.command.Executioner;
 import slogo.model.turtle.TurtleModel;
 import util.DukeApplicationTest;
@@ -23,10 +26,9 @@ public class ViewTest extends DukeApplicationTest {
   public void start(Stage stage) throws FileNotFoundException {
     // Initialize your scene here
     language = "english";
-    TurtleModel mockModel = new TurtleModel();
     Controller controller = new Controller(stage, new Executioner(), language);
     ideWindow = new IDEWindow(stage, controller, language);
-    Scene scene = ideWindow.makeScene(600, 400, mockModel);
+    Scene scene = ideWindow.makeScene(600, 400);
     stage.setScene(scene);
     stage.show();
   }
