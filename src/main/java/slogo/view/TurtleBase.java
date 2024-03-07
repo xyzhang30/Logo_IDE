@@ -1,8 +1,6 @@
 package slogo.view;
 
 import java.io.FileNotFoundException;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
 public interface TurtleBase {
 
