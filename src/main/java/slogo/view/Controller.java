@@ -8,13 +8,9 @@ import javafx.stage.Stage;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
 import slogo.model.api.ModelFactory;
-import slogo.model.api.ParserApi;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.CommandHistory;
 import slogo.model.command.Executioner;
-import slogo.model.command.executables.Executable;
-import slogo.model.parser.TreeParser;
-import slogo.model.turtle.TurtleModel;
 
 
 public class Controller  {
@@ -31,7 +27,6 @@ public class Controller  {
   // private final TurtleModel model;
 
   private final ExecutionerApi executioner;
-  private ParserApi parser = new TreeParser();
 
   private State state;
 
@@ -41,17 +36,14 @@ public class Controller  {
   private CommandHistory cmdHistory;
   private CommandHistoryPane cmdHistoryPane;
   private UserDefPane userPane;
-  private ModelFactory modelFactory;
 
   //private String language;
 
 
 
-  public Controller(Stage stage, Executioner executioner, String language) {
-    modelFactory = new ModelFactory();
-
+  public Controller(Stage stage, ExecutionerApi executioner, String language) {
     stepping = false;
-    this.executioner = modelFactory.createExecutioner();
+    this.executioner = executioner;
     state = State.STOPPED;
     this.model = this.executioner.getTurtleModel();
     this.language = language;
@@ -191,7 +183,8 @@ public class Controller  {
   }
 
   public void newInstance() throws Exception {
-    Controller c2 = new Controller(new Stage(), new Executioner(), language);
+    ModelFactory modelFactory = new ModelFactory();
+    Controller c2 = new Controller(new Stage(), modelFactory.createExecutioner(), language);
     c2.start();
   }
 

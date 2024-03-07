@@ -11,6 +11,7 @@ import slogo.model.environment.Environment;
 import slogo.model.parser.TreeParser;
 import slogo.model.token.Token;
 import slogo.model.token.Tokenizer;
+import slogo.model.xmlparser.CommandXmlParser;
 
 public class Executioner implements ExecutionerApi {
 
@@ -68,6 +69,13 @@ public class Executioner implements ExecutionerApi {
   public CommandHistory getHistory() {
     return treeParser.getHistory();
   }
+
+  @Override
+  public CommandXmlParser getXmlParser(){
+    return new CommandXmlParser();
+  }
+
+
 
 //  @Override
 //  public Map<String, Double> getVariableMap() {

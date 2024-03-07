@@ -4,6 +4,7 @@ import java.util.Map;
 import slogo.model.command.CommandHistory;
 import slogo.model.command.executables.Executable;
 import slogo.model.environment.Environment;
+import slogo.model.xmlparser.CommandXmlParser;
 
 /**
  * External API for the Executioner. Manages the execution of commands.
@@ -29,6 +30,8 @@ public interface ExecutionerApi {
   TurtleModelApi getTurtleModel();
 
   CommandHistory getHistory();
+
+  CommandXmlParser getXmlParser();
 
 //  Map<String, Double> getVariableMap();
 //  Map<String, Executable> getFunctionMap();
