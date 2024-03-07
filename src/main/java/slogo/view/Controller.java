@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
+import slogo.model.api.ModelFactory;
 import slogo.model.api.ParserApi;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.CommandHistory;
@@ -40,14 +41,17 @@ public class Controller  {
   private CommandHistory cmdHistory;
   private CommandHistoryPane cmdHistoryPane;
   private UserDefPane userPane;
+  private ModelFactory modelFactory;
 
   //private String language;
 
 
 
   public Controller(Stage stage, Executioner executioner, String language) {
+    modelFactory = new ModelFactory();
+
     stepping = false;
-    this.executioner = executioner;
+    this.executioner = modelFactory.createExecutioner();
     state = State.STOPPED;
     this.model = this.executioner.getTurtleModel();
     this.language = language;
