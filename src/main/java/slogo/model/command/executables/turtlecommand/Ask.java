@@ -8,7 +8,7 @@ import slogo.model.environment.EnvironmentApi;
 
 public class Ask extends CommandExecutable {
   private final ListExecutable turtleKeys;
-  private ListExecutable commands;
+  private final ListExecutable commands;
 
   public Ask(List<Executable> params) {
     super(params);
