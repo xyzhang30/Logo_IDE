@@ -24,13 +24,22 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import javafx.stage.DirectoryChooser;
 
-
+/**
+ * Control Pane class. Create buttons or other interactive elements on view
+ */
 public class ControlPane extends CreatePane implements Control {
 
 
 
   private final Controller controller;
 
+  /**
+   * Constructor
+   * @param height = height of pane
+   * @param width = width of pane
+   * @param controller = controller necessary for handling events
+   * @param language = language for element displays
+   */
   public ControlPane(int height, int width, Controller controller, String language) {
     super(height, width, language);
 
@@ -40,11 +49,17 @@ public class ControlPane extends CreatePane implements Control {
 
   }
 
+  /**
+   * Adds all interactive elements to pane
+   */
   @Override
   public void create() {
     addButtons();
   }
 
+  /**
+   * Adds all interactive elements to display
+   */
   public void addButtons() {
     makeButton("Run", event -> controller.run());
     makeButton("Step", event -> controller.step());
@@ -71,7 +86,12 @@ public class ControlPane extends CreatePane implements Control {
   }
   //button handler in controller and then pass in map of the button handlers into controlpane
 
-  public void makeButton (String property, EventHandler<ActionEvent> handler) {
+  /**
+   * Creates button
+   * @param property = name to display
+   * @param handler = event on push
+   */
+  private void makeButton (String property, EventHandler<ActionEvent> handler) {
     // represent all supported image suffixes
     final String IMAGE_FILE_SUFFIXES = String.format(".*\\.(%s)", String.join("|", ImageIO.getReaderFileSuffixes()));
     Button result = new Button();
@@ -87,7 +107,12 @@ public class ControlPane extends CreatePane implements Control {
     getRoot().getChildren().addAll(result);
   }
 
-  public void makeColorPicker(String property, EventHandler<ActionEvent> handler) {
+  /**
+   * Creates color picker to be added
+   * @param property = name on display
+   * @param handler = event on click
+   */
+  private void makeColorPicker(String property, EventHandler<ActionEvent> handler) {
     String label = getMyResources().getString(property);
 
     ColorPicker colorPicker = new ColorPicker();
@@ -97,7 +122,13 @@ public class ControlPane extends CreatePane implements Control {
     getRoot().getChildren().add(colorPicker);
   }
 
-  public void makeDropdown(String property, String type, EventHandler<ActionEvent> handler) {
+  /**
+   * Creates dropdown menu
+   * @param property = name on display
+   * @param type = name of xml file to use to parse options
+   * @param handler = event on select
+   */
+  private void makeDropdown(String property, String type, EventHandler<ActionEvent> handler) {
     try {
       ViewParser v1 = new ViewParser();
       v1.readXml(type);
@@ -117,6 +148,9 @@ public class ControlPane extends CreatePane implements Control {
     }
   }
 
+  /**
+   * Creates file chooser to allow somebody to pick a new image
+   */
   private void openFile() {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open File");

@@ -36,19 +36,17 @@ public class ViewParser {
     parseDocument(doc);
   }
 
-  private void parseDocument(Document doc) throws FileNotFoundException {
+  private void parseDocument(Document doc) {
     // Modify this method to parse themes instead of commands
 
     Node optionNodes = doc.getElementsByTagName(type).item(0);
 
     Element element = (Element) optionNodes;
 
-    if (element.getElementsByTagName(type).getLength() == 0) {
-      throw new FileNotFoundException("No such file found");
+    if (!(element.getElementsByTagName(type).getLength() == 0)) {
+      parseThemes(element.getElementsByTagName(type));
     }
 
-    // parse all themes
-    parseThemes(element.getElementsByTagName(type));
   }
 
   private void parseThemes(NodeList optionsNodes) {
