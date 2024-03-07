@@ -1,6 +1,8 @@
 package slogo.model.environment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import slogo.model.command.executables.Executable;
 import slogo.model.turtle.TurtleModel;
@@ -23,28 +25,60 @@ public class Environment implements EnvironmentApi {
     height = h;
   }
 
+  /**
+   * The map of user defined variables. Keys are variable signature strings, values are doubles.
+   *
+   * @return Map  user defined variables.
+   */
   @Override
   public Map<String, Double> getVarMap() {
-    return variableMap;
+    return null;
   }
 
+  /**
+   * The map of user defined functions. Keys are function signature strings, values are Command
+   * Executables.
+   *
+   * @return Map  user defined functions.
+   */
   @Override
   public Map<String, Executable> getFuncMap() {
-    return functionMap;
+    return null;
   }
 
+  /**
+   * The map of Turtles. Keys are Turtle IDs, which are doubles. Values are TurtleModel objects.
+   *
+   * @return Map  map of all Turtle Models
+   */
   @Override
   public Map<Double, TurtleModel> getTurtleMap() {
-    return turtleMap;
+    return null;
+  }
+
+  /**
+   * Generates and returns the IDs of all currently active Turtles.
+   *
+   * @return List  A list of doubles representing IDs of active turtles.
+   */
+  @Override
+  public List<Double> getActiveTurtleKeys() {
+    List<Double> activeKeys = new ArrayList<>();
+    for (double id : turtleMap.keySet()){
+      if (turtleMap.get(id).isActive()){
+        activeKeys.add(id);
+      }
+    }
+    return activeKeys;
   }
 
   @Override
   public int getWidth() {
-    return width;
+    return 0;
   }
 
   @Override
   public int getHeight() {
-    return height;
+    return 0;
   }
 }

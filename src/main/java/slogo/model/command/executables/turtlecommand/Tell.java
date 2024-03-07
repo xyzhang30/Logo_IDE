@@ -15,6 +15,7 @@ public class Tell extends CommandExecutable {
 
   @Override
   public double execute(EnvironmentApi env) {
+    env.getTurtleMap().values().forEach(turtle -> turtle.setActive(false));
     ids.forEach(exec -> {
       double id = exec.execute(env);
       env.getTurtleMap().putIfAbsent(id,new TurtleModel(id));
