@@ -34,6 +34,8 @@ public class Controller  {
 
   private State state;
 
+  private String language;
+
   private boolean stepping;
   private CommandHistory cmdHistory;
   private CommandHistoryPane cmdHistoryPane;
@@ -44,6 +46,7 @@ public class Controller  {
     this.executioner = executioner;
     state = State.STOPPED;
     this.model = this.executioner.getTurtleModel();
+    this.language = language;
     i1 = new IDEWindow(stage, this, language);
 
   }
@@ -172,6 +175,11 @@ public class Controller  {
     } else {
       state = State.STOPPED;
     }
+  }
+
+  public void newInstance() throws Exception {
+    Controller c2 = new Controller(new Stage(), new Executioner(), language);
+    c2.start();
   }
 
   public State getState() {
