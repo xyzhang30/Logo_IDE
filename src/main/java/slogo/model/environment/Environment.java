@@ -75,7 +75,10 @@ public class Environment implements EnvironmentApi {
   public List<Double> getActiveTurtleKeys() {
     return activeTurtleKeys;
   }
-
+  public void syncTurtleActivation(){
+    turtleMap.values().forEach(t->{t.setActive(true);});
+    activeTurtleKeys.forEach(k->{turtleMap.get(k).setActive(true);});
+  }
   @Override
   public int getWidth() {
     return width;
