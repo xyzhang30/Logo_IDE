@@ -25,6 +25,7 @@ public class Controller  {
 
   private final TurtleModelApi model;
 
+
   private Stage stage;
 
   // private final TurtleModel model;
@@ -42,6 +43,7 @@ public class Controller  {
   private UserDefPane userPane;
 
   //private String language;
+  private static Controller instance;
 
 
 
@@ -53,6 +55,10 @@ public class Controller  {
     this.language = language;
     i1 = new IDEWindow(stage, this, language);
     cmdHistory = new CommandHistory();
+  }
+
+  public static Controller getInstance() {
+    return instance;
   }
 
   public void update(double elapsedTime) {
@@ -114,6 +120,7 @@ public class Controller  {
 
   public void help() {
     HelpWindow helpWindow = new HelpWindow();
+
     helpWindow.show(); // Display the help window
   }
   public void feedHistory(String commands) {

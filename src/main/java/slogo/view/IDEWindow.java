@@ -38,6 +38,7 @@ public class IDEWindow {
   public static final Dimension DEFAULT_SIZE = new Dimension(1500, 1000);
 
   private TextInputPane t1 = new TextInputPane(100,100, "english");
+  private HelpWindow helpWindow = new HelpWindow();
 
   private TurtlePane tp1;
 
@@ -58,6 +59,7 @@ public class IDEWindow {
     this.language = language;
     speed = STARTSPEED;
     this.variableItems = variableItems;
+
   }
 
   public void start(TurtleModelApi model) throws Exception {
@@ -112,9 +114,14 @@ public class IDEWindow {
   }
 
   public String getText() {
-    String textEdit = t1.getTextInput();
-    System.out.println(textEdit);
-    return textEdit;
+//    String textEdit = t1.getTextInput();
+//    System.out.println(textEdit);
+//    return textEdit;
+      String textEdit = t1.getTextInput();
+      String helpText = helpWindow.getTextArea();
+      System.out.println(textEdit);
+      System.out.println(helpText);
+      return textEdit + " " + helpText;
   }
 
   public void updateTurtle() {
