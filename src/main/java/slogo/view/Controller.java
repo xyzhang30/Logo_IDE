@@ -176,7 +176,7 @@ public class Controller  {
       stepping = false;
     }
   }
-  public void runFirst() {
+  private void runFirst() {
     if (executioner.hasNext()) {
       state = State.RUNNING;
       executioner.runNext();

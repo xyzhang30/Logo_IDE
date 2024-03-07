@@ -3,6 +3,8 @@ package slogo.view;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.scene.Scene;
@@ -48,8 +50,10 @@ public class IDEWindow {
 
   private int speed;
 
-  private static final int STARTSPEED = 2;
+  private static final int STARTSPEED = 5;
   private Map<String, Double> variableItems;
+
+  public List<TurtlePane> turtles;
 
 
   public IDEWindow (Stage stage, Controller controller, String language) {
@@ -58,6 +62,7 @@ public class IDEWindow {
     this.language = language;
     speed = STARTSPEED;
     this.variableItems = variableItems;
+    turtles = new ArrayList<>();
   }
 
   public void start(TurtleModelApi model) throws Exception {
@@ -83,7 +88,8 @@ public class IDEWindow {
     AnchorPane.setBottomAnchor(t1.getRoot(), 0.0);
     root.getChildren().add(t1.getRoot());
 
-    tp1 = new TurtlePane(DEFAULT_SIZE.height/2,DEFAULT_SIZE.width/2, model, language, speed, controller);
+    tp1 = new TurtlePane(DEFAULT_SIZE.height/2,DEFAULT_SIZE.width/2, model, language, speed, controller, 1.0);
+    turtles.add(tp1);
     AnchorPane.setBottomAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/4);
     AnchorPane.setTopAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/10);
     AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width/4);
@@ -118,8 +124,10 @@ public class IDEWindow {
   }
 
   public void updateTurtle() {
-    tp1.setSpeed(speed);
-    tp1.update();
+    for (int i = 0; i<turtles.size(); i++) {
+      tp1.setSpeed(speed);
+      tp1.update();
+    }
   }
 
   public CommandHistoryPane getHistoryPane(){
@@ -141,24 +149,34 @@ public class IDEWindow {
   }
 
   public void clearLine() {
-    tp1.clear();
+    for (int i = 0; i<turtles.size(); i++) {
+      tp1.clear();
+    }
   }
 
   public void resume() {
     tp1.startTimeline();
   }
 
+  public void addNewTurtle(TurtleModelApi newModel) {
+    turtles.add(new TurtlePane(DEFAULT_SIZE.height/2,DEFAULT_SIZE.width/2, newModel,
+        language, speed, controller, turtles.size()));
+  }
+
   public void pause() {
-    if (tp1.getPaused()) {
-      resume();
-    }
-    else {
-      tp1.stopTimeline();
+    for (int i = 0; i<turtles.size(); i++) {
+      if (tp1.getPaused()) {
+        resume();
+      } else {
+        tp1.stopTimeline();
+      }
     }
   }
 
   public void updateColor(Color c1) {
-    tp1.updateColor(c1);
+    for (int i = 0; i<turtles.size(); i++) {
+      tp1.updateColor(c1);
+    }
   }
 
   public void setStylesheet(String stylesheet) {
@@ -167,15 +185,15 @@ public class IDEWindow {
   }
 
   public void updateBackground(Color c1) {
-    tp1.updateBackground(c1);
+    for (int i = 0; i<turtles.size(); i++) {
+      tp1.updateBackground(c1);
+    }
   }
 
   public void updateImage(File selectedFile) {
-    tp1.updateImage(selectedFile);
-  }
-
-  public boolean prevComplete() {
-    return tp1.complete();
+    for (int i = 0; i<turtles.size(); i++) {
+      tp1.updateImage(selectedFile);
+    }
   }
 
   public void clearText() {
