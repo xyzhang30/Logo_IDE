@@ -29,7 +29,7 @@ public interface EnvironmentApi {
    */
   Map<Double, TurtleModel> getTurtleMap();
   /**
-   * Generates and returns the IDs of all currently active Turtles.
+   * The list of all current active Turtles' IDs.
    * @return List  A list of doubles representing IDs of active turtles.
    */
   List<Double> getActiveTurtleKeys();

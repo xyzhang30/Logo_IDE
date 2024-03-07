@@ -38,11 +38,9 @@ public abstract class TurtleExecutable extends CommandExecutable {
   @Override
   public double execute(EnvironmentApi env) {
     double output = 0;
-    for (double key : env.getTurtleMap().keySet()) {
-      if (env.getTurtleMap().get(key).isActive()) {
-        currentTurtleKey = key;
-        output = executeSingle(env);
-      }
+    for (double key : env.getActiveTurtleKeys()){
+      currentTurtleKey = key;
+      output = executeSingle(env);
     }
     return output;
   }
