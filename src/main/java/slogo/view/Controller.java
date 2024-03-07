@@ -40,7 +40,6 @@ public class Controller  {
   private CommandHistory cmdHistory;
   private CommandHistoryPane cmdHistoryPane;
   private UserDefPane userPane;
-  private String language;
 
 
   public Controller(Stage stage, Executioner executioner, String language) {
@@ -50,7 +49,6 @@ public class Controller  {
     this.model = this.executioner.getTurtleModel();
     this.language = language;
     i1 = new IDEWindow(stage, this, language);
-    this.language = language;
     cmdHistory = new CommandHistory();
   }
 

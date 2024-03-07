@@ -82,7 +82,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     for (int i = 0; i < (defaultLineLength/speed); i++) {
       double x = startX + i * (endX - startX) / ((double) defaultLineLength /speed);
       double y = startY + i * (endY - startY) / ((double) defaultLineLength /speed);
-      double direction = startDirection + i * (startDirection - endDirection) / (
+      double direction = startDirection + i * (endDirection - startDirection) / (
           (double) defaultLineLength /speed);
 
       KeyFrame keyFrame = new KeyFrame(Duration.millis(i * 10), e -> {
