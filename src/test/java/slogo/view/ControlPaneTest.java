@@ -33,17 +33,17 @@ public class ControlPaneTest extends DukeApplicationTest {
 
   @Test
   public void testButtonLabels() {
-    verifyThat("#Run", hasText("Run"));
-    verifyThat("#Step", hasText("Step"));
-    verifyThat("#Pause", hasText("Pause"));
-    verifyThat("#Help", hasText("Help"));
-    verifyThat("#Speed_Up", hasText("Faster"));
-    verifyThat("#Slow_Down", hasText("Slower"));
+    verifyThat("#run", hasText("Run"));
+    verifyThat("#step", hasText("Step"));
+    verifyThat("#pause", hasText("Pause"));
+    verifyThat("#help", hasText("Help"));
+    verifyThat("#speed_Up", hasText("Faster"));
+    verifyThat("#slow_Down", hasText("Slower"));
   }
 
   @Test
   public void testSpeedUpButtonClick() {
-    Button button = lookup("#Speed_Up").query();
+    Button button = lookup("#speed_Up").query();
     int initialSpeed = controller.getSpeed();
     clickOn(button);
     int newSpeed = controller.getSpeed();
@@ -52,7 +52,7 @@ public class ControlPaneTest extends DukeApplicationTest {
 
   @Test
   public void testSlowDownButtonClick() {
-    Button button = lookup("#Slow_Down").query();
+    Button button = lookup("#slow_Down").query();
     int initialSpeed = controller.getSpeed();
     clickOn(button);
     int newSpeed = controller.getSpeed();
