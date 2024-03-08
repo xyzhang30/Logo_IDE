@@ -9,12 +9,12 @@ import slogo.model.environment.EnvironmentApi;
 
 public class IfCommand extends CommandExecutable {
 
-  private final ConstantExecutable expr;
+  private final Executable expr;
   private final ListExecutable listContent;
 
   public IfCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
-    expr = (ConstantExecutable) parameterExecutables.get(0);
+    expr = parameterExecutables.get(0);
     listContent = (ListExecutable) parameterExecutables.get(1);
   }
 
