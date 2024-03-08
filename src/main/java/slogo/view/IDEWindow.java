@@ -175,8 +175,8 @@ public class IDEWindow {
 
   }
 
-  public void updateImage(File selectedFile) {
-      turtlePane.updateImage(selectedFile);
+  public void updateImage(String selectedFilePath) {
+      turtlePane.updateImage(selectedFilePath);
   }
 
   public void clearText() {

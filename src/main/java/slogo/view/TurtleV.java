@@ -39,9 +39,9 @@ public interface TurtleV {
   /**
    * Updates the image of the turtle based on the selected file.
    *
-   * @param selectedFile the file containing the image for the turtle.
+   * @param selectedFilePath the name of the file containing the image for the turtle.
    */
-  void updateImage(File selectedFile);
+  void updateImage(String selectedFilePath);
 
   double getX();
 

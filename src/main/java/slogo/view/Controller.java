@@ -211,8 +211,8 @@ public class Controller  {
    *
    * @param selectedFile the selected PNG file.
    */
-  public void processSelectedPNGFile(File selectedFile) {
-    ide.updateImage(selectedFile);
+  public void processNewImage(String selectedFilePath) {
+    ide.updateImage(selectedFilePath);
   }
 
 

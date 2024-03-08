@@ -27,6 +27,7 @@ public class ControlPane extends CreatePane implements Control {
 
 
   private static final String buttonPath = "buttons";
+  private static final String imagePath = "src/main/resources/view/images/";
   private final Controller controller;
   private final ViewParser viewParser;
 
@@ -159,8 +160,8 @@ public class ControlPane extends CreatePane implements Control {
     fileChooser.setTitle("Open File");
 
     // Set the initial directory to src/main/resources/view/images/
-    String initialPath = "src/main/resources/view/images/";
-    fileChooser.setInitialDirectory(new File(initialPath));
+
+    fileChooser.setInitialDirectory(new File(imagePath));
 
     // Add filters if necessary, e.g., to filter by file extension
     fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg"));
@@ -169,7 +170,8 @@ public class ControlPane extends CreatePane implements Control {
 
     if (selectedFile != null) {
       // Pass the selected file to the controller
-      controller.processSelectedPNGFile(selectedFile);
+      String selectedFilePath = selectedFile.getName();
+      controller.processNewImage(selectedFilePath);
     }
   }
 

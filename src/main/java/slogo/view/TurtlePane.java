@@ -212,14 +212,14 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   /**
    * Updates the image of the turtle based on the selected file.
    *
-   * @param selectedFile the file containing the image for the turtle.
+   * @param selectedFilePath the name of the file containing the image for the turtle.
    */
   @Override
-  public void updateImage(File selectedFile) {
+  public void updateImage(String selectedFilePath) {
     for (Map.Entry<Double, TurtleV> entry : turtles.entrySet()) {
       Double key = entry.getKey();
       TurtleV value = entry.getValue();
-      value.updateImage(selectedFile);
+      value.updateImage(selectedFilePath);
       value.turtleUpdate(model.get(key).getAttributes().xpos(),
           model.get(key).getAttributes().ypos(),
           model.get(key).getAttributes().direction(),
