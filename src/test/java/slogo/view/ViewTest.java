@@ -18,19 +18,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ViewTest extends DukeApplicationTest {
 
-  private IDEWindow ideWindow;
-
   private String language;
+
+  private Controller controller;
 
   @Override
   public void start(Stage stage) throws FileNotFoundException {
     // Initialize your scene here
     language = "english";
-    Controller controller = new Controller(stage, new Executioner(), language);
-    ideWindow = new IDEWindow(stage, controller, language);
-    Scene scene = ideWindow.makeScene(600, 400);
-    stage.setScene(scene);
-    stage.show();
+    controller = new Controller(stage, new Executioner(), language);
+    controller.start();
   }
 
   @Test
@@ -44,7 +41,7 @@ public class ViewTest extends DukeApplicationTest {
       textArea.setText(expectedText);
 
       // Call getText() method
-      final String actualText = ideWindow.getText();
+      final String actualText = controller.getText();
 
       // Verify that the retrieved text matches the expected text
       assertEquals(expectedText, actualText);
