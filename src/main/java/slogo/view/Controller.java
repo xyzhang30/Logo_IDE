@@ -21,6 +21,8 @@ public class Controller  {
   // how much to adjust updates per second
   public static final int SPEED_ADJUSTMENT = 1;
 
+  public static final int KEY_MOVE_AMOUNT = 50;
+
   private final IDEWindow ide;
 
   private final Map<Double, TurtleModelApi> model;
@@ -71,12 +73,15 @@ public class Controller  {
    */
   public void run() {
     setUpRun();
+    updateHistory();
+  }
+
+  private void updateHistory() {
     cmdHistory = executioner.getHistory();
 //    cmdHistory.saveCurrent();
     feedHistory(executioner.getHistory().getCommands());
     feedVariables();
   }
-
   /**
    * Shows a message dialog with the specified type and message.
    *
@@ -92,12 +97,17 @@ public class Controller  {
   public void step() {
     stepping = true;
     setUpRun();
+    updateHistory();
   }
 
   private void setUpRun() {
+    String command = ide.getText();
+    setUpRunInternal(command);
+  }
+
+  private void setUpRunInternal(String command) {
     try {
       if (state == State.STOPPED) {
-        String command = ide.getText();
         if (command != null && !command.equals("")) {
           System.out.println("calling parse tree");
           executioner.parseTree(new InputRecord(command));
@@ -281,6 +291,39 @@ public class Controller  {
   public Map<Double, TurtleModelApi> getModel() {
     return model;
   }
+
+  /**
+   * Moves the turtle forward by a distance of 50 units.
+   * This corresponds to the "fd 50" command in the turtle graphics language.
+   */
+  public void up() {
+    setUpRunInternal("fd " + KEY_MOVE_AMOUNT);
+  }
+
+  /**
+   * Moves the turtle backward by a distance of 50 units.
+   * This corresponds to the "fd -50" command in the turtle graphics language.
+   */
+  public void down() {
+    setUpRunInternal("bk " + KEY_MOVE_AMOUNT);
+  }
+
+  /**
+   * Turns the turtle left by 90 degrees and then moves it forward by a distance of 50 units.
+   * This corresponds to the "lt 90\nfd 50" commands in the turtle graphics language.
+   */
+  public void left() {
+    setUpRunInternal("lt 90\nfd " + KEY_MOVE_AMOUNT);
+  }
+
+  /**
+   * Turns the turtle right by 90 degrees and then moves it forward by a distance of 50 units.
+   * This corresponds to the "rt 90\nfd 50" commands in the turtle graphics language.
+   */
+  public void right() {
+    setUpRunInternal("rt 90\nfd " + KEY_MOVE_AMOUNT);
+  }
+
 }
 
 

@@ -8,6 +8,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -146,7 +148,7 @@ public class IDEWindow {
 
   /**
    * Creates the scene for the IDE window with the specified dimensions.
-   *
+   * Adds necessary panes
    * @param width  The width of the IDE window.
    * @param height The height of the IDE window.
    * @return The scene for the IDE window.
@@ -177,6 +179,8 @@ public class IDEWindow {
 
     scene = new Scene(root, width, height);
     setStylesheet(STYLESHEET);
+    root.setOnKeyPressed(this::handleKeyPressed);
+    root.requestFocus();
     return scene;
   }
 
@@ -209,6 +213,7 @@ public class IDEWindow {
   public void updateTurtle() {
     turtlePane.setSpeed(speed);
     turtlePane.update();
+    root.requestFocus();
   }
 
   /**
@@ -338,6 +343,33 @@ public class IDEWindow {
     alert.getDialogPane().setContent(messageText);
 
     alert.show();
+  }
+
+  /**
+   * Handles the key pressed event by invoking corresponding actions based on the pressed key.
+   *
+   * @param event The KeyEvent representing the key pressed event.
+   */
+  private void handleKeyPressed(KeyEvent event) {
+    KeyCode keyCode = event.getCode();
+    System.out.println("hello");
+    switch (keyCode) {
+      case UP:
+        controller.up();
+        break;
+      case DOWN:
+        controller.down();
+        break;
+      case LEFT:
+        controller.left();
+        break;
+      case RIGHT:
+        controller.right();
+        break;
+      default:
+        // nothing
+        break;
+    }
   }
 }
 

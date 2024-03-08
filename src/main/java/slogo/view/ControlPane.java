@@ -12,6 +12,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -72,7 +73,7 @@ public class ControlPane extends CreatePane implements Control {
     } catch (FileNotFoundException e) {
       controller.showMessage("FileNotFound");
     }
-    // reflection was much more difficult for non buttons
+    // reflection was much more difficult for non buttons / parameters
     makeColorPicker("selectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
     makeColorPicker("selectBackgroundColor", event -> controller.changeBackgroundColor(((ColorPicker) event.getSource()).getValue()));
     makeDropdown("dropdownSelector", "theme", event -> {
@@ -81,7 +82,7 @@ public class ControlPane extends CreatePane implements Control {
       controller.changeStylesheet(selectedOption);
     });
     makeButton("select_Image", event -> openFile());
-
+    makeLabel("ArrowKeyMovementAmount");
   }
 
   private void invokeEventHandler(String handlerName) {
@@ -92,7 +93,6 @@ public class ControlPane extends CreatePane implements Control {
       controller.showMessage("NoSuchMethod");
     }
   }
-  //button handler in controller and then pass in map of the button handlers into controlpane
 
   /**
    * Creates button
@@ -175,6 +175,11 @@ public class ControlPane extends CreatePane implements Control {
     }
   }
 
+  private void makeLabel(String property) {
+    Label label = new Label(getMyResources().getString(property) + ": " +
+        Controller.KEY_MOVE_AMOUNT);
+    getRoot().getChildren().add(label);
+  }
 
 }
 
