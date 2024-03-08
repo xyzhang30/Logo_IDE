@@ -80,13 +80,10 @@ public class Controller  {
   /**
    * Shows a message dialog with the specified type and message.
    *
-   * @param type    the type of the alert.
    * @param message the message to be displayed.
    */
-  public void showMessage(AlertType type, String message) {
-    Alert alert = new Alert(type, message);
-    alert.initOwner(stage);
-    alert.showAndWait();
+  public void showMessage(String message) {
+    ide.showError(message);
   }
 
   /**
@@ -111,7 +108,7 @@ public class Controller  {
     } catch (RuntimeException e) {
       state = State.STOPPED;
       e.printStackTrace();
-      showMessage(AlertType.ERROR, e.getMessage());
+      showMessage(e.getMessage());
     }
   }
 

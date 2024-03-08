@@ -83,6 +83,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   /**
    * Updates the TurtlePane based on the current state of the associated TurtleModelApi.
    */
+  @Override
   public void update() {
     createTurtleViews();
     Timeline timeline = createTimeline();
@@ -94,6 +95,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
    *
    * @param speed the new speed value.
    */
+  @Override
   public void setSpeed(int speed) {
     this.speed = speed;
   }
@@ -101,6 +103,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   /**
    * Clears the canvas of the TurtlePane.
    */
+  @Override
   public void clear() {
     animations.clearCanvas();
   }
@@ -159,6 +162,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   /**
    * Starts the timeline animation.
    */
+  @Override
   public void startTimeline() {
     if (timeline != null && !timeline.getStatus().equals(Timeline.Status.RUNNING)) {
       paused = false;
@@ -169,6 +173,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   /**
    * Pauses the timeline animation.
    */
+  @Override
   public void stopTimeline() {
     if (timeline != null && timeline.getStatus().equals(Timeline.Status.RUNNING)) {
       timeline.pause();
@@ -181,6 +186,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
    *
    * @param c1 the new color value.
    */
+  @Override
   public void updateColor(Color c1) {
     pen.setPenColor(c1);
   }
@@ -190,6 +196,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
    *
    * @param c1 the new background color value.
    */
+  @Override
   public void updateBackground(Color c1) {
     getRoot().setStyle("-fx-background-color: " + toHexCode(c1) + ";");
   }
@@ -207,6 +214,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
    *
    * @param selectedFile the file containing the image for the turtle.
    */
+  @Override
   public void updateImage(File selectedFile) {
     for (Map.Entry<Double, TurtleV> entry : turtles.entrySet()) {
       Double key = entry.getKey();
@@ -224,6 +232,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
    *
    * @return true if the timeline animation is paused, false otherwise.
    */
+  @Override
   public boolean getPaused() {
     return paused;
   }
