@@ -81,7 +81,6 @@ public class ControlPane extends CreatePane implements Control {
       String selectedOption = comboBox.getValue();
       controller.changeStylesheet(selectedOption);
     });
-    makeButton("select_Image", event -> openFile());
     makeLabel("ArrowKeyMovementAmount");
   }
 
@@ -89,8 +88,14 @@ public class ControlPane extends CreatePane implements Control {
     try {
       Method method = Controller.class.getDeclaredMethod(handlerName);
       method.invoke(controller);
-    } catch (Exception e) {
-      controller.showMessage("NoSuchMethod");
+    } catch (Exception e1) {
+      try {
+        Method method = ControlPane.class.getDeclaredMethod(handlerName);
+        method.invoke(this);
+      }
+      catch (Exception e2) {
+        controller.showMessage("NoSuchMethod");
+      }
     }
   }
 
@@ -155,7 +160,7 @@ public class ControlPane extends CreatePane implements Control {
   /**
    * Creates file chooser to allow somebody to pick a new image
    */
-  private void openFile() {
+  private void selectImage() {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open File");
 
