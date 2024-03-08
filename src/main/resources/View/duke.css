@@ -11,7 +11,7 @@
   -fx-border-radius: 20;
   -fx-background-radius: 20;
   -fx-padding: 9;
-  -fx-font-size: 10pt;
+  -fx-font-size: 9pt;
   -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0 );
 }
 
@@ -32,7 +32,7 @@
 }
 
 .label {
-  -fx-font-size: 10pt;
+  -fx-font-size: 9pt;
   -fx-font-family: "Arial, sans-serif";
   -fx-text-fill: #001A57; /* Duke Blue */
   -fx-opacity: 0.8;
