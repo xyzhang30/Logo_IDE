@@ -69,9 +69,9 @@ public class ControlPane extends CreatePane implements Control {
         makeButton(buttonName, event -> invokeEventHandler(eventName));
       }
     } catch (FileNotFoundException e) {
-      controller.showMessage(AlertType.ERROR, "File Not Found");
+      controller.showMessage("FileNotFound");
     }
-
+    // reflection was much more difficult for non buttons
     makeColorPicker("selectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
     makeColorPicker("selectBackgroundColor", event -> controller.changeBackgroundColor(((ColorPicker) event.getSource()).getValue()));
     makeDropdown("dropdownSelector", "theme", event -> {
@@ -88,7 +88,7 @@ public class ControlPane extends CreatePane implements Control {
       Method method = Controller.class.getDeclaredMethod(handlerName);
       method.invoke(controller);
     } catch (Exception e) {
-      controller.showMessage(AlertType.ERROR, "No such method name in controller");
+      controller.showMessage("NoSuchMethod");
     }
   }
   //button handler in controller and then pass in map of the button handlers into controlpane
@@ -147,7 +147,7 @@ public class ControlPane extends CreatePane implements Control {
       getRoot().getChildren().add(dropdown);
     }
     catch (FileNotFoundException f1) {
-      controller.showMessage(AlertType.ERROR, "No such method name in controller");
+      controller.showMessage("FileNotFound");
     }
   }
 
