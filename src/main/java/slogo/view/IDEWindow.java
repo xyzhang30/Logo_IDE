@@ -99,6 +99,9 @@ public class IDEWindow {
    * The command history pane in the IDE window.
    */
   private CommandHistoryPane historyPane;
+  
+  private UserDefPane userPane;
+  
 
   /**
    * The speed of the turtle animation.
@@ -139,8 +142,9 @@ public class IDEWindow {
    *
    * @param models The turtle models in the IDE window.
    */
-  public void start(Map<Double, TurtleModelApi> models) {
+  public void start(Map<Double, TurtleModelApi> models, Map<String, Double> variableItems) {
     stage.setTitle(TITLE);
+    this.variableItems = variableItems;
     this.models = models;
     stage.setScene(makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
     stage.show();
@@ -168,11 +172,11 @@ public class IDEWindow {
 
     addTurtlePane();
 
-    UserDefPane commandPane = new UserDefPane(DEFAULT_SIZE.height / 15, DEFAULT_SIZE.width / 4, language);
-    AnchorPane.setBottomAnchor(commandPane.getRoot(), (double) DEFAULT_SIZE.height / 8);
-    AnchorPane.setTopAnchor(commandPane.getRoot(), 0.0);
-    AnchorPane.setRightAnchor(commandPane.getRoot(), 0.0);
-    root.getChildren().add(commandPane.getRoot());
+    this.userPane = new UserDefPane(DEFAULT_SIZE.height / 15, DEFAULT_SIZE.width / 4, language, variableItems);
+    AnchorPane.setBottomAnchor(userPane.getRoot(), (double) DEFAULT_SIZE.height / 8);
+    AnchorPane.setTopAnchor(userPane.getRoot(), 0.0);
+    AnchorPane.setRightAnchor(userPane.getRoot(), 0.0);
+    root.getChildren().add(userPane.getRoot());
 
     this.historyPane = new CommandHistoryPane(DEFAULT_SIZE.height / 2, DEFAULT_SIZE.width / 20, language);
     AnchorPane.setBottomAnchor(historyPane.getRoot(), (double) DEFAULT_SIZE.height / 8);
@@ -227,6 +231,7 @@ public class IDEWindow {
   public CommandHistoryPane getHistoryPane() {
     return historyPane;
   }
+  
 
   /**
    * Gets the stage of the IDE window.
@@ -378,6 +383,10 @@ public class IDEWindow {
 
   public void loadFileContent(String fileContent){
     textPane.getTextArea().setText(fileContent);
+  }
+
+  public UserDefPane getUserDefPane() {
+    return userPane;
   }
 }
 

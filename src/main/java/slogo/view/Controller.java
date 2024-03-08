@@ -72,7 +72,7 @@ public class Controller  {
    *
    */
   public void start() {
-    ide.start(model);
+    ide.start(model, executioner.getVariableMap());
   }
 
   /**
@@ -179,7 +179,7 @@ public class Controller  {
    * Feeds the variables to the UserDefPane for display.
    */
   public void feedVariables() {
-    userPane = new UserDefPane(200, 50, language);
+    System.out.println("exec " + executioner);
     userPane.updateDisplay();
   }
 

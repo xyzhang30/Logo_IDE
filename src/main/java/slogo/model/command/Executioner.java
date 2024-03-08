@@ -93,10 +93,10 @@ public class Executioner implements ExecutionerApi {
   }
 
 
-//  @Override
-//  public Map<String, Double> getVariableMap() {
-//    return environment.getVarMap();
-//  }
+  @Override
+  public Map<String, Double> getVariableMap() {
+    return environment.getVarMap();
+  }
 //
 //  @Override
 //  public Map<String, Executable> getFunctionMap() {
