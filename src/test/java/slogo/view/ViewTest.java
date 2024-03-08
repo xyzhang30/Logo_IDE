@@ -38,7 +38,7 @@ public class ViewTest extends DukeApplicationTest {
     final String expectedText = "Test input";
     Platform.runLater(() -> {
       // Access JavaFX components after the UI is initialized
-      TextArea textArea = ideWindow.getTextArea();
+      TextArea textArea = lookup("#TextInput").query();
 
       // Set text in the text area
       textArea.setText(expectedText);

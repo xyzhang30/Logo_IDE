@@ -1,6 +1,7 @@
 package slogo.view;
 
 import java.io.File;
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
 /**
@@ -63,4 +64,6 @@ public interface TurtleBase {
    * @return {@code true} if the timeline is paused, {@code false} otherwise.
    */
   boolean getPaused();
+
+  Node getRoot();
 }

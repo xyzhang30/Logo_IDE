@@ -37,9 +37,9 @@ public class IDEWindow {
 
   public static final Dimension DEFAULT_SIZE = new Dimension(1500, 1000);
 
-  private TextInputPane textPane = new TextInputPane(100,100, "english");
+  private TextInput textPane = new TextInputPane(100,100, "english");
 
-  private TurtlePane turtlePane;
+  private TurtleBase turtlePane;
 
   private Pane root;
 
@@ -133,9 +133,6 @@ public class IDEWindow {
   }
   public Stage getStage() {
     return stage;
-  }
-  public TextArea getTextArea(){
-    return textPane.getTextArea();
   }
 
   public int getSpeed() {
