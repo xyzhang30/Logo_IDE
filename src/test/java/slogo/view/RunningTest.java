@@ -1,14 +1,19 @@
 package slogo.view;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import slogo.model.api.TurtleModelApi;
 import slogo.model.command.Executioner;
 import slogo.model.turtle.TurtleModel;
 import util.DukeApplicationTest;

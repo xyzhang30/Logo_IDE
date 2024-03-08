@@ -3,7 +3,6 @@ package slogo.view;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.paint.Color;
-import java.io.File;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.layout.StackPane;
@@ -235,5 +234,15 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   @Override
   public boolean getPaused() {
     return paused;
+  }
+
+  /**
+   * Retrieves the graphical representation of a turtle with the specified ID.
+   *
+   * @param id The unique identifier of the turtle.
+   * @return The TurtleV representing the graphical view of the turtle.
+   */
+  public TurtleV getTurtleV(double id) {
+    return turtles.getOrDefault(id, null);
   }
 }

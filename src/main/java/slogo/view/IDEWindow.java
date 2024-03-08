@@ -181,6 +181,7 @@ public class IDEWindow {
     setStylesheet(STYLESHEET);
     root.setOnKeyPressed(this::handleKeyPressed);
     root.requestFocus();
+    root.setId("Main");
     return scene;
   }
 
