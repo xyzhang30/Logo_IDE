@@ -44,38 +44,24 @@ public class Animations implements Graphics {
     pane.getChildren().add(canvas);
   }
 
-  @Override
+
   /**
    * clears all lines
    */
+  @Override
   public void clearCanvas() {
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
   }
 
   /**
-   *
-   * @return the canvas
-   */
-  public Canvas getCanvas() {
-    return canvas;
-  }
-
-  /**
-   *
+   * Important getter so that class can access the pane and thus display the lines
    * @return the root that the canvas is on
    */
+  @Override
   public Pane getRoot() {
     return pane;
   }
 
-  /**
-   *
-   * @returns the used graphic context
-   */
-  @Override
-  public GraphicsContext getGraphicsContext() {
-    return gc;
-  }
 
   /**
    * Draws line from starting coordinates from ending coordinates

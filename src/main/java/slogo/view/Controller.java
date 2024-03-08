@@ -47,7 +47,7 @@ public class Controller  {
    * @param executioner the executioner responsible for interpreting and executing commands.
    * @param language   the initial language setting.
    */
-  public Controller(Stage stage, Executioner executioner, String language) {
+  public Controller(Stage stage, ExecutionerApi executioner, String language) {
     stepping = false;
     this.executioner = executioner;
     state = State.STOPPED;
@@ -262,7 +262,7 @@ public class Controller  {
    *
    *
    */
-  public void newInstance() {
+  public void newApplication() {
     Controller c2 = new Controller(new Stage(), new Executioner(), language);
     c2.start();
   }

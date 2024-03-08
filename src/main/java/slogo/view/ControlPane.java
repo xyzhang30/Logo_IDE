@@ -2,27 +2,23 @@ package slogo.view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
+import java.lang.reflect.Method;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
-import javafx.stage.DirectoryChooser;
 
 /**
  * Control Pane class. Create buttons or other interactive elements on view
@@ -30,8 +26,9 @@ import javafx.stage.DirectoryChooser;
 public class ControlPane extends CreatePane implements Control {
 
 
-
+  private static final String buttonPath = "buttons";
   private final Controller controller;
+  private final ViewParser viewParser;
 
   /**
    * Constructor
@@ -42,7 +39,7 @@ public class ControlPane extends CreatePane implements Control {
    */
   public ControlPane(int height, int width, Controller controller, String language) {
     super(height, width, language);
-
+    viewParser = new ViewParser();
     this.controller = controller;
     setRoot(new HBox());
     create();
@@ -63,28 +60,36 @@ public class ControlPane extends CreatePane implements Control {
 
   @Override
   public void addFeatures() {
-    makeButton("Run", event -> controller.run());
-    makeButton("Step", event -> controller.step());
-    makeButton("Pause", event -> controller.pause());
-    makeButton("Help", event -> controller.help());
-    makeButton("Speed_Up", event -> controller.speedUp());
-    makeButton("Slow_Down", event -> controller.slowDown());
-    makeButton("New_Application", event -> {
-      try {
-        controller.newInstance();
-      } catch (Exception e) {
-        throw new RuntimeException(e);
+    try {
+      viewParser.readXml(buttonPath);
+      List<String> buttonNames = viewParser.getOptions();
+
+      for (String buttonName : buttonNames) {
+        String eventName = buttonName.replace("_", "");
+        makeButton(buttonName, event -> invokeEventHandler(eventName));
       }
-    });
-    makeColorPicker("SelectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
-    makeColorPicker("SelectBackgroundColor", event -> controller.changeBackgroundColor(((ColorPicker) event.getSource()).getValue()));
-    makeDropdown("DropdownSelector", "theme", event -> {
+    } catch (FileNotFoundException e) {
+      controller.showMessage(AlertType.ERROR, "File Not Found");
+    }
+
+    makeColorPicker("selectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
+    makeColorPicker("selectBackgroundColor", event -> controller.changeBackgroundColor(((ColorPicker) event.getSource()).getValue()));
+    makeDropdown("dropdownSelector", "theme", event -> {
       ComboBox<String> comboBox = (ComboBox<String>) event.getSource();
       String selectedOption = comboBox.getValue();
       controller.changeStylesheet(selectedOption);
     });
-    makeButton("Select_Image", event -> openFile());
+    makeButton("select_Image", event -> openFile());
 
+  }
+
+  private void invokeEventHandler(String handlerName) {
+    try {
+      Method method = Controller.class.getDeclaredMethod(handlerName);
+      method.invoke(controller);
+    } catch (Exception e) {
+      controller.showMessage(AlertType.ERROR, "No such method name in controller");
+    }
   }
   //button handler in controller and then pass in map of the button handlers into controlpane
 
@@ -132,11 +137,8 @@ public class ControlPane extends CreatePane implements Control {
    */
   private void makeDropdown(String property, String type, EventHandler<ActionEvent> handler) {
     try {
-      ViewParser v1 = new ViewParser();
-      v1.readXml(type);
-      ObservableList<String> options = FXCollections.observableArrayList(
-          v1.getOptions()
-      );
+      viewParser.readXml(type);
+      ObservableList<String> options = FXCollections.observableArrayList(viewParser.getOptions());
       ComboBox<String> dropdown = new ComboBox<>(options);
       dropdown.setId(property);
       dropdown.setOnAction(handler);
@@ -145,8 +147,7 @@ public class ControlPane extends CreatePane implements Control {
       getRoot().getChildren().add(dropdown);
     }
     catch (FileNotFoundException f1) {
-      System.out.println("Not found");
-      // do nothing
+      controller.showMessage(AlertType.ERROR, "No such method name in controller");
     }
   }
 

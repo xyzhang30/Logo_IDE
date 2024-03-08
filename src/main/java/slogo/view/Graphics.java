@@ -1,5 +1,6 @@
 package slogo.view;
 
+import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -18,7 +19,7 @@ public interface Graphics {
    *
    * @return the graphics context being used
    */
-  GraphicsContext getGraphicsContext();
+  Node getRoot();
 
   /**
    * Will create line from starting coordinates to ending coordinates
