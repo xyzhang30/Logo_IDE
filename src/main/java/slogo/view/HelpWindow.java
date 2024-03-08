@@ -109,11 +109,14 @@ public class HelpWindow extends Stage {
 
       Button runButton = new Button("Run"); // Add Run button
       runButton.setOnAction(event -> {
-        if (controller != null) {
-          controller.run(); // Execute run method if controller is not null
-        }
+        System.out.println("button pressed");
+        System.out.println("hi" + commandTextArea.getText());
+        controller.run(); // Execute run method if controller is not null
+        System.out.println("run button working");
       });
       commandDetails.getChildren().add(runButton);
+
+
 
       helpPane.getChildren().clear();
       helpPane.getChildren().addAll(commandDetails);
@@ -123,7 +126,9 @@ public class HelpWindow extends Stage {
   }
 
   public String getTextArea() {
+
     System.out.println("helptext: " + commandTextArea.getText());
+    System.out.println(commandTextArea.getHeight());
     return commandTextArea.getText();
   }
 }

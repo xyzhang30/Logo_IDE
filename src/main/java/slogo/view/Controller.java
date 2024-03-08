@@ -55,6 +55,7 @@ public class Controller  {
     this.language = language;
     i1 = new IDEWindow(stage, this, language);
     cmdHistory = new CommandHistory();
+    instance = this;
   }
 
   public static Controller getInstance() {
@@ -90,6 +91,7 @@ public class Controller  {
 
   private void setUpRun() {
     String command = i1.getText();
+    System.out.println("i1" + command);
     try {
       if (state == State.STOPPED) {
         if (command != null && !command.equals("")) {

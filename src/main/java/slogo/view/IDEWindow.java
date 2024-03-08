@@ -119,8 +119,8 @@ public class IDEWindow {
 //    return textEdit;
       String textEdit = t1.getTextInput();
       String helpText = helpWindow.getTextArea();
-      System.out.println(textEdit);
-      System.out.println(helpText);
+      System.out.println("textedit" +textEdit);
+      System.out.println("helpedit" + helpText);
       return textEdit + " " + helpText;
   }
 
