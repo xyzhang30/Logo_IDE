@@ -209,7 +209,7 @@ public class Controller  {
   /**
    * Processes the selected PNG file and updates the IDEWindow.
    *
-   * @param selectedFile the selected PNG file.
+   * @param selectedFilePath the selected PNG file name.
    */
   public void processNewImage(String selectedFilePath) {
     ide.updateImage(selectedFilePath);

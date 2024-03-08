@@ -132,13 +132,13 @@ public class TurtleView implements TurtleV {
    */
   @Override
   public void updateImage(String selectedFilePath) {
-    if (!pane.getChildren().isEmpty()) {
-      pane.getChildren().remove(0);
-    }
-    turtleImage = new ImageView((new Image(getClass().
-        getResource(DEFAULT_RESOURCE_FOLDER + DEFAULT_IMAGE_PATH + "/"
-            + selectedFilePath).toExternalForm())));
-    initialize();
+      if (!pane.getChildren().isEmpty()) {
+        pane.getChildren().remove(0);
+      }
+      turtleImage = new ImageView((new Image(getClass().
+          getResource(DEFAULT_RESOURCE_FOLDER + DEFAULT_IMAGE_PATH + "/"
+              + selectedFilePath).toExternalForm())));
+      initialize();
   }
 
   private void initialize() {
@@ -162,20 +162,36 @@ public class TurtleView implements TurtleV {
     }
   }
 
+  /**
+   * Gets the x-coordinate of the turtle.
+   *
+   * @return The x-coordinate of the turtle.
+   */
   @Override
   public double getX() {
     return x;
   }
 
+  /**
+   * Gets the y-coordinate of the turtle.
+   *
+   * @return The y-coordinate of the turtle.
+   */
   @Override
   public double getY() {
     return y;
   }
 
+  /**
+   * Gets the direction of the turtle.
+   *
+   * @return The direction of the turtle.
+   */
   @Override
   public double getDirection() {
     return direction;
   }
+
 
 }
 

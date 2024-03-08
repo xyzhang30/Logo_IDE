@@ -1,6 +1,5 @@
 package slogo.view;
 
-import java.io.File;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
@@ -65,5 +64,11 @@ public interface TurtleBase {
    */
   boolean getPaused();
 
+  /**
+   * Gets the root node associated with the implementing class.
+   *
+   * @return The root node.
+   */
   Node getRoot();
 }
+
