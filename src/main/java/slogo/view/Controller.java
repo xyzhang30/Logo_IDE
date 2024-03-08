@@ -355,6 +355,10 @@ public class Controller  {
     setUpRunInternal("rt 90\nfd " + KEY_MOVE_AMOUNT);
   }
 
+  public IDEWindow getIde(){
+    return ide;
+  }
+
 }
 
 
