@@ -262,7 +262,7 @@ public class Controller  {
    *
    *
    */
-  public void newInstance() {
+  public void newApplication() {
     Controller c2 = new Controller(new Stage(), new Executioner(), language);
     c2.start();
   }
