@@ -67,7 +67,12 @@ public abstract class TurtleExecutable extends CommandExecutable {
     currentTurtle.setPosX(currentTurtle.getPosX() + distX);
     currentTurtle.setPosY(currentTurtle.getPosY() + distY);
   }
-  public void rotate(double degrees){
 
+  /**
+   * Helper function to rotate a Turtle Counter-Clockwise
+   * @param degrees The angle by which the Turtle rotates Counter-Clockwise
+   */
+  public void rotate(double degrees){
+    currentTurtle.setDirection((currentTurtle.getDegreesDirection() + degrees) % 360);
   }
 }
