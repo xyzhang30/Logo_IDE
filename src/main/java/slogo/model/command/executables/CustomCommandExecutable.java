@@ -12,4 +12,8 @@ public class CustomCommandExecutable implements Executable{
   public double execute(EnvironmentApi env) {
     return env.getFuncMap().get(signature).execute(env);
   }
+
+  public String getSignature(){
+    return signature;
+  }
 }

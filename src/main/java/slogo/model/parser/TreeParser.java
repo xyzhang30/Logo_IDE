@@ -16,7 +16,7 @@ import slogo.model.command.executables.ListExecutable;
 import slogo.model.command.executables.VariableExecutable;
 import slogo.model.command.executables.RootExecutable;
 import slogo.model.token.Token;
-import slogo.model.xmlparser.CommandXmlParser;
+import slogo.xmlparser.CommandXmlParser;
 
 
 public class TreeParser implements ParserApi {

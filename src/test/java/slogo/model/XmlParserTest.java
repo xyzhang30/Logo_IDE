@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import slogo.model.xmlparser.CommandXmlParser;
+import slogo.xmlparser.CommandXmlParser;
 
 public class XmlParserTest {
 

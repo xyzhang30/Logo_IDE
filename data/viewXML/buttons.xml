@@ -6,4 +6,5 @@
   <buttons>speed_Up</buttons>
   <buttons>slow_Down</buttons>
   <buttons>new_Application</buttons>
+  <buttons>save</buttons>
 </buttons>

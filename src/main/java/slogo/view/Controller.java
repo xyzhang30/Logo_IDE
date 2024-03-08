@@ -5,9 +5,11 @@ import java.util.Map;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
+import slogo.model.api.ModelFactory;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.CommandHistory;
 import slogo.model.command.Executioner;
@@ -41,6 +43,7 @@ public class Controller  {
   private CommandHistory cmdHistory;
   private CommandHistoryPane cmdHistoryPane;
   private UserDefPane userPane;
+
 
   /**
    * Constructs a Controller with the specified stage, executioner, and language.
@@ -269,9 +272,37 @@ public class Controller  {
    *
    *
    */
-  public void newApplication() {
-    Controller c2 = new Controller(new Stage(), new Executioner(), language);
+  public void newApplication() throws Exception {
+    ModelFactory modelFactory = new ModelFactory();
+    Controller c2 = new Controller(new Stage(), modelFactory.createExecutioner(), language);
     c2.start();
+  }
+
+
+  public void save() {
+    FileChooser fileChooser = new FileChooser();
+
+    // Set initial directory if needed
+     fileChooser.setInitialDirectory(new File("data/"));
+
+    // Set extension filter to only allow .slogo files
+    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("SLogo files (*.slogo)", "*.slogo");
+    fileChooser.getExtensionFilters().add(extFilter);
+
+    // Show save file dialog
+    Stage stage = new Stage();
+    stage.setTitle("Save SLogo File");
+    File selectedFile = fileChooser.showSaveDialog(stage);
+
+    // Process the selected file
+    if (selectedFile != null) {
+      // Pass the file name and path to the executioner for saving
+      String fileName = selectedFile.getName();
+//      String filePath = selectedFile.getAbsolutePath();
+      String folderPath = selectedFile.getParent();
+      System.out.println("filepath: "+ folderPath);
+      executioner.saveFile(fileName, folderPath);
+    }
   }
 
   /**

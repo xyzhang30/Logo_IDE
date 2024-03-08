@@ -9,7 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import slogo.model.command.Executioner;
+import slogo.model.api.ModelFactory;
 import slogo.view.Controller;
 
 import java.io.File;
@@ -122,11 +122,11 @@ public class Main extends Application {
 
   private void startNewSession() throws Exception {
     // Call the method to start the main application functionality
-    Executioner e1 = new Executioner();
+    ModelFactory modelFactory = new ModelFactory();
     if (language == null){
       language = "english";
     }
-    Controller controller = new Controller(primaryStage, e1, language);
+    Controller controller = new Controller(primaryStage, modelFactory.createExecutioner(), language);
     controller.start();
     controller.changeStylesheet(selectedTheme); // Change stylesheet based on selected theme
 

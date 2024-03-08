@@ -6,12 +6,12 @@ import java.util.Map;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
 import slogo.model.api.TurtleModelApi;
-import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.RootExecutable;
 import slogo.model.environment.Environment;
 import slogo.model.parser.TreeParser;
 import slogo.model.token.Token;
 import slogo.model.token.Tokenizer;
+import slogo.xmlparser.CommandXmlParser;
 
 public class Executioner implements ExecutionerApi {
 
@@ -79,6 +79,17 @@ public class Executioner implements ExecutionerApi {
   public CommandHistory getHistory() {
     return treeParser.getHistory();
   }
+
+  @Override
+  public CommandXmlParser getXmlParser(){
+    return new CommandXmlParser();
+  }
+
+  @Override
+  public void saveFile(String fileName, String folderPath){
+    treeParser.getHistory().saveFile(fileName, folderPath);
+  }
+
 
 //  @Override
 //  public Map<String, Double> getVariableMap() {
