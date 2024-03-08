@@ -13,43 +13,37 @@ import slogo.model.environment.EnvironmentApi;
 public class ForCommand extends CommandExecutable {
 
   private final VariableExecutable var;
-  private final ConstantExecutable start;
-  private final ConstantExecutable end;
-  private final ConstantExecutable increment;
+  private final Executable start;
+  private final Executable end;
+  private final Executable increment;
   private final ListExecutable listContent;
 
   public ForCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
     ListExecutable paramFirstList = (ListExecutable) parameterExecutables.get(0);
     var = (VariableExecutable) paramFirstList.getList().get(0);
-    start = (ConstantExecutable) paramFirstList.getList().get(1);
-    end = (ConstantExecutable) paramFirstList.getList().get(2);
-    increment = (ConstantExecutable) paramFirstList.getList().get(3);
+    start = paramFirstList.getList().get(1);
+    end = paramFirstList.getList().get(2);
+    increment = paramFirstList.getList().get(3);
 
     listContent = (ListExecutable) parameterExecutables.get(1);
   }
 
   @Override
   public double execute(EnvironmentApi env) {
+    String indexKey = var.getSignature();
+    env.getVarMap().put(indexKey, start.execute(env));
+    double endLimit = end.execute(env);
+    double step = increment.execute(env);
     double ret = 0;
 
-    if (env.getVarMap().get(var.getSignature()) == null) { //when the variable does not exist
-      ConstantExecutable constant = new ConstantExecutable(0);
-      List<Executable> tempList = new ArrayList<>();
-      tempList.add(var);
-      tempList.add(constant);
-      Make make = new Make(tempList);
-      make.execute(env);
-    }
-
-    env.getVarMap().replace(var.getSignature(), start.execute(env));
-
-    for (double i = start.execute(env); i < end.execute(env); i += increment.execute(env)) {
-      env.getVarMap().replace(var.getSignature(), i);
-      for (Executable e : listContent.getList()) {
+    while (env.getVarMap().get(indexKey) < endLimit){
+      for (Executable e : listContent.getList()){
         ret = e.execute(env);
       }
+      env.getVarMap().put(indexKey, env.getVarMap().get(indexKey) + step);
     }
+    env.getVarMap().put(indexKey, env.getVarMap().get(indexKey) - step);
     return ret;
   }
 }
