@@ -63,7 +63,7 @@ public class Controller  {
     ide = new IDEWindow(stage, this, language);
     cmdHistory = new CommandHistory();
     instance = this;
-    helpWindow = new HelpWindow();
+    helpWindow = new HelpWindow(language);
   }
 
   /**
@@ -112,6 +112,11 @@ public class Controller  {
     setUpRunInternal(command);
   }
 
+  public void runCmdHist(String command){
+    setUpRunInternal(command);
+    updateHistory();
+  }
+
   public void runHelp(String command){
     //String command = helpWindow.getTextArea();
     System.out.println("in run help " + command);
@@ -155,7 +160,7 @@ public class Controller  {
    * Displays the help window.
    */
   public void help() {
-    HelpWindow helpWindow = new HelpWindow();
+    HelpWindow helpWindow = new HelpWindow(language);
     helpWindow.show(); // Display the help window
   }
 
@@ -166,6 +171,7 @@ public class Controller  {
    */
   public void feedHistory(String commands) {
 //    cmdHistoryPane = new CommandHistoryPane(200, 50, language);
+
     ide.getHistoryPane().addCommand(commands);
   }
 

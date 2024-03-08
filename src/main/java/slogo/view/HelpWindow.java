@@ -24,7 +24,7 @@ public class HelpWindow extends Stage {
 
   private TextArea commandTextArea;
 
-  public HelpWindow() {
+  public HelpWindow(String language) {
     BorderPane root = new BorderPane();
 
     VBox helpPane = new VBox();
@@ -123,11 +123,5 @@ public class HelpWindow extends Stage {
     } catch (FileNotFoundException e) {
       // Handle file not found exception
     }
-  }
-
-  public String getTextArea() {
-    System.out.println();
-    System.out.println(commandTextArea.getHeight());
-    return commandTextArea.getText();
   }
 }
