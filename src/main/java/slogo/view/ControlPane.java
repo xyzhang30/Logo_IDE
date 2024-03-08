@@ -2,6 +2,7 @@ package slogo.view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -72,6 +73,7 @@ public class ControlPane extends CreatePane implements Control {
       }
     } catch (FileNotFoundException e) {
       controller.showMessage("FileNotFound");
+      e.printStackTrace();
     }
     // reflection was much more difficult for non buttons / parameters
     makeColorPicker("selectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
