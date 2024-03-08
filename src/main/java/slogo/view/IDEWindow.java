@@ -167,7 +167,9 @@ public class IDEWindow {
   }
 
   public void setStylesheet(String stylesheet) {
-    scene.getStylesheets().remove(0);
+    if (!scene.getStylesheets().isEmpty()) {
+      scene.getStylesheets().remove(0);
+    }
     scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + stylesheet).toExternalForm());
   }
 
