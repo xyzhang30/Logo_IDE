@@ -16,10 +16,11 @@ import static org.testfx.matcher.base.NodeMatchers.isVisible;
 public class HelpWindowTest extends ApplicationTest {
 
   private HelpWindow helpWindow;
+  private String language;
 
   @Override
   public void start(Stage stage) {
-    helpWindow = new HelpWindow();
+    helpWindow = new HelpWindow(language);
     helpWindow.show();
   }
 
