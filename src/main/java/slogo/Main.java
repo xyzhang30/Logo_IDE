@@ -1,6 +1,8 @@
 package slogo;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,6 +28,8 @@ public class Main extends Application {
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
     primaryStage.setTitle("SLogo Splash Screen");
+
+    language = "english";
 
     // Program's name label
     Label programNameLabel = new Label("SLogo");
@@ -111,13 +115,40 @@ public class Main extends Application {
 
   private void loadSession() {
     FileChooser fileChooser = new FileChooser();
+    fileChooser.setInitialDirectory(new File("data/"));
+
     fileChooser.setTitle("Open Session File");
     File selectedFile = fileChooser.showOpenDialog(primaryStage);
     if (selectedFile != null) {
       System.out.println("Loading session from file: " + selectedFile.getAbsolutePath());
+      try {
+        // Read the content of the selected file
+        String fileContent = readFile(selectedFile);
+
+        // Call the controller to run the loaded session
+        ModelFactory modelFactory = new ModelFactory();
+        Controller controller = new Controller(primaryStage, modelFactory.createExecutioner(), language);
+        controller.start();
+        controller.getIde().loadFileContent(fileContent);
+        System.out.println("filecontent:"+fileContent);
+      } catch (Exception e) {
+        System.err.println("Error loading session file: " + e.getMessage());
+        e.printStackTrace();
+      }
     } else {
       System.out.println("No session file selected.");
     }
+  }
+
+  private String readFile(File file) throws IOException {
+    StringBuilder contentBuilder = new StringBuilder();
+    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+      String line;
+      while ((line = reader.readLine()) != null) {
+        contentBuilder.append(line).append("\n");
+      }
+    }
+    return contentBuilder.toString();
   }
 
   private void startNewSession() throws Exception {

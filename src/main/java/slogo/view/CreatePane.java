@@ -33,6 +33,7 @@ public abstract class CreatePane {
       this.width = width;
       root = new Pane();
       this.language = language;
+      System.out.println(DEFAULT_RESOURCE_PACKAGE + language);
       myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
   }
 

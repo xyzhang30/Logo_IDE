@@ -73,7 +73,7 @@ public class IDEWindow {
   /**
    * The text input pane in the IDE window.
    */
-  private TextInput textPane = new TextInputPane(100, 100, defaultLanguage);
+  private TextInputPane textPane = new TextInputPane(100, 100, defaultLanguage);
 
   /**
    * The turtle pane in the IDE window.
@@ -156,6 +156,9 @@ public class IDEWindow {
   public Scene makeScene(int width, int height) {
     root = new AnchorPane();
 
+    if (this.language == null){
+      this.language = "english";
+    }
     ControlPane c1 = new ControlPane(DEFAULT_SIZE.height / 10, DEFAULT_SIZE.width, controller, language);
     AnchorPane.setTopAnchor(c1.getRoot(), 0.0);
     root.getChildren().add(c1.getRoot());
@@ -338,6 +341,7 @@ public class IDEWindow {
       messageText = new Label(ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language).getString("error" + message));
     } catch (Exception e) {
       messageText = new Label(message);
+      e.printStackTrace();
     }
     messageText.setWrapText(true);
     alert.getDialogPane().setContent(messageText);
@@ -370,6 +374,10 @@ public class IDEWindow {
         // nothing
         break;
     }
+  }
+
+  public void loadFileContent(String fileContent){
+    textPane.getTextArea().setText(fileContent);
   }
 }
 
