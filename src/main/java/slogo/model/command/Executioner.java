@@ -85,6 +85,10 @@ public class Executioner implements ExecutionerApi {
     return new CommandXmlParser();
   }
 
+  @Override
+  public void saveFile(String fileName, String folderPath){
+    treeParser.getHistory().saveFile(fileName, folderPath);
+  }
 
 
 //  @Override
