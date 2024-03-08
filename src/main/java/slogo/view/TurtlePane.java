@@ -22,7 +22,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   private static final double activeOpacity = 1.0;
   private static final double inactiveOpacity = 0.7;
   private final Map<Double, TurtleModelApi> model;
-  private final Animations a1;
+  private final Graphics animations;
   private int speed;
   private final Map<Double, TurtleV> turtles;
   private Timeline timeline;
@@ -50,7 +50,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     turtles = new HashMap<>();
     createTurtleViews();
     pen = new PenDraw();
-    a1 = new Animations(getHeight(), getWidth(), getLanguage(), pen);
+    animations = new Animations(getHeight(), getWidth(), getLanguage(), pen);
     timeline = new Timeline();
     timeline.stop();
     timeLinePoint = 0;
@@ -77,7 +77,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
    */
   @Override
   public void create() {
-    getRoot().getChildren().add(a1.getRoot());
+    getRoot().getChildren().add(animations.getRoot());
   }
 
   /**
@@ -102,7 +102,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
    * Clears the canvas of the TurtlePane.
    */
   public void clear() {
-    a1.clearCanvas();
+    animations.clearCanvas();
   }
 
   private Timeline createTimeline() {
@@ -144,7 +144,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
           startDirection) / ((double) defaultLineLength / speed);
 
       if (value.getAttributes().pen()) {
-        a1.drawLine(startX, startY, x, y);
+        animations.drawLine(startX, startY, x, y);
       }
       if (value.getAttributes().active()) {
         usingTurtle.getTurtleImage().setOpacity(activeOpacity);
