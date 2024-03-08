@@ -43,6 +43,8 @@ public class Controller  {
   private CommandHistory cmdHistory;
   private CommandHistoryPane cmdHistoryPane;
   private UserDefPane userPane;
+  private static Controller instance;
+  private HelpWindow helpWindow;
 
 
   /**
@@ -60,6 +62,8 @@ public class Controller  {
     this.language = language;
     ide = new IDEWindow(stage, this, language);
     cmdHistory = new CommandHistory();
+    instance = this;
+    helpWindow = new HelpWindow();
   }
 
   /**
@@ -108,7 +112,14 @@ public class Controller  {
     setUpRunInternal(command);
   }
 
-  private void setUpRunInternal(String command) {
+  public void runHelp(String command){
+    //String command = helpWindow.getTextArea();
+    System.out.println("in run help " + command);
+    setUpRunInternal(command);
+    updateHistory();
+  }
+
+  public void setUpRunInternal(String command) {
     try {
       if (state == State.STOPPED) {
         if (command != null && !command.equals("")) {
@@ -353,6 +364,10 @@ public class Controller  {
    */
   public void right() {
     setUpRunInternal("rt 90\nfd " + KEY_MOVE_AMOUNT);
+  }
+
+  public static Controller getInstance(){
+    return instance;
   }
 
 }

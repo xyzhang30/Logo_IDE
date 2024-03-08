@@ -41,6 +41,7 @@ public class Executioner implements ExecutionerApi {
 
   @Override
   public void parseTree(InputRecord commandInput) {
+    System.out.println("in exeparse tree");
     List<Token> tokens = tokenizer.tokenize(commandInput.input());
     root = (RootExecutable)treeParser.parseTree(tokens);
   }
@@ -56,6 +57,7 @@ public class Executioner implements ExecutionerApi {
 
   @Override
   public boolean hasNext() {
+    System.out.println("root: "+root);
     return root.hasNext();
   }
 
