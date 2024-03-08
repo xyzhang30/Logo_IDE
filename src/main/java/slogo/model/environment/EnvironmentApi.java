@@ -33,6 +33,7 @@ public interface EnvironmentApi {
    * @return List  A list of doubles representing IDs of active turtles.
    */
   List<Double> getActiveTurtleKeys();
+  void syncTurtleActivation();
   int getWidth();
 
   int getHeight();

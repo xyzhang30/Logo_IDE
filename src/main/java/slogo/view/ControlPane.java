@@ -1,76 +1,110 @@
 package slogo.view;
 
 import java.io.File;
-import java.util.Arrays;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Method;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
-import javafx.stage.DirectoryChooser;
 
-
+/**
+ * Control Pane class. Create buttons or other interactive elements on view
+ */
 public class ControlPane extends CreatePane implements Control {
 
 
-
+  private static final String buttonPath = "buttons";
+  private static final String imagePath = "src/main/resources/view/images/";
   private final Controller controller;
+  private final ViewParser viewParser;
 
+  /**
+   * Constructor
+   * @param height = height of pane
+   * @param width = width of pane
+   * @param controller = controller necessary for handling events
+   * @param language = language for element displays
+   */
   public ControlPane(int height, int width, Controller controller, String language) {
     super(height, width, language);
-
+    viewParser = new ViewParser();
     this.controller = controller;
     setRoot(new HBox());
     create();
 
   }
 
+  /**
+   * Adds all interactive elements to pane
+   */
   @Override
   public void create() {
-    addButtons();
+    addFeatures();
   }
 
-  public void addButtons() {
-    makeButton("Run", event -> controller.run());
-    makeButton("Step", event -> controller.step());
-    makeButton("Pause", event -> controller.pause());
-    makeButton("Help", event -> controller.help());
-    makeButton("Speed_Up", event -> controller.speedUp());
-    makeButton("Slow_Down", event -> controller.slowDown());
-    makeButton("New_Application", event -> {
-      try {
-        controller.newInstance();
-      } catch (Exception e) {
-        throw new RuntimeException(e);
+  /**
+   * Adds all interactive elements to display
+   */
+
+  @Override
+  public void addFeatures() {
+    try {
+      viewParser.readXml(buttonPath);
+      List<String> buttonNames = viewParser.getOptions();
+
+      for (String buttonName : buttonNames) {
+        String eventName = buttonName.replace("_", "");
+        makeButton(buttonName, event -> invokeEventHandler(eventName));
       }
-    });
-    makeColorPicker("SelectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
-    makeColorPicker("SelectBackgroundColor", event -> controller.changeBackgroundColor(((ColorPicker) event.getSource()).getValue()));
-    makeDropdown("DropdownSelector", event -> {
+    } catch (FileNotFoundException e) {
+      controller.showMessage("FileNotFound");
+    }
+    // reflection was much more difficult for non buttons / parameters
+    makeColorPicker("selectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
+    makeColorPicker("selectBackgroundColor", event -> controller.changeBackgroundColor(((ColorPicker) event.getSource()).getValue()));
+    makeDropdown("dropdownSelector", "theme", event -> {
       ComboBox<String> comboBox = (ComboBox<String>) event.getSource();
       String selectedOption = comboBox.getValue();
       controller.changeStylesheet(selectedOption);
     });
-    makeButton("Select_Image", event -> openFile());
-
+    makeLabel("ArrowKeyMovementAmount");
   }
-  //button handler in controller and then pass in map of the button handlers into controlpane
 
-  public void makeButton (String property, EventHandler<ActionEvent> handler) {
+  private void invokeEventHandler(String handlerName) {
+    try {
+      Method method = Controller.class.getDeclaredMethod(handlerName);
+      method.invoke(controller);
+    } catch (Exception e1) {
+      try {
+        Method method = ControlPane.class.getDeclaredMethod(handlerName);
+        method.invoke(this);
+      }
+      catch (Exception e2) {
+        controller.showMessage("NoSuchMethod");
+      }
+    }
+  }
+
+  /**
+   * Creates button
+   * @param property = name to display
+   * @param handler = event on push
+   */
+  private void makeButton (String property, EventHandler<ActionEvent> handler) {
     // represent all supported image suffixes
     final String IMAGE_FILE_SUFFIXES = String.format(".*\\.(%s)", String.join("|", ImageIO.getReaderFileSuffixes()));
     Button result = new Button();
@@ -86,7 +120,12 @@ public class ControlPane extends CreatePane implements Control {
     getRoot().getChildren().addAll(result);
   }
 
-  public void makeColorPicker(String property, EventHandler<ActionEvent> handler) {
+  /**
+   * Creates color picker to be added
+   * @param property = name on display
+   * @param handler = event on click
+   */
+  private void makeColorPicker(String property, EventHandler<ActionEvent> handler) {
     String label = getMyResources().getString(property);
 
     ColorPicker colorPicker = new ColorPicker();
@@ -96,27 +135,38 @@ public class ControlPane extends CreatePane implements Control {
     getRoot().getChildren().add(colorPicker);
   }
 
-  public void makeDropdown(String property, EventHandler<ActionEvent> handler) {
-    ObservableList<String> options = FXCollections.observableArrayList(
-        "dark.css",
-        "duke.css",
-        "default.css"
-    );
-    ComboBox<String> dropdown = new ComboBox<>(options);
-    dropdown.setId(property);
-    dropdown.setOnAction(handler);
-    String label = getMyResources().getString(property);
-    dropdown.setPromptText(label);
-    getRoot().getChildren().add(dropdown);
+  /**
+   * Creates dropdown menu
+   * @param property = name on display
+   * @param type = name of xml file to use to parse options
+   * @param handler = event on select
+   */
+  private void makeDropdown(String property, String type, EventHandler<ActionEvent> handler) {
+    try {
+      viewParser.readXml(type);
+      ObservableList<String> options = FXCollections.observableArrayList(viewParser.getOptions());
+      ComboBox<String> dropdown = new ComboBox<>(options);
+      dropdown.setId(property);
+      dropdown.setOnAction(handler);
+      String label = getMyResources().getString(property);
+      dropdown.setPromptText(label);
+      getRoot().getChildren().add(dropdown);
+    }
+    catch (FileNotFoundException f1) {
+      controller.showMessage("FileNotFound");
+    }
   }
 
-  private void openFile() {
+  /**
+   * Creates file chooser to allow somebody to pick a new image
+   */
+  private void selectImage() {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open File");
 
     // Set the initial directory to src/main/resources/view/images/
-    String initialPath = "src/main/resources/view/images/";
-    fileChooser.setInitialDirectory(new File(initialPath));
+
+    fileChooser.setInitialDirectory(new File(imagePath));
 
     // Add filters if necessary, e.g., to filter by file extension
     fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg"));
@@ -125,10 +175,16 @@ public class ControlPane extends CreatePane implements Control {
 
     if (selectedFile != null) {
       // Pass the selected file to the controller
-      controller.processSelectedPNGFile(selectedFile);
+      String selectedFilePath = selectedFile.getName();
+      controller.processNewImage(selectedFilePath);
     }
   }
 
+  private void makeLabel(String property) {
+    Label label = new Label(getMyResources().getString(property) + ": " +
+        Controller.KEY_MOVE_AMOUNT);
+    getRoot().getChildren().add(label);
+  }
 
 }
 

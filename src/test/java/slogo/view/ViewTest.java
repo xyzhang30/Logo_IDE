@@ -1,12 +1,15 @@
 package slogo.view;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
+import slogo.model.api.TurtleModelApi;
 import slogo.model.command.Executioner;
 import slogo.model.turtle.TurtleModel;
 import util.DukeApplicationTest;
@@ -15,20 +18,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ViewTest extends DukeApplicationTest {
 
-  private IDEWindow ideWindow;
-
   private String language;
+
+  private Controller controller;
 
   @Override
   public void start(Stage stage) throws FileNotFoundException {
     // Initialize your scene here
     language = "english";
-    TurtleModel mockModel = new TurtleModel();
-    Controller controller = new Controller(stage, new Executioner(), language);
-    ideWindow = new IDEWindow(stage, controller, language);
-    Scene scene = ideWindow.makeScene(600, 400, mockModel);
-    stage.setScene(scene);
-    stage.show();
+    controller = new Controller(stage, new Executioner(), language);
+    controller.start();
   }
 
   @Test
@@ -36,13 +35,13 @@ public class ViewTest extends DukeApplicationTest {
     final String expectedText = "Test input";
     Platform.runLater(() -> {
       // Access JavaFX components after the UI is initialized
-      TextArea textArea = ideWindow.getTextArea();
+      TextArea textArea = lookup("#TextInput").query();
 
       // Set text in the text area
       textArea.setText(expectedText);
 
       // Call getText() method
-      final String actualText = ideWindow.getText();
+      final String actualText = controller.getText();
 
       // Verify that the retrieved text matches the expected text
       assertEquals(expectedText, actualText);

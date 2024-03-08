@@ -1,96 +1,121 @@
 package slogo.view;
 
+import java.util.HashMap;
+import java.util.Map;
+import javafx.scene.paint.Color;
 import java.io.File;
-import java.util.concurrent.atomic.AtomicBoolean;
-import javafx.animation.Animation;
-import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import slogo.model.api.TurtleModelApi;
 
+/**
+ * The TurtlePane class represents a graphical view of a turtle, including its position,
+ * direction, and drawing capabilities. It extends the CreatePane class to manage its layout and
+ * appearance.
+ */
 public class TurtlePane extends CreatePane implements TurtleBase {
 
   private static final int defaultLineLength = 1000;
-  private final TurtleModelApi model;
-  private final Animations a1;
+  private static final int timeIncrement = 10;
+  private static final double activeOpacity = 1.0;
+  private static final double inactiveOpacity = 0.7;
+  private final Map<Double, TurtleModelApi> model;
+  private final Graphics animations;
   private int speed;
-  private double currentX;
-  private double currentY;
-  private double currentDirection;
-  private final TurtleV turtle;
+  private final Map<Double, TurtleV> turtles;
   private Timeline timeline;
   private final PenGraphics pen;
   private boolean paused;
 
+  private int timeLinePoint;
+
   private Controller controller;
 
-  public TurtlePane(int height, int width, TurtleModelApi model, String language,
-      int speed, Controller controller) {
-    super(height, width, language);
-    this.controller = controller;
+
+  /**
+   * Constructor
+   * @param recordTurtle = takes in record of important attributes to be stored in TurtlePane
+   */
+  public TurtlePane(TurtlePaneRecord recordTurtle) {
+    super(recordTurtle.height(), recordTurtle.width(), recordTurtle.language());
+    controller = recordTurtle.controller();
     paused = false;
-    getRoot().setPrefHeight(height);
-    getRoot().setPrefWidth(width);
-    this.model = model;
+    getRoot().setPrefHeight(getHeight());
+    getRoot().setPrefWidth(getWidth());
+    model = recordTurtle.model();
     setRoot(new StackPane());
-    this.speed = speed;
-    turtle = new TurtleView(width, height,
-        model.getAttributes().xpos(), model.getAttributes().ypos(), model.getAttributes().direction());
+    speed = recordTurtle.speed();
+    turtles = new HashMap<>();
+    createTurtleViews();
     pen = new PenDraw();
-    a1 = new Animations(height, width, language, pen);
-    currentX = model.getAttributes().xpos();
-    currentY = model.getAttributes().ypos();
-    currentDirection = model.getAttributes().direction();
+    animations = new Animations(getHeight(), getWidth(), getLanguage(), pen);
     timeline = new Timeline();
     timeline.stop();
+    timeLinePoint = 0;
     create();
   }
 
-  @Override
-  public void create() {
-    StackPane.setAlignment(turtle.getRoot(), Pos.CENTER);
-    StackPane.setAlignment(a1.getCanvas(), Pos.CENTER);
-    getRoot().getChildren().add(turtle.getRoot());
-    getRoot().getChildren().add(a1.getRoot());
-  }
-  public void update() {
-    Timeline timeline = createTimeline(currentX, currentY, currentDirection, model.getAttributes().xpos(),
-        model.getAttributes().ypos(), model.getAttributes().direction(), model.getAttributes().visible());
-    timeline.play();
-    currentX = model.getAttributes().xpos();
-    currentY = model.getAttributes().ypos();
-    currentDirection = model.getAttributes().direction();
-    System.out.println("direction" + currentDirection);
+  private void createTurtleViews() {
+    for (Map.Entry<Double, TurtleModelApi> entry : model.entrySet()) {
+      Double key = entry.getKey();
+      TurtleModelApi value = entry.getValue();
+      if (!turtles.containsKey(key)) {
+        TurtleV turtle = new TurtleView(getWidth(), getHeight(),
+            value.getAttributes().xpos(), value.getAttributes().ypos(),
+            value.getAttributes().direction());
+        turtles.put(key, turtle);
+        getRoot().getChildren().add(turtle.getRoot());
+      }
+    }
   }
 
+  /**
+   * Creates the layout of the TurtlePane by adding turtle and animation components to the root
+   * StackPane.
+   */
+  @Override
+  public void create() {
+    getRoot().getChildren().add(animations.getRoot());
+  }
+
+  /**
+   * Updates the TurtlePane based on the current state of the associated TurtleModelApi.
+   */
+  @Override
+  public void update() {
+    createTurtleViews();
+    Timeline timeline = createTimeline();
+    timeline.play();
+  }
+
+  /**
+   * Sets the speed of turtle animations.
+   *
+   * @param speed the new speed value.
+   */
+  @Override
   public void setSpeed(int speed) {
     this.speed = speed;
   }
+
+  /**
+   * Clears the canvas of the TurtlePane.
+   */
+  @Override
   public void clear() {
-    a1.clearCanvas();
+    animations.clearCanvas();
   }
 
-  private Timeline createTimeline(double startX, double startY, double startDirection, double endX, double endY,
-      double endDirection, boolean visible) {
+  private Timeline createTimeline() {
     timeline = new Timeline();
     timeline.setCycleCount(1);
-    for (int i = 0; i < (defaultLineLength/speed); i++) {
-      double x = startX + i * (endX - startX) / ((double) defaultLineLength /speed);
-      double y = startY + i * (endY - startY) / ((double) defaultLineLength /speed);
-      double direction = startDirection + i * (endDirection - startDirection) / (
-          (double) defaultLineLength /speed);
 
-      KeyFrame keyFrame = new KeyFrame(Duration.millis(i * 10), e -> {
-        if (model.getAttributes().pen()) {
-          a1.drawLine(startX, startY, x, y);
-        }
-        turtle.turtleUpdate(x,y,direction, visible);
-
+    for (timeLinePoint = 0; timeLinePoint < (defaultLineLength / speed); timeLinePoint++) {
+      final int frameIndex = timeLinePoint;
+      KeyFrame keyFrame = new KeyFrame(Duration.millis(frameIndex * timeIncrement), e -> {
+        createMovements(frameIndex);
       });
 
       timeline.getKeyFrames().add(keyFrame);
@@ -105,6 +130,39 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     return timeline;
   }
 
+  private void createMovements(int i) {
+    for (Map.Entry<Double, TurtleModelApi> entry : model.entrySet()) {
+      Double key = entry.getKey();
+      TurtleModelApi value = entry.getValue();
+      TurtleV usingTurtle = turtles.get(key);
+
+      double startX = usingTurtle.getX();
+      double startY = usingTurtle.getY();
+      double startDirection = usingTurtle.getDirection();
+      boolean visible = value.getAttributes().visible();
+
+      double x = startX + i * (value.getAttributes().xpos() - startX) / ((double) defaultLineLength / speed);
+      double y = startY + i * (value.getAttributes().ypos() - startY) / ((double) defaultLineLength / speed);
+      double direction = startDirection + i * (value.getAttributes().direction() -
+          startDirection) / ((double) defaultLineLength / speed);
+
+      if (value.getAttributes().pen()) {
+        animations.drawLine(startX, startY, x, y);
+      }
+      if (value.getAttributes().active()) {
+        usingTurtle.getTurtleImage().setOpacity(activeOpacity);
+        usingTurtle.turtleUpdate(x, y, direction, visible);
+      }
+      else {
+        usingTurtle.getTurtleImage().setOpacity(inactiveOpacity);
+      }
+    }
+  }
+
+  /**
+   * Starts the timeline animation.
+   */
+  @Override
   public void startTimeline() {
     if (timeline != null && !timeline.getStatus().equals(Timeline.Status.RUNNING)) {
       paused = false;
@@ -112,6 +170,10 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     }
   }
 
+  /**
+   * Pauses the timeline animation.
+   */
+  @Override
   public void stopTimeline() {
     if (timeline != null && timeline.getStatus().equals(Timeline.Status.RUNNING)) {
       timeline.pause();
@@ -119,10 +181,22 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     }
   }
 
+  /**
+   * Updates the pen color of the turtle.
+   *
+   * @param c1 the new color value.
+   */
+  @Override
   public void updateColor(Color c1) {
     pen.setPenColor(c1);
   }
 
+  /**
+   * Updates the background color of the TurtlePane.
+   *
+   * @param c1 the new background color value.
+   */
+  @Override
   public void updateBackground(Color c1) {
     getRoot().setStyle("-fx-background-color: " + toHexCode(c1) + ";");
   }
@@ -135,21 +209,30 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     return String.format("#%02X%02X%02X", r, g, b);
   }
 
-  public void updateImage(File selectedFile) {
-    turtle.updateImage(selectedFile);
-    turtle.turtleUpdate(model.getAttributes().xpos(),
-        model.getAttributes().ypos(), model.getAttributes().direction(),
-        model.getAttributes().visible());
+  /**
+   * Updates the image of the turtle based on the selected file.
+   *
+   * @param selectedFilePath the name of the file containing the image for the turtle.
+   */
+  @Override
+  public void updateImage(String selectedFilePath) {
+    for (Map.Entry<Double, TurtleV> entry : turtles.entrySet()) {
+      Double key = entry.getKey();
+      TurtleV value = entry.getValue();
+      value.updateImage(selectedFilePath);
+      value.turtleUpdate(model.get(key).getAttributes().xpos(),
+          model.get(key).getAttributes().ypos(),
+          model.get(key).getAttributes().direction(),
+          model.get(key).getAttributes().visible());
+    }
   }
 
-  public boolean complete() {
-    if (timeline.getStatus().equals(Status.STOPPED)) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
+  /**
+   * Retrieves the paused state of the timeline animation.
+   *
+   * @return true if the timeline animation is paused, false otherwise.
+   */
+  @Override
   public boolean getPaused() {
     return paused;
   }

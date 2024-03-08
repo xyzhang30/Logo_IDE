@@ -16,7 +16,8 @@ import slogo.model.command.executables.ListExecutable;
 import slogo.model.command.executables.VariableExecutable;
 import slogo.model.command.executables.RootExecutable;
 import slogo.model.token.Token;
-import slogo.model.xmlparser.CommandXmlParser;
+import slogo.xmlparser.CommandXmlParser;
+
 
 public class TreeParser implements ParserApi {
   public static final String EXEC_REFS = "slogo.model.command.executables.";
@@ -59,11 +60,11 @@ public class TreeParser implements ParserApi {
         return new CustomCommandExecutable(t.value());
       case "ListStart":
         List<Executable> listContents = new ArrayList<>();
-        tokens.remove(0);
         while (!tokens.get(0).type().equals("ListEnd")){
           listContents.add(craftBranch(tokens,commandString));
         }
         tokens.remove(0);
+        commandString.set(0, commandString.get(0) + "] ");
         return new ListExecutable(listContents);
       case "ListEnd":
         return new ErrorExecutable("Incorrect Syntax: Unpaired ] Detected.");

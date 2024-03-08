@@ -1,0 +1,11 @@
+<buttons>
+  <buttons>run</buttons>
+  <buttons>step</buttons>
+  <buttons>pause</buttons>
+  <buttons>help</buttons>
+  <buttons>speed_Up</buttons>
+  <buttons>slow_Down</buttons>
+  <buttons>new_Application</buttons>
+  <buttons>save</buttons>
+  <buttons>select_Image</buttons>
+</buttons>

@@ -1,9 +1,9 @@
 package slogo.model.api;
 
+import java.util.List;
 import java.util.Map;
 import slogo.model.command.CommandHistory;
-import slogo.model.command.executables.Executable;
-import slogo.model.environment.Environment;
+import slogo.xmlparser.CommandXmlParser;
 
 /**
  * External API for the Executioner. Manages the execution of commands.
@@ -25,10 +25,16 @@ public interface ExecutionerApi {
   void runNext();
 
   boolean hasNext();
-
+  @Deprecated
   TurtleModelApi getTurtleModel();
+  Map<Double, TurtleModelApi> getTurtleModels();
+  List<Double> getActiveTurtles();
 
   CommandHistory getHistory();
+
+  CommandXmlParser getXmlParser();
+
+  void saveFile(String fileName, String filePath);
 
 //  Map<String, Double> getVariableMap();
 //  Map<String, Executable> getFunctionMap();

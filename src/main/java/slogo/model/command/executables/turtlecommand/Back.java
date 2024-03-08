@@ -3,7 +3,6 @@ package slogo.model.command.executables.turtlecommand;
 import java.util.List;
 import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
-import slogo.model.turtle.TurtleModel;
 
 /**
  * @author Alisha Zhang
@@ -20,15 +19,8 @@ public class Back extends TurtleExecutable {
 
   @Override
   public double executeSingle(EnvironmentApi env) {
-    TurtleModel turtle = env.getTurtleMap().get(getCurrentTurtleId());
     double traversalDistance = distance.execute(env);
-
-    double distX = traversalDistance * Math.cos(turtle.getRadianDirection());
-    double distY = traversalDistance * Math.sin(turtle.getRadianDirection());
-
-    turtle.setPosX(turtle.getPosX() - distX);
-    turtle.setPosY(turtle.getPosY() - distY);
-
+    move(-traversalDistance);
     return traversalDistance;
   }
 

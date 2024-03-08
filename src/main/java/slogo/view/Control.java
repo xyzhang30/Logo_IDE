@@ -9,7 +9,7 @@ public interface Control {
    */
 
 
-  void addButtons();
+  void addFeatures();
 
 
 }

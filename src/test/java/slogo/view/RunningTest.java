@@ -39,11 +39,11 @@ public class RunningTest extends DukeApplicationTest {
 
     t1.setText("fd 50");
 
-    Button button = lookup("#Run").query();
+    Button button = lookup("#run").query();
     clickOn(button);
     sleep(2000);
 
-    assertEquals(50, controller.getModel().getAttributes().xpos());
+    assertEquals(50, controller.getModel().get(1.0).getAttributes().xpos());
   }
 
   @Test
@@ -52,16 +52,16 @@ public class RunningTest extends DukeApplicationTest {
 
     t1.setText("fd 50 fd 25");
 
-    Button button = lookup("#Run").query();
+    Button button = lookup("#run").query();
     clickOn(button);
     sleep(6000);
 
-    assertEquals(75, controller.getModel().getAttributes().xpos());
+    assertEquals(75, controller.getModel().get(1.0).getAttributes().xpos());
   }
 
   @Test
   public void testPauseDisabledOnStart() {
-    Button button = lookup("#Pause").query();
+    Button button = lookup("#pause").query();
     clickOn(button);
     assertEquals(State.STOPPED, controller.getState());
   }
@@ -71,11 +71,11 @@ public class RunningTest extends DukeApplicationTest {
     TextArea t1 = lookup("#TextInput").query();
     t1.setText("fd 50");
 
-    Button button = lookup("#Run").query();
+    Button button = lookup("#run").query();
     clickOn(button);
     sleep(500);
 
-    Button button1 = lookup("#Pause").query();
+    Button button1 = lookup("#pause").query();
     clickOn(button1);
     assertEquals(State.PAUSED, controller.getState());
   }
@@ -85,11 +85,11 @@ public class RunningTest extends DukeApplicationTest {
     TextArea t1 = lookup("#TextInput").query();
     t1.setText("fd 50");
 
-    Button button = lookup("#Run").query();
+    Button button = lookup("#run").query();
     clickOn(button);
     sleep(500);
 
-    Button button1 = lookup("#Pause").query();
+    Button button1 = lookup("#pause").query();
     clickOn(button1);
     sleep(500);
     clickOn(button1);
@@ -100,14 +100,14 @@ public class RunningTest extends DukeApplicationTest {
   public void testSimpleStep() {
     TextArea t1 = lookup("#TextInput").query();
     t1.setText("fd 50 fd 25");
-    Button button = lookup("#Step").query();
+    Button button = lookup("#step").query();
     clickOn(button);
     sleep(3000);
-    assertEquals(50, controller.getModel().getAttributes().xpos());
+    assertEquals(50, controller.getModel().get(1.0).getAttributes().xpos());
     sleep(3000);
     clickOn(button);
     sleep(3000);
-    assertEquals(75, controller.getModel().getAttributes().xpos());
+    assertEquals(75, controller.getModel().get(1.0).getAttributes().xpos());
   }
 
 }

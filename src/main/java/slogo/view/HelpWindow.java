@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import slogo.model.xmlparser.CommandXmlParser;
+import slogo.xmlparser.CommandXmlParser;
 
 public class HelpWindow extends Stage {
 
@@ -99,7 +99,7 @@ public class HelpWindow extends Stage {
         commandDetails.getChildren().add(paramLabel);
       }
 
-      Button backButton = new Button("Back");
+      Button backButton = new Button("Go Back");
       backButton.setOnAction(event -> {
         helpPane.getChildren().clear();
         loadCommandOverview(helpPane);
@@ -111,7 +111,7 @@ public class HelpWindow extends Stage {
       runButton.setOnAction(event -> {
         System.out.println("button pressed");
         System.out.println("hi" + commandTextArea.getText());
-        controller.run(); // Execute run method if controller is not null
+        controller.runHelp(commandTextArea.getText()); // Execute run method if controller is not null
         System.out.println("run button working");
       });
       commandDetails.getChildren().add(runButton);
@@ -126,8 +126,7 @@ public class HelpWindow extends Stage {
   }
 
   public String getTextArea() {
-
-    System.out.println("helptext: " + commandTextArea.getText());
+    System.out.println();
     System.out.println(commandTextArea.getHeight());
     return commandTextArea.getText();
   }
