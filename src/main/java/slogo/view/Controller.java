@@ -72,7 +72,7 @@ public class Controller  {
    *
    */
   public void start() {
-    ide.start(model, executioner.getVariableMap());
+    ide.start(model);
   }
 
   /**
@@ -179,7 +179,7 @@ public class Controller  {
    * Feeds the variables to the UserDefPane for display.
    */
   public void feedVariables() {
-    System.out.println("exec " + executioner);
+    userPane = new UserDefPane(200, 50, language);
     userPane.updateDisplay();
   }
 
@@ -300,7 +300,7 @@ public class Controller  {
     FileChooser fileChooser = new FileChooser();
 
     // Set initial directory if needed
-     fileChooser.setInitialDirectory(new File("data/"));
+    fileChooser.setInitialDirectory(new File("data/"));
 
     // Set extension filter to only allow .slogo files
     FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("SLogo files (*.slogo)", "*.slogo");
@@ -381,5 +381,3 @@ public class Controller  {
   }
 
 }
-
-

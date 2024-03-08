@@ -99,9 +99,9 @@ public class IDEWindow {
    * The command history pane in the IDE window.
    */
   private CommandHistoryPane historyPane;
-  
+
   private UserDefPane userPane;
-  
+
 
   /**
    * The speed of the turtle animation.
@@ -116,7 +116,6 @@ public class IDEWindow {
   /**
    * The map containing variable items.
    */
-  private Map<String, Double> variableItems;
 
   // Constructors
 
@@ -132,7 +131,6 @@ public class IDEWindow {
     this.controller = controller;
     this.language = language;
     speed = STARTSPEED;
-    this.variableItems = variableItems;
   }
 
   // Public methods
@@ -142,9 +140,8 @@ public class IDEWindow {
    *
    * @param models The turtle models in the IDE window.
    */
-  public void start(Map<Double, TurtleModelApi> models, Map<String, Double> variableItems) {
+  public void start(Map<Double, TurtleModelApi> models) {
     stage.setTitle(TITLE);
-    this.variableItems = variableItems;
     this.models = models;
     stage.setScene(makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
     stage.show();
@@ -172,7 +169,7 @@ public class IDEWindow {
 
     addTurtlePane();
 
-    this.userPane = new UserDefPane(DEFAULT_SIZE.height / 15, DEFAULT_SIZE.width / 4, language, variableItems);
+    this.userPane = new UserDefPane(DEFAULT_SIZE.height / 15, DEFAULT_SIZE.width / 4, language);
     AnchorPane.setBottomAnchor(userPane.getRoot(), (double) DEFAULT_SIZE.height / 8);
     AnchorPane.setTopAnchor(userPane.getRoot(), 0.0);
     AnchorPane.setRightAnchor(userPane.getRoot(), 0.0);
@@ -231,7 +228,10 @@ public class IDEWindow {
   public CommandHistoryPane getHistoryPane() {
     return historyPane;
   }
-  
+  public UserDefPane getUserPane(){
+    return userPane;
+  }
+
 
   /**
    * Gets the stage of the IDE window.
@@ -385,9 +385,7 @@ public class IDEWindow {
     textPane.getTextArea().setText(fileContent);
   }
 
-  public UserDefPane getUserDefPane() {
-    return userPane;
-  }
+
 }
 
 

@@ -20,16 +20,15 @@ public class UserDefPane extends CreatePane {
   private Map<String, Double> variableItems;
 
 
-
-  public UserDefPane(int height, int width, String language, Map<String, Double> variableItems) {
+  public UserDefPane(int height, int width, String language) {
     super(height, width, language);
-    this.variableItems = variableItems;
     this.language = language;
     if (this.language == null){
       this.language = "english";
     }
     this.resourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
 //    this.userVariable ;
+    variableItems = new HashMap<>();
 
     // Create a VBox to hold the content
     displayBox = new VBox();

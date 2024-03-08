@@ -36,6 +36,6 @@ public interface ExecutionerApi {
 
   void saveFile(String fileName, String filePath);
 
-  Map<String, Double> getVariableMap();
+//  Map<String, Double> getVariableMap();
 //  Map<String, Executable> getFunctionMap();
 }
