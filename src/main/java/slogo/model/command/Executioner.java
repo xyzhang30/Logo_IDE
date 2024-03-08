@@ -95,6 +95,7 @@ public class Executioner implements ExecutionerApi {
 
   @Override
   public Map<String, Double> getVariableMap() {
+    System.out.println("executioner var: " + environment.getVarMap());
     return environment.getVarMap();
   }
 //

@@ -89,13 +89,14 @@ public class ControlPane extends CreatePane implements Control {
   private void invokeEventHandler(String handlerName) {
     try {
       Method method = Controller.class.getDeclaredMethod(handlerName);
-      method.invoke(controller);
+      method.invoke(Controller.class);
     } catch (Exception e1) {
       try {
         Method method = ControlPane.class.getDeclaredMethod(handlerName);
         method.invoke(this);
       }
       catch (Exception e2) {
+        e2.printStackTrace();
         controller.showMessage("NoSuchMethod");
       }
     }
