@@ -54,9 +54,9 @@ public interface TurtleBase {
   /**
    * Updates the image of the turtle based on the selected file.
    *
-   * @param selectedFile The file representing the image to set for the turtle.
+   * @param selectedFilePath The name of the file representing the image to set for the turtle.
    */
-  void updateImage(File selectedFile);
+  void updateImage(String selectedFilePath);
 
   /**
    * Checks if the animation timeline is currently paused.
