@@ -54,13 +54,15 @@ public class ControlPane extends CreatePane implements Control {
    */
   @Override
   public void create() {
-    addButtons();
+    addFeatures();
   }
 
   /**
    * Adds all interactive elements to display
    */
-  public void addButtons() {
+
+  @Override
+  public void addFeatures() {
     makeButton("Run", event -> controller.run());
     makeButton("Step", event -> controller.step());
     makeButton("Pause", event -> controller.pause());

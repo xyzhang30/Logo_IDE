@@ -6,7 +6,6 @@ import javafx.scene.paint.Color;
 import java.io.File;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import slogo.model.api.TurtleModelApi;
@@ -19,6 +18,9 @@ import slogo.model.api.TurtleModelApi;
 public class TurtlePane extends CreatePane implements TurtleBase {
 
   private static final int defaultLineLength = 1000;
+  private static final int timeIncrement = 10;
+  private static final double activeOpacity = 1.0;
+  private static final double inactiveOpacity = 0.7;
   private final Map<Double, TurtleModelApi> model;
   private final Animations a1;
   private int speed;
@@ -32,6 +34,10 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   private Controller controller;
 
 
+  /**
+   * Constructor
+   * @param recordTurtle = takes in record of important attributes to be stored in TurtlePane
+   */
   public TurtlePane(TurtlePaneRecord recordTurtle) {
     super(recordTurtle.height(), recordTurtle.width(), recordTurtle.language());
     controller = recordTurtle.controller();
@@ -105,7 +111,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
     for (timeLinePoint = 0; timeLinePoint < (defaultLineLength / speed); timeLinePoint++) {
       final int frameIndex = timeLinePoint;
-      KeyFrame keyFrame = new KeyFrame(Duration.millis(frameIndex * 10), e -> {
+      KeyFrame keyFrame = new KeyFrame(Duration.millis(frameIndex * timeIncrement), e -> {
         createMovements(frameIndex);
       });
 
@@ -132,23 +138,21 @@ public class TurtlePane extends CreatePane implements TurtleBase {
       double startDirection = usingTurtle.getDirection();
       boolean visible = value.getAttributes().visible();
 
+      double x = startX + i * (value.getAttributes().xpos() - startX) / ((double) defaultLineLength / speed);
+      double y = startY + i * (value.getAttributes().ypos() - startY) / ((double) defaultLineLength / speed);
+      double direction = startDirection + i * (value.getAttributes().direction() -
+          startDirection) / ((double) defaultLineLength / speed);
 
-        double x = startX + i * (value.getAttributes().xpos() - startX) / ((double) defaultLineLength / speed);
-        double y = startY + i * (value.getAttributes().ypos() - startY) / ((double) defaultLineLength / speed);
-        double direction = startDirection + i * (value.getAttributes().direction() - startDirection) / (
-            (double) defaultLineLength / speed);
-
-
-        if (value.getAttributes().pen()) {
-          a1.drawLine(startX, startY, x, y);
-        }
-        if (value.getAttributes().getActive()) {
-          usingTurtle.getTurtleImage().setOpacity(1.0);
-          usingTurtle.turtleUpdate(x, y, direction, visible);
-        }
-        else {
-          usingTurtle.getTurtleImage().setOpacity(0.7);
-        }
+      if (value.getAttributes().pen()) {
+        a1.drawLine(startX, startY, x, y);
+      }
+      if (value.getAttributes().active()) {
+        usingTurtle.getTurtleImage().setOpacity(activeOpacity);
+        usingTurtle.turtleUpdate(x, y, direction, visible);
+      }
+      else {
+        usingTurtle.getTurtleImage().setOpacity(inactiveOpacity);
+      }
     }
   }
 
@@ -209,7 +213,8 @@ public class TurtlePane extends CreatePane implements TurtleBase {
       TurtleV value = entry.getValue();
       value.updateImage(selectedFile);
       value.turtleUpdate(model.get(key).getAttributes().xpos(),
-          model.get(key).getAttributes().ypos(), model.get(key).getAttributes().direction(),
+          model.get(key).getAttributes().ypos(),
+          model.get(key).getAttributes().direction(),
           model.get(key).getAttributes().visible());
     }
   }

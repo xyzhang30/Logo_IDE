@@ -3,8 +3,6 @@ package slogo.view;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.scene.Scene;
@@ -39,9 +37,9 @@ public class IDEWindow {
 
   public static final Dimension DEFAULT_SIZE = new Dimension(1500, 1000);
 
-  private TextInputPane t1 = new TextInputPane(100,100, "english");
+  private TextInputPane textPane = new TextInputPane(100,100, "english");
 
-  private TurtlePane tp1;
+  private TurtlePane turtlePane;
 
   private Pane root;
 
@@ -64,10 +62,10 @@ public class IDEWindow {
     this.variableItems = variableItems;
   }
 
-  public void start(Map<Double, TurtleModelApi> model) throws Exception {
+  public void start(Map<Double, TurtleModelApi> models) {
     stage.setTitle(TITLE);
     // add our user interface components to Frame and show it
-    this.models = model;
+    this.models = models;
     stage.setScene(makeScene(DEFAULT_SIZE.width, DEFAULT_SIZE.height));
     stage.show();
 
@@ -76,16 +74,16 @@ public class IDEWindow {
 
   }
 
-  public Scene makeScene (int width, int height) throws FileNotFoundException {
+  public Scene makeScene (int width, int height) {
     root = new AnchorPane();
 
     // must be first since other panels may refer to page
     ControlPane c1 = new ControlPane(DEFAULT_SIZE.height/10, DEFAULT_SIZE.width, controller, language);
     AnchorPane.setTopAnchor(c1.getRoot(), 0.0);
     root.getChildren().add(c1.getRoot());
-    this.t1 = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, language);
-    AnchorPane.setBottomAnchor(t1.getRoot(), 0.0);
-    root.getChildren().add(t1.getRoot());
+    this.textPane = new TextInputPane(DEFAULT_SIZE.height/4, DEFAULT_SIZE.width, language);
+    AnchorPane.setBottomAnchor(textPane.getRoot(), 0.0);
+    root.getChildren().add(textPane.getRoot());
 
     addTurtlePanes();
 
@@ -105,29 +103,29 @@ public class IDEWindow {
     // create scene to hold UI
     scene = new Scene(root, width, height);
     // uncomment to activate CSS styling
-    scene.getStylesheets().add(getClass().getResource(DEFAULT_RESOURCE_FOLDER + STYLESHEET).toExternalForm());
+    setStylesheet(STYLESHEET);
     return scene;
   }
 
   public void addTurtlePanes() {
     TurtlePaneRecord recordTurtlePane = new TurtlePaneRecord(DEFAULT_SIZE.height/2,
         DEFAULT_SIZE.width/2, models , language, speed, controller);
-        tp1 = new TurtlePane(recordTurtlePane);
-        AnchorPane.setBottomAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/4);
-        AnchorPane.setTopAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.height/10);
-        AnchorPane.setLeftAnchor(tp1.getRoot(), (double) DEFAULT_SIZE.width/4);
-        root.getChildren().add(tp1.getRoot());
+        turtlePane = new TurtlePane(recordTurtlePane);
+        AnchorPane.setBottomAnchor(turtlePane.getRoot(), (double) DEFAULT_SIZE.height/4);
+        AnchorPane.setTopAnchor(turtlePane.getRoot(), (double) DEFAULT_SIZE.height/10);
+        AnchorPane.setLeftAnchor(turtlePane.getRoot(), (double) DEFAULT_SIZE.width/4);
+        root.getChildren().add(turtlePane.getRoot());
   }
 
   public String getText() {
-    String textEdit = t1.getTextInput();
+    String textEdit = textPane.getTextInput();
     System.out.println(textEdit);
     return textEdit;
   }
 
   public void updateTurtle() {
-      tp1.setSpeed(speed);
-      tp1.update();
+      turtlePane.setSpeed(speed);
+      turtlePane.update();
   }
 
   public CommandHistoryPane getHistoryPane(){
@@ -137,7 +135,7 @@ public class IDEWindow {
     return stage;
   }
   public TextArea getTextArea(){
-    return t1.getTextArea();
+    return textPane.getTextArea();
   }
 
   public int getSpeed() {
@@ -149,23 +147,23 @@ public class IDEWindow {
   }
 
   public void clearLine() {
-      tp1.clear();
+      turtlePane.clear();
   }
 
   public void resume() {
-    tp1.startTimeline();
+    turtlePane.startTimeline();
   }
 
   public void pause() {
-      if (tp1.getPaused()) {
+      if (turtlePane.getPaused()) {
         resume();
       } else {
-        tp1.stopTimeline();
+        turtlePane.stopTimeline();
       }
   }
 
   public void updateColor(Color c1) {
-      tp1.updateColor(c1);
+      turtlePane.updateColor(c1);
   }
 
   public void setStylesheet(String stylesheet) {
@@ -174,16 +172,16 @@ public class IDEWindow {
   }
 
   public void updateBackground(Color c1) {
-      tp1.updateBackground(c1);
+      turtlePane.updateBackground(c1);
 
   }
 
   public void updateImage(File selectedFile) {
-      tp1.updateImage(selectedFile);
+      turtlePane.updateImage(selectedFile);
   }
 
   public void clearText() {
-    t1.clearText();
+    textPane.clearText();
   }
 
   public void showError(String message) {

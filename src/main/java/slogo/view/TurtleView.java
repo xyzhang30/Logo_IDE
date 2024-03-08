@@ -12,17 +12,17 @@ import javafx.scene.layout.Pane;
  */
 public class TurtleView implements TurtleV {
 
+  public static final int TURTLE_SIZE = 50;
+
+  public static final String DEFAULT_RESOURCE_PACKAGE = "View.";
+
+  public static final String DEFAULT_RESOURCE_FOLDER = "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
+
   private boolean imageHere;
 
   private ImageView turtleImage;
 
-  public static final int TURTLE_SIZE = 50;
-
-  private int width;
-
   private double startDirection;
-
-  private int height;
 
   private Pane pane;
 
@@ -31,6 +31,8 @@ public class TurtleView implements TurtleV {
   private double y;
 
   private double direction;
+
+
 
   /**
    * Constructs a TurtleView with the specified dimensions, initial position, and starting
@@ -46,8 +48,6 @@ public class TurtleView implements TurtleV {
     x = startX;
     y = startY;
     direction = startDirection;
-    this.width = width;
-    this.height = height;
     imageHere = true;
     this.startDirection = startDirection;
     pane = new Pane();
