@@ -1,6 +1,7 @@
 package slogo.view;
 
 import java.io.File;
+import java.util.Map;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
@@ -10,6 +11,7 @@ import slogo.model.api.InputRecord;
 import slogo.model.api.ModelFactory;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.CommandHistory;
+import slogo.model.command.Executioner;
 
 /**
  * Controller class that manages the interaction between the graphical user interface (GUI)
@@ -20,9 +22,11 @@ public class Controller  {
   // how much to adjust updates per second
   public static final int SPEED_ADJUSTMENT = 1;
 
-  private final IDEWindow i1;
+  public static final int KEY_MOVE_AMOUNT = 50;
 
-  private final TurtleModelApi model;
+  private final IDEWindow ide;
+
+  private final Map<Double, TurtleModelApi> model;
 
   private Stage stage;
 
@@ -51,19 +55,19 @@ public class Controller  {
     stepping = false;
     this.executioner = executioner;
     state = State.STOPPED;
-    this.model = this.executioner.getTurtleModel();
+    model = this.executioner.getTurtleModels();
     this.language = language;
-    i1 = new IDEWindow(stage, this, language);
+    ide = new IDEWindow(stage, this, language);
     cmdHistory = new CommandHistory();
   }
 
   /**
    * Starts the application.
    *
-   * @throws Exception if an exception occurs during the application start.
+   *
    */
-  public void start() throws Exception {
-    i1.start(model);
+  public void start() {
+    ide.start(model);
   }
 
   /**
@@ -71,22 +75,22 @@ public class Controller  {
    */
   public void run() {
     setUpRun();
+    updateHistory();
+  }
+
+  private void updateHistory() {
     cmdHistory = executioner.getHistory();
 //    cmdHistory.saveCurrent();
     feedHistory(executioner.getHistory().getCommands());
     feedVariables();
   }
-
   /**
    * Shows a message dialog with the specified type and message.
    *
-   * @param type    the type of the alert.
    * @param message the message to be displayed.
    */
-  public void showMessage(AlertType type, String message) {
-    Alert alert = new Alert(type, message);
-    alert.initOwner(stage);
-    alert.showAndWait();
+  public void showMessage(String message) {
+    ide.showError(message);
   }
 
   /**
@@ -95,10 +99,15 @@ public class Controller  {
   public void step() {
     stepping = true;
     setUpRun();
+    updateHistory();
   }
 
   private void setUpRun() {
-    String command = i1.getText();
+    String command = ide.getText();
+    setUpRunInternal(command);
+  }
+
+  private void setUpRunInternal(String command) {
     try {
       if (state == State.STOPPED) {
         if (command != null && !command.equals("")) {
@@ -106,13 +115,13 @@ public class Controller  {
           executioner.parseTree(new InputRecord(command));
         }
         runFirst();
+        clearText();
       }
     } catch (RuntimeException e) {
       state = State.STOPPED;
       e.printStackTrace();
-      showMessage(AlertType.ERROR, e.getMessage());
+      showMessage(e.getMessage());
     }
-    clearText();
   }
 
   /**
@@ -126,7 +135,7 @@ public class Controller  {
       } else {
         state = State.PAUSED;
       }
-      i1.pause();
+      ide.pause();
     }
   }
 
@@ -145,7 +154,7 @@ public class Controller  {
    */
   public void feedHistory(String commands) {
 //    cmdHistoryPane = new CommandHistoryPane(200, 50, language);
-    i1.getHistoryPane().addCommand(commands);
+    ide.getHistoryPane().addCommand(commands);
   }
 
   /**
@@ -160,16 +169,16 @@ public class Controller  {
    * Increases the execution speed.
    */
   public void speedUp() {
-    System.out.println(i1.getSpeed());
-    i1.setSpeed(i1.getSpeed()+SPEED_ADJUSTMENT);
+    System.out.println(ide.getSpeed());
+    ide.setSpeed(ide.getSpeed()+SPEED_ADJUSTMENT);
   }
 
   /**
    * Decreases the execution speed.
    */
   public void slowDown() {
-    if (i1.getSpeed()>SPEED_ADJUSTMENT) {
-      i1.setSpeed(i1.getSpeed()-SPEED_ADJUSTMENT);
+    if (ide.getSpeed()>SPEED_ADJUSTMENT) {
+      ide.setSpeed(ide.getSpeed()-SPEED_ADJUSTMENT);
     }
   }
 
@@ -179,7 +188,7 @@ public class Controller  {
    * @return the current execution speed.
    */
   public int getSpeed() {
-    return i1.getSpeed();
+    return ide.getSpeed();
   }
 
   /**
@@ -188,7 +197,7 @@ public class Controller  {
    * @param value the new color value.
    */
   public void changeColor(Color value) {
-    i1.updateColor(value);
+    ide.updateColor(value);
   }
 
   /**
@@ -197,7 +206,7 @@ public class Controller  {
    * @param stylesheet the name of the new stylesheet.
    */
   public void changeStylesheet(String stylesheet) {
-    i1.setStylesheet(stylesheet);
+    ide.setStylesheet(stylesheet);
   }
 
   /**
@@ -206,25 +215,18 @@ public class Controller  {
    * @param value the new background color value.
    */
   public void changeBackgroundColor(Color value) {
-    i1.updateBackground(value);
+    ide.updateBackground(value);
   }
 
   /**
    * Processes the selected PNG file and updates the IDEWindow.
    *
-   * @param selectedFile the selected PNG file.
+   * @param selectedFilePath the selected PNG file name.
    */
-  public void processSelectedPNGFile(File selectedFile) {
-    i1.updateImage(selectedFile);
+  public void processNewImage(String selectedFilePath) {
+    ide.updateImage(selectedFilePath);
   }
 
-  /**
-   * Gets the instance of the IDEWindow associated with this controller.
-   *
-   * @return the IDEWindow instance.
-   */
-  public IDEWindow getIDEWindow() { return i1;
-  }
 
   /**
    * Gets the text content from the IDEWindow.
@@ -232,14 +234,14 @@ public class Controller  {
    * @return the text content.
    */
   public String getText() {
-    return i1.getText();
+    return ide.getText();
   }
 
   /**
    * Clears the text content of the IDEWindow.
    */
   public void clearText() {
-    i1.clearText();
+    ide.clearText();
   }
 
   /**
@@ -258,7 +260,7 @@ public class Controller  {
     if (executioner.hasNext()) {
       state = State.RUNNING;
       executioner.runNext();
-      i1.updateTurtle();
+      ide.updateTurtle();
     } else {
       state = State.STOPPED;
     }
@@ -267,9 +269,9 @@ public class Controller  {
   /**
    * Creates a new instance of the application with a new Controller.
    *
-   * @throws Exception if an exception occurs during the creation of the new instance.
+   *
    */
-  public void newInstance() throws Exception {
+  public void newApplication() throws Exception {
     ModelFactory modelFactory = new ModelFactory();
     Controller c2 = new Controller(new Stage(), modelFactory.createExecutioner(), language);
     c2.start();
@@ -289,9 +291,42 @@ public class Controller  {
    *
    * @return the TurtleModelApi instance.
    */
-  public TurtleModelApi getModel() {
+  public Map<Double, TurtleModelApi> getModel() {
     return model;
   }
+
+  /**
+   * Moves the turtle forward by a distance of 50 units.
+   * This corresponds to the "fd 50" command in the turtle graphics language.
+   */
+  public void up() {
+    setUpRunInternal("fd " + KEY_MOVE_AMOUNT);
+  }
+
+  /**
+   * Moves the turtle backward by a distance of 50 units.
+   * This corresponds to the "fd -50" command in the turtle graphics language.
+   */
+  public void down() {
+    setUpRunInternal("bk " + KEY_MOVE_AMOUNT);
+  }
+
+  /**
+   * Turns the turtle left by 90 degrees and then moves it forward by a distance of 50 units.
+   * This corresponds to the "lt 90\nfd 50" commands in the turtle graphics language.
+   */
+  public void left() {
+    setUpRunInternal("lt 90\nfd " + KEY_MOVE_AMOUNT);
+  }
+
+  /**
+   * Turns the turtle right by 90 degrees and then moves it forward by a distance of 50 units.
+   * This corresponds to the "rt 90\nfd 50" commands in the turtle graphics language.
+   */
+  public void right() {
+    setUpRunInternal("rt 90\nfd " + KEY_MOVE_AMOUNT);
+  }
+
 }
 
 

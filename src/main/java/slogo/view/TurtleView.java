@@ -12,19 +12,31 @@ import javafx.scene.layout.Pane;
  */
 public class TurtleView implements TurtleV {
 
+  private static final int TURTLE_SIZE = 50;
+
+  private static final String DEFAULT_RESOURCE_PACKAGE = "View.";
+
+  private static final String DEFAULT_RESOURCE_FOLDER = "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
+
+  private static final String DEFAULT_IMAGE_PATH = "/images";
+
+  private static final String DEFAULT_IMAGE = "turtle1.png";
+
   private boolean imageHere;
 
   private ImageView turtleImage;
 
-  public static final int TURTLE_SIZE = 50;
-
-  private int width;
-
   private double startDirection;
 
-  private int height;
-
   private Pane pane;
+
+  private double x;
+
+  private double y;
+
+  private double direction;
+
+
 
   /**
    * Constructs a TurtleView with the specified dimensions, initial position, and starting
@@ -37,13 +49,17 @@ public class TurtleView implements TurtleV {
    * @param startDirection the starting direction of the turtle.
    */
   public TurtleView(int width, int height, double startX, double startY, double startDirection) {
-    this.width = width;
-    this.height = height;
+    x = startX;
+    y = startY;
+    direction = startDirection;
     imageHere = true;
     this.startDirection = startDirection;
     pane = new Pane();
     pane.setId("TurtleImagePane");
-    turtleImage = new ImageView(new Image(new File("src/main/resources/view/images/turtle1.png").toURI().toString()));
+    // turtleImage = new ImageView(new Image(new File("src/main/resources/view/images/turtle1.png").toURI().toString()));
+    turtleImage = new ImageView((new Image(getClass().
+        getResource(DEFAULT_RESOURCE_FOLDER + DEFAULT_IMAGE_PATH + "/"
+        + DEFAULT_IMAGE).toExternalForm())));
     pane.setTranslateX(width / 2);
     pane.setTranslateY(height / 2);
     pane.setPrefWidth(width);
@@ -74,6 +90,9 @@ public class TurtleView implements TurtleV {
     updateXCoordinate(x);
     updateYCoordinate(y);
     isVisible(visible);
+    this.x = x;
+    this.y = y;
+    this.direction = direction;
   }
 
   private void updateDirection(double direction) {
@@ -109,15 +128,17 @@ public class TurtleView implements TurtleV {
   /**
    * Updates the image of the turtle based on the selected file.
    *
-   * @param selectedFile the file containing the image for the turtle.
+   * @param selectedFilePath the name of the file containing the image for the turtle.
    */
   @Override
-  public void updateImage(File selectedFile) {
-    if (!pane.getChildren().isEmpty()) {
-      pane.getChildren().remove(0);
-    }
-    turtleImage = new ImageView(new Image(selectedFile.toURI().toString()));
-    initialize();
+  public void updateImage(String selectedFilePath) {
+      if (!pane.getChildren().isEmpty()) {
+        pane.getChildren().remove(0);
+      }
+      turtleImage = new ImageView((new Image(getClass().
+          getResource(DEFAULT_RESOURCE_FOLDER + DEFAULT_IMAGE_PATH + "/"
+              + selectedFilePath).toExternalForm())));
+      initialize();
   }
 
   private void initialize() {
@@ -140,5 +161,37 @@ public class TurtleView implements TurtleV {
       imageHere = false;
     }
   }
+
+  /**
+   * Gets the x-coordinate of the turtle.
+   *
+   * @return The x-coordinate of the turtle.
+   */
+  @Override
+  public double getX() {
+    return x;
+  }
+
+  /**
+   * Gets the y-coordinate of the turtle.
+   *
+   * @return The y-coordinate of the turtle.
+   */
+  @Override
+  public double getY() {
+    return y;
+  }
+
+  /**
+   * Gets the direction of the turtle.
+   *
+   * @return The direction of the turtle.
+   */
+  @Override
+  public double getDirection() {
+    return direction;
+  }
+
+
 }
 

@@ -25,6 +25,7 @@ public class ViewParser {
   }
 
   public void readXml(String type) throws FileNotFoundException {
+    options.clear();
     this.type = type;
     String dataFolderPath = "data/viewXML/";
     String path = dataFolderPath + type + ".xml";
