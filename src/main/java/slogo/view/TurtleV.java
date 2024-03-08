@@ -42,5 +42,12 @@ public interface TurtleV {
    * @param selectedFile the file containing the image for the turtle.
    */
   void updateImage(File selectedFile);
+
+  double getX();
+
+  double getY();
+
+  double getDirection();
+
 }
 

@@ -43,7 +43,7 @@ public class RunningTest extends DukeApplicationTest {
     clickOn(button);
     sleep(2000);
 
-    assertEquals(50, controller.getModel().getAttributes().xpos());
+    assertEquals(50, controller.getModel().get(1.0).getAttributes().xpos());
   }
 
   @Test
@@ -56,7 +56,7 @@ public class RunningTest extends DukeApplicationTest {
     clickOn(button);
     sleep(6000);
 
-    assertEquals(75, controller.getModel().getAttributes().xpos());
+    assertEquals(75, controller.getModel().get(1.0).getAttributes().xpos());
   }
 
   @Test
@@ -103,11 +103,11 @@ public class RunningTest extends DukeApplicationTest {
     Button button = lookup("#Step").query();
     clickOn(button);
     sleep(3000);
-    assertEquals(50, controller.getModel().getAttributes().xpos());
+    assertEquals(50, controller.getModel().get(1.0).getAttributes().xpos());
     sleep(3000);
     clickOn(button);
     sleep(3000);
-    assertEquals(75, controller.getModel().getAttributes().xpos());
+    assertEquals(75, controller.getModel().get(1.0).getAttributes().xpos());
   }
 
 }

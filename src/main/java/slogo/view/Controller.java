@@ -1,17 +1,16 @@
 package slogo.view;
 
 import java.io.File;
+import java.util.Map;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
-import slogo.model.api.ParserApi;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.CommandHistory;
 import slogo.model.command.Executioner;
-import slogo.model.parser.TreeParser;
 
 /**
  * Controller class that manages the interaction between the graphical user interface (GUI)
@@ -22,16 +21,15 @@ public class Controller  {
   // how much to adjust updates per second
   public static final int SPEED_ADJUSTMENT = 1;
 
-  private final IDEWindow i1;
+  private final IDEWindow ide;
 
-  private final TurtleModelApi model;
+  private final Map<Double, TurtleModelApi> model;
 
   private Stage stage;
 
   // private final TurtleModel model;
 
   private final ExecutionerApi executioner;
-  private ParserApi parser = new TreeParser();
 
   private State state;
 
@@ -53,19 +51,19 @@ public class Controller  {
     stepping = false;
     this.executioner = executioner;
     state = State.STOPPED;
-    this.model = this.executioner.getTurtleModel();
+    model = this.executioner.getTurtleModels();
     this.language = language;
-    i1 = new IDEWindow(stage, this, language);
+    ide = new IDEWindow(stage, this, language);
     cmdHistory = new CommandHistory();
   }
 
   /**
    * Starts the application.
    *
-   * @throws Exception if an exception occurs during the application start.
+   *
    */
-  public void start() throws Exception {
-    i1.start(model);
+  public void start() {
+    ide.start(model);
   }
 
   /**
@@ -100,21 +98,21 @@ public class Controller  {
   }
 
   private void setUpRun() {
-    String command = i1.getText();
     try {
       if (state == State.STOPPED) {
+        String command = ide.getText();
         if (command != null && !command.equals("")) {
           System.out.println("calling parse tree");
           executioner.parseTree(new InputRecord(command));
         }
         runFirst();
+        clearText();
       }
     } catch (RuntimeException e) {
       state = State.STOPPED;
       e.printStackTrace();
       showMessage(AlertType.ERROR, e.getMessage());
     }
-    clearText();
   }
 
   /**
@@ -128,7 +126,7 @@ public class Controller  {
       } else {
         state = State.PAUSED;
       }
-      i1.pause();
+      ide.pause();
     }
   }
 
@@ -147,7 +145,7 @@ public class Controller  {
    */
   public void feedHistory(String commands) {
 //    cmdHistoryPane = new CommandHistoryPane(200, 50, language);
-    i1.getHistoryPane().addCommand(commands);
+    ide.getHistoryPane().addCommand(commands);
   }
 
   /**
@@ -162,16 +160,16 @@ public class Controller  {
    * Increases the execution speed.
    */
   public void speedUp() {
-    System.out.println(i1.getSpeed());
-    i1.setSpeed(i1.getSpeed()+SPEED_ADJUSTMENT);
+    System.out.println(ide.getSpeed());
+    ide.setSpeed(ide.getSpeed()+SPEED_ADJUSTMENT);
   }
 
   /**
    * Decreases the execution speed.
    */
   public void slowDown() {
-    if (i1.getSpeed()>SPEED_ADJUSTMENT) {
-      i1.setSpeed(i1.getSpeed()-SPEED_ADJUSTMENT);
+    if (ide.getSpeed()>SPEED_ADJUSTMENT) {
+      ide.setSpeed(ide.getSpeed()-SPEED_ADJUSTMENT);
     }
   }
 
@@ -181,7 +179,7 @@ public class Controller  {
    * @return the current execution speed.
    */
   public int getSpeed() {
-    return i1.getSpeed();
+    return ide.getSpeed();
   }
 
   /**
@@ -190,7 +188,7 @@ public class Controller  {
    * @param value the new color value.
    */
   public void changeColor(Color value) {
-    i1.updateColor(value);
+    ide.updateColor(value);
   }
 
   /**
@@ -199,7 +197,7 @@ public class Controller  {
    * @param stylesheet the name of the new stylesheet.
    */
   public void changeStylesheet(String stylesheet) {
-    i1.setStylesheet(stylesheet);
+    ide.setStylesheet(stylesheet);
   }
 
   /**
@@ -208,7 +206,7 @@ public class Controller  {
    * @param value the new background color value.
    */
   public void changeBackgroundColor(Color value) {
-    i1.updateBackground(value);
+    ide.updateBackground(value);
   }
 
   /**
@@ -217,16 +215,9 @@ public class Controller  {
    * @param selectedFile the selected PNG file.
    */
   public void processSelectedPNGFile(File selectedFile) {
-    i1.updateImage(selectedFile);
+    ide.updateImage(selectedFile);
   }
 
-  /**
-   * Gets the instance of the IDEWindow associated with this controller.
-   *
-   * @return the IDEWindow instance.
-   */
-  public IDEWindow getIDEWindow() { return i1;
-  }
 
   /**
    * Gets the text content from the IDEWindow.
@@ -234,14 +225,14 @@ public class Controller  {
    * @return the text content.
    */
   public String getText() {
-    return i1.getText();
+    return ide.getText();
   }
 
   /**
    * Clears the text content of the IDEWindow.
    */
   public void clearText() {
-    i1.clearText();
+    ide.clearText();
   }
 
   /**
@@ -260,7 +251,7 @@ public class Controller  {
     if (executioner.hasNext()) {
       state = State.RUNNING;
       executioner.runNext();
-      i1.updateTurtle();
+      ide.updateTurtle();
     } else {
       state = State.STOPPED;
     }
@@ -269,9 +260,9 @@ public class Controller  {
   /**
    * Creates a new instance of the application with a new Controller.
    *
-   * @throws Exception if an exception occurs during the creation of the new instance.
+   *
    */
-  public void newInstance() throws Exception {
+  public void newInstance() {
     Controller c2 = new Controller(new Stage(), new Executioner(), language);
     c2.start();
   }
@@ -290,7 +281,7 @@ public class Controller  {
    *
    * @return the TurtleModelApi instance.
    */
-  public TurtleModelApi getModel() {
+  public Map<Double, TurtleModelApi> getModel() {
     return model;
   }
 }

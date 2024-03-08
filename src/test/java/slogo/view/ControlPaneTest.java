@@ -28,7 +28,7 @@ public class ControlPaneTest extends DukeApplicationTest {
   public void start(Stage stage) throws FileNotFoundException {
     controller = new Controller(stage, new Executioner(), "english");
     i1 = new IDEWindow(stage, controller, "english");
-    stage.setScene(i1.makeScene(800,800, new TurtleModel()));
+    stage.setScene(i1.makeScene(800,800));
     stage.show();
   }
 

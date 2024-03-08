@@ -1,10 +1,11 @@
 package slogo.view;
 
+import java.util.HashMap;
+import java.util.Map;
 import javafx.scene.paint.Color;
 import java.io.File;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import slogo.model.api.TurtleModelApi;
@@ -17,53 +18,57 @@ import slogo.model.api.TurtleModelApi;
 public class TurtlePane extends CreatePane implements TurtleBase {
 
   private static final int defaultLineLength = 1000;
-  private final TurtleModelApi model;
+  private static final int timeIncrement = 10;
+  private static final double activeOpacity = 1.0;
+  private static final double inactiveOpacity = 0.7;
+  private final Map<Double, TurtleModelApi> model;
   private final Animations a1;
   private int speed;
-  private double currentX;
-  private double currentY;
-  private double currentDirection;
-  private final TurtleV turtle;
+  private final Map<Double, TurtleV> turtles;
   private Timeline timeline;
   private final PenGraphics pen;
   private boolean paused;
 
-  private double id;
+  private int timeLinePoint;
+
   private Controller controller;
 
+
   /**
-   * Constructs a TurtlePane with the specified dimensions, TurtleModelApi, language setting,
-   * speed, controller, and unique ID.
-   *
-   * @param height     the height of the TurtlePane.
-   * @param width      the width of the TurtlePane.
-   * @param model      the TurtleModelApi associated with the TurtlePane.
-   * @param language   the language setting for the TurtlePane.
-   * @param speed      the speed of turtle animations.
-   * @param controller the Controller instance managing the application.
-   * @param id         the unique ID of the turtle.
+   * Constructor
+   * @param recordTurtle = takes in record of important attributes to be stored in TurtlePane
    */
-  public TurtlePane(int height, int width, TurtleModelApi model, String language,
-      int speed, Controller controller, double id) {
-    super(height, width, language);
-    this.controller = controller;
-    this.id = id;
+  public TurtlePane(TurtlePaneRecord recordTurtle) {
+    super(recordTurtle.height(), recordTurtle.width(), recordTurtle.language());
+    controller = recordTurtle.controller();
     paused = false;
-    getRoot().setPrefHeight(height);
-    getRoot().setPrefWidth(width);
-    this.model = model;
+    getRoot().setPrefHeight(getHeight());
+    getRoot().setPrefWidth(getWidth());
+    model = recordTurtle.model();
     setRoot(new StackPane());
-    this.speed = speed;
-    turtle = new TurtleView(width, height,
-        model.getAttributes().xpos(), model.getAttributes().ypos(), model.getAttributes().direction());
+    speed = recordTurtle.speed();
+    turtles = new HashMap<>();
+    createTurtleViews();
     pen = new PenDraw();
-    a1 = new Animations(height, width, language, pen);
-    currentX = model.getAttributes().xpos();
-    currentY = model.getAttributes().ypos();
-    currentDirection = model.getAttributes().direction();
+    a1 = new Animations(getHeight(), getWidth(), getLanguage(), pen);
     timeline = new Timeline();
     timeline.stop();
+    timeLinePoint = 0;
     create();
+  }
+
+  private void createTurtleViews() {
+    for (Map.Entry<Double, TurtleModelApi> entry : model.entrySet()) {
+      Double key = entry.getKey();
+      TurtleModelApi value = entry.getValue();
+      if (!turtles.containsKey(key)) {
+        TurtleV turtle = new TurtleView(getWidth(), getHeight(),
+            value.getAttributes().xpos(), value.getAttributes().ypos(),
+            value.getAttributes().direction());
+        turtles.put(key, turtle);
+        getRoot().getChildren().add(turtle.getRoot());
+      }
+    }
   }
 
   /**
@@ -72,9 +77,6 @@ public class TurtlePane extends CreatePane implements TurtleBase {
    */
   @Override
   public void create() {
-    StackPane.setAlignment(turtle.getRoot(), Pos.CENTER);
-    StackPane.setAlignment(a1.getCanvas(), Pos.CENTER);
-    getRoot().getChildren().add(turtle.getRoot());
     getRoot().getChildren().add(a1.getRoot());
   }
 
@@ -82,12 +84,9 @@ public class TurtlePane extends CreatePane implements TurtleBase {
    * Updates the TurtlePane based on the current state of the associated TurtleModelApi.
    */
   public void update() {
-    Timeline timeline = createTimeline(currentX, currentY, currentDirection, model.getAttributes().xpos(),
-        model.getAttributes().ypos(), model.getAttributes().direction(), model.getAttributes().visible());
+    createTurtleViews();
+    Timeline timeline = createTimeline();
     timeline.play();
-    currentX = model.getAttributes().xpos();
-    currentY = model.getAttributes().ypos();
-    currentDirection = model.getAttributes().direction();
   }
 
   /**
@@ -106,21 +105,14 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     a1.clearCanvas();
   }
 
-  private Timeline createTimeline(double startX, double startY, double startDirection, double endX, double endY,
-      double endDirection, boolean visible) {
+  private Timeline createTimeline() {
     timeline = new Timeline();
     timeline.setCycleCount(1);
-    for (int i = 0; i < (defaultLineLength / speed); i++) {
-      double x = startX + i * (endX - startX) / ((double) defaultLineLength / speed);
-      double y = startY + i * (endY - startY) / ((double) defaultLineLength / speed);
-      double direction = startDirection + i * (endDirection - startDirection) / (
-          (double) defaultLineLength / speed);
 
-      KeyFrame keyFrame = new KeyFrame(Duration.millis(i * 10), e -> {
-        if (model.getAttributes().pen()) {
-          a1.drawLine(startX, startY, x, y);
-        }
-        turtle.turtleUpdate(x, y, direction, visible);
+    for (timeLinePoint = 0; timeLinePoint < (defaultLineLength / speed); timeLinePoint++) {
+      final int frameIndex = timeLinePoint;
+      KeyFrame keyFrame = new KeyFrame(Duration.millis(frameIndex * timeIncrement), e -> {
+        createMovements(frameIndex);
       });
 
       timeline.getKeyFrames().add(keyFrame);
@@ -133,6 +125,35 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     });
 
     return timeline;
+  }
+
+  private void createMovements(int i) {
+    for (Map.Entry<Double, TurtleModelApi> entry : model.entrySet()) {
+      Double key = entry.getKey();
+      TurtleModelApi value = entry.getValue();
+      TurtleV usingTurtle = turtles.get(key);
+
+      double startX = usingTurtle.getX();
+      double startY = usingTurtle.getY();
+      double startDirection = usingTurtle.getDirection();
+      boolean visible = value.getAttributes().visible();
+
+      double x = startX + i * (value.getAttributes().xpos() - startX) / ((double) defaultLineLength / speed);
+      double y = startY + i * (value.getAttributes().ypos() - startY) / ((double) defaultLineLength / speed);
+      double direction = startDirection + i * (value.getAttributes().direction() -
+          startDirection) / ((double) defaultLineLength / speed);
+
+      if (value.getAttributes().pen()) {
+        a1.drawLine(startX, startY, x, y);
+      }
+      if (value.getAttributes().active()) {
+        usingTurtle.getTurtleImage().setOpacity(activeOpacity);
+        usingTurtle.turtleUpdate(x, y, direction, visible);
+      }
+      else {
+        usingTurtle.getTurtleImage().setOpacity(inactiveOpacity);
+      }
+    }
   }
 
   /**
@@ -187,10 +208,15 @@ public class TurtlePane extends CreatePane implements TurtleBase {
    * @param selectedFile the file containing the image for the turtle.
    */
   public void updateImage(File selectedFile) {
-    turtle.updateImage(selectedFile);
-    turtle.turtleUpdate(model.getAttributes().xpos(),
-        model.getAttributes().ypos(), model.getAttributes().direction(),
-        model.getAttributes().visible());
+    for (Map.Entry<Double, TurtleV> entry : turtles.entrySet()) {
+      Double key = entry.getKey();
+      TurtleV value = entry.getValue();
+      value.updateImage(selectedFile);
+      value.turtleUpdate(model.get(key).getAttributes().xpos(),
+          model.get(key).getAttributes().ypos(),
+          model.get(key).getAttributes().direction(),
+          model.get(key).getAttributes().visible());
+    }
   }
 
   /**

@@ -2,10 +2,12 @@ package slogo.view;
 
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ * Graphics interface defines methods for performing graphical operations on a canvas.
+ */
 public interface Graphics {
-  /**
-   * Graphics interface defines methods for performing graphical operations on a canvas.
-   */
+
+
 
   /**
    * Method to be overridden to clear all lines on canvas
