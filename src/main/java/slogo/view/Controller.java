@@ -134,10 +134,9 @@ public class Controller {
 
 
   /**
-   * Sets up the internal state to execute the specified command.
-   * If the application is in a stopped state, it parses the command, executes it,
-   * and clears the text. If an exception occurs during execution, the application is stopped,
-   * and an error message is displayed.
+   * Sets up the internal state to execute the specified command. If the application is in a stopped
+   * state, it parses the command, executes it, and clears the text. If an exception occurs during
+   * execution, the application is stopped, and an error message is displayed.
    *
    * @param command the command to be executed.
    */
@@ -313,8 +312,9 @@ public class Controller {
 
 
   /**
-   * Displays a file chooser dialog for saving the current state of the program to a file.
-   * If a file is selected, it retrieves the file name and path, and passes them to the executioner for saving.
+   * Displays a file chooser dialog for saving the current state of the program to a file. If a file
+   * is selected, it retrieves the file name and path, and passes them to the executioner for
+   * saving.
    */
   public void save() {
     FileChooser fileChooser = new FileChooser();
@@ -341,7 +341,6 @@ public class Controller {
       executioner.saveFile(fileName, folderPath);
     }
   }
-
 
 
   /**

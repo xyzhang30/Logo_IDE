@@ -27,7 +27,8 @@ public class UserDefPane extends CreatePane {
    * @param height      the height of the pane.
    * @param width       the width of the pane.
    * @param language    the language used for localization.
-   * @param executioner the executioner responsible for managing user-defined variables and commands.
+   * @param executioner the executioner responsible for managing user-defined variables and
+   *                    commands.
    */
   public UserDefPane(int height, int width, String language, ExecutionerApi executioner) {
     super(height, width, language);

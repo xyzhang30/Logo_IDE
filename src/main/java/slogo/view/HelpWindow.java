@@ -24,7 +24,8 @@ import javafx.stage.Stage;
 import slogo.xmlparser.CommandXmlParser;
 
 /**
- * HelpWindow class represents a window displaying information about SLogo commands and their usage.
+ * HelpWindow class represents a window displaying information about SLogo commands and their
+ * usage.
  */
 public class HelpWindow extends Stage {
 
@@ -87,7 +88,8 @@ public class HelpWindow extends Stage {
       String commandName = xmlFile.getName().replace(".xml", "");
       String localizedCommandName = resourceBundle.getString(commandName);
       Hyperlink commandLink = new Hyperlink(localizedCommandName);
-      commandLink.setOnAction(event -> loadCommandDocumentation(helpPane, commandName, Controller.getInstance())); // Pass the controller instance
+      commandLink.setOnAction(event -> loadCommandDocumentation(helpPane, commandName,
+          Controller.getInstance())); // Pass the controller instance
       helpPane.getChildren().addAll(commandLink);
     }
   }
