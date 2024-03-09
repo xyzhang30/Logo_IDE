@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>to</canonical_name>
+  <category>Custom Command</category>
+  <description>Assigns command(s) given in the second list to commandName using variable(s) given in first list as parameters</description>
+  <example>TO TESTCOMMAND [ :var1 :var2 ] [ fd 50 ]</example>
+  <parameters>
+    <commandName>String, name of new command</commandName>
+    <list_begin/>
+    <variables>name of the params for the new command as variables</variables>
+    <list_end/>
+    <list_begin/>
+    <commands>commands in the defined function</commands>
+    <list_end/>
+  </parameters>
+  <return_value>Double, value of last command executed; 0 if no command is executed</return_value>
+  <number_of_expected_parameters>3</number_of_expected_parameters>
+  <implementing_class>userdefined.ToCommand</implementing_class>
+</command>
