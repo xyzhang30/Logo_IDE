@@ -15,15 +15,15 @@ import slogo.xmlparser.CommandXmlParser;
 
 public class Executioner implements ExecutionerApi {
 
-  private RootExecutable root;
   private final Tokenizer tokenizer;
   private final TreeParser treeParser;
   private final Environment environment;
+  private RootExecutable root;
   private CommandHistory commandHistory;
 
 
   public Executioner() {
-    environment = new Environment(400,600);
+    environment = new Environment(400, 600);
     tokenizer = new Tokenizer("English");
     treeParser = new TreeParser();
     root = null;
@@ -43,26 +43,26 @@ public class Executioner implements ExecutionerApi {
   public void parseTree(InputRecord commandInput) {
     System.out.println("in exeparse tree");
     List<Token> tokens = tokenizer.tokenize(commandInput.input());
-    root = (RootExecutable)treeParser.parseTree(tokens);
+    root = (RootExecutable) treeParser.parseTree(tokens);
   }
 
   @Override
   public void runNext() {
-    try{
+    try {
       root.execute(environment);
-    } catch (Exception e){
+    } catch (Exception e) {
       throw new RuntimeException();
     }
   }
 
   @Override
   public boolean hasNext() {
-    System.out.println("root: "+root);
+    System.out.println("root: " + root);
     return root.hasNext();
   }
 
   @Override
-  public TurtleModelApi getTurtleModel(){
+  public TurtleModelApi getTurtleModel() {
     return environment.getTurtleMap().get(1.0);
   }
 
@@ -83,15 +83,14 @@ public class Executioner implements ExecutionerApi {
   }
 
   @Override
-  public CommandXmlParser getXmlParser(){
+  public CommandXmlParser getXmlParser() {
     return new CommandXmlParser();
   }
 
   @Override
-  public void saveFile(String fileName, String folderPath){
+  public void saveFile(String fileName, String folderPath) {
     treeParser.getHistory().saveFile(fileName, folderPath);
   }
-
 
 //  @Override
 //  public Map<String, Double> getVariableMap() {

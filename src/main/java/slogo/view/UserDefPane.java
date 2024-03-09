@@ -1,29 +1,26 @@
 package slogo.view;
 
 import java.util.HashMap;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.Map;
+import java.util.ResourceBundle;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import java.util.Map;
-import java.util.ResourceBundle;
-import slogo.model.command.Executioner;
 
 public class UserDefPane extends CreatePane {
 
   private UserVariable userVariable;
-  private VBox displayBox;
-  private ResourceBundle resourceBundle;
+  private final VBox displayBox;
+  private final ResourceBundle resourceBundle;
   private String language;
-  private Map<String, Double> variableItems;
+  private final Map<String, Double> variableItems;
 
 
   public UserDefPane(int height, int width, String language) {
     super(height, width, language);
     this.language = language;
-    if (this.language == null){
+    if (this.language == null) {
       this.language = "english";
     }
     this.resourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
@@ -32,7 +29,6 @@ public class UserDefPane extends CreatePane {
 
     // Create a VBox to hold the content
     displayBox = new VBox();
-
 
     // Update the display
     updateDisplay();
@@ -69,7 +65,6 @@ public class UserDefPane extends CreatePane {
       variablesListView.getItems().add(variable);
     }
 
-
 //    for (/* iterate over command items */) {
 //      // Add command items to commandsListView
 //    }
@@ -79,7 +74,8 @@ public class UserDefPane extends CreatePane {
     Label commandsLabel = new Label(resourceBundle.getString("userDefinedCommands") + ":");
 
     // Add labels and ListView instances to displayBox
-    displayBox.getChildren().addAll(variablesLabel, variablesListView, commandsLabel, commandsListView);
+    displayBox.getChildren()
+        .addAll(variablesLabel, variablesListView, commandsLabel, commandsListView);
   }
 
 }

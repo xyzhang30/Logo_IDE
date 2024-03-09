@@ -5,7 +5,7 @@ import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
 import slogo.model.turtle.TurtleModel;
 
-public class ClearScreen extends TurtleExecutable{
+public class ClearScreen extends TurtleExecutable {
 
   public ClearScreen(List<Executable> parameterExecutables) {
     super(parameterExecutables);

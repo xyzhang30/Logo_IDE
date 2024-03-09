@@ -4,7 +4,7 @@ import slogo.model.command.Executioner;
 
 public final class ModelFactory {
 
-  public ExecutionerApi createExecutioner(){
+  public ExecutionerApi createExecutioner() {
     return new Executioner();
   }
 

@@ -15,7 +15,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.*;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -46,6 +49,16 @@ public class AnimatedShape extends Application {
   }
 
   /**
+   * Start the program, give complete control to JavaFX.
+   * <p>
+   * Default version of main() is actually included within JavaFX, so this is not technically
+   * necessary!
+   */
+  public static void main(String[] args) {
+    launch(args);
+  }
+
+  /**
    * @see Application#start(Stage)
    */
   @Override
@@ -72,7 +85,6 @@ public class AnimatedShape extends Application {
       throw new IllegalArgumentException(String.format("Invalid resource file: %s", filename));
     }
   }
-
 
   // create a simple scene
   Scene makeScene(int width, int height) {
@@ -147,15 +159,5 @@ public class AnimatedShape extends Application {
       e.printStackTrace();
       throw new InputMismatchException(String.format("Property %s is not a shape: %s", key, shape));
     }
-  }
-
-  /**
-   * Start the program, give complete control to JavaFX.
-   * <p>
-   * Default version of main() is actually included within JavaFX, so this is not technically
-   * necessary!
-   */
-  public static void main(String[] args) {
-    launch(args);
   }
 }

@@ -18,6 +18,7 @@ public class Environment implements EnvironmentApi {
 
   /**
    * Constructor for Environment.
+   *
    * @param w
    * @param h
    */
@@ -30,7 +31,8 @@ public class Environment implements EnvironmentApi {
     width = w;
     height = h;
   }
-  private void defaultTurtle(){
+
+  private void defaultTurtle() {
     turtleMap.put(1.0, new TurtleModel(1.0));
     activeTurtleKeys.add(1.0);
   }
@@ -75,11 +77,17 @@ public class Environment implements EnvironmentApi {
   public List<Double> getActiveTurtleKeys() {
     return activeTurtleKeys;
   }
+
   @Override
-  public void syncTurtleActivation(){
-    turtleMap.values().forEach(t->{t.setActive(true);});
-    activeTurtleKeys.forEach(k->{turtleMap.get(k).setActive(true);});
+  public void syncTurtleActivation() {
+    turtleMap.values().forEach(t -> {
+      t.setActive(true);
+    });
+    activeTurtleKeys.forEach(k -> {
+      turtleMap.get(k).setActive(true);
+    });
   }
+
   @Override
   public int getWidth() {
     return width;

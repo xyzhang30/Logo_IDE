@@ -4,7 +4,7 @@ import java.util.List;
 import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
 
-public class Ycor extends TurtleExecutable{
+public class Ycor extends TurtleExecutable {
 
 
   public Ycor(List<Executable> parameterExecutables) {

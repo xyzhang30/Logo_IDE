@@ -18,10 +18,10 @@ import org.xml.sax.SAXException;
 
 public class CommandXmlParser {
 
+  private final Map<String, String> parameterDescription;
   private String commandName;
   private String commandDescription;
-  private final Map<String, String> parameterDescription;
-  private List<String> paramOrder;
+  private final List<String> paramOrder;
   private int numParamsExpected;
   private String returnValueType; //do we even need this since everything returns a double?
   private String implementationName;
@@ -77,13 +77,13 @@ public class CommandXmlParser {
       String name = parameterNode.getNodeName();
 
       this.paramOrder.add(name);
-      if (!name.equals("list_begin") && !name.equals("list_end")){
+      if (!name.equals("list_begin") && !name.equals("list_end")) {
         this.parameterDescription.put(name, parameterNode.getTextContent());
       }
     }
   }
 
-  public List<String> getParamOrder(){
+  public List<String> getParamOrder() {
     return paramOrder;
   }
 
@@ -155,5 +155,7 @@ public class CommandXmlParser {
     return commandCategory;
   }
 
-  public String getExample(){return commandExample;}
+  public String getExample() {
+    return commandExample;
+  }
 }

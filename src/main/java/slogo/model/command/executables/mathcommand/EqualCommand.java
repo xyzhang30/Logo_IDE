@@ -7,8 +7,8 @@ import slogo.model.environment.EnvironmentApi;
 
 public class EqualCommand extends CommandExecutable {
 
-  private Executable test1;
-  private Executable test2;
+  private final Executable test1;
+  private final Executable test2;
 
   public EqualCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -18,7 +18,7 @@ public class EqualCommand extends CommandExecutable {
 
   @Override
   public double execute(EnvironmentApi env) {
-    if (Math.abs(test1.execute(env) - test2.execute(env)) <= 0.001){
+    if (Math.abs(test1.execute(env) - test2.execute(env)) <= 0.001) {
       return 1;
     }
     return 0;

@@ -5,7 +5,7 @@ import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
 import slogo.model.turtle.TurtleModel;
 
-public class PenDownQuery extends TurtleExecutable{
+public class PenDownQuery extends TurtleExecutable {
 
 
   public PenDownQuery(List<Executable> parameterExecutables) {
@@ -15,7 +15,7 @@ public class PenDownQuery extends TurtleExecutable{
   @Override
   public double executeSingle(EnvironmentApi env) {
     TurtleModel turtle = env.getTurtleMap().get(getCurrentTurtleId());
-    if (turtle.isPenDown()){
+    if (turtle.isPenDown()) {
       return 1;
     }
     return 0;

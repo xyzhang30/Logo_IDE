@@ -2,14 +2,12 @@ package slogo.view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
@@ -35,10 +33,11 @@ public class ControlPane extends CreatePane implements Control {
 
   /**
    * Constructor
-   * @param height = height of pane
-   * @param width = width of pane
+   *
+   * @param height     = height of pane
+   * @param width      = width of pane
    * @param controller = controller necessary for handling events
-   * @param language = language for element displays
+   * @param language   = language for element displays
    */
   public ControlPane(int height, int width, Controller controller, String language) {
     super(height, width, language);
@@ -76,8 +75,10 @@ public class ControlPane extends CreatePane implements Control {
       e.printStackTrace();
     }
     // reflection was much more difficult for non buttons / parameters
-    makeColorPicker("selectColor", event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
-    makeColorPicker("selectBackgroundColor", event -> controller.changeBackgroundColor(((ColorPicker) event.getSource()).getValue()));
+    makeColorPicker("selectColor",
+        event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
+    makeColorPicker("selectBackgroundColor",
+        event -> controller.changeBackgroundColor(((ColorPicker) event.getSource()).getValue()));
     makeDropdown("dropdownSelector", "theme", event -> {
       ComboBox<String> comboBox = (ComboBox<String>) event.getSource();
       String selectedOption = comboBox.getValue();
@@ -94,8 +95,7 @@ public class ControlPane extends CreatePane implements Control {
       try {
         Method method = ControlPane.class.getDeclaredMethod(handlerName);
         method.invoke(this);
-      }
-      catch (Exception e2) {
+      } catch (Exception e2) {
         e2.printStackTrace();
         controller.showMessage("NoSuchMethod");
       }
@@ -104,19 +104,21 @@ public class ControlPane extends CreatePane implements Control {
 
   /**
    * Creates button
+   *
    * @param property = name to display
-   * @param handler = event on push
+   * @param handler  = event on push
    */
-  private void makeButton (String property, EventHandler<ActionEvent> handler) {
+  private void makeButton(String property, EventHandler<ActionEvent> handler) {
     // represent all supported image suffixes
-    final String IMAGE_FILE_SUFFIXES = String.format(".*\\.(%s)", String.join("|", ImageIO.getReaderFileSuffixes()));
+    final String IMAGE_FILE_SUFFIXES = String.format(".*\\.(%s)",
+        String.join("|", ImageIO.getReaderFileSuffixes()));
     Button result = new Button();
     String label = getMyResources().getString(property);
     result.setId(property);
     if (label.matches(IMAGE_FILE_SUFFIXES)) {
-      result.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(DEFAULT_RESOURCE_FOLDER + label))));
-    }
-    else {
+      result.setGraphic(new ImageView(
+          new Image(getClass().getResourceAsStream(DEFAULT_RESOURCE_FOLDER + label))));
+    } else {
       result.setText(label);
     }
     result.setOnAction(handler);
@@ -125,8 +127,9 @@ public class ControlPane extends CreatePane implements Control {
 
   /**
    * Creates color picker to be added
+   *
    * @param property = name on display
-   * @param handler = event on click
+   * @param handler  = event on click
    */
   private void makeColorPicker(String property, EventHandler<ActionEvent> handler) {
     String label = getMyResources().getString(property);
@@ -140,9 +143,10 @@ public class ControlPane extends CreatePane implements Control {
 
   /**
    * Creates dropdown menu
+   *
    * @param property = name on display
-   * @param type = name of xml file to use to parse options
-   * @param handler = event on select
+   * @param type     = name of xml file to use to parse options
+   * @param handler  = event on select
    */
   private void makeDropdown(String property, String type, EventHandler<ActionEvent> handler) {
     try {
@@ -154,8 +158,7 @@ public class ControlPane extends CreatePane implements Control {
       String label = getMyResources().getString(property);
       dropdown.setPromptText(label);
       getRoot().getChildren().add(dropdown);
-    }
-    catch (FileNotFoundException f1) {
+    } catch (FileNotFoundException f1) {
       controller.showMessage("FileNotFound");
     }
   }

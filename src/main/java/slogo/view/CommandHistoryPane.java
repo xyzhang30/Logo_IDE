@@ -1,30 +1,29 @@
 package slogo.view;
 
-import java.util.ArrayList;
-import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.ResourceBundle;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import java.util.ResourceBundle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class CommandHistoryPane extends CreatePane {
 
-  private ScrollPane scrollPane;
-  private TextFlow commandTextFlow;
-  private ResourceBundle resourceBundle;
+  private final ScrollPane scrollPane;
+  private final TextFlow commandTextFlow;
+  private final ResourceBundle resourceBundle;
 
   public CommandHistoryPane(int height, int width, String language) {
     super(height, width, language);
     resourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
 
     commandTextFlow = new TextFlow();
-
 
     scrollPane = new ScrollPane();
     scrollPane.setContent(commandTextFlow);
@@ -43,7 +42,7 @@ public class CommandHistoryPane extends CreatePane {
     clearHistory();
     String[] commandLines = command.split("\n");
 
-    for (String s : commandLines){
+    for (String s : commandLines) {
       Hyperlink link = new Hyperlink(s);
       link.setOnAction(event -> {
         Stage popupStage = new Stage();
@@ -57,7 +56,8 @@ public class CommandHistoryPane extends CreatePane {
         runButton.setOnAction(runEvent -> {
           // Handle the run button click action here
           // For example, you can execute the clicked command
-          Controller.getInstance().runCmdHist(commandTextArea.getText()); // Execute run method if controller is not null
+          Controller.getInstance().runCmdHist(
+              commandTextArea.getText()); // Execute run method if controller is not null
           popupStage.close();
         });
 

@@ -1,8 +1,8 @@
 package slogo.view;
 
 /**
- * Record representing the information about a turtle view, including its dimensions,
- * initial position, starting direction, and turtle size.
+ * Record representing the information about a turtle view, including its dimensions, initial
+ * position, starting direction, and turtle size.
  *
  * @param width          the width of the turtle view.
  * @param height         the height of the turtle view.
@@ -13,5 +13,6 @@ package slogo.view;
  */
 public record TurtleViewRecord(int width, int height, double startX,
                                double startY, double startDirection, int turtleSize) {
+
 }
 

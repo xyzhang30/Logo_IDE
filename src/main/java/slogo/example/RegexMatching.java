@@ -46,6 +46,26 @@ public class RegexMatching extends Application {
   // note, it is a list because order matters (some patterns may be more generic and so should be added last)
   private List<Entry<String, Pattern>> myTokens = new ArrayList<>();
 
+  // set some sensible defaults when the FileChooser is created
+  private static FileChooser makeChooser(String extensionAccepted) {
+    FileChooser result = new FileChooser();
+    result.setTitle("Open Data File");
+    // pick a reasonable place to start searching for files
+    result.setInitialDirectory(new File(DATA_FILE_FOLDER));
+    result.getExtensionFilters()
+        .setAll(new FileChooser.ExtensionFilter("Data Files", extensionAccepted));
+    return result;
+  }
+
+  /**
+   * Start the program, give complete control to JavaFX.
+   * <p>
+   * Default version of main() is actually included within JavaFX, so this is not technically
+   * necessary!
+   */
+  public static void main(String[] args) {
+    launch(args);
+  }
 
   /**
    * @see Application#start(Stage)
@@ -146,26 +166,5 @@ public class RegexMatching extends Application {
   // display given message to user using the given type of Alert dialog box
   private void showMessage(AlertType type, String message) {
     new Alert(type, message).showAndWait();
-  }
-
-  // set some sensible defaults when the FileChooser is created
-  private static FileChooser makeChooser(String extensionAccepted) {
-    FileChooser result = new FileChooser();
-    result.setTitle("Open Data File");
-    // pick a reasonable place to start searching for files
-    result.setInitialDirectory(new File(DATA_FILE_FOLDER));
-    result.getExtensionFilters()
-        .setAll(new FileChooser.ExtensionFilter("Data Files", extensionAccepted));
-    return result;
-  }
-
-  /**
-   * Start the program, give complete control to JavaFX.
-   * <p>
-   * Default version of main() is actually included within JavaFX, so this is not technically
-   * necessary!
-   */
-  public static void main(String[] args) {
-    launch(args);
   }
 }

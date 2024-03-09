@@ -8,7 +8,7 @@ import slogo.model.environment.EnvironmentApi;
 
 public class RandomCommand extends CommandExecutable {
 
-  private Executable max;
+  private final Executable max;
 
   public RandomCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);

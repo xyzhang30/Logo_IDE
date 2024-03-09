@@ -15,24 +15,28 @@ public class TurtleModel implements TurtleModelApi {
   private boolean visible;
   private boolean eraseTrace;
 
-  public TurtleModel(){
+  public TurtleModel() {
     this(1);
   }
+
   public TurtleModel(double ID) {
     id = ID;
     initialize();
   }
-  public boolean isActive(){
+
+  public boolean isActive() {
     return active;
   }
-  public void setActive(boolean activation){
+
+  public void setActive(boolean activation) {
     active = activation;
   }
-  public boolean isEraseTrace(){
+
+  public boolean isEraseTrace() {
     return eraseTrace;
   }
 
-  public void setEraseTrace(boolean erase){
+  public void setEraseTrace(boolean erase) {
     this.eraseTrace = erase;
   }
 
@@ -64,7 +68,7 @@ public class TurtleModel implements TurtleModelApi {
     return Math.toRadians(direction);
   }
 
-  public double getDegreesDirection(){
+  public double getDegreesDirection() {
     return direction;
   }
 
@@ -110,12 +114,13 @@ public class TurtleModel implements TurtleModelApi {
   }
 
   /**
-   * Packs the Turtle attributes into a record to be sent to View.
-   * Records are immutable, so View will not be able to modify model attributes.
+   * Packs the Turtle attributes into a record to be sent to View. Records are immutable, so View
+   * will not be able to modify model attributes.
+   *
    * @return TurtleRecord  record storing all TurtleModel attributes
    */
   @Override
   public TurtleRecord getAttributes() {
-    return new TurtleRecord(active,posX,posY,speed,direction,penDown,visible,eraseTrace);
+    return new TurtleRecord(active, posX, posY, speed, direction, penDown, visible, eraseTrace);
   }
 }

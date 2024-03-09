@@ -17,7 +17,7 @@ import org.xml.sax.SAXException;
 public class ViewParser {
 
   private static final String folderPath = "data/viewXML/";
-  private List<String> options;
+  private final List<String> options;
 
   private String type;
 

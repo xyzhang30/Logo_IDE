@@ -2,19 +2,19 @@ package slogo.view;
 
 import java.util.HashMap;
 import java.util.Map;
-import slogo.model.api.InputRecord;
 import slogo.model.api.InvalidCommandException;
 import slogo.model.api.InvalidParameterNumberException;
 import slogo.model.parser.TreeParser;
 
 public class UserVariable {
-  private TreeParser treeParser; // Assuming you have an instance of TreeParser
+
+  private final TreeParser treeParser; // Assuming you have an instance of TreeParser
 
   // Map to store user-defined variables
-  private Map<String, Double> userVariables;
+  private final Map<String, Double> userVariables;
 
   // Map to store user-defined commands
-  private Map<String, String> userCommands;
+  private final Map<String, String> userCommands;
 
   public UserVariable() {
     userVariables = new HashMap<>();

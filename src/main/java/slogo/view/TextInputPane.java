@@ -1,17 +1,17 @@
 package slogo.view;
 
-import javafx.scene.layout.Pane;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 
 /**
- * Class that represents a pane for inputting and displaying text.
- * Extends CreatePane for basic pane configuration.
+ * Class that represents a pane for inputting and displaying text. Extends CreatePane for basic pane
+ * configuration.
  */
 public class TextInputPane extends CreatePane implements TextInput {
 
   private final TextArea ta1 = new TextArea();
 
-  private String text = "";
+  private final String text = "";
 
   /**
    * Constructs a TextInputPane with specified dimensions and language.

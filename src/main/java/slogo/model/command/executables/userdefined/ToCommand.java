@@ -23,12 +23,11 @@ public class ToCommand extends CommandExecutable {
 
   @Override
   public double execute(EnvironmentApi env) {
-    try{
+    try {
       command.setLocalParameters(paramVariables);
       env.getFuncMap().put(command.getSignature(), functionBody);
       return 1;
-    }
-    catch (InvalidVariableException e){
+    } catch (InvalidVariableException e) {
       return 0;
     }
   }

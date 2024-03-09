@@ -10,6 +10,7 @@ import slogo.model.turtle.TurtleModel;
  * Abstract parent class for all Executables that use Turtle.
  */
 public abstract class TurtleExecutable extends CommandExecutable {
+
   private double currentTurtleKey;
   private TurtleModel currentTurtle;
 
@@ -23,11 +24,12 @@ public abstract class TurtleExecutable extends CommandExecutable {
   }
 
   /**
-   * Returns the ID of the current active Turtle.
-   * Each Turtle command uses logic specific to a single turtle. This is its ID.
+   * Returns the ID of the current active Turtle. Each Turtle command uses logic specific to a
+   * single turtle. This is its ID.
+   *
    * @return double  The current ID of the active Turtle.
    */
-  public double getCurrentTurtleId(){
+  public double getCurrentTurtleId() {
     return currentTurtleKey;
   }
 
@@ -40,7 +42,7 @@ public abstract class TurtleExecutable extends CommandExecutable {
   @Override
   public double execute(EnvironmentApi env) {
     double output = 0;
-    for (double key : env.getActiveTurtleKeys()){
+    for (double key : env.getActiveTurtleKeys()) {
       currentTurtleKey = key;
       currentTurtle = env.getTurtleMap().get(key);
       output = executeSingle(env);
@@ -59,9 +61,10 @@ public abstract class TurtleExecutable extends CommandExecutable {
 
   /**
    * Helper function to move a Turtle in space.
+   *
    * @param distance The distance to move the Turtle in the direction it's facing.
    */
-  public void move(double distance){
+  public void move(double distance) {
     double distX = distance * Math.cos(currentTurtle.getRadianDirection());
     double distY = distance * Math.sin(currentTurtle.getRadianDirection());
     currentTurtle.setPosX(currentTurtle.getPosX() + distX);
@@ -70,9 +73,10 @@ public abstract class TurtleExecutable extends CommandExecutable {
 
   /**
    * Helper function to rotate a Turtle Counter-Clockwise
+   *
    * @param degrees The angle by which the Turtle rotates Counter-Clockwise
    */
-  public void rotate(double degrees){
+  public void rotate(double degrees) {
     currentTurtle.setDirection((currentTurtle.getDegreesDirection() + degrees) % 360);
   }
 }

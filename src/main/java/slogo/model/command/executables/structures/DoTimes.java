@@ -27,11 +27,11 @@ public class DoTimes extends CommandExecutable {
     double lim = limit.execute(env);
     double ret = 0;
 
-    while (env.getVarMap().get(indexKey) <= lim){
-      for (Executable e : listContent.getList()){
+    while (env.getVarMap().get(indexKey) <= lim) {
+      for (Executable e : listContent.getList()) {
         ret = e.execute(env);
       }
-      env.getVarMap().put(indexKey, env.getVarMap().get(indexKey)+1);
+      env.getVarMap().put(indexKey, env.getVarMap().get(indexKey) + 1);
     }
     env.getVarMap().put(indexKey, lim);
     return ret;

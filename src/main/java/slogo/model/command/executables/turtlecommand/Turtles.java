@@ -4,7 +4,7 @@ import java.util.List;
 import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
 
-public class Turtles extends TurtleExecutable{
+public class Turtles extends TurtleExecutable {
 
   /**
    * Constructor for Turtles command

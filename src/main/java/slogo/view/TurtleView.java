@@ -6,28 +6,24 @@ import javafx.scene.layout.Pane;
 
 /**
  * The TurtleView class represents the graphical view of a turtle, including its image, position,
- * and visibility. It implements the TurtleV interface to provide methods for managing the
- * turtle's graphical representation.
+ * and visibility. It implements the TurtleV interface to provide methods for managing the turtle's
+ * graphical representation.
  */
 public class TurtleView implements TurtleV {
 
-  private int turtleSize;
-
   private static final String DEFAULT_RESOURCE_PACKAGE = "View.";
-
-  private static final String DEFAULT_RESOURCE_FOLDER = "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
-
+  private static final String DEFAULT_RESOURCE_FOLDER =
+      "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
   private static final String DEFAULT_IMAGE_PATH = "/images";
-
   private static final String DEFAULT_IMAGE = "turtle1.png";
-
+  private final int turtleSize;
   private boolean imageHere;
 
   private ImageView turtleImage;
 
-  private double startDirection;
+  private final double startDirection;
 
-  private Pane pane;
+  private final Pane pane;
 
   private double x;
 
@@ -36,13 +32,13 @@ public class TurtleView implements TurtleV {
   private double direction;
 
 
-
   /**
    * Constructs a TurtleView with the specified dimensions, initial position, and starting
    * direction.
    *
    * @param turtleViewRecord an object containing information about the turtle view, including
-   *                         width, height, initial position (startX, startY), and starting direction.
+   *                         width, height, initial position (startX, startY), and starting
+   *                         direction.
    */
   public TurtleView(TurtleViewRecord turtleViewRecord) {
     x = turtleViewRecord.startX();
@@ -81,10 +77,10 @@ public class TurtleView implements TurtleV {
    * Updates the graphical representation of the turtle based on the specified position, direction,
    * and visibility.
    *
-   * @param x       the x-coordinate of the turtle.
-   * @param y       the y-coordinate of the turtle.
+   * @param x         the x-coordinate of the turtle.
+   * @param y         the y-coordinate of the turtle.
    * @param direction the direction of the turtle.
-   * @param visible true if the turtle is visible, false otherwise.
+   * @param visible   true if the turtle is visible, false otherwise.
    */
   public void turtleUpdate(double x, double y, double direction, boolean visible) {
     updateDirection(direction);
@@ -133,13 +129,13 @@ public class TurtleView implements TurtleV {
    */
   @Override
   public void updateImage(String selectedFilePath) {
-      if (!pane.getChildren().isEmpty()) {
-        pane.getChildren().remove(0);
-      }
-      turtleImage = new ImageView((new Image(getClass().
-          getResource(DEFAULT_RESOURCE_FOLDER + DEFAULT_IMAGE_PATH + "/"
-              + selectedFilePath).toExternalForm())));
-      initialize();
+    if (!pane.getChildren().isEmpty()) {
+      pane.getChildren().remove(0);
+    }
+    turtleImage = new ImageView((new Image(getClass().
+        getResource(DEFAULT_RESOURCE_FOLDER + DEFAULT_IMAGE_PATH + "/"
+            + selectedFilePath).toExternalForm())));
+    initialize();
   }
 
   private void initialize() {

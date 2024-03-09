@@ -1,13 +1,10 @@
 package slogo.model.command.executables.structures;
 
-import java.util.ArrayList;
 import java.util.List;
 import slogo.model.command.executables.CommandExecutable;
-import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.ListExecutable;
 import slogo.model.command.executables.VariableExecutable;
-import slogo.model.command.executables.userdefined.Make;
 import slogo.model.environment.EnvironmentApi;
 
 public class ForCommand extends CommandExecutable {
@@ -37,8 +34,8 @@ public class ForCommand extends CommandExecutable {
     double step = increment.execute(env);
     double ret = 0;
 
-    while (env.getVarMap().get(indexKey) < endLimit){
-      for (Executable e : listContent.getList()){
+    while (env.getVarMap().get(indexKey) < endLimit) {
+      for (Executable e : listContent.getList()) {
         ret = e.execute(env);
       }
       env.getVarMap().put(indexKey, env.getVarMap().get(indexKey) + step);

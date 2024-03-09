@@ -7,8 +7,8 @@ import slogo.model.environment.EnvironmentApi;
 
 public class DifferenceCommand extends CommandExecutable {
 
-  private Executable num1;
-  private Executable num2;
+  private final Executable num1;
+  private final Executable num2;
 
   public DifferenceCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
