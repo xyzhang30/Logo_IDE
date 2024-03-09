@@ -8,6 +8,11 @@ import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.ListExecutable;
 import slogo.model.turtle.TurtleModel;
 
+/**
+ * The {@code Environment} class represents the execution environment for commands.
+ * It manages user-defined variables, functions, turtles, and the context stack.
+ */
+
 public class Environment implements EnvironmentApi {
 
   private final Map<String, Double> variableMap;
@@ -19,10 +24,10 @@ public class Environment implements EnvironmentApi {
   private final int height;
 
   /**
-   * Constructor for Environment.
+   * Constructs a new {@code Environment} instance with the specified width and height.
    *
-   * @param w
-   * @param h
+   * @param w the width of the environment
+   * @param h the height of the environment
    */
   public Environment(int w, int h) {
     variableMap = new HashMap<>();

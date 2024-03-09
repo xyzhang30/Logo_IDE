@@ -18,6 +18,10 @@ import slogo.model.command.executables.VariableExecutable;
 import slogo.model.token.Token;
 import slogo.xmlparser.CommandXmlParser;
 
+/**
+ * The {@code TreeParser} class is responsible for parsing tokens into an executable tree structure.
+ * It converts a list of tokens into a hierarchical structure of executable commands.
+ */
 
 public class TreeParser implements ParserApi {
 
@@ -32,6 +36,12 @@ public class TreeParser implements ParserApi {
     history = new CommandHistory();
   }
 
+  /**
+   * Parses a list of tokens into an executable tree structure.
+   *
+   * @param tokens the list of tokens to be parsed
+   * @return the root of the executable tree structure
+   */
   @Override
   public Executable parseTree(List<Token> tokens) {
     List<Executable> tree = new ArrayList<>();
@@ -95,6 +105,12 @@ public class TreeParser implements ParserApi {
     }
   }
 
+
+  /**
+   * Retrieves the command history associated with this parser.
+   *
+   * @return the command history
+   */
   public CommandHistory getHistory() {
     return history;
   }
