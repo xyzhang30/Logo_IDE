@@ -289,7 +289,7 @@ public class Controller  {
    *
    *
    */
-  public void newApplication() throws Exception {
+  public void newApplication() {
     ModelFactory modelFactory = new ModelFactory();
     Controller c2 = new Controller(new Stage(), modelFactory.createExecutioner(), language);
     c2.start();
