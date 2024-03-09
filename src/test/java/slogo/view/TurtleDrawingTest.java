@@ -4,15 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.Executioner;
 import slogo.model.turtle.TurtleModel;
-import slogo.view.TurtleView;
-import util.DukeApplicationTest;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,9 +57,9 @@ public class TurtleDrawingTest {
       tb.update();
       // sleep(1000);
       assertEquals(50, tb.getTurtleV(1.0).getTurtleImage().getTranslateX(), "x coord should be 50");
-      assertEquals(50, tb.getTurtleV(1.0).getY(), "y coord should be 50");
-      assertEquals(100, tb.getTurtleV(2.0).getX(), "x coord should be 100");
-      assertEquals(100, tb.getTurtleV(2.0).getY(), "y coord should be 100");
+      assertEquals(50, tb.getTurtleV(1.0).getyPos(), "y coord should be 50");
+      assertEquals(100, tb.getTurtleV(2.0).getxPos(), "x coord should be 100");
+      assertEquals(100, tb.getTurtleV(2.0).getyPos(), "y coord should be 100");
     });
   }
 }

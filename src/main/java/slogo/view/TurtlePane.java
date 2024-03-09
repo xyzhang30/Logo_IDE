@@ -155,8 +155,8 @@ public class TurtlePane extends CreatePane implements TurtleBase {
       TurtleModelApi value = entry.getValue();
       TurtleV usingTurtle = turtles.get(key);
 
-      double startX = usingTurtle.getX();
-      double startY = usingTurtle.getY();
+      double startX = usingTurtle.getxPos();
+      double startY = usingTurtle.getyPos();
       double startDirection = usingTurtle.getDirection();
       boolean visible = value.getAttributes().visible();
 

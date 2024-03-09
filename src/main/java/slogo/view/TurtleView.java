@@ -21,9 +21,9 @@ public class TurtleView implements TurtleV {
   private final Pane pane;
   private boolean imageHere;
   private ImageView turtleImage;
-  private double x;
+  private double xPos;
 
-  private double y;
+  private double yPos;
 
   private double direction;
 
@@ -37,8 +37,8 @@ public class TurtleView implements TurtleV {
    *                         direction.
    */
   public TurtleView(TurtleViewRecord turtleViewRecord) {
-    x = turtleViewRecord.startX();
-    y = turtleViewRecord.startY();
+    xPos = turtleViewRecord.startX();
+    yPos = turtleViewRecord.startY();
     direction = turtleViewRecord.startDirection();
     imageHere = true;
     startDirection = turtleViewRecord.startDirection();
@@ -46,7 +46,6 @@ public class TurtleView implements TurtleV {
     pane = new Pane();
     pane.setId("TurtleImagePane");
 
-    // turtleImage = new ImageView(new Image(new File("src/main/resources/view/images/turtle1.png").toURI().toString()));
     turtleImage = new ImageView((new Image(getClass().
         getResource(DEFAULT_RESOURCE_FOLDER + DEFAULT_IMAGE_PATH + "/"
             + DEFAULT_IMAGE).toExternalForm())));
@@ -80,11 +79,11 @@ public class TurtleView implements TurtleV {
    */
   public void turtleUpdate(double x, double y, double direction, boolean visible) {
     updateDirection(direction);
-    updateXCoordinate(x);
-    updateYCoordinate(y);
+    updatexCoordinate(x);
+    updateyCoordinate(y);
     isVisible(visible);
-    this.x = x;
-    this.y = y;
+    this.xPos = x;
+    this.yPos = y;
     this.direction = direction;
   }
 
@@ -92,11 +91,11 @@ public class TurtleView implements TurtleV {
     turtleImage.setRotate(direction);
   }
 
-  private void updateXCoordinate(double x) {
+  private void updatexCoordinate(double x) {
     turtleImage.setTranslateX(x);
   }
 
-  private void updateYCoordinate(double y) {
+  private void updateyCoordinate(double y) {
     turtleImage.setTranslateY(y);
   }
 
@@ -128,8 +127,8 @@ public class TurtleView implements TurtleV {
     if (!pane.getChildren().isEmpty()) {
       pane.getChildren().remove(0);
     }
-    turtleImage = new ImageView((new Image(getClass().
-        getResource(DEFAULT_RESOURCE_FOLDER + DEFAULT_IMAGE_PATH + "/"
+    turtleImage = new ImageView((new Image(getClass()
+        .getResource(DEFAULT_RESOURCE_FOLDER + DEFAULT_IMAGE_PATH + "/"
             + selectedFilePath).toExternalForm())));
     initialize();
   }
@@ -161,8 +160,8 @@ public class TurtleView implements TurtleV {
    * @return The x-coordinate of the turtle.
    */
   @Override
-  public double getX() {
-    return x;
+  public double getxPos() {
+    return xPos;
   }
 
   /**
@@ -171,8 +170,8 @@ public class TurtleView implements TurtleV {
    * @return The y-coordinate of the turtle.
    */
   @Override
-  public double getY() {
-    return y;
+  public double getyPos() {
+    return yPos;
   }
 
   /**
