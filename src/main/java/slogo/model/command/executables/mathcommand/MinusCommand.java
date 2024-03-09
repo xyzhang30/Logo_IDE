@@ -16,7 +16,8 @@ public class MinusCommand extends CommandExecutable {
   /**
    * Constructs a new {@code MinusCommand} with the specified parameter executable.
    *
-   * @param parameterExecutables the list of parameter executables representing the number to be negated
+   * @param parameterExecutables the list of parameter executables representing the number to be
+   *                             negated
    */
   public MinusCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -26,7 +27,8 @@ public class MinusCommand extends CommandExecutable {
   /**
    * Executes the command and returns the negation of the number.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model, user
+   *            defined variables/commands, and the environment dimensions
    * @return the negation of the number
    */
   @Override

@@ -24,7 +24,8 @@ public abstract class CommandExecutable implements Executable {
   /**
    * Executes the command in the environment.
    *
-   * @param env the environment in which the command is executed, including user-defined variables/commands
+   * @param env the environment in which the command is executed, including user-defined
+   *            variables/commands
    * @return the result of executing the command
    */
   @Override

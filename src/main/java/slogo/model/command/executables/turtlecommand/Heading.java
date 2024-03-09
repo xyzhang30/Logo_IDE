@@ -6,7 +6,7 @@ import slogo.model.environment.EnvironmentApi;
 import slogo.model.turtle.TurtleModel;
 
 /**
- *  * This class represents a turtle command executable that retrieves the heading of the turtle.
+ * * This class represents a turtle command executable that retrieves the heading of the turtle.
  */
 
 public class Heading extends TurtleExecutable {
@@ -23,7 +23,8 @@ public class Heading extends TurtleExecutable {
   /**
    * Executes the command, retrieving the heading of the turtle.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model, user
+   *            defined variables/commands, and the environment dimensions
    * @return the heading of the turtle (in degrees)
    */
   @Override

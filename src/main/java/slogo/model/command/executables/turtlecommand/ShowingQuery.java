@@ -7,7 +7,8 @@ import slogo.model.turtle.TurtleModel;
 
 
 /**
- * This class represents a turtle command executable that queries whether the turtle is currently showing or not.
+ * This class represents a turtle command executable that queries whether the turtle is currently
+ * showing or not.
  */
 public class ShowingQuery extends TurtleExecutable {
 
@@ -24,7 +25,8 @@ public class ShowingQuery extends TurtleExecutable {
   /**
    * Executes the command, querying whether the turtle is currently showing or not.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user-defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model,
+   *            user-defined variables/commands, and the environment dimensions
    * @return {@code 1} if the turtle is showing, {@code 0} if it is hidden
    */
   @Override

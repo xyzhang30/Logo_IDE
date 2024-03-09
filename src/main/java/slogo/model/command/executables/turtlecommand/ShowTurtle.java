@@ -22,7 +22,8 @@ public class ShowTurtle extends TurtleExecutable {
   /**
    * Executes the command, making the turtle visible on the screen.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user-defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model,
+   *            user-defined variables/commands, and the environment dimensions
    * @return {@code 1} to indicate that the turtle is now visible
    */
   @Override

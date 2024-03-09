@@ -11,8 +11,8 @@ import slogo.example.RegexMatching;
 import slogo.model.api.InvalidVariableException;
 
 /**
- * The Tokenizer class is responsible for tokenizing input text into individual tokens based on predefined patterns.
- * It supports tokenization for different languages and syntax rules.
+ * The Tokenizer class is responsible for tokenizing input text into individual tokens based on
+ * predefined patterns. It supports tokenization for different languages and syntax rules.
  */
 public class Tokenizer implements TokenizerApi {
 

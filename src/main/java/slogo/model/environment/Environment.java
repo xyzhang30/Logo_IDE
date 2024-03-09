@@ -9,8 +9,8 @@ import slogo.model.command.executables.ListExecutable;
 import slogo.model.turtle.TurtleModel;
 
 /**
- * The {@code Environment} class represents the execution environment for commands.
- * It manages user-defined variables, functions, turtles, and the context stack.
+ * The {@code Environment} class represents the execution environment for commands. It manages
+ * user-defined variables, functions, turtles, and the context stack.
  */
 
 public class Environment implements EnvironmentApi {

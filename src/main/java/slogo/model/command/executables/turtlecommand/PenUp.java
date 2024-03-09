@@ -14,7 +14,8 @@ public class PenUp extends TurtleExecutable {
   /**
    * Constructs a new {@code PenUp} executable.
    *
-   * @param parameterExecutables the list of parameter executables (not used in this implementation)
+   * @param parameterExecutables the list of parameter executables (not used in this
+   *                             implementation)
    */
   public PenUp(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -23,7 +24,8 @@ public class PenUp extends TurtleExecutable {
   /**
    * Executes the command, lifting the pen of the current turtle up.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user-defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model,
+   *            user-defined variables/commands, and the environment dimensions
    * @return always returns {@code 0}
    */
   @Override

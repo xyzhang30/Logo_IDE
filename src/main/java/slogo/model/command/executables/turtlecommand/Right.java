@@ -5,7 +5,8 @@ import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
 
 /**
-  * This class represents a turtle command executable that turns the turtle to the right by a specified angle.
+ * This class represents a turtle command executable that turns the turtle to the right by a
+ * specified angle.
  */
 
 public class Right extends TurtleExecutable {
@@ -15,7 +16,8 @@ public class Right extends TurtleExecutable {
   /**
    * Constructs a new {@code Right} executable with the specified angle.
    *
-   * @param parameterExecutables the list of parameter executables representing the angle of rotation
+   * @param parameterExecutables the list of parameter executables representing the angle of
+   *                             rotation
    */
   public Right(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -25,7 +27,8 @@ public class Right extends TurtleExecutable {
   /**
    * Executes the command, turning the turtle to the right by the specified angle.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user-defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model,
+   *            user-defined variables/commands, and the environment dimensions
    * @return the absolute value of the angle rotated
    */
   @Override

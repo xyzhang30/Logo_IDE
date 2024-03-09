@@ -18,7 +18,8 @@ public class Make extends CommandExecutable {
   /**
    * Constructs a new {@code Make} command with the specified parameters.
    *
-   * @param parameterExecutables the list of parameters passed into the function, containing the variable and its assigned value
+   * @param parameterExecutables the list of parameters passed into the function, containing the
+   *                             variable and its assigned value
    */
   public Make(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -29,7 +30,8 @@ public class Make extends CommandExecutable {
   /**
    * Executes the Make command, assigning the value to the specified variable in the environment.
    *
-   * @param env the environment in which the command is executed, including user-defined variables/commands
+   * @param env the environment in which the command is executed, including user-defined
+   *            variables/commands
    * @return the value assigned to the variable
    */
   @Override

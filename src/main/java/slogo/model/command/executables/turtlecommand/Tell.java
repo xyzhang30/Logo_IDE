@@ -6,7 +6,8 @@ import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
 
 /**
- * This class represents a command executable that changes the active turtles based on the specified IDs.
+ * This class represents a command executable that changes the active turtles based on the specified
+ * IDs.
  */
 public class Tell extends CommandExecutable {
 
@@ -25,7 +26,8 @@ public class Tell extends CommandExecutable {
   /**
    * Executes the Tell command, changing the active turtles based on the specified IDs.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user-defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model,
+   *            user-defined variables/commands, and the environment dimensions
    * @return {@code 0} indicating successful execution
    */
   @Override

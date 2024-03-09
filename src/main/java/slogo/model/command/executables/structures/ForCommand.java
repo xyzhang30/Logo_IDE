@@ -8,7 +8,8 @@ import slogo.model.command.executables.VariableExecutable;
 import slogo.model.environment.EnvironmentApi;
 
 /**
- *  This class represents a command executable that iterates through a block of commands for a specified range of values.
+ * This class represents a command executable that iterates through a block of commands for a
+ * specified range of values.
  */
 
 public class ForCommand extends CommandExecutable {
@@ -22,7 +23,8 @@ public class ForCommand extends CommandExecutable {
   /**
    * Constructs a new {@code ForCommand} with the specified parameter executables.
    *
-   * @param parameterExecutables the list of parameter executables representing the variable, start value, end value, increment, and list of commands
+   * @param parameterExecutables the list of parameter executables representing the variable, start
+   *                             value, end value, increment, and list of commands
    */
   public ForCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -37,9 +39,11 @@ public class ForCommand extends CommandExecutable {
 
 
   /**
-   * Executes the command, iterating through the block of commands for each value within the specified range.
+   * Executes the command, iterating through the block of commands for each value within the
+   * specified range.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model, user
+   *            defined variables/commands, and the environment dimensions
    * @return the result of executing the last command in the listContent, after the loop completes
    */
   @Override

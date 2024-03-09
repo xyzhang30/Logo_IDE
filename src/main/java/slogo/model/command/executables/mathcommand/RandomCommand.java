@@ -16,7 +16,8 @@ public class RandomCommand extends CommandExecutable {
   private final Executable max;
 
   /**
-   * Constructs a new {@code RandomCommand} with the specified parameter executable representing the maximum value.
+   * Constructs a new {@code RandomCommand} with the specified parameter executable representing the
+   * maximum value.
    *
    * @param parameterExecutables the list of parameter executables representing the maximum value
    */
@@ -26,9 +27,11 @@ public class RandomCommand extends CommandExecutable {
   }
 
   /**
-   * Executes the command and returns a random number between 0 (inclusive) and the maximum value (exclusive).
+   * Executes the command and returns a random number between 0 (inclusive) and the maximum value
+   * (exclusive).
    *
-   * @param env the environment in which the command is executed, including the turtle model, user defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model, user
+   *            defined variables/commands, and the environment dimensions
    * @return a random number between 0 (inclusive) and the maximum value (exclusive)
    */
   @Override

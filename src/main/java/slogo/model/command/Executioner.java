@@ -14,7 +14,8 @@ import slogo.model.token.Tokenizer;
 import slogo.xmlparser.CommandXmlParser;
 
 /**
- * The {@code Executioner} class is responsible for executing commands and managing the execution environment.
+ * The {@code Executioner} class is responsible for executing commands and managing the execution
+ * environment.
  */
 
 public class Executioner implements ExecutionerApi {
@@ -67,9 +68,9 @@ public class Executioner implements ExecutionerApi {
   @Override
   public void runNext() {
     try {
-      environment.getContextStack().get(environment.getContextStack().size()-1).execute(environment);
-    }
-    catch (Exception e) {
+      environment.getContextStack().get(environment.getContextStack().size() - 1)
+          .execute(environment);
+    } catch (Exception e) {
       throw new RuntimeException();
     }
   }

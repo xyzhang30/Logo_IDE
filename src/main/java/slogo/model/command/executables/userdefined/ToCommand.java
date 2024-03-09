@@ -20,7 +20,8 @@ public class ToCommand extends CommandExecutable {
   /**
    * Constructs a new {@code ToCommand} with the specified parameters.
    *
-   * @param parameterExecutables the list of parameters passed into the function, containing the command name, its parameters, and its function body
+   * @param parameterExecutables the list of parameters passed into the function, containing the
+   *                             command name, its parameters, and its function body
    */
   public ToCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -32,7 +33,8 @@ public class ToCommand extends CommandExecutable {
   /**
    * Executes the {@code ToCommand} to define a new custom command in the environment.
    *
-   * @param env the environment in which the command is executed, including user-defined variables/commands
+   * @param env the environment in which the command is executed, including user-defined
+   *            variables/commands
    * @return 1 if the command is executed successfully, 0 otherwise
    */
   @Override

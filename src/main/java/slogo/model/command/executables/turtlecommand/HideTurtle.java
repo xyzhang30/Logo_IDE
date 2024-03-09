@@ -23,7 +23,8 @@ public class HideTurtle extends TurtleExecutable {
   /**
    * Executes the command, hiding the turtle from view.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model, user
+   *            defined variables/commands, and the environment dimensions
    * @return 0.0 indicating successful execution
    */
   @Override

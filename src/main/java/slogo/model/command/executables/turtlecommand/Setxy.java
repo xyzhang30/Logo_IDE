@@ -6,7 +6,8 @@ import slogo.model.environment.EnvironmentApi;
 import slogo.model.turtle.TurtleModel;
 
 /**
- * This class represents a turtle command executable that sets the position of the turtle to a specified (x, y) coordinate.
+ * This class represents a turtle command executable that sets the position of the turtle to a
+ * specified (x, y) coordinate.
  */
 public class Setxy extends TurtleExecutable {
 
@@ -16,7 +17,8 @@ public class Setxy extends TurtleExecutable {
   /**
    * Constructs a new {@code Setxy} executable with the specified destination coordinates.
    *
-   * @param parameterExecutables the list of parameter executables representing the x and y coordinates of the destination position
+   * @param parameterExecutables the list of parameter executables representing the x and y
+   *                             coordinates of the destination position
    */
   public Setxy(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -27,7 +29,8 @@ public class Setxy extends TurtleExecutable {
   /**
    * Executes the command, setting the position of the turtle to the specified (x, y) coordinate.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user-defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model,
+   *            user-defined variables/commands, and the environment dimensions
    * @return the Euclidean distance moved by the turtle to reach the new position
    */
   @Override

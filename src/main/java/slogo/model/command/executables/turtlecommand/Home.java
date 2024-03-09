@@ -22,7 +22,8 @@ public class Home extends TurtleExecutable {
   /**
    * Executes the command, moving the turtle to its home position.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model, user
+   *            defined variables/commands, and the environment dimensions
    * @return the distance the turtle moved from its previous position to its home position
    */
   @Override

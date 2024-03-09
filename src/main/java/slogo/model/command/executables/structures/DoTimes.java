@@ -8,7 +8,8 @@ import slogo.model.command.executables.VariableExecutable;
 import slogo.model.environment.EnvironmentApi;
 
 /**
- * This class represents a command executable that repeats a set of commands a specified number of times.
+ * This class represents a command executable that repeats a set of commands a specified number of
+ * times.
  */
 
 public class DoTimes extends CommandExecutable {
@@ -20,7 +21,8 @@ public class DoTimes extends CommandExecutable {
   /**
    * Constructs a new {@code DoTimes} command with the specified parameter executables.
    *
-   * @param parameterExecutables the list of parameter executables representing the variable, limit, and list of commands
+   * @param parameterExecutables the list of parameter executables representing the variable, limit,
+   *                             and list of commands
    */
   public DoTimes(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -30,10 +32,13 @@ public class DoTimes extends CommandExecutable {
   }
 
   /**
-   * Executes the command, repeating the list of commands for each index value from 1 to the specified limit.
+   * Executes the command, repeating the list of commands for each index value from 1 to the
+   * specified limit.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user defined variables/commands, and the environment dimensions
-   * @return the result of executing the last command in the listContent, after the loop completes, 0 if no commands were executed
+   * @param env the environment in which the command is executed, including the turtle model, user
+   *            defined variables/commands, and the environment dimensions
+   * @return the result of executing the last command in the listContent, after the loop completes,
+   * 0 if no commands were executed
    */
   @Override
   public double execute(EnvironmentApi env) {

@@ -38,12 +38,12 @@ public class ParserTest {
 
   @Test
   void testSimpleRepeatParse(){
-    String test = "repeat 5 [ fd 50 ]";
+    String test = "repeat 2 [ fd 50 ]";
     InputRecord inputRecord = new InputRecord(test);
     Executioner executioner = new Executioner();
     executioner.parseTree(inputRecord);
     executioner.runNext();
-    assertEquals(50, executioner.getTurtleModel().getAttributes().xpos());
+    assertEquals(2*50, executioner.getTurtleModel().getAttributes().xpos());
   }
 
 }

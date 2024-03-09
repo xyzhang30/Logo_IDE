@@ -6,7 +6,8 @@ import slogo.model.environment.EnvironmentApi;
 import slogo.model.turtle.TurtleModel;
 
 /**
- * This class represents a turtle command executable that sets the heading of the turtle to a specified angle.
+ * This class represents a turtle command executable that sets the heading of the turtle to a
+ * specified angle.
  */
 
 public class SetHeading extends TurtleExecutable {
@@ -16,7 +17,8 @@ public class SetHeading extends TurtleExecutable {
   /**
    * Constructs a new {@code SetHeading} executable with the specified angle.
    *
-   * @param parameterExecutables the list of parameter executables representing the angle to set the heading to
+   * @param parameterExecutables the list of parameter executables representing the angle to set the
+   *                             heading to
    */
   public SetHeading(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -26,7 +28,8 @@ public class SetHeading extends TurtleExecutable {
   /**
    * Executes the command, setting the heading of the turtle to the specified angle.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user-defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model,
+   *            user-defined variables/commands, and the environment dimensions
    * @return the absolute value of the angle rotated to reach the new heading
    */
   @Override
