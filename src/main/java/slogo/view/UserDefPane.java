@@ -17,7 +17,6 @@ public class UserDefPane extends CreatePane {
   private final VBox displayBox;
   private final ResourceBundle resourceBundle;
   private String language;
-//  private final Map<String, Double> variableItems;
   private ExecutionerApi executioner;
 
   /**

@@ -121,13 +121,13 @@ public class CommandXmlParser {
       // create a new File object for the XML file
       File file = new File(path);
 
-      return createDocument(file, path);
+      return createDocument(file);
     } catch (NullPointerException | ParserConfigurationException | IOException | SAXException e) {
       throw new FileNotFoundException();
     }
   }
 
-  private Document createDocument(File file, String path)
+  private Document createDocument(File file)
       throws ParserConfigurationException, IOException, SAXException {
     // create a new instance of document builder factory that allows for a document builder
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
