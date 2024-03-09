@@ -44,6 +44,7 @@ public interface EnvironmentApi {
 
   /**
    * Returns the stack of contexts, the environment's local scope.
+   *
    * @return List  A list of listExecutables, each ListExecutable representing a context.
    */
   List<ListExecutable> getContextStack();

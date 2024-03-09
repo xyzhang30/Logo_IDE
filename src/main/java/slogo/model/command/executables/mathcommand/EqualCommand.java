@@ -26,7 +26,8 @@ public class EqualCommand extends CommandExecutable {
   }
 
   /**
-   * Executes the command and returns 1 if the two numbers are approximately equal, and 0 otherwise.
+   * Executes the command and returns 1 if the two numbers are approximately equal, and 0
+   * otherwise.
    *
    * @param env the environment in which the command is executed, including the turtle model, user
    *            defined variables/commands, and the environment dimensions

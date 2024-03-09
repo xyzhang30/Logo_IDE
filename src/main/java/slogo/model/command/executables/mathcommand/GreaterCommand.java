@@ -27,9 +27,11 @@ public class GreaterCommand extends CommandExecutable {
   }
 
   /**
-   * Executes the command and returns 1 if the first number is greater than the second, and 0 otherwise.
+   * Executes the command and returns 1 if the first number is greater than the second, and 0
+   * otherwise.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model, user
+   *            defined variables/commands, and the environment dimensions
    * @return 1 if the first number is greater than the second, and 0 otherwise
    */
   @Override
