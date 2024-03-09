@@ -14,7 +14,7 @@ public class Environment implements EnvironmentApi {
   private final Map<String, Executable> functionMap;
   private final Map<Double, TurtleModel> turtleMap;
   private final List<Double> activeTurtleKeys;
-  private ListExecutable currentContext;
+  private final List<ListExecutable> contextStack;
   private final int width;
   private final int height;
 
@@ -30,6 +30,7 @@ public class Environment implements EnvironmentApi {
     turtleMap = new HashMap<>();
     activeTurtleKeys = new ArrayList<>();
     defaultTurtle();
+    contextStack = new ArrayList<>();
     width = w;
     height = h;
   }
@@ -91,22 +92,13 @@ public class Environment implements EnvironmentApi {
   }
 
   /**
-   * The current stepping scope of the environment. Lists blocks essentially become contexts.
+   * Returns the stack of contexts, the environment's local scope.
    *
-   * @return ListExecutable  The Executable that acts as the current context.
+   * @return List  A list of listExecutables, each ListExecutable representing a context.
    */
   @Override
-  public ListExecutable getContext() {
-    return currentContext;
-  }
-
-  /**
-   * Sets the current scope of the environment. Which layer of lists to essentially step through.
-   * @param list  The new context level to of the environment.
-   */
-  @Override
-  public void setContext(ListExecutable list) {
-    currentContext = list;
+  public List<ListExecutable> getContextStack() {
+    return contextStack;
   }
 
   @Override

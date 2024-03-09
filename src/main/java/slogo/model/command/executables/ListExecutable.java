@@ -33,13 +33,14 @@ public class ListExecutable implements Executable {
    */
   @Override
   public double execute(EnvironmentApi env) {
-    oldContext = env.getContext();
-    env.setContext(this);
+    if (currentIndex == 0){
+      env.getContextStack().add(this);
+    }
     double output = myList.get(currentIndex).execute(env);
     nextIndex();
     if (currentIndex >= myList.size()){
       resetIndex();
-      env.setContext(oldContext);
+      env.getContextStack().remove(this);
     }
     return output;
   }

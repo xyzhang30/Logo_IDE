@@ -43,17 +43,10 @@ public interface EnvironmentApi {
   void syncTurtleActivation();
 
   /**
-   * The current stepping scope of the environment. Lists blocks essentially become contexts.
-   *
-   * @return ListExecutable  The Executable that acts as the current context.
+   * Returns the stack of contexts, the environment's local scope.
+   * @return List  A list of listExecutables, each ListExecutable representing a context.
    */
-  ListExecutable getContext();
-
-  /**
-   * Sets the current scope of the environment. Which layer of lists to essentially step through.
-   * @param list  The new context level to of the environment.
-   */
-  void setContext(ListExecutable list);
+  List<ListExecutable> getContextStack();
 
   int getWidth();
 

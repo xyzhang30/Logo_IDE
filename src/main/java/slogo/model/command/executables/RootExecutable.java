@@ -20,8 +20,7 @@ public class RootExecutable extends ListExecutable {
 
   @Override
   public double execute(EnvironmentApi env) {
-    double val = tree.get(currIdx).execute(env);
     currIdx++;
-    return val;
+    return super.execute(env);
   }
 }

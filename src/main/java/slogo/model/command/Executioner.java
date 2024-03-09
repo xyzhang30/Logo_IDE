@@ -44,13 +44,13 @@ public class Executioner implements ExecutionerApi {
     System.out.println("in exeparse tree");
     List<Token> tokens = tokenizer.tokenize(commandInput.input());
     root = (RootExecutable) treeParser.parseTree(tokens);
-    environment.setContext(root);
+    environment.getContextStack().add(root);
   }
 
   @Override
   public void runNext() {
     try {
-      environment.getContext().execute(environment);
+      environment.getContextStack().get(environment.getContextStack().size()-1).execute(environment);
     }
     catch (Exception e) {
       throw new RuntimeException();
@@ -59,7 +59,6 @@ public class Executioner implements ExecutionerApi {
 
   @Override
   public boolean hasNext() {
-    System.out.println("root: " + root);
     return root.hasNext();
   }
 
