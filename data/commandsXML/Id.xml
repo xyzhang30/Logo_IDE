@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>id</canonical_name>
+  <category>Turtle Command</category>
+  <description>Gets current active turtle's ID number.</description>
+  <example>ID</example>
+  <parameters>
+  </parameters>
+  <return_value>current active turtle's ID number.</return_value>
+  <number_of_expected_parameters>0</number_of_expected_parameters>
+  <implementing_class>turtlecommand.Id</implementing_class>
+</command>

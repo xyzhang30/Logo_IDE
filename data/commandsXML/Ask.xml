@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>ask</canonical_name>
+  <category>Turtle Command</category>
+  <description>Only the turtleIDs given in first list run commands given in the second list., marks them all as active while the list of commands is running.</description>
+  <example>ASK [ 1 2 ] [ fd 50 ]</example>
+  <parameters>
+    <list_begin/>
+    <turtleIDs>double, ids of the turtles to execute the following commands</turtleIDs>
+    <list_end/>
+    <list_begin/>
+    <commands>commands the specified turtles will execute</commands>
+    <list_end/>
+  </parameters>
+  <return_value>Returns last value in turtles list</return_value>
+  <number_of_expected_parameters>2</number_of_expected_parameters>
+  <implementing_class>turtlecommand.Ask</implementing_class>
+</command>
