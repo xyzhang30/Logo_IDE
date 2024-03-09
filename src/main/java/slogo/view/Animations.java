@@ -46,7 +46,7 @@ public class Animations implements Graphics {
 
 
   /**
-   * clears all lines
+   * clears all lines.
    */
   @Override
   public void clearCanvas() {

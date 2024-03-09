@@ -24,16 +24,31 @@ import slogo.view.Controller;
 import slogo.view.ModelGenerator;
 import slogo.view.ViewParser;
 
+/**
+ * Main class where everything starts.
+ */
 public class Main extends Application {
 
   private Stage primaryStage;
   private String language;
   private String selectedTheme = "default.css";
 
+  /**
+   * Main function call. Redundant and unnecessary.
+   *
+   * @param args The arguments. Redundant.
+   */
   public static void main(String[] args) {
     launch(args);
   }
 
+  /**
+   * Starts the stage. Built into javafx.
+   *
+   * @param primaryStage the primary stage for this application, onto which the application scene
+   *                     can be set. Applications may create other stages, if needed, but they will
+   *                     not be primary stages.
+   */
   @Override
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;

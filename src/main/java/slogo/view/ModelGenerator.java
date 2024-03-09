@@ -11,5 +11,6 @@ public class ModelGenerator extends ModelFactory {
    * Constructor for this subclass.
    */
   public ModelGenerator() {
+    super();
   }
 }

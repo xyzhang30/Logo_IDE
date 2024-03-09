@@ -86,11 +86,8 @@ public abstract class CreatePane {
   }
 
   /**
-<<<<<<< HEAD
-   * sets new language
-=======
-   * sets new language.
->>>>>>> e814b9c08fa88e0eaa187f7bc81026c74f301ada
+   * <<<<<<< HEAD sets new language ======= sets new language. >>>>>>>
+   * e814b9c08fa88e0eaa187f7bc81026c74f301ada
    *
    * @param language = update new language
    */
@@ -99,11 +96,8 @@ public abstract class CreatePane {
   }
 
   /**
-<<<<<<< HEAD
-   * gets the height of the pane
-=======
-   * gets the height of the pane.
->>>>>>> e814b9c08fa88e0eaa187f7bc81026c74f301ada
+   * <<<<<<< HEAD gets the height of the pane ======= gets the height of the pane. >>>>>>>
+   * e814b9c08fa88e0eaa187f7bc81026c74f301ada
    *
    * @return height of pane
    */
@@ -112,11 +106,8 @@ public abstract class CreatePane {
   }
 
   /**
-<<<<<<< HEAD
-   * get the width of the pane
-=======
-   * get the width of the pane.
->>>>>>> e814b9c08fa88e0eaa187f7bc81026c74f301ada
+   * <<<<<<< HEAD get the width of the pane ======= get the width of the pane. >>>>>>>
+   * e814b9c08fa88e0eaa187f7bc81026c74f301ada
    *
    * @return width of pane
    */

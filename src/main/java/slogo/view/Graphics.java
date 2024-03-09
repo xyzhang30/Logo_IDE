@@ -14,6 +14,8 @@ public interface Graphics {
   void clearCanvas();
 
   /**
+   * Returns the root.
+   *
    * @return the graphics context being used.
    */
   Node getRoot();
