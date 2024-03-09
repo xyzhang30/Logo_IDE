@@ -8,7 +8,6 @@ import slogo.model.api.TurtleRecord;
  */
 public class TurtleModel implements TurtleModelApi {
 
-  private final double id;
   private boolean active;
   private double posX;
   private double posY;
@@ -19,19 +18,9 @@ public class TurtleModel implements TurtleModelApi {
   private boolean eraseTrace;
 
   /**
-   * Constructs a new turtle model with default attributes and ID.
+   * Constructs a new turtle model
    */
   public TurtleModel() {
-    this(1);
-  }
-
-  /**
-   * Constructs a new turtle model with the given ID.
-   *
-   * @param Id the ID of the turtle
-   */
-  public TurtleModel(double Id) {
-    this.id = Id;
     initialize();
   }
 

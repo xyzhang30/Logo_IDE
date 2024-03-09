@@ -52,7 +52,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     turtles = new HashMap<>();
     createTurtleViews();
     pen = new PenDraw();
-    animations = new Animations(getHeight(), getWidth(), getLanguage(), pen);
+    animations = new Animations(getHeight(), getWidth(), pen);
     timeline = new Timeline();
     timeline.stop();
     timeLinePoint = 0;
