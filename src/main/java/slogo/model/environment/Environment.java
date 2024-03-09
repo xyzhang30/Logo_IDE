@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import slogo.model.command.executables.Executable;
+import slogo.model.command.executables.ListExecutable;
 import slogo.model.turtle.TurtleModel;
 
 public class Environment implements EnvironmentApi {
@@ -13,6 +14,7 @@ public class Environment implements EnvironmentApi {
   private final Map<String, Executable> functionMap;
   private final Map<Double, TurtleModel> turtleMap;
   private final List<Double> activeTurtleKeys;
+  private final List<ListExecutable> contextStack;
   private final int width;
   private final int height;
 
@@ -28,6 +30,7 @@ public class Environment implements EnvironmentApi {
     turtleMap = new HashMap<>();
     activeTurtleKeys = new ArrayList<>();
     defaultTurtle();
+    contextStack = new ArrayList<>();
     width = w;
     height = h;
   }
@@ -86,6 +89,16 @@ public class Environment implements EnvironmentApi {
     activeTurtleKeys.forEach(k -> {
       turtleMap.get(k).setActive(true);
     });
+  }
+
+  /**
+   * Returns the stack of contexts, the environment's local scope.
+   *
+   * @return List  A list of listExecutables, each ListExecutable representing a context.
+   */
+  @Override
+  public List<ListExecutable> getContextStack() {
+    return contextStack;
   }
 
   @Override

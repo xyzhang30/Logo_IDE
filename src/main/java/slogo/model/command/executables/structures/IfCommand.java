@@ -36,11 +36,7 @@ public class IfCommand extends CommandExecutable {
   @Override
   public double execute(EnvironmentApi env) {
     if (expr.execute(env) != 0) {
-      double ret = 0;
-      for (Executable e : listContent.getList()) {
-        ret = e.execute(env);
-      }
-      return ret;
+      return listContent.execute(env);
     }
     return 0;
   }

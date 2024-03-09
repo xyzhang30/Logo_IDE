@@ -51,9 +51,7 @@ public class ForCommand extends CommandExecutable {
     double ret = 0;
 
     while (env.getVarMap().get(indexKey) < endLimit) {
-      for (Executable e : listContent.getList()) {
-        ret = e.execute(env);
-      }
+      ret = listContent.execute(env);
       env.getVarMap().put(indexKey, env.getVarMap().get(indexKey) + step);
     }
     env.getVarMap().put(indexKey, env.getVarMap().get(indexKey) - step);

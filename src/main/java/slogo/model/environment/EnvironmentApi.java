@@ -3,6 +3,7 @@ package slogo.model.environment;
 import java.util.List;
 import java.util.Map;
 import slogo.model.command.executables.Executable;
+import slogo.model.command.executables.ListExecutable;
 import slogo.model.turtle.TurtleModel;
 
 /**
@@ -40,6 +41,12 @@ public interface EnvironmentApi {
   List<Double> getActiveTurtleKeys();
 
   void syncTurtleActivation();
+
+  /**
+   * Returns the stack of contexts, the environment's local scope.
+   * @return List  A list of listExecutables, each ListExecutable representing a context.
+   */
+  List<ListExecutable> getContextStack();
 
   int getWidth();
 

@@ -8,6 +8,7 @@ import slogo.model.environment.EnvironmentApi;
  */
 public class ListExecutable implements Executable {
 
+  private ListExecutable oldContext;
   private final List<Executable> myList;
   private int currentIndex;
 
@@ -32,7 +33,16 @@ public class ListExecutable implements Executable {
    */
   @Override
   public double execute(EnvironmentApi env) {
-    return myList.get(currentIndex).execute(env);
+    if (currentIndex == 0){
+      env.getContextStack().add(this);
+    }
+    double output = myList.get(currentIndex).execute(env);
+    nextIndex();
+    if (currentIndex >= myList.size()){
+      resetIndex();
+      env.getContextStack().remove(this);
+    }
+    return output;
   }
 
   /**
