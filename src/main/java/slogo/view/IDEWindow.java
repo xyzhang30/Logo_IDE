@@ -381,9 +381,9 @@ public class IDEWindow {
   }
 
   /**
-   * Loads the specified content into the text area of the text pane.
+   * Loads the specified content into the controller to run.
    *
-   * @param fileContent the content to be loaded into the text area.
+   * @param fileContent the content to be loaded in the controller to run.
    */
   public void loadFileContent(String fileContent) {
     controller.runHelp(fileContent);
