@@ -24,7 +24,6 @@ public class Controller {
   private final IDEWindow ide;
   private final Map<Double, TurtleModelApi> model;
 
-  // private final TurtleModel model;
   private final ExecutionerApi executioner;
   private final String language;
   private final HelpWindow helpWindow;
@@ -32,7 +31,6 @@ public class Controller {
   private State state;
   private boolean stepping;
   private CommandHistory cmdHistory;
-  private CommandHistoryPane cmdHistoryPane;
   private UserDefPane userPane;
 
 

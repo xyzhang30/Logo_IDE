@@ -1,7 +1,7 @@
 package slogo.model.api;
 
 /**
- * External API for the Turtle Model
+ * External API for the Turtle Model.
  */
 public interface TurtleModelApi {
 

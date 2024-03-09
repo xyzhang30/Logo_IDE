@@ -16,9 +16,9 @@ public class UserDefPane extends CreatePane {
   //private UserVariable userVariable;
   private final VBox displayBox;
   private final ResourceBundle resourceBundle;
-  private final Map<String, Double> variableItems;
   private String language;
-  private final ExecutionerApi executioner;
+//  private final Map<String, Double> variableItems;
+  private ExecutionerApi executioner;
 
   /**
    * Constructs a UserDefPane with the specified height, width, language, and executioner.
@@ -37,7 +37,7 @@ public class UserDefPane extends CreatePane {
       this.language = "english";
     }
     this.resourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
-    variableItems = executioner.getVariableMap();
+//    variableItems = executioner.getVariableMap();
 
     // Create a VBox to hold the content
     displayBox = new VBox();
