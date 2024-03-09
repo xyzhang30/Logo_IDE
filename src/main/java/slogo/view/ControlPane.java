@@ -32,7 +32,7 @@ public class ControlPane extends CreatePane implements Control {
   private final ViewParser viewParser;
 
   /**
-   * Constructor
+   * Constructor.
    *
    * @param height     = height of pane
    * @param width      = width of pane
@@ -49,7 +49,7 @@ public class ControlPane extends CreatePane implements Control {
   }
 
   /**
-   * Adds all interactive elements to pane
+   * Adds all interactive elements to pane.
    */
   @Override
   public void create() {
@@ -57,7 +57,7 @@ public class ControlPane extends CreatePane implements Control {
   }
 
   /**
-   * Adds all interactive elements to display
+   * Adds all interactive elements to display.
    */
 
   @Override
@@ -103,7 +103,7 @@ public class ControlPane extends CreatePane implements Control {
   }
 
   /**
-   * Creates button
+   * Creates button.
    *
    * @param property = name to display
    * @param handler  = event on push
@@ -126,7 +126,7 @@ public class ControlPane extends CreatePane implements Control {
   }
 
   /**
-   * Creates color picker to be added
+   * Creates color picker to be added.
    *
    * @param property = name on display
    * @param handler  = event on click
@@ -142,7 +142,7 @@ public class ControlPane extends CreatePane implements Control {
   }
 
   /**
-   * Creates dropdown menu
+   * Creates dropdown menu.
    *
    * @param property = name on display
    * @param type     = name of xml file to use to parse options
@@ -164,7 +164,7 @@ public class ControlPane extends CreatePane implements Control {
   }
 
   /**
-   * Creates file chooser to allow somebody to pick a new image
+   * Creates file chooser to allow somebody to pick a new image.
    */
   private void selectImage() {
     FileChooser fileChooser = new FileChooser();

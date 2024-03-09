@@ -20,7 +20,7 @@ public abstract class CreatePane {
   private Pane root;
 
   /**
-   * Constructor
+   * Constructor.
    *
    * @param height   = height of pane
    * @param width    = width of pane
@@ -50,12 +50,12 @@ public abstract class CreatePane {
   }
 
   /**
-   * Adds necessary
+   * Adds necessary.
    */
   public abstract void create();
 
   /**
-   * Simple getter
+   * Simple getter.
    *
    * @return myResourceBundle
    */
@@ -64,7 +64,7 @@ public abstract class CreatePane {
   }
 
   /**
-   * Simple setter
+   * Simple setter.
    *
    * @param myResources = new ResourceBundle
    */
@@ -73,7 +73,8 @@ public abstract class CreatePane {
   }
 
   /**
-   * gets language of the ide
+   * gets language of the ide.
+   *
    * @return language
    */
   public String getLanguage() {
@@ -81,7 +82,8 @@ public abstract class CreatePane {
   }
 
   /**
-   * sets new language
+   * sets new language.
+   *
    * @param language = update new language
    */
   public void setLanguage(String language) {
@@ -89,7 +91,8 @@ public abstract class CreatePane {
   }
 
   /**
-   * gets the height of the pane
+   * gets the height of the pane.
+   *
    * @return height of pane
    */
   public int getHeight() {
@@ -97,7 +100,8 @@ public abstract class CreatePane {
   }
 
   /**
-   * get the width of the pane
+   * get the width of the pane.
+   *
    * @return width of pane
    */
   public int getWidth() {
