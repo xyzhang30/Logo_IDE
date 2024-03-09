@@ -18,8 +18,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import slogo.model.api.ModelFactory;
 import slogo.view.Controller;
+import slogo.view.ModelGenerator;
 import slogo.view.ViewParser;
 
 public class Main extends Application {
@@ -134,7 +134,7 @@ public class Main extends Application {
         String fileContent = readFile(selectedFile);
 
         // Call the controller to run the loaded session
-        ModelFactory modelFactory = new ModelFactory();
+        ModelGenerator modelFactory = new ModelGenerator();
         Controller controller = new Controller(primaryStage, modelFactory.createExecutioner(),
             language);
         controller.start();
@@ -162,7 +162,7 @@ public class Main extends Application {
 
   private void startNewSession() throws Exception {
     // Call the method to start the main application functionality
-    ModelFactory modelFactory = new ModelFactory();
+    ModelGenerator modelFactory = new ModelGenerator();
     if (language == null) {
       language = "english";
     }

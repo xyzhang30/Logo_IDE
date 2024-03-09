@@ -7,7 +7,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
-import slogo.model.api.ModelFactory;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.CommandHistory;
 
@@ -280,7 +279,7 @@ public class Controller {
    * Creates a new instance of the application with a new Controller.
    */
   public void newApplication() {
-    ModelFactory modelFactory = new ModelFactory();
+    ModelGenerator modelFactory = new ModelGenerator();
     Controller c2 = new Controller(new Stage(), modelFactory.createExecutioner(), language);
     c2.start();
   }
