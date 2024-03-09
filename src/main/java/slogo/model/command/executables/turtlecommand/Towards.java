@@ -5,17 +5,31 @@ import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
 import slogo.model.turtle.TurtleModel;
 
+/**
+ * This class represents a command executable that makes the turtle turn towards a specified position.
+ */
 public class Towards extends TurtleExecutable {
 
   private final Executable targetX;
   private final Executable targetY;
 
+  /**
+   * Constructs a new {@code Towards} command with the specified target coordinates.
+   *
+   * @param parameterExecutables the list of parameter executables representing the target position (x, y)
+   */
   public Towards(List<Executable> parameterExecutables) {
     super(parameterExecutables);
     targetX = parameterExecutables.get(0);
     targetY = parameterExecutables.get(1);
   }
 
+  /**
+   * Executes the Towards command, instructing the turtle to turn towards the specified position.
+   *
+   * @param env the environment in which the command is executed, including the turtle model, user-defined variables/commands, and the environment dimensions
+   * @return the absolute difference in degrees between the turtle's original direction and its new direction after turning
+   */
   @Override
   public double executeSingle(EnvironmentApi env) {
     TurtleModel turtle = env.getTurtleMap().get(getCurrentTurtleId());
