@@ -111,12 +111,12 @@ public class ControlPane extends CreatePane implements Control {
    */
   private void makeButton(String property, EventHandler<ActionEvent> handler) {
     // represent all supported image suffixes
-    final String IMAGE_FILE_SUFFIXES = String.format(".*\\.(%s)",
+    String imageFileSuffixes = String.format(".*\\.(%s)",
         String.join("|", ImageIO.getReaderFileSuffixes()));
     Button result = new Button();
     String label = getMyResources().getString(property);
     result.setId(property);
-    if (label.matches(IMAGE_FILE_SUFFIXES)) {
+    if (label.matches(imageFileSuffixes)) {
       result.setGraphic(new ImageView(
           new Image(getClass().getResourceAsStream(DEFAULT_RESOURCE_FOLDER + label))));
     } else {
