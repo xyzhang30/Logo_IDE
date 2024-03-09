@@ -1,6 +1,5 @@
 package slogo.view;
 
-import java.io.File;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -12,7 +11,7 @@ import javafx.scene.layout.Pane;
  */
 public class TurtleView implements TurtleV {
 
-  private static final int TURTLE_SIZE = 50;
+  private int turtleSize;
 
   private static final String DEFAULT_RESOURCE_PACKAGE = "View.";
 
@@ -42,30 +41,32 @@ public class TurtleView implements TurtleV {
    * Constructs a TurtleView with the specified dimensions, initial position, and starting
    * direction.
    *
-   * @param width          the width of the turtle view.
-   * @param height         the height of the turtle view.
-   * @param startX         the initial x-coordinate of the turtle.
-   * @param startY         the initial y-coordinate of the turtle.
-   * @param startDirection the starting direction of the turtle.
+   * @param turtleViewRecord an object containing information about the turtle view, including
+   *                         width, height, initial position (startX, startY), and starting direction.
    */
-  public TurtleView(int width, int height, double startX, double startY, double startDirection) {
-    x = startX;
-    y = startY;
-    direction = startDirection;
+  public TurtleView(TurtleViewRecord turtleViewRecord) {
+    x = turtleViewRecord.startX();
+    y = turtleViewRecord.startY();
+    direction = turtleViewRecord.startDirection();
     imageHere = true;
-    this.startDirection = startDirection;
+    startDirection = turtleViewRecord.startDirection();
+    turtleSize = turtleViewRecord.turtleSize();
     pane = new Pane();
     pane.setId("TurtleImagePane");
+
     // turtleImage = new ImageView(new Image(new File("src/main/resources/view/images/turtle1.png").toURI().toString()));
     turtleImage = new ImageView((new Image(getClass().
         getResource(DEFAULT_RESOURCE_FOLDER + DEFAULT_IMAGE_PATH + "/"
-        + DEFAULT_IMAGE).toExternalForm())));
-    pane.setTranslateX(width / 2);
-    pane.setTranslateY(height / 2);
-    pane.setPrefWidth(width);
-    pane.setPrefHeight(height);
+            + DEFAULT_IMAGE).toExternalForm())));
+
+    pane.setTranslateX(turtleViewRecord.width() / 2);
+    pane.setTranslateY(turtleViewRecord.height() / 2);
+    pane.setPrefWidth(turtleViewRecord.width());
+    pane.setPrefHeight(turtleViewRecord.height());
+
     initialize();
   }
+
 
   /**
    * Gets the ImageView representing the turtle's image.
@@ -142,10 +143,10 @@ public class TurtleView implements TurtleV {
   }
 
   private void initialize() {
-    turtleImage.setFitWidth(TURTLE_SIZE);
-    turtleImage.setFitHeight(TURTLE_SIZE);
-    turtleImage.setX(-((TURTLE_SIZE) / 2));
-    turtleImage.setY(-((TURTLE_SIZE) / 2));
+    turtleImage.setFitWidth(turtleSize);
+    turtleImage.setFitHeight(turtleSize);
+    turtleImage.setX(-((turtleSize) / 2));
+    turtleImage.setY(-((turtleSize) / 2));
     turtleImage.setRotate(startDirection);
     if (imageHere) {
       pane.getChildren().add(turtleImage);

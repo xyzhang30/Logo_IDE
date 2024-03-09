@@ -70,5 +70,6 @@ public interface TurtleBase {
    * @return The root node.
    */
   Node getRoot();
+
 }
 
