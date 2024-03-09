@@ -1,6 +1,5 @@
 package slogo.view;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.scene.control.Label;
@@ -17,9 +16,9 @@ public class UserDefPane extends CreatePane {
   //private UserVariable userVariable;
   private final VBox displayBox;
   private final ResourceBundle resourceBundle;
-  private String language;
   private final Map<String, Double> variableItems;
-  private ExecutionerApi executioner;
+  private String language;
+  private final ExecutionerApi executioner;
 
   /**
    * Constructs a UserDefPane with the specified height, width, language, and executioner.
@@ -27,7 +26,8 @@ public class UserDefPane extends CreatePane {
    * @param height      the height of the pane.
    * @param width       the width of the pane.
    * @param language    the language used for localization.
-   * @param executioner the executioner responsible for managing user-defined variables and commands.
+   * @param executioner the executioner responsible for managing user-defined variables and
+   *                    commands.
    */
   public UserDefPane(int height, int width, String language, ExecutionerApi executioner) {
     super(height, width, language);

@@ -34,6 +34,7 @@ public interface ExecutionerApi {
 
   /**
    * Checks if there are more instructions in the tree to be executed.
+   *
    * @return true if there are more instructions, false otherwise
    */
   boolean hasNext();

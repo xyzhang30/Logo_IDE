@@ -26,14 +26,14 @@ public class Controller {
 
   // private final TurtleModel model;
   private final ExecutionerApi executioner;
+  private final String language;
+  private final HelpWindow helpWindow;
   private Stage stage;
   private State state;
-  private final String language;
   private boolean stepping;
   private CommandHistory cmdHistory;
   private CommandHistoryPane cmdHistoryPane;
   private UserDefPane userPane;
-  private final HelpWindow helpWindow;
 
 
   /**
@@ -134,14 +134,13 @@ public class Controller {
 
 
   /**
-   * Sets up the internal state to execute the specified command.
-   * If the application is in a stopped state, it parses the command, executes it,
-   * and clears the text. If an exception occurs during execution, the application is stopped,
-   * and an error message is displayed.
+   * Sets up the internal state to execute the specified command. If the application is in a stopped
+   * state, it parses the command, executes it, and clears the text. If an exception occurs during
+   * execution, the application is stopped, and an error message is displayed.
    *
    * @param command the command to be executed.
    */
-  public void setUpRunInternal(String command) {
+  private void setUpRunInternal(String command) {
     try {
       if (state == State.STOPPED) {
         if (command != null && !command.equals("")) {
@@ -313,8 +312,9 @@ public class Controller {
 
 
   /**
-   * Displays a file chooser dialog for saving the current state of the program to a file.
-   * If a file is selected, it retrieves the file name and path, and passes them to the executioner for saving.
+   * Displays a file chooser dialog for saving the current state of the program to a file. If a file
+   * is selected, it retrieves the file name and path, and passes them to the executioner for
+   * saving.
    */
   public void save() {
     FileChooser fileChooser = new FileChooser();
@@ -341,7 +341,6 @@ public class Controller {
       executioner.saveFile(fileName, folderPath);
     }
   }
-
 
 
   /**

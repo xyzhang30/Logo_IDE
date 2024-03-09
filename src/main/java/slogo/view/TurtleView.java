@@ -17,14 +17,10 @@ public class TurtleView implements TurtleV {
   private static final String DEFAULT_IMAGE_PATH = "/images";
   private static final String DEFAULT_IMAGE = "turtle1.png";
   private final int turtleSize;
-  private boolean imageHere;
-
-  private ImageView turtleImage;
-
   private final double startDirection;
-
   private final Pane pane;
-
+  private boolean imageHere;
+  private ImageView turtleImage;
   private double x;
 
   private double y;

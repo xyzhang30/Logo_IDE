@@ -28,8 +28,8 @@ public class DifferenceCommand extends CommandExecutable {
   /**
    * Executes the command and returns the difference between the two numbers.
    *
-   * @param env the environment in which the command is executed, including the turtle model,
-   *            user defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model, user
+   *            defined variables/commands, and the environment dimensions
    * @return the difference between the two numbers
    */
   @Override

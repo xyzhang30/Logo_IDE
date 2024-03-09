@@ -62,6 +62,10 @@ public class IDEWindow {
    */
   private final Stage stage;
   /**
+   * The controller for the IDE window.
+   */
+  private final Controller controller;
+  /**
    * The scene for the IDE window.
    */
   private Scene scene;
@@ -72,7 +76,7 @@ public class IDEWindow {
   /**
    * The text input pane in the IDE window.
    */
-  private TextInputPane textPane = new TextInputPane(100, 100, defaultLanguage);
+  private TextInput textPane;
   /**
    * The turtle pane in the IDE window.
    */
@@ -81,10 +85,6 @@ public class IDEWindow {
    * The root pane of the IDE window.
    */
   private Pane root;
-  /**
-   * The controller for the IDE window.
-   */
-  private final Controller controller;
   /**
    * The models representing turtles in the IDE window.
    */
@@ -156,7 +156,8 @@ public class IDEWindow {
 
     addTurtlePane();
 
-    this.userPane = new UserDefPane(DEFAULT_SIZE.height / 15, DEFAULT_SIZE.width / 4, language, controller.getExecutioner());
+    this.userPane = new UserDefPane(DEFAULT_SIZE.height / 15, DEFAULT_SIZE.width / 4, language,
+        controller.getExecutioner());
     AnchorPane.setBottomAnchor(userPane.getRoot(), (double) DEFAULT_SIZE.height / 8);
     AnchorPane.setTopAnchor(userPane.getRoot(), 5.0);
     AnchorPane.setRightAnchor(userPane.getRoot(), 0.0);
@@ -226,7 +227,6 @@ public class IDEWindow {
   public UserDefPane getUserPane() {
     return userPane;
   }
-
 
 
   /**
@@ -381,15 +381,13 @@ public class IDEWindow {
   }
 
   /**
-   * Loads the specified content into the text area of the text pane.
+   * Loads the specified content into the controller to run.
    *
-   * @param fileContent the content to be loaded into the text area.
+   * @param fileContent the content to be loaded in the controller to run.
    */
   public void loadFileContent(String fileContent) {
-    textPane.getTextArea().setText(fileContent);
+    controller.runHelp(fileContent);
   }
-
-
 }
 
 

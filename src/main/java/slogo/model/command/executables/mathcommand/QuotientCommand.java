@@ -17,7 +17,8 @@ public class QuotientCommand extends CommandExecutable {
   /**
    * Constructs a new {@code QuotientCommand} with the specified parameter executables.
    *
-   * @param parameterExecutables the list of parameter executables representing the dividend and divisor
+   * @param parameterExecutables the list of parameter executables representing the dividend and
+   *                             divisor
    */
   public QuotientCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -28,7 +29,8 @@ public class QuotientCommand extends CommandExecutable {
   /**
    * Executes the command and returns the quotient of the two numbers.
    *
-   * @param env the environment in which the command is executed, including the turtle model, user defined variables/commands, and the environment dimensions
+   * @param env the environment in which the command is executed, including the turtle model, user
+   *            defined variables/commands, and the environment dimensions
    * @return the quotient of the two numbers
    */
   @Override

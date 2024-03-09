@@ -19,9 +19,9 @@ import org.xml.sax.SAXException;
 public class CommandXmlParser {
 
   private final Map<String, String> parameterDescription;
+  private final List<String> paramOrder;
   private String commandName;
   private String commandDescription;
-  private final List<String> paramOrder;
   private int numParamsExpected;
   private String returnValueType; //do we even need this since everything returns a double?
   private String implementationName;

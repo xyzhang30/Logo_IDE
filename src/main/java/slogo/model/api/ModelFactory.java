@@ -13,7 +13,7 @@ public abstract class ModelFactory {
    *
    * @return a new instance of the {@link ExecutionerApi} interface
    */
-  public ExecutionerApi createExecutioner(){
+  public ExecutionerApi createExecutioner() {
     return new Executioner();
   }
 

@@ -35,7 +35,7 @@ public class ControlPaneTest extends DukeApplicationTest {
   public void testButtonLabels() {
     verifyThat("#run", hasText("Run"));
     verifyThat("#step", hasText("Step"));
-    verifyThat("#pause", hasText("Pause"));
+    verifyThat("#pause", hasText("Pause/Resume"));
     verifyThat("#help", hasText("Help"));
     verifyThat("#speed_Up", hasText("Faster"));
     verifyThat("#slow_Down", hasText("Slower"));
