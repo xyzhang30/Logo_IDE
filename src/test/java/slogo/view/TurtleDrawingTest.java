@@ -1,11 +1,18 @@
 
 package slogo.view;
+import java.util.HashMap;
+import java.util.Map;
+import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import slogo.model.api.TurtleModelApi;
+import slogo.model.command.Executioner;
+import slogo.model.turtle.TurtleModel;
 import slogo.view.TurtleView;
+import util.DukeApplicationTest;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,14 +27,42 @@ public class TurtleDrawingTest {
 
   @Test
   public void testTurtleUpdate() {
-    TurtleView turtleView = new TurtleView(800, 600, 0, 0, 0);
-    assertEquals(0, turtleView.getTurtleImage().getRotate(), "Initial rotation should be 0");
+    Platform.runLater(() -> {
+      TurtleView turtleView = new TurtleView(new TurtleViewRecord(800, 600, 0,
+          0, 0, 50));
+      assertEquals(0, turtleView.getTurtleImage().getRotate(), "Initial rotation should be 0");
 
-    turtleView.turtleUpdate(50, 75, 90, true);
-    assertEquals(90, turtleView.getTurtleImage().getRotate(), "Rotation should be updated to 90 degrees");
-    assertEquals(50, turtleView.getTurtleImage().getTranslateX(), "X-coordinate should be updated to 50");
-    assertEquals(75, turtleView.getTurtleImage().getTranslateY(), "Y-coordinate should be updated to 75");
-    assertTrue(turtleView.getImageHere(), "Turtle Should be Visible");
+      turtleView.turtleUpdate(50, 75, 90, true);
+      assertEquals(90, turtleView.getTurtleImage().getRotate(), "Rotation should be updated to 90 degrees");
+      assertEquals(50, turtleView.getTurtleImage().getTranslateX(), "X-coordinate should be updated to 50");
+      assertEquals(75, turtleView.getTurtleImage().getTranslateY(), "Y-coordinate should be updated to 75");
+      assertTrue(turtleView.getImageHere(), "Turtle Should be Visible");
+    });
   }
+  @Test
+  public void multipleTurtleUpdateTest() {
+    Platform.runLater(() -> {
+      Map<Double, TurtleModelApi> map = new HashMap<>();
+      TurtleModel t1 = new TurtleModel();
+      TurtleModel t2 = new TurtleModel();
+      map.put(1.0, t1);
+      map.put(2.0, t2);
+      TurtlePaneRecord record = new TurtlePaneRecord(750, 500,
+          map, "english", 500, new Controller(new Stage(), new Executioner(), "english"));
+      TurtlePane tb = new TurtlePane(record);
+      t1.setPosX(50);
+      t1.setPosY(50);
+      t1.setActive(true);
+      t2.setPosX(100);
+      t2.setPosY(100);
+      t2.setActive(true);
 
+      tb.update();
+      // sleep(1000);
+      assertEquals(50, tb.getTurtleV(1.0).getTurtleImage().getTranslateX(), "x coord should be 50");
+      assertEquals(50, tb.getTurtleV(1.0).getY(), "y coord should be 50");
+      assertEquals(100, tb.getTurtleV(2.0).getX(), "x coord should be 100");
+      assertEquals(100, tb.getTurtleV(2.0).getY(), "y coord should be 100");
+    });
+  }
 }

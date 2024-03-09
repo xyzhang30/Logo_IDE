@@ -4,9 +4,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 /**
- * The {@code TurtleV} interface defines methods for managing the graphical representation of a turtle.
- * Implementing classes are responsible for handling the turtle's image, position, visibility, and
- * related graphical updates.
+ * The {@code TurtleV} interface defines methods for managing the graphical representation of a
+ * turtle. Implementing classes are responsible for handling the turtle's image, position,
+ * visibility, and related graphical updates.
  */
 public interface TurtleV {
 
@@ -18,8 +18,8 @@ public interface TurtleV {
   ImageView getTurtleImage();
 
   /**
-   * Updates the graphical representation of the turtle based on the specified position,
-   * direction, and visibility.
+   * Updates the graphical representation of the turtle based on the specified position, direction,
+   * and visibility.
    *
    * @param x         The x-coordinate of the turtle.
    * @param y         The y-coordinate of the turtle.

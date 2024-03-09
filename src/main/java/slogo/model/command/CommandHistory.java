@@ -7,12 +7,12 @@ import java.util.List;
 public class CommandHistory implements HistoryApi {
 
   private List<String> inputStrings;
-  private int currentIndex;
-//  private StringBuilder executedCommands;
-    private String executedCommands;
+  private final int currentIndex;
+  //  private StringBuilder executedCommands;
+  private String executedCommands;
 
 
-  public CommandHistory(){
+  public CommandHistory() {
     currentIndex = 0;
     executedCommands = "";
   }
@@ -46,8 +46,8 @@ public class CommandHistory implements HistoryApi {
   @Override
   public void saveCurrent() {
     executedCommands = String.join("\n", inputStrings);
-    System.out.println("exe:"+executedCommands);
-    System.out.println("inputStrings: "+inputStrings);
+    System.out.println("exe:" + executedCommands);
+    System.out.println("inputStrings: " + inputStrings);
 //    executedCommands.append(inputStrings.get(currentIndex)).append("\n");
 //    System.out.println("executed commands: "+ executedCommands);
 //    currentIndex++;

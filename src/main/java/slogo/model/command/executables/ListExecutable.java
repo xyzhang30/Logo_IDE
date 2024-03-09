@@ -53,6 +53,6 @@ public class ListExecutable implements Executable {
    * Executes all Executables in this list at once.
    */
   public void executeAll(EnvironmentApi env) {
-    myList.forEach(e->e.execute(env));
+    myList.forEach(e -> e.execute(env));
   }
 }

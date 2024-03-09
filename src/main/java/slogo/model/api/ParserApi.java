@@ -11,9 +11,10 @@ public interface ParserApi {
 
   /**
    * Converts a Record of input from controller into an tree of Executables.
-   * @param tokens  data to be parsed. Contains a string of commands.
+   *
+   * @param tokens data to be parsed. Contains a string of commands.
    * @return Executable  The root of the tree of command Executables.
-   * @throws InvalidParameterNumberException  If the data is syntactically incorrect.
+   * @throws InvalidParameterNumberException If the data is syntactically incorrect.
    */
   Executable parseTree(List<Token> tokens) throws InvalidParameterNumberException;
 

@@ -7,8 +7,8 @@ import slogo.model.environment.EnvironmentApi;
 
 public class LessCommand extends CommandExecutable {
 
-  private Executable test1;
-  private Executable test2;
+  private final Executable test1;
+  private final Executable test2;
 
   public LessCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -18,7 +18,7 @@ public class LessCommand extends CommandExecutable {
 
   @Override
   public double execute(EnvironmentApi env) {
-    if (test1.execute(env) - test2.execute(env) < 0.001){
+    if (test1.execute(env) - test2.execute(env) < 0.001) {
       return 1;
     }
     return 0;

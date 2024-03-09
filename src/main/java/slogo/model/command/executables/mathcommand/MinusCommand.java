@@ -7,7 +7,7 @@ import slogo.model.environment.EnvironmentApi;
 
 public class MinusCommand extends CommandExecutable {
 
-  private Executable num;
+  private final Executable num;
 
   public MinusCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);

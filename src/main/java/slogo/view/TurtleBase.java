@@ -4,8 +4,8 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
 /**
- * The {@code TurtleBase} interface provides methods to interact with and update the display
- * of a turtle in the GUI.
+ * The {@code TurtleBase} interface provides methods to interact with and update the display of a
+ * turtle in the GUI.
  */
 public interface TurtleBase {
 
@@ -70,5 +70,6 @@ public interface TurtleBase {
    * @return The root node.
    */
   Node getRoot();
+
 }
 

@@ -1,7 +1,6 @@
 package slogo.view;
 
 import java.util.ResourceBundle;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 /**
@@ -10,35 +9,33 @@ import javafx.scene.layout.Pane;
 public abstract class CreatePane {
 
 
+  public static final String DEFAULT_RESOURCE_PACKAGE = "View.";
+  public static final String DEFAULT_RESOURCE_FOLDER =
+      "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
   private final int height;
   private final int width;
-
   private ResourceBundle myResources;
-
-  public static final String DEFAULT_RESOURCE_PACKAGE = "View.";
-  public static final String DEFAULT_RESOURCE_FOLDER = "/" + DEFAULT_RESOURCE_PACKAGE.replace(".", "/");
-
   private String language;
 
   private Pane root;
 
   /**
    * Constructor
-   * @param height = height of pane
-   * @param width = width of pane
+   *
+   * @param height   = height of pane
+   * @param width    = width of pane
    * @param language = language to be used if necessary
    */
   public CreatePane(int height, int width, String language) {
-      this.height = height;
-      this.width = width;
-      root = new Pane();
-      this.language = language;
-      System.out.println(DEFAULT_RESOURCE_PACKAGE + language);
-      myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
+    this.height = height;
+    this.width = width;
+    root = new Pane();
+    this.language = language;
+    System.out.println(DEFAULT_RESOURCE_PACKAGE + language);
+    myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
   }
 
   /**
-   *
    * @return the root/pane
    */
   public Pane getRoot() {
@@ -46,7 +43,6 @@ public abstract class CreatePane {
   }
 
   /**
-   *
    * @param root = updates root to new pane
    */
   public void setRoot(Pane root) {
@@ -60,6 +56,7 @@ public abstract class CreatePane {
 
   /**
    * Simple getter
+   *
    * @return myResourceBundle
    */
   public ResourceBundle getMyResources() {
@@ -68,6 +65,7 @@ public abstract class CreatePane {
 
   /**
    * Simple setter
+   *
    * @param myResources = new ResourceBundle
    */
   public void setMyResources(ResourceBundle myResources) {
@@ -75,7 +73,6 @@ public abstract class CreatePane {
   }
 
   /**
-   *
    * @return language
    */
   public String getLanguage() {
@@ -83,7 +80,6 @@ public abstract class CreatePane {
   }
 
   /**
-   *
    * @param language = update new language
    */
   public void setLanguage(String language) {
@@ -91,7 +87,6 @@ public abstract class CreatePane {
   }
 
   /**
-   *
    * @return height of pane
    */
   public int getHeight() {
@@ -99,7 +94,6 @@ public abstract class CreatePane {
   }
 
   /**
-   *
    * @return width of pane
    */
   public int getWidth() {

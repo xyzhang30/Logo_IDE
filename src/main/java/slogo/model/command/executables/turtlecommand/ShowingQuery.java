@@ -5,7 +5,7 @@ import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
 import slogo.model.turtle.TurtleModel;
 
-public class ShowingQuery extends TurtleExecutable{
+public class ShowingQuery extends TurtleExecutable {
 
   public ShowingQuery(List<Executable> parameterExecutables) {
     super(parameterExecutables);
@@ -14,7 +14,7 @@ public class ShowingQuery extends TurtleExecutable{
   @Override
   public double executeSingle(EnvironmentApi env) {
     TurtleModel turtle = env.getTurtleMap().get(getCurrentTurtleId());
-    if (turtle.isVisible()){
+    if (turtle.isVisible()) {
       return 1;
     }
     return 0;

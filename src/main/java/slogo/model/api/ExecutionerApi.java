@@ -25,9 +25,12 @@ public interface ExecutionerApi {
   void runNext();
 
   boolean hasNext();
+
   @Deprecated
   TurtleModelApi getTurtleModel();
+
   Map<Double, TurtleModelApi> getTurtleModels();
+
   List<Double> getActiveTurtles();
 
   CommandHistory getHistory();

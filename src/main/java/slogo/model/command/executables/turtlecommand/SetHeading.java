@@ -7,7 +7,7 @@ import slogo.model.turtle.TurtleModel;
 
 public class SetHeading extends TurtleExecutable {
 
-  private Executable angle;
+  private final Executable angle;
 
   public SetHeading(List<Executable> parameterExecutables) {
     super(parameterExecutables);

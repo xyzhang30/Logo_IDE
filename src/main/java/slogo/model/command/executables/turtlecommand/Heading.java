@@ -5,11 +5,12 @@ import slogo.model.command.executables.Executable;
 import slogo.model.environment.EnvironmentApi;
 import slogo.model.turtle.TurtleModel;
 
-public class Heading extends TurtleExecutable{
+public class Heading extends TurtleExecutable {
 
   public Heading(List<Executable> parameterExecutables) {
     super(parameterExecutables);
   }
+
   @Override
   public double executeSingle(EnvironmentApi env) {
     TurtleModel turtle = env.getTurtleMap().get(getCurrentTurtleId());

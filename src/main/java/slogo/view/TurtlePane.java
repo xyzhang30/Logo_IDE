@@ -2,44 +2,46 @@ package slogo.view;
 
 import java.util.HashMap;
 import java.util.Map;
-import javafx.scene.paint.Color;
-import java.io.File;
+import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import slogo.model.api.TurtleModelApi;
 
 /**
- * The TurtlePane class represents a graphical view of a turtle, including its position,
- * direction, and drawing capabilities. It extends the CreatePane class to manage its layout and
- * appearance.
+ * The TurtlePane class represents a graphical view of a turtle, including its position, direction,
+ * and drawing capabilities. It extends the CreatePane class to manage its layout and appearance.
  */
 public class TurtlePane extends CreatePane implements TurtleBase {
 
-  private static final int defaultLineLength = 1000;
-  private static final int timeIncrement = 10;
-  private static final double activeOpacity = 1.0;
-  private static final double inactiveOpacity = 0.7;
+  private static final String DEFAULT_RESOURCE_PACKAGE = "View.";
+  private static final String variablesProperties = "turtlePaneVariables";
   private final Map<Double, TurtleModelApi> model;
   private final Graphics animations;
-  private int speed;
   private final Map<Double, TurtleV> turtles;
-  private Timeline timeline;
   private final PenGraphics pen;
+  private final Controller controller;
+  private int defaultLineLength;
+  private int timeIncrement;
+  private double activeOpacity;
+  private int turtleSize;
+  private double inactiveOpacity;
+  private int speed;
+  private Timeline timeline;
   private boolean paused;
-
   private int timeLinePoint;
-
-  private Controller controller;
 
 
   /**
    * Constructor
+   *
    * @param recordTurtle = takes in record of important attributes to be stored in TurtlePane
    */
   public TurtlePane(TurtlePaneRecord recordTurtle) {
     super(recordTurtle.height(), recordTurtle.width(), recordTurtle.language());
+    readInValues();
     controller = recordTurtle.controller();
     paused = false;
     getRoot().setPrefHeight(getHeight());
@@ -54,7 +56,24 @@ public class TurtlePane extends CreatePane implements TurtleBase {
     timeline = new Timeline();
     timeline.stop();
     timeLinePoint = 0;
+
     create();
+
+  }
+
+  private void readInValues() {
+    try {
+      ResourceBundle variables = ResourceBundle.getBundle(
+          DEFAULT_RESOURCE_PACKAGE + variablesProperties);
+      defaultLineLength = Integer.parseInt(variables.getString("defaultLineLength"));
+      timeIncrement = Integer.parseInt(variables.getString("timeIncrement"));
+      activeOpacity = Double.parseDouble(variables.getString("activeOpacity"));
+      inactiveOpacity = Double.parseDouble(variables.getString("inactiveOpacity"));
+      turtleSize = Integer.parseInt(variables.getString("turtleSize"));
+    } catch (Exception e) {
+      throw new InvalidOrMissingVariablesException(
+          getMyResources().getString("InvalidOrMissingVariablesException"));
+    }
   }
 
   private void createTurtleViews() {
@@ -62,9 +81,9 @@ public class TurtlePane extends CreatePane implements TurtleBase {
       Double key = entry.getKey();
       TurtleModelApi value = entry.getValue();
       if (!turtles.containsKey(key)) {
-        TurtleV turtle = new TurtleView(getWidth(), getHeight(),
+        TurtleV turtle = new TurtleView(new TurtleViewRecord(getWidth(), getHeight(),
             value.getAttributes().xpos(), value.getAttributes().ypos(),
-            value.getAttributes().direction());
+            value.getAttributes().direction(), turtleSize));
         turtles.put(key, turtle);
         getRoot().getChildren().add(turtle.getRoot());
       }
@@ -141,8 +160,10 @@ public class TurtlePane extends CreatePane implements TurtleBase {
       double startDirection = usingTurtle.getDirection();
       boolean visible = value.getAttributes().visible();
 
-      double x = startX + i * (value.getAttributes().xpos() - startX) / ((double) defaultLineLength / speed);
-      double y = startY + i * (value.getAttributes().ypos() - startY) / ((double) defaultLineLength / speed);
+      double x = startX + i * (value.getAttributes().xpos() - startX) / ((double) defaultLineLength
+          / speed);
+      double y = startY + i * (value.getAttributes().ypos() - startY) / ((double) defaultLineLength
+          / speed);
       double direction = startDirection + i * (value.getAttributes().direction() -
           startDirection) / ((double) defaultLineLength / speed);
 
@@ -152,8 +173,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
       if (value.getAttributes().active()) {
         usingTurtle.getTurtleImage().setOpacity(activeOpacity);
         usingTurtle.turtleUpdate(x, y, direction, visible);
-      }
-      else {
+      } else {
         usingTurtle.getTurtleImage().setOpacity(inactiveOpacity);
       }
     }
@@ -235,5 +255,15 @@ public class TurtlePane extends CreatePane implements TurtleBase {
   @Override
   public boolean getPaused() {
     return paused;
+  }
+
+  /**
+   * Retrieves the graphical representation of a turtle with the specified ID.
+   *
+   * @param id The unique identifier of the turtle.
+   * @return The TurtleV representing the graphical view of the turtle.
+   */
+  public TurtleV getTurtleV(double id) {
+    return turtles.getOrDefault(id, null);
   }
 }

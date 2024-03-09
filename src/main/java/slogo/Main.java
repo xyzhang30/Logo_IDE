@@ -1,21 +1,25 @@
 package slogo;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import slogo.model.api.ModelFactory;
 import slogo.view.Controller;
-
-import java.io.File;
-import java.io.IOException;
+import slogo.view.ModelGenerator;
 import slogo.view.ViewParser;
 
 public class Main extends Application {
@@ -23,6 +27,10 @@ public class Main extends Application {
   private Stage primaryStage;
   private String language;
   private String selectedTheme = "default.css";
+
+  public static void main(String[] args) {
+    launch(args);
+  }
 
   @Override
   public void start(Stage primaryStage) {
@@ -76,12 +84,11 @@ public class Main extends Application {
       v1.readXml("theme");
       colorThemeComboBox.getItems().addAll(v1.getOptions());
       colorThemeComboBox.setPromptText("Select Color Theme");
-      colorThemeComboBox.setOnAction(event -> selectedTheme = colorThemeComboBox.getValue()); // Store the selected theme
-    }
-    catch (FileNotFoundException f1){
+      colorThemeComboBox.setOnAction(
+          event -> selectedTheme = colorThemeComboBox.getValue()); // Store the selected theme
+    } catch (FileNotFoundException f1) {
       // do nothing
     }
-
 
     // Button for starting a new session
     Button newSessionButton = new Button("Start New Session");
@@ -106,7 +113,8 @@ public class Main extends Application {
     VBox root = new VBox(20);
     root.setAlignment(Pos.CENTER);
     root.setPadding(new Insets(20));
-    root.getChildren().addAll(programNameLabel, menuBar, colorThemeComboBox, newSessionButton, loadSessionButton);
+    root.getChildren()
+        .addAll(programNameLabel, menuBar, colorThemeComboBox, newSessionButton, loadSessionButton);
 
     Scene scene = new Scene(root, 400, 300);
     primaryStage.setScene(scene);
@@ -126,11 +134,12 @@ public class Main extends Application {
         String fileContent = readFile(selectedFile);
 
         // Call the controller to run the loaded session
-        ModelFactory modelFactory = new ModelFactory();
-        Controller controller = new Controller(primaryStage, modelFactory.createExecutioner(), language);
+        ModelGenerator modelFactory = new ModelGenerator();
+        Controller controller = new Controller(primaryStage, modelFactory.createExecutioner(),
+            language);
         controller.start();
         controller.getIde().loadFileContent(fileContent);
-        System.out.println("filecontent:"+fileContent);
+        System.out.println("filecontent:" + fileContent);
       } catch (Exception e) {
         System.err.println("Error loading session file: " + e.getMessage());
         e.printStackTrace();
@@ -153,11 +162,12 @@ public class Main extends Application {
 
   private void startNewSession() throws Exception {
     // Call the method to start the main application functionality
-    ModelFactory modelFactory = new ModelFactory();
-    if (language == null){
+    ModelGenerator modelFactory = new ModelGenerator();
+    if (language == null) {
       language = "english";
     }
-    Controller controller = new Controller(primaryStage, modelFactory.createExecutioner(), language);
+    Controller controller = new Controller(primaryStage, modelFactory.createExecutioner(),
+        language);
     controller.start();
     controller.changeStylesheet(selectedTheme); // Change stylesheet based on selected theme
 
@@ -176,9 +186,5 @@ public class Main extends Application {
   private void switchToEnglish() throws IOException {
     System.out.println("Switching to English...");
     language = "english";
-  }
-
-  public static void main(String[] args) {
-    launch(args);
   }
 }

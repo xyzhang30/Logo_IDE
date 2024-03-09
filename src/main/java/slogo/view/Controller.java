@@ -2,57 +2,46 @@ package slogo.view;
 
 import java.io.File;
 import java.util.Map;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
-import slogo.model.api.ModelFactory;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.CommandHistory;
-import slogo.model.command.Executioner;
 
 /**
- * Controller class that manages the interaction between the graphical user interface (GUI)
- * and the underlying model and execution logic.
+ * Controller class that manages the interaction between the graphical user interface (GUI) and the
+ * underlying model and execution logic.
  */
-public class Controller  {
+public class Controller {
 
   // how much to adjust updates per second
   public static final int SPEED_ADJUSTMENT = 1;
 
   public static final int KEY_MOVE_AMOUNT = 50;
-
+  private static Controller instance;
   private final IDEWindow ide;
-
   private final Map<Double, TurtleModelApi> model;
 
-  private Stage stage;
-
   // private final TurtleModel model;
-
   private final ExecutionerApi executioner;
-
+  private Stage stage;
   private State state;
-
-  private String language;
-
+  private final String language;
   private boolean stepping;
   private CommandHistory cmdHistory;
   private CommandHistoryPane cmdHistoryPane;
   private UserDefPane userPane;
-  private static Controller instance;
-  private HelpWindow helpWindow;
+  private final HelpWindow helpWindow;
 
 
   /**
    * Constructs a Controller with the specified stage, executioner, and language.
    *
-   * @param stage      the primary stage for the application.
+   * @param stage       the primary stage for the application.
    * @param executioner the executioner responsible for interpreting and executing commands.
-   * @param language   the initial language setting.
+   * @param language    the initial language setting.
    */
   public Controller(Stage stage, ExecutionerApi executioner, String language) {
     stepping = false;
@@ -66,10 +55,12 @@ public class Controller  {
     helpWindow = new HelpWindow(language);
   }
 
+  public static Controller getInstance() {
+    return instance;
+  }
+
   /**
    * Starts the application.
-   *
-   *
    */
   public void start() {
     ide.start(model);
@@ -89,6 +80,7 @@ public class Controller  {
     feedHistory(executioner.getHistory().getCommands());
     feedVariables();
   }
+
   /**
    * Shows a message dialog with the specified type and message.
    *
@@ -112,12 +104,12 @@ public class Controller  {
     setUpRunInternal(command);
   }
 
-  public void runCmdHist(String command){
+  public void runCmdHist(String command) {
     setUpRunInternal(command);
     updateHistory();
   }
 
-  public void runHelp(String command){
+  public void runHelp(String command) {
     //String command = helpWindow.getTextArea();
     System.out.println("in run help " + command);
     setUpRunInternal(command);
@@ -188,15 +180,15 @@ public class Controller  {
    */
   public void speedUp() {
     System.out.println(ide.getSpeed());
-    ide.setSpeed(ide.getSpeed()+SPEED_ADJUSTMENT);
+    ide.setSpeed(ide.getSpeed() + SPEED_ADJUSTMENT);
   }
 
   /**
    * Decreases the execution speed.
    */
   public void slowDown() {
-    if (ide.getSpeed()>SPEED_ADJUSTMENT) {
-      ide.setSpeed(ide.getSpeed()-SPEED_ADJUSTMENT);
+    if (ide.getSpeed() > SPEED_ADJUSTMENT) {
+      ide.setSpeed(ide.getSpeed() - SPEED_ADJUSTMENT);
     }
   }
 
@@ -245,7 +237,6 @@ public class Controller  {
     ide.updateImage(selectedFilePath);
   }
 
-
   /**
    * Gets the text content from the IDEWindow.
    *
@@ -268,12 +259,12 @@ public class Controller  {
   public void runNext() {
     if (!stepping) {
       runFirst();
-    }
-    else {
+    } else {
       state = State.STOPPED;
       stepping = false;
     }
   }
+
   private void runFirst() {
     if (executioner.hasNext()) {
       state = State.RUNNING;
@@ -286,24 +277,22 @@ public class Controller  {
 
   /**
    * Creates a new instance of the application with a new Controller.
-   *
-   *
    */
-  public void newApplication() throws Exception {
-    ModelFactory modelFactory = new ModelFactory();
+  public void newApplication() {
+    ModelGenerator modelFactory = new ModelGenerator();
     Controller c2 = new Controller(new Stage(), modelFactory.createExecutioner(), language);
     c2.start();
   }
-
 
   public void save() {
     FileChooser fileChooser = new FileChooser();
 
     // Set initial directory if needed
-     fileChooser.setInitialDirectory(new File("data/"));
+    fileChooser.setInitialDirectory(new File("data/"));
 
     // Set extension filter to only allow .slogo files
-    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("SLogo files (*.slogo)", "*.slogo");
+    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("SLogo files (*.slogo)",
+        "*.slogo");
     fileChooser.getExtensionFilters().add(extFilter);
 
     // Show save file dialog
@@ -317,7 +306,7 @@ public class Controller  {
       String fileName = selectedFile.getName();
 //      String filePath = selectedFile.getAbsolutePath();
       String folderPath = selectedFile.getParent();
-      System.out.println("filepath: "+ folderPath);
+      System.out.println("filepath: " + folderPath);
       executioner.saveFile(fileName, folderPath);
     }
   }
@@ -341,32 +330,32 @@ public class Controller  {
   }
 
   /**
-   * Moves the turtle forward by a distance of 50 units.
-   * This corresponds to the "fd 50" command in the turtle graphics language.
+   * Moves the turtle forward by a distance of 50 units. This corresponds to the "fd 50" command in
+   * the turtle graphics language.
    */
   public void up() {
     setUpRunInternal("fd " + KEY_MOVE_AMOUNT);
   }
 
   /**
-   * Moves the turtle backward by a distance of 50 units.
-   * This corresponds to the "fd -50" command in the turtle graphics language.
+   * Moves the turtle backward by a distance of 50 units. This corresponds to the "fd -50" command
+   * in the turtle graphics language.
    */
   public void down() {
     setUpRunInternal("bk " + KEY_MOVE_AMOUNT);
   }
 
   /**
-   * Turns the turtle left by 90 degrees and then moves it forward by a distance of 50 units.
-   * This corresponds to the "lt 90\nfd 50" commands in the turtle graphics language.
+   * Turns the turtle left by 90 degrees and then moves it forward by a distance of 50 units. This
+   * corresponds to the "lt 90\nfd 50" commands in the turtle graphics language.
    */
   public void left() {
     setUpRunInternal("lt 90\nfd " + KEY_MOVE_AMOUNT);
   }
 
   /**
-   * Turns the turtle right by 90 degrees and then moves it forward by a distance of 50 units.
-   * This corresponds to the "rt 90\nfd 50" commands in the turtle graphics language.
+   * Turns the turtle right by 90 degrees and then moves it forward by a distance of 50 units. This
+   * corresponds to the "rt 90\nfd 50" commands in the turtle graphics language.
    */
   public void right() {
     setUpRunInternal("rt 90\nfd " + KEY_MOVE_AMOUNT);
@@ -376,10 +365,4 @@ public class Controller  {
     return ide;
   }
 
-  public static Controller getInstance(){
-    return instance;
-  }
-
 }
-
-

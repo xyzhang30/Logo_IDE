@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,7 +21,7 @@ import slogo.xmlparser.CommandXmlParser;
 
 public class HelpWindow extends Stage {
 
-  private TextArea commandTextArea;
+  private final TextArea commandTextArea;
 
   public HelpWindow(String language) {
     BorderPane root = new BorderPane();
@@ -44,7 +43,7 @@ public class HelpWindow extends Stage {
     scrollPane.setFitToWidth(true);
 
     root.setTop(titleLabel);
-    root.setAlignment(titleLabel, Pos.CENTER);
+    BorderPane.setAlignment(titleLabel, Pos.CENTER);
     root.setCenter(scrollPane);
     root.setBottom(exitButton);
     BorderPane.setAlignment(exitButton, Pos.CENTER);
@@ -61,7 +60,8 @@ public class HelpWindow extends Stage {
     for (File xmlFile : xmlFolder.listFiles()) {
       String commandName = xmlFile.getName().replace(".xml", "");
       Hyperlink commandLink = new Hyperlink(commandName);
-      commandLink.setOnAction(event -> loadCommandDocumentation(helpPane, commandName, Controller.getInstance())); // Pass the controller instance
+      commandLink.setOnAction(event -> loadCommandDocumentation(helpPane, commandName,
+          Controller.getInstance())); // Pass the controller instance
       helpPane.getChildren().addAll(commandLink);
     }
   }
@@ -92,7 +92,8 @@ public class HelpWindow extends Stage {
       Label numParamsLabel = new Label("Number of Parameters: " + numParams);
       Label exampleLabel = new Label("Example: " + example);
 
-      commandDetails.getChildren().addAll(titleButton, descriptionLabel, numParamsLabel, exampleLabel);
+      commandDetails.getChildren()
+          .addAll(titleButton, descriptionLabel, numParamsLabel, exampleLabel);
 
       for (Map.Entry<String, String> entry : parameters.entrySet()) {
         Label paramLabel = new Label("Parameter: " + entry.getKey() + " - " + entry.getValue());
@@ -111,12 +112,11 @@ public class HelpWindow extends Stage {
       runButton.setOnAction(event -> {
         System.out.println("button pressed");
         System.out.println("hi" + commandTextArea.getText());
-        controller.runHelp(commandTextArea.getText()); // Execute run method if controller is not null
+        controller.runHelp(
+            commandTextArea.getText()); // Execute run method if controller is not null
         System.out.println("run button working");
       });
       commandDetails.getChildren().add(runButton);
-
-
 
       helpPane.getChildren().clear();
       helpPane.getChildren().addAll(commandDetails);

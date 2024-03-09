@@ -1,13 +1,11 @@
 package slogo.view;
 
 import javafx.scene.Node;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
  * Graphics interface defines methods for performing graphical operations on a canvas.
  */
 public interface Graphics {
-
 
 
   /**
@@ -16,13 +14,13 @@ public interface Graphics {
   void clearCanvas();
 
   /**
-   *
    * @return the graphics context being used
    */
   Node getRoot();
 
   /**
    * Will create line from starting coordinates to ending coordinates
+   *
    * @param x1 = starting x
    * @param y1 = starting y
    * @param x2 = ending x

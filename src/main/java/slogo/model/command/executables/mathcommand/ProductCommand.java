@@ -7,8 +7,8 @@ import slogo.model.environment.EnvironmentApi;
 
 public class ProductCommand extends CommandExecutable {
 
-  private Executable numOne;
-  private Executable numTwo;
+  private final Executable numOne;
+  private final Executable numTwo;
 
   public ProductCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);

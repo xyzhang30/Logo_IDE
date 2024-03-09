@@ -7,13 +7,16 @@ import slogo.model.command.executables.ListExecutable;
 import slogo.model.environment.EnvironmentApi;
 
 public class AskWith extends CommandExecutable {
+
   private final Executable condition;
   private final ListExecutable commands;
+
   public AskWith(List<Executable> params) {
     super(params);
     condition = params.get(0);
     commands = (ListExecutable) params.get(1);
   }
+
   @Override
   public double execute(EnvironmentApi env) {
     List<Double> oldKeys = List.copyOf(env.getActiveTurtleKeys());

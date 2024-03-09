@@ -17,6 +17,13 @@ public interface PenGraphics {
   Color getPenColor();
 
   /**
+   * Sets the color of the pen.
+   *
+   * @param color the color to set for the pen.
+   */
+  void setPenColor(Color color);
+
+  /**
    * Gets the size of the pen.
    *
    * @return the size of the pen.
@@ -29,13 +36,6 @@ public interface PenGraphics {
    * @param penDown true if the pen is down, false otherwise.
    */
   void setPenDown(boolean penDown);
-
-  /**
-   * Sets the color of the pen.
-   *
-   * @param color the color to set for the pen.
-   */
-  void setPenColor(Color color);
 
   /**
    * Sets the size of the pen.

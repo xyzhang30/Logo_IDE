@@ -8,9 +8,11 @@ import slogo.model.environment.EnvironmentApi;
 public class ConstantExecutable implements Executable {
 
   private final double myValue;
+
   /**
    * Constructor for Constant Executables.
-   * @param value  The value of this Constant
+   *
+   * @param value The value of this Constant
    */
   public ConstantExecutable(double value) {
     myValue = value;
@@ -18,7 +20,8 @@ public class ConstantExecutable implements Executable {
 
   /**
    * Constants return their values when executed.
-   * @param env  the environment (unused by constant)
+   *
+   * @param env the environment (unused by constant)
    * @return double  the constant value
    */
   @Override

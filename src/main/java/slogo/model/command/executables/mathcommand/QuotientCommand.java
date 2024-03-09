@@ -7,8 +7,8 @@ import slogo.model.environment.EnvironmentApi;
 
 public class QuotientCommand extends CommandExecutable {
 
-  private Executable numOne;
-  private Executable numTwo;
+  private final Executable numOne;
+  private final Executable numTwo;
 
   public QuotientCommand(List<Executable> parameterExecutables) {
     super(parameterExecutables);

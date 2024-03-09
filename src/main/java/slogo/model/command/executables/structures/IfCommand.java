@@ -2,7 +2,6 @@ package slogo.model.command.executables.structures;
 
 import java.util.List;
 import slogo.model.command.executables.CommandExecutable;
-import slogo.model.command.executables.ConstantExecutable;
 import slogo.model.command.executables.Executable;
 import slogo.model.command.executables.ListExecutable;
 import slogo.model.environment.EnvironmentApi;
@@ -20,7 +19,7 @@ public class IfCommand extends CommandExecutable {
 
   @Override
   public double execute(EnvironmentApi env) {
-    if (expr.execute(env) != 0){
+    if (expr.execute(env) != 0) {
       double ret = 0;
       for (Executable e : listContent.getList()) {
         ret = e.execute(env);

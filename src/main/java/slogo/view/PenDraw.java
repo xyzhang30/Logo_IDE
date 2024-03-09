@@ -8,17 +8,12 @@ import javafx.scene.paint.Color;
  */
 public class PenDraw implements PenGraphics {
 
-  private boolean penDown;
-
-  private Color penColor;
-
-  private int penSize;
-
   private static final int defaultSize = 2;
-
   private static final Color defaultColor = Color.BLUE;
-
   private static final boolean defaultPenDown = true;
+  private boolean penDown;
+  private Color penColor;
+  private int penSize;
 
   /**
    * Constructs a PenDraw object with default values: pen down, blue color, and size 2.
@@ -53,6 +48,16 @@ public class PenDraw implements PenGraphics {
   }
 
   /**
+   * Sets the color of the pen.
+   *
+   * @param color the color to set for the pen.
+   */
+  @Override
+  public void setPenColor(Color color) {
+    this.penColor = color;
+  }
+
+  /**
    * Gets the size of the pen.
    *
    * @return the size of the pen.
@@ -70,16 +75,6 @@ public class PenDraw implements PenGraphics {
   @Override
   public void setPenDown(boolean penDown) {
     this.penDown = penDown;
-  }
-
-  /**
-   * Sets the color of the pen.
-   *
-   * @param color the color to set for the pen.
-   */
-  @Override
-  public void setPenColor(Color color) {
-    this.penColor = color;
   }
 
   /**
