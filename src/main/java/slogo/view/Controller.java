@@ -2,8 +2,6 @@ package slogo.view;
 
 import java.io.File;
 import java.util.Map;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -12,7 +10,6 @@ import slogo.model.api.InputRecord;
 import slogo.model.api.ModelFactory;
 import slogo.model.api.TurtleModelApi;
 import slogo.model.command.CommandHistory;
-import slogo.model.command.Executioner;
 
 /**
  * Controller class that manages the interaction between the graphical user interface (GUI)
