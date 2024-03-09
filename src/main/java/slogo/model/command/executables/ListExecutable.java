@@ -9,7 +9,6 @@ import slogo.model.environment.EnvironmentApi;
 public class ListExecutable implements Executable {
 
   private final List<Executable> myList;
-  private ListExecutable oldContext;
   private int currentIndex;
 
   /**

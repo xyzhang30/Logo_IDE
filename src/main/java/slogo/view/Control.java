@@ -2,7 +2,7 @@ package slogo.view;
 
 
 /**
- * interface that provided method to add/create buttons
+ * interface that provided method to add/create buttons.
  */
 public interface Control {
 

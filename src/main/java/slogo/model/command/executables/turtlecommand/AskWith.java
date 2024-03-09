@@ -44,7 +44,8 @@ public class AskWith extends CommandExecutable {
     List<Double> oldKeys = List.copyOf(env.getActiveTurtleKeys());
     env.getActiveTurtleKeys().clear();
 
-    // Expression handling TBD!
+    // Expression handling TBD (indefinite hiatus)!
+    condition.execute(env);
 
     double output = commands.execute(env);
 

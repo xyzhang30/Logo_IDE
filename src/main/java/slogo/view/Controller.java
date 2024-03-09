@@ -44,7 +44,7 @@ public class Controller {
     this.language = language;
     ide = new IdeWindow(stage, this, language);
     instance = this;
-    HelpWindow helpWindow = new HelpWindow(language);
+    new HelpWindow(language);
   }
 
   /**

@@ -24,11 +24,10 @@ public class PenDraw implements PenGraphics {
   /**
    * Constructs a PenDraw object with the specified pen state, color, and size.
    *
-   * @param penDown  true if the pen is down, false otherwise.
    * @param penColor the color of the pen.
    * @param penSize  the size of the pen.
    */
-  public PenDraw(boolean penDown, Color penColor, int penSize) {
+  public PenDraw(Color penColor, int penSize) {
     this.penColor = penColor;
     this.penSize = penSize;
   }

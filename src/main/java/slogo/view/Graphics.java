@@ -14,12 +14,12 @@ public interface Graphics {
   void clearCanvas();
 
   /**
-   * @return the graphics context being used
+   * @return the graphics context being used.
    */
   Node getRoot();
 
   /**
-   * Will create line from starting coordinates to ending coordinates
+   * Will create line from starting coordinates to ending coordinates.
    *
    * @param x1 = starting x
    * @param y1 = starting y

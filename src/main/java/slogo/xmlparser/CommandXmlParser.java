@@ -29,7 +29,6 @@ public class CommandXmlParser {
   private int numParamsExpected;
   private String returnValueType;
   private String implementationName;
-  private String commandCategory;
   private String commandExample;
 
   /**
@@ -107,7 +106,7 @@ public class CommandXmlParser {
 
   private void parseSingleFields(Element element) {
     commandName = element.getElementsByTagName("canonical_name").item(0).getTextContent();
-    commandCategory = element.getElementsByTagName("category").item(0).getTextContent();
+    String commandCategory = element.getElementsByTagName("category").item(0).getTextContent();
     commandExample = element.getElementsByTagName("example").item(0).getTextContent();
     commandDescription = element.getElementsByTagName("description").item(0).getTextContent();
     returnValueType = element.getElementsByTagName("return_value").item(0).getTextContent();
