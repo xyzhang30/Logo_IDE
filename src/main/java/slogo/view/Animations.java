@@ -54,7 +54,7 @@ public class Animations implements Graphics {
   }
 
   /**
-   * Important getter so that class can access the pane and thus display the lines
+   * Important getter so that class can access the pane and thus display the lines.
    *
    * @return the root that the canvas is on
    */
@@ -65,7 +65,7 @@ public class Animations implements Graphics {
 
 
   /**
-   * Draws line from starting coordinates from ending coordinates
+   * Draws line from starting coordinates from ending coordinates.
    *
    * @param startX = starting x coordinate of line
    * @param startY = starting y coordinate of line

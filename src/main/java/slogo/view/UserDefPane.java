@@ -17,7 +17,7 @@ public class UserDefPane extends CreatePane {
   private final VBox displayBox;
   private final ResourceBundle resourceBundle;
   private String language;
-  private ExecutionerApi executioner;
+  private final ExecutionerApi executioner;
 
   /**
    * Constructs a UserDefPane with the specified height, width, language, and executioner.
