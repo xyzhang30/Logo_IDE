@@ -3,6 +3,7 @@ package slogo.model.environment;
 import java.util.List;
 import java.util.Map;
 import slogo.model.command.executables.Executable;
+import slogo.model.command.executables.ListExecutable;
 import slogo.model.turtle.TurtleModel;
 
 /**
@@ -40,6 +41,19 @@ public interface EnvironmentApi {
   List<Double> getActiveTurtleKeys();
 
   void syncTurtleActivation();
+
+  /**
+   * The current stepping scope of the environment. Lists blocks essentially become contexts.
+   *
+   * @return ListExecutable  The Executable that acts as the current context.
+   */
+  ListExecutable getContext();
+
+  /**
+   * Sets the current scope of the environment. Which layer of lists to essentially step through.
+   * @param list  The new context level to of the environment.
+   */
+  void setContext(ListExecutable list);
 
   int getWidth();
 

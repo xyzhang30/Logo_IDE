@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import slogo.model.command.executables.Executable;
+import slogo.model.command.executables.ListExecutable;
 import slogo.model.turtle.TurtleModel;
 
 public class Environment implements EnvironmentApi {
@@ -13,6 +14,7 @@ public class Environment implements EnvironmentApi {
   private final Map<String, Executable> functionMap;
   private final Map<Double, TurtleModel> turtleMap;
   private final List<Double> activeTurtleKeys;
+  private ListExecutable currentContext;
   private final int width;
   private final int height;
 
@@ -86,6 +88,25 @@ public class Environment implements EnvironmentApi {
     activeTurtleKeys.forEach(k -> {
       turtleMap.get(k).setActive(true);
     });
+  }
+
+  /**
+   * The current stepping scope of the environment. Lists blocks essentially become contexts.
+   *
+   * @return ListExecutable  The Executable that acts as the current context.
+   */
+  @Override
+  public ListExecutable getContext() {
+    return currentContext;
+  }
+
+  /**
+   * Sets the current scope of the environment. Which layer of lists to essentially step through.
+   * @param list  The new context level to of the environment.
+   */
+  @Override
+  public void setContext(ListExecutable list) {
+    currentContext = list;
   }
 
   @Override

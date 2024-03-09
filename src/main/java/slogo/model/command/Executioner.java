@@ -50,7 +50,8 @@ public class Executioner implements ExecutionerApi {
   public void runNext() {
     try {
       root.execute(environment);
-    } catch (Exception e) {
+    }
+    catch (Exception e) {
       throw new RuntimeException();
     }
   }

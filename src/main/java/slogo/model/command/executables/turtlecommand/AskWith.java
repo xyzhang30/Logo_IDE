@@ -24,10 +24,7 @@ public class AskWith extends CommandExecutable {
 
     // Expression handling TBD!
 
-    double output = 0;
-    for (Executable e : commands.getList()) {
-      output = e.execute(env);
-    }
+    double output = commands.execute(env);
 
     env.getActiveTurtleKeys().clear();
     env.getActiveTurtleKeys().addAll(oldKeys);

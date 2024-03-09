@@ -32,7 +32,9 @@ public class ListExecutable implements Executable {
    */
   @Override
   public double execute(EnvironmentApi env) {
-    return myList.get(currentIndex).execute(env);
+    double output = myList.get(currentIndex).execute(env);
+    currentIndex = (currentIndex+1)%myList.size();
+    return output;
   }
 
   /**
