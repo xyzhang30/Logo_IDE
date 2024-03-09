@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
-import slogo.example.RegexMatching;
 import slogo.model.api.InvalidVariableException;
 
 /**
@@ -16,8 +15,7 @@ import slogo.model.api.InvalidVariableException;
  */
 public class Tokenizer implements TokenizerApi {
 
-  private static final String LANGUAGE_RESOURCE_PATH =
-      RegexMatching.class.getPackageName() + ".languages.";
+  private static final String LANGUAGE_RESOURCE_PATH = "slogo.example.languages.";
   private List<Entry<String, Pattern>> myTokens = new ArrayList<>();
 
   /**
