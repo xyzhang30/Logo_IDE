@@ -74,7 +74,7 @@ public class ControlPane extends CreatePane implements Control {
       controller.showMessage("FileNotFound");
       e.printStackTrace();
     }
-    // reflection was much more difficult for non buttons / parameters
+    // reflection was much more difficult for non buttons / parameters. Other functionality took priority
     makeColorPicker("selectColor",
         event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
     makeColorPicker("selectBackgroundColor",

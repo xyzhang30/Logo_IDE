@@ -21,9 +21,7 @@ public class Repeat extends CommandExecutable {
   public double execute(EnvironmentApi env) {
     double val = 0;
     for (int i = 0; i < repetitions.execute(env); i++) {
-      for (Executable e : listContent.getList()) {
-        val = e.execute(env);
-      }
+      val = listContent.execute(env);
     }
     return val;
   }

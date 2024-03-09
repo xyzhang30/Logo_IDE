@@ -21,16 +21,9 @@ public class IfElse extends CommandExecutable {
 
   @Override
   public double execute(EnvironmentApi env) {
-    double ret = 0;
     if (expr.execute(env) != 0) {
-      for (Executable e : trueCommands.getList()) {
-        ret = e.execute(env);
-      }
-    } else {
-      for (Executable e : falseCommands.getList()) {
-        ret = e.execute(env);
-      }
+      return trueCommands.execute(env);
     }
-    return ret;
+    return falseCommands.execute(env);
   }
 }
