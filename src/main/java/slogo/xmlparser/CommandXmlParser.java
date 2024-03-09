@@ -98,6 +98,7 @@ public class CommandXmlParser {
 
   /**
    * gets the param list in order to be displayed in help.
+   *
    * @return the param list for the specified command in order.
    */
   public List<String> getParamOrder() {
@@ -191,6 +192,7 @@ public class CommandXmlParser {
 
   /**
    * gets the class path the command logic was implemented for reflection use.
+   *
    * @return the class path the command logic was implemented.
    */
   public String getImplementationName() {
@@ -199,6 +201,7 @@ public class CommandXmlParser {
 
   /**
    * gets an example of the command to display in help.
+   *
    * @return and example of the method use, in string.
    */
   public String getExample() {

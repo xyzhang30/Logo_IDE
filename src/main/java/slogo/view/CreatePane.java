@@ -74,6 +74,7 @@ public abstract class CreatePane {
 
   /**
    * gets language of the ide
+   *
    * @return language
    */
   public String getLanguage() {
@@ -82,6 +83,7 @@ public abstract class CreatePane {
 
   /**
    * sets new language
+   *
    * @param language = update new language
    */
   public void setLanguage(String language) {
@@ -90,6 +92,7 @@ public abstract class CreatePane {
 
   /**
    * gets the height of the pane
+   *
    * @return height of pane
    */
   public int getHeight() {
@@ -98,6 +101,7 @@ public abstract class CreatePane {
 
   /**
    * get the width of the pane
+   *
    * @return width of pane
    */
   public int getWidth() {

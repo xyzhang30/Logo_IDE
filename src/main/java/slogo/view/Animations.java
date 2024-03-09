@@ -24,9 +24,9 @@ public class Animations implements Graphics {
   /**
    * Constructor. Sets canvas, graphicsContext, and other variables.
    *
-   * @param height   = height of canvas
-   * @param width    = width of canvas
-   * @param pen      = pen for storing values related to the lines being drawn
+   * @param height = height of canvas
+   * @param width  = width of canvas
+   * @param pen    = pen for storing values related to the lines being drawn
    */
   public Animations(int height, int width, PenGraphics pen) {
     this.width = width;
