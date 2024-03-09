@@ -99,10 +99,6 @@ public class IDEWindow {
    */
   private int speed;
 
-  /**
-   * The map containing variable items.
-   */
-
   // Constructors
 
   /**

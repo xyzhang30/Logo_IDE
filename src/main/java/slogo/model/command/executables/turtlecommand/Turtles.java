@@ -11,7 +11,7 @@ import slogo.model.environment.EnvironmentApi;
 public class Turtles extends TurtleExecutable {
 
   /**
-   * Constructor for Turtles command
+   * Constructor for Turtles command.
    *
    * @param params parameters passed into functions.
    */

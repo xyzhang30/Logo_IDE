@@ -1,7 +1,7 @@
 package slogo.model.api;
 
 /**
- * This exception class handles errors caused by a non-existing command name input
+ * This exception class handles errors caused by a non-existing command name input.
  */
 
 public class InvalidCommandException extends RuntimeException {
