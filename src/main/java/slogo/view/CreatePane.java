@@ -36,6 +36,8 @@ public abstract class CreatePane {
   }
 
   /**
+   * Gets the root.
+   *
    * @return the root/pane
    */
   public Pane getRoot() {
@@ -43,6 +45,8 @@ public abstract class CreatePane {
   }
 
   /**
+   * Sets the root.
+   *
    * @param root = updates root to new pane
    */
   public void setRoot(Pane root) {

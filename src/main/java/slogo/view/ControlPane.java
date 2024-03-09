@@ -74,7 +74,8 @@ public class ControlPane extends CreatePane implements Control {
       controller.showMessage("FileNotFound");
       e.printStackTrace();
     }
-    // reflection was much more difficult for non buttons / parameters. Other functionality took priority
+    // reflection was much more difficult for non buttons / parameters.
+    // Other functionality took priority
     makeColorPicker("selectColor",
         event -> controller.changeColor(((ColorPicker) event.getSource()).getValue()));
     makeColorPicker("selectBackgroundColor",
@@ -175,7 +176,8 @@ public class ControlPane extends CreatePane implements Control {
     fileChooser.setInitialDirectory(new File(imagePath));
 
     // Add filters if necessary, e.g., to filter by file extension
-    fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg"));
+    fileChooser.getExtensionFilters()
+        .addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg"));
 
     File selectedFile = fileChooser.showOpenDialog(new Stage());
 
