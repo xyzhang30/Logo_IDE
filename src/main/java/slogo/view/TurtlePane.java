@@ -74,7 +74,7 @@ public class TurtlePane extends CreatePane implements TurtleBase {
       turtleSize = Integer.parseInt(variables.getString("turtleSize"));
     }
     catch (Exception e) {
-      throw new InavlidOrMissingVariablesException(getMyResources().getString("InvalidOrMissingVariablesException"));
+      throw new InvalidOrMissingVariablesException(getMyResources().getString("InvalidOrMissingVariablesException"));
     }
   }
 
