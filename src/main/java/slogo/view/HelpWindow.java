@@ -1,9 +1,13 @@
 package slogo.view;
 
+import static slogo.view.IDEWindow.DEFAULT_RESOURCE_PACKAGE;
+import static slogo.view.IDEWindow.defaultLanguage;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,6 +29,7 @@ import slogo.xmlparser.CommandXmlParser;
 public class HelpWindow extends Stage {
 
   private final TextArea commandTextArea;
+  private String language;
 
   /**
    * Constructs a HelpWindow with the specified language.
@@ -32,6 +37,7 @@ public class HelpWindow extends Stage {
    * @param language the language used for the command documentation.
    */
   public HelpWindow(String language) {
+    this.language = language;
     BorderPane root = new BorderPane();
 
     VBox helpPane = new VBox();
@@ -41,7 +47,7 @@ public class HelpWindow extends Stage {
     Label titleLabel = new Label("SLogo Command List");
     titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
-    loadCommandOverview(helpPane);
+    loadCommandOverview(helpPane, language);
 
     Button exitButton = new Button("Exit");
     exitButton.setOnAction(event -> close());
@@ -63,16 +69,29 @@ public class HelpWindow extends Stage {
     commandTextArea = new TextArea();
   }
 
-  private void loadCommandOverview(VBox helpPane) {
+  private void loadCommandOverview(VBox helpPane, String language) {
     File xmlFolder = new File("data/commandsXML/");
+    ResourceBundle resourceBundle;
+    if (language.equals("english")) {
+      resourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "english");
+    } else if (language.equals("spanish")) {
+      resourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "spanish");
+    } else if (language.equals("french")) {
+      resourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "french");
+    } else {
+
+      return;
+    }
+
     for (File xmlFile : xmlFolder.listFiles()) {
       String commandName = xmlFile.getName().replace(".xml", "");
-      Hyperlink commandLink = new Hyperlink(commandName);
-      commandLink.setOnAction(event -> loadCommandDocumentation(helpPane, commandName,
-          Controller.getInstance())); // Pass the controller instance
+      String localizedCommandName = resourceBundle.getString(commandName);
+      Hyperlink commandLink = new Hyperlink(localizedCommandName);
+      commandLink.setOnAction(event -> loadCommandDocumentation(helpPane, commandName, Controller.getInstance())); // Pass the controller instance
       helpPane.getChildren().addAll(commandLink);
     }
   }
+
 
   private void loadCommandDocumentation(VBox helpPane, String commandName, Controller controller) {
     CommandXmlParser xmlParser = new CommandXmlParser();
@@ -111,7 +130,7 @@ public class HelpWindow extends Stage {
       Button backButton = new Button("Go Back");
       backButton.setOnAction(event -> {
         helpPane.getChildren().clear();
-        loadCommandOverview(helpPane);
+        loadCommandOverview(helpPane, language);
       });
 
       commandDetails.getChildren().add(backButton);
