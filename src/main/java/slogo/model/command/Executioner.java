@@ -44,6 +44,7 @@ public class Executioner implements ExecutionerApi {
     System.out.println("in exeparse tree");
     List<Token> tokens = tokenizer.tokenize(commandInput.input());
     root = (RootExecutable) treeParser.parseTree(tokens);
+    environment.getContextStack().clear();
     environment.getContextStack().add(root);
   }
 
@@ -51,6 +52,7 @@ public class Executioner implements ExecutionerApi {
   public void runNext() {
     try {
       environment.getContextStack().get(environment.getContextStack().size()-1).execute(environment);
+      System.out.println("top is "+environment.getContextStack().get(environment.getContextStack().size()-1).getClass().getSimpleName());
     }
     catch (Exception e) {
       throw new RuntimeException();
@@ -59,7 +61,7 @@ public class Executioner implements ExecutionerApi {
 
   @Override
   public boolean hasNext() {
-    return root.hasNext();
+    return root.hasNext() || environment.getContextStack().size()>1;
   }
 
   @Override
