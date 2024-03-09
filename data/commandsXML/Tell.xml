@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<command>
+  <canonical_name>tell</canonical_name>
+  <category>Turtle Command</category>
+  <description>Sets turtleIDs that will follow commands hereafter, marks them all as active.</description>
+  <example>TELL [ 1 2 ]</example>
+  <parameters>
+    <list_begin/>
+    <turtleIDs>double, ids of the turtles to execute the following commands</turtleIDs>
+    <list_end/>
+  </parameters>
+  <return_value>Returns last value in turtles list</return_value>
+  <number_of_expected_parameters>1</number_of_expected_parameters>
+  <implementing_class>turtlecommand.Tell</implementing_class>
+</command>
