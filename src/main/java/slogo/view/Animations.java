@@ -26,10 +26,9 @@ public class Animations implements Graphics {
    *
    * @param height   = height of canvas
    * @param width    = width of canvas
-   * @param language = language in ase this became necessary
    * @param pen      = pen for storing values related to the lines being drawn
    */
-  public Animations(int height, int width, String language, PenGraphics pen) {
+  public Animations(int height, int width, PenGraphics pen) {
     this.width = width;
     this.height = height;
     pane = new Pane();
