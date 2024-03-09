@@ -11,8 +11,6 @@ public class TextInputPane extends CreatePane implements TextInput {
 
   private final TextArea ta1 = new TextArea();
 
-  private final String text = "";
-
   /**
    * Constructs a TextInputPane with specified dimensions and language.
    *

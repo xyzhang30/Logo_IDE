@@ -102,7 +102,6 @@ public class HelpWindow extends Stage {
       String description = xmlParser.getCommandDescription();
       int numParams = xmlParser.getNumParamsExpected();
       Map<String, String> parameters = xmlParser.getParameters();
-      List<String> paramOrder = xmlParser.getParamOrder();
       String example = xmlParser.getExample();
 
       VBox commandDetails = new VBox();

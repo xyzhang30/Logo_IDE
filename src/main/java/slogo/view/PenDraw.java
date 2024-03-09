@@ -10,8 +10,6 @@ public class PenDraw implements PenGraphics {
 
   private static final int defaultSize = 2;
   private static final Color defaultColor = Color.BLUE;
-  private static final boolean defaultPenDown = true;
-  private boolean penDown;
   private Color penColor;
   private int penSize;
 
@@ -19,7 +17,6 @@ public class PenDraw implements PenGraphics {
    * Constructs a PenDraw object with default values: pen down, blue color, and size 2.
    */
   public PenDraw() {
-    penDown = defaultPenDown;
     penColor = defaultColor;
     penSize = defaultSize;
   }
@@ -32,7 +29,6 @@ public class PenDraw implements PenGraphics {
    * @param penSize  the size of the pen.
    */
   public PenDraw(boolean penDown, Color penColor, int penSize) {
-    this.penDown = penDown;
     this.penColor = penColor;
     this.penSize = penSize;
   }
@@ -74,7 +70,6 @@ public class PenDraw implements PenGraphics {
    */
   @Override
   public void setPenDown(boolean penDown) {
-    this.penDown = penDown;
   }
 
   /**
