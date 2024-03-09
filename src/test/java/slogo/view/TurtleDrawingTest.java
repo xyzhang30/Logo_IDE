@@ -57,9 +57,9 @@ public class TurtleDrawingTest {
       tb.update();
       // sleep(1000);
       assertEquals(50, tb.getTurtleV(1.0).getTurtleImage().getTranslateX(), "x coord should be 50");
-      assertEquals(50, tb.getTurtleV(1.0).getyPos(), "y coord should be 50");
-      assertEquals(100, tb.getTurtleV(2.0).getxPos(), "x coord should be 100");
-      assertEquals(100, tb.getTurtleV(2.0).getyPos(), "y coord should be 100");
+      assertEquals(50, tb.getTurtleV(1.0).getPositionY(), "y coord should be 50");
+      assertEquals(100, tb.getTurtleV(2.0).getPositionX(), "x coord should be 100");
+      assertEquals(100, tb.getTurtleV(2.0).getPositionY(), "y coord should be 100");
     });
   }
 }

@@ -47,14 +47,14 @@ public interface TurtleV {
    *
    * @return The x-coordinate of the turtle.
    */
-  double getxPos();
+  double getPositionX();
 
   /**
    * Gets the y-coordinate of the turtle.
    *
    * @return The y-coordinate of the turtle.
    */
-  double getyPos();
+  double getPositionY();
 
   /**
    * Gets the direction of the turtle.
