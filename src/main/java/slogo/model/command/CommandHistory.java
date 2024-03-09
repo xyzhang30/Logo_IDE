@@ -10,7 +10,6 @@ import java.util.List;
 
 public class CommandHistory implements HistoryApi {
 
-  private final int currentIndex;
   private List<String> inputStrings;
   private String executedCommands;
 
@@ -19,7 +18,6 @@ public class CommandHistory implements HistoryApi {
    * Constructs a new {@code CommandHistory} instance.
    */
   public CommandHistory() {
-    currentIndex = 0;
     executedCommands = "";
   }
 
