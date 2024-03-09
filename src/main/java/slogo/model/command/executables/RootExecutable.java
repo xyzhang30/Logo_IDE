@@ -6,7 +6,7 @@ import slogo.model.environment.EnvironmentApi;
 /**
  * This class represents the root executable in the command tree.
  */
-public class RootExecutable extends ListExecutable {
+public class RootExecutable implements Executable {
 
   private final List<Executable> tree;
   private int currIdx;
@@ -17,7 +17,6 @@ public class RootExecutable extends ListExecutable {
    * @param tree the list of executables representing the command tree
    */
   public RootExecutable(List<Executable> tree) {
-    super(tree);
     this.tree = tree;
     currIdx = 0;
   }
@@ -39,7 +38,8 @@ public class RootExecutable extends ListExecutable {
    */
   @Override
   public double execute(EnvironmentApi env) {
+    double output = tree.get(currIdx).execute(env);
     currIdx++;
-    return super.execute(env);
+    return output;
   }
 }

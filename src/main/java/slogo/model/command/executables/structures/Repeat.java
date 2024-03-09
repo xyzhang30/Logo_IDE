@@ -15,6 +15,7 @@ public class Repeat extends CommandExecutable {
 
   private final Executable repetitions;
   private final ListExecutable listContent;
+  private int index;
 
   /**
    * Constructs a new {@code Repeat} with the specified parameter executables.
@@ -26,6 +27,7 @@ public class Repeat extends CommandExecutable {
     super(parameterExecutables);
     repetitions = parameterExecutables.get(0);
     listContent = (ListExecutable) parameterExecutables.get(1);
+    index = 0;
   }
 
   /**
@@ -38,9 +40,14 @@ public class Repeat extends CommandExecutable {
    */
   @Override
   public double execute(EnvironmentApi env) {
-    double val = 0;
-    for (int i = 0; i < repetitions.execute(env); i++) {
-      val = listContent.execute(env);
+    if (index == 0) {
+      env.getContextStack().add(this);
+    }
+    double val = listContent.execute(env);
+    index++;
+    if (index >= repetitions.execute(env)) {
+      index = 0;
+      env.getContextStack().remove(this);
     }
     return val;
   }

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import slogo.model.command.executables.Executable;
-import slogo.model.command.executables.ListExecutable;
 import slogo.model.turtle.TurtleModel;
 
 /**
@@ -19,7 +18,7 @@ public class Environment implements EnvironmentApi {
   private final Map<String, Executable> functionMap;
   private final Map<Double, TurtleModel> turtleMap;
   private final List<Double> activeTurtleKeys;
-  private final List<ListExecutable> contextStack;
+  private final List<Executable> contextStack;
   private final int width;
   private final int height;
 
@@ -102,7 +101,7 @@ public class Environment implements EnvironmentApi {
    * @return List  A list of listExecutables, each ListExecutable representing a context.
    */
   @Override
-  public List<ListExecutable> getContextStack() {
+  public List<Executable> getContextStack() {
     return contextStack;
   }
 

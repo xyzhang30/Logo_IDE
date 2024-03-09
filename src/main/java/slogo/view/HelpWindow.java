@@ -1,7 +1,6 @@
 package slogo.view;
 
 import static slogo.view.IDEWindow.DEFAULT_RESOURCE_PACKAGE;
-import static slogo.view.IDEWindow.defaultLanguage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,7 +29,7 @@ import slogo.xmlparser.CommandXmlParser;
 public class HelpWindow extends Stage {
 
   private final TextArea commandTextArea;
-  private String language;
+  private final String language;
 
   /**
    * Constructs a HelpWindow with the specified language.

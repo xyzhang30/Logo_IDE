@@ -10,8 +10,8 @@ import java.util.List;
 
 public class CommandHistory implements HistoryApi {
 
-  private List<String> inputStrings;
   private final int currentIndex;
+  private List<String> inputStrings;
   private String executedCommands;
 
 

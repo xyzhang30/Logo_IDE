@@ -25,12 +25,13 @@ public class Controller {
   private final Map<Double, TurtleModelApi> model;
 
   private final ExecutionerApi executioner;
-  private State state;
   private final String language;
+  private final HelpWindow helpWindow;
+  private Stage stage;
+  private State state;
   private boolean stepping;
   private CommandHistory cmdHistory;
   private UserDefPane userPane;
-  private final HelpWindow helpWindow;
 
 
   /**

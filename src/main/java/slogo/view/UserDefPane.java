@@ -1,6 +1,5 @@
 package slogo.view;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.scene.control.Label;

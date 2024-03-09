@@ -62,6 +62,10 @@ public class IDEWindow {
    */
   private final Stage stage;
   /**
+   * The controller for the IDE window.
+   */
+  private final Controller controller;
+  /**
    * The scene for the IDE window.
    */
   private Scene scene;
@@ -81,10 +85,6 @@ public class IDEWindow {
    * The root pane of the IDE window.
    */
   private Pane root;
-  /**
-   * The controller for the IDE window.
-   */
-  private final Controller controller;
   /**
    * The models representing turtles in the IDE window.
    */

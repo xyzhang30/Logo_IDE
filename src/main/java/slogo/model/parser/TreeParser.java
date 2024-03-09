@@ -54,8 +54,7 @@ public class TreeParser implements ParserApi {
       inputStrings.add(commandString.get(0));
     }
     history.setStrings(inputStrings);
-    Executable root = new RootExecutable(tree);
-    return root;
+    return new RootExecutable(tree);
   }
 
   private Executable craftBranch(List<Token> tokens, List<String> commandString) {

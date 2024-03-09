@@ -23,9 +23,9 @@ import org.xml.sax.SAXException;
 public class CommandXmlParser {
 
   private final Map<String, String> parameterDescription;
+  private final List<String> paramOrder;
   private String commandName;
   private String commandDescription;
-  private final List<String> paramOrder;
   private int numParamsExpected;
   private String returnValueType;
   private String implementationName;
