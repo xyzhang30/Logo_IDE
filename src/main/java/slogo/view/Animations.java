@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 
 /**
- * Animations Class. Creates the lines drawn in the view
+ * Animations Class. Creates the lines drawn in the view.
  */
 public class Animations implements Graphics {
 

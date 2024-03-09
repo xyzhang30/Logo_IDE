@@ -9,7 +9,7 @@ public interface Graphics {
 
 
   /**
-   * Method to be overridden to clear all lines on canvas
+   * Method to be overridden to clear all lines on canvas.
    */
   void clearCanvas();
 

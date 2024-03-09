@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
 /**
- * Control Pane class. Create buttons or other interactive elements on view
+ * Control Pane class. Create buttons or other interactive elements on view.
  */
 public class ControlPane extends CreatePane implements Control {
 
