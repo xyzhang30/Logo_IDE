@@ -15,7 +15,7 @@ public class ErrorExecutable implements Executable {
   }
 
   /**
-   * When asked to execute, Error throws an exception
+   * When asked to execute, Error throws an exception.
    *
    * @param env the Environment that the executable is running in.
    * @return nothing, just throws an exception.

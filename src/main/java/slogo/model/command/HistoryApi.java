@@ -3,7 +3,7 @@ package slogo.model.command;
 import java.util.List;
 
 /**
- * External Interface for History tracker object
+ * External Interface for History tracker object.
  */
 public interface HistoryApi {
 

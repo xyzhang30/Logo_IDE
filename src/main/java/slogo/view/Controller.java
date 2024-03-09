@@ -24,14 +24,11 @@ public class Controller {
   private final IDEWindow ide;
   private final Map<Double, TurtleModelApi> model;
 
-  // private final TurtleModel model;
   private final ExecutionerApi executioner;
-  private Stage stage;
   private State state;
   private final String language;
   private boolean stepping;
   private CommandHistory cmdHistory;
-  private CommandHistoryPane cmdHistoryPane;
   private UserDefPane userPane;
   private final HelpWindow helpWindow;
 

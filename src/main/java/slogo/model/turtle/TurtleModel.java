@@ -28,10 +28,10 @@ public class TurtleModel implements TurtleModelApi {
   /**
    * Constructs a new turtle model with the given ID.
    *
-   * @param ID the ID of the turtle
+   * @param Id the ID of the turtle
    */
-  public TurtleModel(double ID) {
-    id = ID;
+  public TurtleModel(double Id) {
+    this.id = Id;
     initialize();
   }
 

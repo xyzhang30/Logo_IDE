@@ -26,7 +26,9 @@ public class Executioner implements ExecutionerApi {
   private RootExecutable root;
   private CommandHistory commandHistory;
 
-
+  /**
+   * constructs an executioner used to call parse and commands
+   */
   public Executioner() {
     environment = new Environment(400, 600);
     tokenizer = new Tokenizer("English");

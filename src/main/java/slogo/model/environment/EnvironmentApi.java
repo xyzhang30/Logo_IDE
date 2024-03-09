@@ -7,7 +7,7 @@ import slogo.model.command.executables.ListExecutable;
 import slogo.model.turtle.TurtleModel;
 
 /**
- * An Interface for engaging with the environment variables
+ * An Interface for engaging with the environment variables.
  */
 public interface EnvironmentApi {
 
