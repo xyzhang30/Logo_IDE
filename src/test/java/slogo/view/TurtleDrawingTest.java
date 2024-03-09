@@ -28,7 +28,8 @@ public class TurtleDrawingTest {
   @Test
   public void testTurtleUpdate() {
     Platform.runLater(() -> {
-      TurtleView turtleView = new TurtleView(800, 600, 0, 0, 0);
+      TurtleView turtleView = new TurtleView(new TurtleViewRecord(800, 600, 0,
+          0, 0, 50));
       assertEquals(0, turtleView.getTurtleImage().getRotate(), "Initial rotation should be 0");
 
       turtleView.turtleUpdate(50, 75, 90, true);

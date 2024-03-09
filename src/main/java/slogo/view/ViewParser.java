@@ -16,6 +16,7 @@ import org.xml.sax.SAXException;
 
 public class ViewParser {
 
+  private static final String folderPath = "data/viewXML/";
   private List<String> options;
 
   private String type;
@@ -27,8 +28,7 @@ public class ViewParser {
   public void readXml(String type) throws FileNotFoundException {
     options.clear();
     this.type = type;
-    String dataFolderPath = "data/viewXML/";
-    String path = dataFolderPath + type + ".xml";
+    String path = folderPath + type + ".xml";
     File file = new File(path);
     if (!file.exists()) {
       throw new FileNotFoundException("File not found: " + path);
