@@ -37,6 +37,7 @@ public class HelpWindow extends Stage {
    * @param language the language used for the command documentation.
    */
   public HelpWindow(String language) {
+    super();
     this.language = language;
     BorderPane root = new BorderPane();
 

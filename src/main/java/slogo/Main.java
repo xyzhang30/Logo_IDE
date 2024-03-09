@@ -9,6 +9,8 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -128,7 +130,6 @@ public class Main extends Application {
     fileChooser.setTitle("Open Session File");
     File selectedFile = fileChooser.showOpenDialog(primaryStage);
     if (selectedFile != null) {
-      System.out.println("Loading session from file: " + selectedFile.getAbsolutePath());
       try {
         // Read the content of the selected file
         String fileContent = readFile(selectedFile);
@@ -139,10 +140,8 @@ public class Main extends Application {
             language);
         controller.start();
         controller.getIde().loadFileContent(fileContent);
-        System.out.println("filecontent:" + fileContent);
       } catch (Exception e) {
-        System.err.println("Error loading session file: " + e.getMessage());
-        e.printStackTrace();
+        new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
       }
     } else {
       System.out.println("No session file selected.");
@@ -174,17 +173,14 @@ public class Main extends Application {
   }
 
   private void switchToSpanish() throws IOException {
-    System.out.println("Switching to Spanish...");
     language = "spanish";
   }
 
   private void switchToFrench() throws IOException {
-    System.out.println("Switching to French...");
     language = "french";
   }
 
   private void switchToEnglish() throws IOException {
-    System.out.println("Switching to English...");
     language = "english";
   }
 }

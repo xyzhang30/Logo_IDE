@@ -345,7 +345,6 @@ public class IDEWindow {
           .getString("error" + message));
     } catch (Exception e) {
       messageText = new Label(message);
-      e.printStackTrace();
     }
     messageText.setWrapText(true);
     alert.getDialogPane().setContent(messageText);
