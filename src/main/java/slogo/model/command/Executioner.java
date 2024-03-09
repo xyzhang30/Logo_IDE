@@ -44,12 +44,13 @@ public class Executioner implements ExecutionerApi {
     System.out.println("in exeparse tree");
     List<Token> tokens = tokenizer.tokenize(commandInput.input());
     root = (RootExecutable) treeParser.parseTree(tokens);
+    environment.setContext(root);
   }
 
   @Override
   public void runNext() {
     try {
-      root.execute(environment);
+      environment.getContext().execute(environment);
     }
     catch (Exception e) {
       throw new RuntimeException();

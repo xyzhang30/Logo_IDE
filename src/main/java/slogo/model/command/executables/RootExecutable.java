@@ -3,12 +3,13 @@ package slogo.model.command.executables;
 import java.util.List;
 import slogo.model.environment.EnvironmentApi;
 
-public class RootExecutable implements Executable {
+public class RootExecutable extends ListExecutable {
 
   private final List<Executable> tree;
   private int currIdx;
 
   public RootExecutable(List<Executable> tree) {
+    super(tree);
     this.tree = tree;
     currIdx = 0;
   }
