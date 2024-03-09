@@ -14,6 +14,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+/**
+ * ViewParser class provides functionality to parse XML files containing view options.
+ */
 public class ViewParser {
 
   private static final String folderPath = "data/viewXML/";
@@ -21,10 +24,19 @@ public class ViewParser {
 
   private String type;
 
+  /**
+   * Constructs a ViewParser instance.
+   */
   public ViewParser() {
     options = new ArrayList<>();
   }
 
+  /**
+   * Reads the specified XML file.
+   *
+   * @param type the type of the XML file.
+   * @throws FileNotFoundException if the file is not found.
+   */
   public void readXml(String type) throws FileNotFoundException {
     options.clear();
     this.type = type;
@@ -57,6 +69,11 @@ public class ViewParser {
     }
   }
 
+  /**
+   * Retrieves the list of options parsed from the XML file.
+   *
+   * @return the list of options.
+   */
   public List<String> getOptions() {
     return options;
   }

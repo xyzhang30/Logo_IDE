@@ -19,10 +19,18 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import slogo.xmlparser.CommandXmlParser;
 
+/**
+ * HelpWindow class represents a window displaying information about SLogo commands and their usage.
+ */
 public class HelpWindow extends Stage {
 
   private final TextArea commandTextArea;
 
+  /**
+   * Constructs a HelpWindow with the specified language.
+   *
+   * @param language the language used for the command documentation.
+   */
   public HelpWindow(String language) {
     BorderPane root = new BorderPane();
 

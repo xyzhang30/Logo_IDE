@@ -9,15 +9,26 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import slogo.model.api.ExecutionerApi;
 
+/**
+ * UserDefPane class represents a pane displaying user-defined variables and commands.
+ */
 public class UserDefPane extends CreatePane {
 
-  private UserVariable userVariable;
+  //private UserVariable userVariable;
   private final VBox displayBox;
   private final ResourceBundle resourceBundle;
   private String language;
   private final Map<String, Double> variableItems;
   private ExecutionerApi executioner;
 
+  /**
+   * Constructs a UserDefPane with the specified height, width, language, and executioner.
+   *
+   * @param height      the height of the pane.
+   * @param width       the width of the pane.
+   * @param language    the language used for localization.
+   * @param executioner the executioner responsible for managing user-defined variables and commands.
+   */
   public UserDefPane(int height, int width, String language, ExecutionerApi executioner) {
     super(height, width, language);
     this.executioner = executioner;
@@ -49,6 +60,9 @@ public class UserDefPane extends CreatePane {
 
   }
 
+  /**
+   * Updates the display of user-defined variables and commands in the pane.
+   */
   public void updateDisplay() {
     // Clear the existing content in displayBox
     displayBox.getChildren().clear();

@@ -55,6 +55,11 @@ public class Controller {
     helpWindow = new HelpWindow(language);
   }
 
+  /**
+   * Retrieves the singleton instance of the Controller class.
+   *
+   * @return the singleton instance of the Controller class.
+   */
   public static Controller getInstance() {
     return instance;
   }
@@ -104,11 +109,22 @@ public class Controller {
     setUpRunInternal(command);
   }
 
+
+  /**
+   * Runs the specified command from command history and updates the history.
+   *
+   * @param command the command to be executed.
+   */
   public void runCmdHist(String command) {
     setUpRunInternal(command);
     updateHistory();
   }
 
+  /**
+   * Executes the specified command for help purposes and updates the history.
+   *
+   * @param command the command for which help is requested.
+   */
   public void runHelp(String command) {
     //String command = helpWindow.getTextArea();
     System.out.println("in run help " + command);
@@ -116,6 +132,14 @@ public class Controller {
     updateHistory();
   }
 
+
+  /**
+   * Sets up the internal state to execute the specified command. If the application is in a stopped
+   * state, it parses the command, executes it, and clears the text. If an exception occurs during
+   * execution, the application is stopped, and an error message is displayed.
+   *
+   * @param command the command to be executed.
+   */
   public void setUpRunInternal(String command) {
     try {
       if (state == State.STOPPED) {
@@ -132,6 +156,7 @@ public class Controller {
       showMessage(e.getMessage());
     }
   }
+
 
   /**
    * Pauses or resumes the execution of commands.
@@ -285,6 +310,12 @@ public class Controller {
     c2.start();
   }
 
+
+  /**
+   * Displays a file chooser dialog for saving the current state of the program to a file. If a file
+   * is selected, it retrieves the file name and path, and passes them to the executioner for
+   * saving.
+   */
   public void save() {
     FileChooser fileChooser = new FileChooser();
 
@@ -305,7 +336,6 @@ public class Controller {
     if (selectedFile != null) {
       // Pass the file name and path to the executioner for saving
       String fileName = selectedFile.getName();
-//      String filePath = selectedFile.getAbsolutePath();
       String folderPath = selectedFile.getParent();
       System.out.println("filepath: " + folderPath);
       executioner.saveFile(fileName, folderPath);
@@ -363,10 +393,20 @@ public class Controller {
     setUpRunInternal("rt 90\nfd " + KEY_MOVE_AMOUNT);
   }
 
+  /**
+   * Retrieves the IDEWindow associated with this Controller.
+   *
+   * @return the IDEWindow instance.
+   */
   public IDEWindow getIde() {
     return ide;
   }
 
+  /**
+   * Retrieves the ExecutionerApi associated with this Controller.
+   *
+   * @return the ExecutionerApi instance.
+   */
   public ExecutionerApi getExecutioner() {
     return executioner;
   }

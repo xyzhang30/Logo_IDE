@@ -218,9 +218,15 @@ public class IDEWindow {
     return historyPane;
   }
 
+  /**
+   * Retrieves the UserDefPane associated with this HelpWindow.
+   *
+   * @return the UserDefPane instance.
+   */
   public UserDefPane getUserPane() {
     return userPane;
   }
+
 
 
   /**
@@ -374,6 +380,11 @@ public class IDEWindow {
     }
   }
 
+  /**
+   * Loads the specified content into the text area of the text pane.
+   *
+   * @param fileContent the content to be loaded into the text area.
+   */
   public void loadFileContent(String fileContent) {
     textPane.getTextArea().setText(fileContent);
   }
