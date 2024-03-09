@@ -135,7 +135,7 @@ public class TurtleModel implements TurtleModelApi {
 
   /**
    * gets a direction input in degrees and cast it to radians, and set it as the new direction of
-   * the turtle
+   * the turtle.
    *
    * @param newDirection direction input in degrees
    */

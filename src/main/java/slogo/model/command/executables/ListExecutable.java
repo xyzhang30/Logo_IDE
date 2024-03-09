@@ -13,7 +13,7 @@ public class ListExecutable implements Executable {
   private int currentIndex;
 
   /**
-   * Constructor for List Executable
+   * Constructor for List Executable.
    *
    * @param inlist The list of Executables to be stored
    */

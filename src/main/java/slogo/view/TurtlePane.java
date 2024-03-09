@@ -35,9 +35,9 @@ public class TurtlePane extends CreatePane implements TurtleBase {
 
 
   /**
-   * Constructor
+   * Constructor.
    *
-   * @param recordTurtle = takes in record of important attributes to be stored in TurtlePane
+   * @param recordTurtle = takes in record of important attributes to be stored in TurtlePane.
    */
   public TurtlePane(TurtlePaneRecord recordTurtle) {
     super(recordTurtle.height(), recordTurtle.width(), recordTurtle.language());
