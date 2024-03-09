@@ -155,6 +155,7 @@ public class Executioner implements ExecutionerApi {
    *
    * @return the variable map
    */
+
   @Override
   public Map<String, Double> getVariableMap() {
     return environment.getVarMap();
