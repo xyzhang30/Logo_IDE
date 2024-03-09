@@ -156,9 +156,9 @@ public class IDEWindow {
 
     addTurtlePane();
 
-    this.userPane = new UserDefPane(DEFAULT_SIZE.height / 15, DEFAULT_SIZE.width / 4, language);
+    this.userPane = new UserDefPane(DEFAULT_SIZE.height / 15, DEFAULT_SIZE.width / 4, language, controller.getExecutioner());
     AnchorPane.setBottomAnchor(userPane.getRoot(), (double) DEFAULT_SIZE.height / 8);
-    AnchorPane.setTopAnchor(userPane.getRoot(), 0.0);
+    AnchorPane.setTopAnchor(userPane.getRoot(), 5.0);
     AnchorPane.setRightAnchor(userPane.getRoot(), 0.0);
     root.getChildren().add(userPane.getRoot());
 
@@ -218,9 +218,15 @@ public class IDEWindow {
     return historyPane;
   }
 
+  /**
+   * Retrieves the UserDefPane associated with this HelpWindow.
+   *
+   * @return the UserDefPane instance.
+   */
   public UserDefPane getUserPane() {
     return userPane;
   }
+
 
 
   /**
@@ -374,6 +380,11 @@ public class IDEWindow {
     }
   }
 
+  /**
+   * Loads the specified content into the text area of the text pane.
+   *
+   * @param fileContent the content to be loaded into the text area.
+   */
   public void loadFileContent(String fileContent) {
     textPane.getTextArea().setText(fileContent);
   }

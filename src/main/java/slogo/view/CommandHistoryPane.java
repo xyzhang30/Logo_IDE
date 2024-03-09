@@ -13,12 +13,33 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * A pane for displaying and managing command history.
+ */
 public class CommandHistoryPane extends CreatePane {
 
+  /**
+   * The scroll pane to contain the command history.
+   */
   private final ScrollPane scrollPane;
+
+  /**
+   * The text flow to display command history.
+   */
   private final TextFlow commandTextFlow;
+
+  /**
+   * The resource bundle for localization.
+   */
   private final ResourceBundle resourceBundle;
 
+  /**
+   * Constructs a CommandHistoryPane with the specified dimensions and language.
+   *
+   * @param height   The height of the pane.
+   * @param width    The width of the pane.
+   * @param language The language used for localization.
+   */
   public CommandHistoryPane(int height, int width, String language) {
     super(height, width, language);
     resourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
@@ -38,6 +59,11 @@ public class CommandHistoryPane extends CreatePane {
     getRoot().getChildren().add(root);
   }
 
+  /**
+   * Adds a command to the command history.
+   *
+   * @param command The command to add.
+   */
   public void addCommand(String command) {
     clearHistory();
     String[] commandLines = command.split("\n");
@@ -71,16 +97,12 @@ public class CommandHistoryPane extends CreatePane {
       });
       Text text = new Text("\n");
       commandTextFlow.getChildren().addAll(link, text);
-
-//    List<String> commandLines = new ArrayList<>();
-//    commandLines = List.of(command.split("\n"));
-//    System.out.println("commands" + commandLines);
-//    for (String s : commandLines){
-//      commandText.appendText(s);
-//      commandText.appendText("\n");
     }
   }
 
+  /**
+   * Clears the command history.
+   */
   public void clearHistory() {
     commandTextFlow.getChildren().clear();
   }
@@ -90,4 +112,3 @@ public class CommandHistoryPane extends CreatePane {
     // Override if necessary
   }
 }
-

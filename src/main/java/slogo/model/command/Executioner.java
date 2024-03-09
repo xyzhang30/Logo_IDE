@@ -93,11 +93,11 @@ public class Executioner implements ExecutionerApi {
     treeParser.getHistory().saveFile(fileName, folderPath);
   }
 
-//  @Override
-//  public Map<String, Double> getVariableMap() {
-//    return environment.getVarMap();
-//  }
-//
+  @Override
+  public Map<String, Double> getVariableMap() {
+    return environment.getVarMap();
+  }
+
 //  @Override
 //  public Map<String, Executable> getFunctionMap() {
 //    return environment.getFuncMap();
