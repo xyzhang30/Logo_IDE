@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import slogo.model.api.ExecutionerApi;
 
 public class UserDefPane extends CreatePane {
 
@@ -15,17 +16,17 @@ public class UserDefPane extends CreatePane {
   private final ResourceBundle resourceBundle;
   private String language;
   private final Map<String, Double> variableItems;
+  private ExecutionerApi executioner;
 
-
-  public UserDefPane(int height, int width, String language) {
+  public UserDefPane(int height, int width, String language, ExecutionerApi executioner) {
     super(height, width, language);
+    this.executioner = executioner;
     this.language = language;
     if (this.language == null) {
       this.language = "english";
     }
     this.resourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
-//    this.userVariable ;
-    variableItems = new HashMap<>();
+    variableItems = executioner.getVariableMap();
 
     // Create a VBox to hold the content
     displayBox = new VBox();
@@ -52,30 +53,38 @@ public class UserDefPane extends CreatePane {
     // Clear the existing content in displayBox
     displayBox.getChildren().clear();
 
-    // Create ListView instances if needed
+    // Create ListView instances for user-defined variables and commands
     ListView<String> variablesListView = new ListView<>();
     ListView<String> commandsListView = new ListView<>();
 
-    // Clear existing items in ListView instances
-    variablesListView.getItems().clear();
-    commandsListView.getItems().clear();
-
-    // Populate ListView instances with variable items
-    for (String variable : variableItems.keySet()) {
-      variablesListView.getItems().add(variable);
+    // Populate ListView instances with user-defined variables
+    Map<String, Double> variableMap = executioner.getVariableMap();
+    for (Map.Entry<String, Double> entry : variableMap.entrySet()) {
+      String variableName = entry.getKey();
+      Double value = entry.getValue();
+      // Remove ":" from the variable name if it starts with ":"
+      if (variableName.startsWith(":")) {
+        variableName = variableName.substring(1);
+      }
+      variablesListView.getItems().add(variableName + " : " + value);
     }
 
-//    for (/* iterate over command items */) {
-//      // Add command items to commandsListView
-//    }
+    // Populate ListView instances with user-defined commands
+    // Assuming you have a method in executioner to get user-defined commands
+    // List<String> userCommands = executioner.getUserCommands();
+    // commandsListView.getItems().addAll(userCommands);
 
     // Create labels for variables and commands
     Label variablesLabel = new Label(resourceBundle.getString("userDefinedVariables") + ":");
     Label commandsLabel = new Label(resourceBundle.getString("userDefinedCommands") + ":");
 
     // Add labels and ListView instances to displayBox
-    displayBox.getChildren()
-        .addAll(variablesLabel, variablesListView, commandsLabel, commandsListView);
+    displayBox.getChildren().addAll(
+        variablesLabel,
+        variablesListView,
+        commandsLabel,
+        commandsListView
+    );
   }
 
 }

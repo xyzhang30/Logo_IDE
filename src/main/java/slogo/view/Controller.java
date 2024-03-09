@@ -76,10 +76,10 @@ public class Controller {
 
   private void updateHistory() {
     cmdHistory = executioner.getHistory();
-//    cmdHistory.saveCurrent();
     feedHistory(executioner.getHistory().getCommands());
     feedVariables();
   }
+
 
   /**
    * Shows a message dialog with the specified type and message.
@@ -171,7 +171,8 @@ public class Controller {
    * Feeds the variables to the UserDefPane for display.
    */
   public void feedVariables() {
-    userPane = new UserDefPane(200, 50, language);
+    userPane = ide.getUserPane();
+    System.out.println("feed variables called");
     userPane.updateDisplay();
   }
 
@@ -311,6 +312,7 @@ public class Controller {
     }
   }
 
+
   /**
    * Gets the current state of the application (e.g., RUNNING, PAUSED, STOPPED).
    *
@@ -365,4 +367,7 @@ public class Controller {
     return ide;
   }
 
+  public ExecutionerApi getExecutioner() {
+    return executioner;
+  }
 }

@@ -156,9 +156,9 @@ public class IDEWindow {
 
     addTurtlePane();
 
-    this.userPane = new UserDefPane(DEFAULT_SIZE.height / 15, DEFAULT_SIZE.width / 4, language);
+    this.userPane = new UserDefPane(DEFAULT_SIZE.height / 15, DEFAULT_SIZE.width / 4, language, controller.getExecutioner());
     AnchorPane.setBottomAnchor(userPane.getRoot(), (double) DEFAULT_SIZE.height / 8);
-    AnchorPane.setTopAnchor(userPane.getRoot(), 0.0);
+    AnchorPane.setTopAnchor(userPane.getRoot(), 5.0);
     AnchorPane.setRightAnchor(userPane.getRoot(), 0.0);
     root.getChildren().add(userPane.getRoot());
 
