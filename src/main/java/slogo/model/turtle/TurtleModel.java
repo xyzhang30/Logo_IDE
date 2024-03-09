@@ -18,7 +18,7 @@ public class TurtleModel implements TurtleModelApi {
   private boolean eraseTrace;
 
   /**
-   * Constructs a new turtle model
+   * Constructs a new turtle model.
    */
   public TurtleModel() {
     initialize();

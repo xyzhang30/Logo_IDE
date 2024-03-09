@@ -20,7 +20,7 @@ public class Controller {
 
   public static final int KEY_MOVE_AMOUNT = 50;
   private static Controller instance;
-  private final IDEWindow ide;
+  private final IdeWindow ide;
   private final Map<Double, TurtleModelApi> model;
 
   private final ExecutionerApi executioner;
@@ -42,7 +42,7 @@ public class Controller {
     state = State.STOPPED;
     model = this.executioner.getTurtleModels();
     this.language = language;
-    ide = new IDEWindow(stage, this, language);
+    ide = new IdeWindow(stage, this, language);
     instance = this;
     HelpWindow helpWindow = new HelpWindow(language);
   }
@@ -226,7 +226,7 @@ public class Controller {
   }
 
   /**
-   * Changes the stylesheet for the IDEWindow.
+   * Changes the stylesheet for the IdeWindow.
    *
    * @param stylesheet the name of the new stylesheet.
    */
@@ -235,7 +235,7 @@ public class Controller {
   }
 
   /**
-   * Changes the background color of the IDEWindow.
+   * Changes the background color of the IdeWindow.
    *
    * @param value the new background color value.
    */
@@ -244,7 +244,7 @@ public class Controller {
   }
 
   /**
-   * Processes the selected PNG file and updates the IDEWindow.
+   * Processes the selected PNG file and updates the IdeWindow.
    *
    * @param selectedFilePath the selected PNG file name.
    */
@@ -253,7 +253,7 @@ public class Controller {
   }
 
   /**
-   * Gets the text content from the IDEWindow.
+   * Gets the text content from the IdeWindow.
    *
    * @return the text content.
    */
@@ -262,7 +262,7 @@ public class Controller {
   }
 
   /**
-   * Clears the text content of the IDEWindow.
+   * Clears the text content of the IdeWindow.
    */
   public void clearText() {
     ide.clearText();
@@ -382,7 +382,7 @@ public class Controller {
     setUpRunInternal("rt 90\nfd " + KEY_MOVE_AMOUNT);
   }
 
-  public IDEWindow getIde() {
+  public IdeWindow getIde() {
     return ide;
   }
 

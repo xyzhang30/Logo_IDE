@@ -1,15 +1,10 @@
 package slogo.view;
 
 import java.io.FileNotFoundException;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
 import slogo.model.command.Executioner;
-import slogo.model.turtle.TurtleModel;
 import util.DukeApplicationTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,12 +17,12 @@ public class ControlPaneTest extends DukeApplicationTest {
 
   private ControlPane cp1;
 
-  private IDEWindow i1;
+  private IdeWindow i1;
 
   @Override
   public void start(Stage stage) throws FileNotFoundException {
     controller = new Controller(stage, new Executioner(), "english");
-    i1 = new IDEWindow(stage, controller, "english");
+    i1 = new IdeWindow(stage, controller, "english");
     controller.start();
   }
 

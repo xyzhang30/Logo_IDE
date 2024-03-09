@@ -4,7 +4,7 @@ import java.util.List;
 import slogo.model.environment.EnvironmentApi;
 
 /**
- * Executable class for Lists of Executables
+ * Executable class for Lists of Executables.
  */
 public class ListExecutable implements Executable {
 

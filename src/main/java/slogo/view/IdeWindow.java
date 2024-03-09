@@ -17,11 +17,11 @@ import javafx.stage.Stage;
 import slogo.model.api.TurtleModelApi;
 
 /**
- * The {@code IDEWindow} class represents the Integrated Development Environment (IDE) window for
+ * The {@code IdeWindow} class represents the Integrated Development Environment (IDE) window for
  * the SLogo application. It manages the graphical user interface components, including text input,
  * turtle panes, control panels, and more.
  */
-public class IDEWindow {
+public class IdeWindow {
 
   // Constants and fields
 
@@ -102,13 +102,13 @@ public class IDEWindow {
   // Constructors
 
   /**
-   * Constructs an {@code IDEWindow} with the specified stage, controller, and language.
+   * Constructs an {@code IdeWindow} with the specified stage, controller, and language.
    *
    * @param stage      The stage for the IDE window.
    * @param controller The controller for the IDE window.
    * @param language   The language used in the IDE window.
    */
-  public IDEWindow(Stage stage, Controller controller, String language) {
+  public IdeWindow(Stage stage, Controller controller, String language) {
     this.stage = stage;
     this.controller = controller;
     this.language = language;

@@ -72,7 +72,7 @@ public abstract class TurtleExecutable extends CommandExecutable {
   }
 
   /**
-   * Helper function to rotate a Turtle Counter-Clockwise
+   * Helper function to rotate a Turtle Counter-Clockwise.
    *
    * @param degrees The angle by which the Turtle rotates Counter-Clockwise
    */

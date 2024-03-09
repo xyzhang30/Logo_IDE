@@ -1,10 +1,9 @@
 package slogo.view;
 
-import static slogo.view.IDEWindow.DEFAULT_RESOURCE_PACKAGE;
+import static slogo.view.IdeWindow.DEFAULT_RESOURCE_PACKAGE;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.geometry.Insets;

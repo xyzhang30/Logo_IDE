@@ -24,10 +24,9 @@ public class Executioner implements ExecutionerApi {
   private final TreeParser treeParser;
   private final Environment environment;
   private RootExecutable root;
-  private CommandHistory commandHistory;
 
   /**
-   * constructs an executioner used to call parse and commands
+   * constructs an executioner used to call parse and commands.
    */
   public Executioner() {
     environment = new Environment(400, 600);
