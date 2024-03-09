@@ -16,6 +16,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+
+/**
+ * Parses XML files containing command definitions.
+ */
 public class CommandXmlParser {
 
   private final Map<String, String> parameterDescription;
@@ -23,16 +27,25 @@ public class CommandXmlParser {
   private String commandDescription;
   private final List<String> paramOrder;
   private int numParamsExpected;
-  private String returnValueType; //do we even need this since everything returns a double?
+  private String returnValueType;
   private String implementationName;
-  private String commandCategory; //do we need this??
+  private String commandCategory;
   private String commandExample;
 
+  /**
+   * Constructs a CommandXmlParser object.
+   */
   public CommandXmlParser() {
     this.parameterDescription = new HashMap<>();
     this.paramOrder = new ArrayList<>();
   }
 
+  /**
+   * Reads and parses an XML file for a specific command.
+   *
+   * @param commandName the name of the command.
+   * @throws FileNotFoundException if the XML file for the command is not found.
+   */
   public void readXml(String commandName) throws FileNotFoundException {
     String dataFolderPath = "data/commandsXML/";
     String path = dataFolderPath + commandName + ".xml";
@@ -83,6 +96,10 @@ public class CommandXmlParser {
     }
   }
 
+  /**
+   * gets the param list in order to be displayed in help.
+   * @return the param list for the specified command in order.
+   */
   public List<String> getParamOrder() {
     return paramOrder;
   }
@@ -127,34 +144,63 @@ public class CommandXmlParser {
     return doc;
   }
 
+  /**
+   * Retrieves the name of the command.
+   *
+   * @return the name of the command.
+   */
   public String getCommandName() {
     return commandName;
   }
 
+  /**
+   * Retrieves the description of the command.
+   *
+   * @return the description of the command.
+   */
   public String getCommandDescription() {
     return commandDescription;
   }
 
+  /**
+   * Retrieves the parameters of the command.
+   *
+   * @return the parameters of the command.
+   */
   public Map<String, String> getParameters() {
     return parameterDescription;
   }
 
+  /**
+   * Retrieves the number of expected parameters for the command.
+   *
+   * @return the number of expected parameters.
+   */
   public int getNumParamsExpected() {
     return numParamsExpected;
   }
 
+  /**
+   * Retrieves the return value type of the command.
+   *
+   * @return the return value type.
+   */
   public String getReturnValueType() {
     return returnValueType;
   }
 
+  /**
+   * gets the class path the command logic was implemented for reflection use.
+   * @return the class path the command logic was implemented.
+   */
   public String getImplementationName() {
     return implementationName;
   }
 
-  public String getCommandCategory() {
-    return commandCategory;
-  }
-
+  /**
+   * gets an example of the command to display in help.
+   * @return and example of the method use, in string.
+   */
   public String getExample() {
     return commandExample;
   }
