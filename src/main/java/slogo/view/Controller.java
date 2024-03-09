@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import slogo.model.api.ExecutionerApi;
 import slogo.model.api.InputRecord;
 import slogo.model.api.TurtleModelApi;
-import slogo.model.command.CommandHistory;
 
 /**
  * Controller class that manages the interaction between the graphical user interface (GUI) and the

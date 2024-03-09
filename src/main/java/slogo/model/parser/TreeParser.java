@@ -30,6 +30,9 @@ public class TreeParser implements ParserApi {
   private final CommandHistory history;
   private final List<String> inputStrings;
 
+  /**
+   * Constructor for Parser.
+   */
   public TreeParser() {
     xmlParser = new CommandXmlParser();
     inputStrings = new ArrayList<>();
