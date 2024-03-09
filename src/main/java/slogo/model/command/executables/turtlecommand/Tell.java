@@ -11,7 +11,7 @@ import slogo.model.environment.EnvironmentApi;
  */
 public class Tell extends CommandExecutable {
 
-  List<Executable> ids;
+  private List<Executable> ids;
 
   /**
    * Constructs a new {@code Tell} command with the specified turtle IDs.
