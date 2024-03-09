@@ -26,12 +26,8 @@ public class Controller {
 
   private final ExecutionerApi executioner;
   private final String language;
-  private final HelpWindow helpWindow;
-  private Stage stage;
   private State state;
   private boolean stepping;
-  private CommandHistory cmdHistory;
-  private UserDefPane userPane;
 
 
   /**
@@ -48,9 +44,8 @@ public class Controller {
     model = this.executioner.getTurtleModels();
     this.language = language;
     ide = new IDEWindow(stage, this, language);
-    cmdHistory = new CommandHistory();
     instance = this;
-    helpWindow = new HelpWindow(language);
+    HelpWindow helpWindow = new HelpWindow(language);
   }
 
   /**
@@ -78,7 +73,6 @@ public class Controller {
   }
 
   private void updateHistory() {
-    cmdHistory = executioner.getHistory();
     feedHistory(executioner.getHistory().getCommands());
     feedVariables();
   }
@@ -194,8 +188,7 @@ public class Controller {
    * Feeds the variables to the UserDefPane for display.
    */
   public void feedVariables() {
-    userPane = ide.getUserPane();
-    System.out.println("feed variables called");
+    UserDefPane userPane = ide.getUserPane();
     userPane.updateDisplay();
   }
 
@@ -203,7 +196,6 @@ public class Controller {
    * Increases the execution speed.
    */
   public void speedUp() {
-    System.out.println(ide.getSpeed());
     ide.setSpeed(ide.getSpeed() + SPEED_ADJUSTMENT);
   }
 

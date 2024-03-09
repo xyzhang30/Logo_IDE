@@ -40,7 +40,7 @@ public class Environment implements EnvironmentApi {
   }
 
   private void defaultTurtle() {
-    turtleMap.put(1.0, new TurtleModel(1.0));
+    turtleMap.put(1.0, new TurtleModel());
     activeTurtleKeys.add(1.0);
   }
 
