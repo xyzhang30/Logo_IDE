@@ -141,7 +141,7 @@ public class Controller {
    *
    * @param command the command to be executed.
    */
-  public void setUpRunInternal(String command) {
+  private void setUpRunInternal(String command) {
     try {
       if (state == State.STOPPED) {
         if (command != null && !command.equals("")) {

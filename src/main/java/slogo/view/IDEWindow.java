@@ -72,7 +72,7 @@ public class IDEWindow {
   /**
    * The text input pane in the IDE window.
    */
-  private TextInputPane textPane = new TextInputPane(100, 100, defaultLanguage);
+  private TextInput textPane;
   /**
    * The turtle pane in the IDE window.
    */
@@ -386,10 +386,8 @@ public class IDEWindow {
    * @param fileContent the content to be loaded into the text area.
    */
   public void loadFileContent(String fileContent) {
-    textPane.getTextArea().setText(fileContent);
+    controller.runHelp(fileContent);
   }
-
-
 }
 
 
