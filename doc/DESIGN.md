@@ -5,8 +5,8 @@
 ## Name + Role:
 * Kevin - (backend) parser + tokenizer 
 * Alisha - (backend) commands + history
-* Doga - (frontend) graphics + ui elements
-* Spencer - (frontend) turtle animation 
+* Doga - (frontend) history view + help window + main
+* Spencer - (frontend) turtle animations + control panel + controller
 
 ## Design Goals:
 * Make enough abstraction on the executables to make adding new commands easy
