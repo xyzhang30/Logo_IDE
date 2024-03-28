@@ -5,7 +5,7 @@
 ## Name + Role:
 * Kevin - (backend) parser + tokenizer 
 * Alisha - (backend) commands + history
-* Doga - (frontend) history view + help window + main
+* Doga - (frontend) history view + help window + main + (some) controller
 * Spencer - (frontend) turtle animations + control panel + controller
 
 ## Design Goals:

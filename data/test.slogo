@@ -1,0 +1,7 @@
+repeat 5 [ fd 10 ] 
+if 1 [ fd 100 ] 
+if 0 [ fd 100 ] 
+back 200 
+fd fd 50 
+back 100 
+fd x 
