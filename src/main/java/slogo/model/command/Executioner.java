@@ -73,6 +73,7 @@ public class Executioner implements ExecutionerApi {
       environment.getContextStack().get(environment.getContextStack().size() - 1)
           .execute(environment);
     } catch (Exception e) {
+      e.printStackTrace();
       throw new RuntimeException();
     }
   }
@@ -84,6 +85,7 @@ public class Executioner implements ExecutionerApi {
    */
   @Override
   public boolean hasNext() {
+    System.out.println("root:"+root);
     return root.hasNext() || environment.getContextStack().size() > 1;
   }
 

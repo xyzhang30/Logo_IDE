@@ -190,9 +190,9 @@ public class TurtleModel implements TurtleModelApi {
     this.active = true;
     this.posX = 0;
     this.posY = 0;
-    this.speed = 1; //default values (might change later)
+    this.speed = 100; //default values (might change later)
     this.direction = 0;
-    this.penDown = false; //default to false, might change
+    this.penDown = true; //default to false, might change
     this.visible = true; //default to visible
     this.eraseTrace = false;
   }

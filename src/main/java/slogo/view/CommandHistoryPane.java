@@ -48,8 +48,10 @@ public class CommandHistoryPane extends CreatePane {
 
     scrollPane = new ScrollPane();
     scrollPane.setContent(commandTextFlow);
-    scrollPane.setFitToWidth(true); // Adjusts width to fit content
-    scrollPane.setFitToHeight(true); // Adjusts height to fit content
+    scrollPane.setFitToWidth(false); // Adjusts width to fit content
+    scrollPane.setFitToHeight(false); // Adjusts height to fit content
+    scrollPane.setPrefWidth(400);
+    scrollPane.setPrefHeight(600);
 
     Label titleLabel = new Label(resourceBundle.getString("commandHistory"));
 
@@ -65,10 +67,13 @@ public class CommandHistoryPane extends CreatePane {
    * @param command The command to add.
    */
   public void addCommand(String command) {
+    System.out.println("ADD COMMAND CALLED");
     clearHistory();
     String[] commandLines = command.split("\n");
 
     for (String s : commandLines) {
+//      String[] clickable = s.split(" ");
+//      Hyperlink link = new Hyperlink(clickable[0]);
       Hyperlink link = new Hyperlink(s);
       link.setOnAction(event -> {
         Stage popupStage = new Stage();

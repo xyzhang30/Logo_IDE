@@ -27,6 +27,7 @@ public class RootExecutable implements Executable {
    * @return {@code true} if there are more executables, {@code false} otherwise
    */
   public boolean hasNext() {
+    System.out.println("TRee:"+tree);
     return currIdx < tree.size();
   }
 

@@ -27,6 +27,8 @@ public interface TextInput {
    * Clears the text input in the implementing class, if applicable.
    */
   void clearText();
+
+  void setTextContent(String code);
 }
 
 

@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
  */
 public class TextInputPane extends CreatePane implements TextInput {
 
-  private final TextArea ta1 = new TextArea();
+  private final TextArea codeInputArea = new TextArea();
 
   /**
    * Constructs a TextInputPane with specified dimensions and language.
@@ -29,9 +29,9 @@ public class TextInputPane extends CreatePane implements TextInput {
    */
   @Override
   public void create() {
-    ta1.setPrefSize(getWidth(), getHeight());
-    ta1.setId("TextInput");
-    getRoot().getChildren().add(ta1);
+    codeInputArea.setPrefSize(getWidth(), getHeight());
+    codeInputArea.setId("TextInput");
+    getRoot().getChildren().add(codeInputArea);
   }
 
   /**
@@ -40,14 +40,14 @@ public class TextInputPane extends CreatePane implements TextInput {
    * @return the text content of the TextInputPane.
    */
   public String getTextInput() {
-    return ta1.getText();
+    return codeInputArea.getText();
   }
 
   /**
    * Clears the text content of the TextArea.
    */
   public void clearText() {
-    ta1.clear();
+    codeInputArea.clear();
   }
 
   /**
@@ -55,8 +55,12 @@ public class TextInputPane extends CreatePane implements TextInput {
    *
    * @return the TextArea component used for text input.
    */
-  public TextArea getTextArea() {
-    return ta1;
+//  public TextArea getTextArea() {
+//    return codeInputArea;
+//  }
+
+  public void setTextContent(String code){
+    codeInputArea.setText(code);
   }
 
 }

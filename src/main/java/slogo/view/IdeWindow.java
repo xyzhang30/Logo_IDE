@@ -381,7 +381,8 @@ public class IdeWindow {
    * @param fileContent the content to be loaded in the controller to run.
    */
   public void loadFileContent(String fileContent) {
-    controller.runHelp(fileContent);
+//    controller.runHelp(fileContent);
+    textPane.setTextContent(fileContent);
   }
 }
 

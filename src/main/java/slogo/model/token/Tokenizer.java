@@ -41,12 +41,14 @@ public class Tokenizer implements TokenizerApi {
     List<Token> tokens = new ArrayList<>();
     for (String line : lineInput.split("\n")) {
       for (String symbol : line.split("\\s+")) {
-        String type = getTokenType(symbol);
-        if (type.equals("Comment")) {
-          tokens.add(new Token(type, line.substring(line.indexOf(symbol))));
-          break;
+        if (!symbol.isEmpty()){
+          String type = getTokenType(symbol);
+          if (type.equals("Comment")) {
+            tokens.add(new Token(type, line.substring(line.indexOf(symbol))));
+            break;
+          }
+          tokens.add(new Token(type, symbol));
         }
-        tokens.add(new Token(type, symbol));
       }
     }
     return tokens;
